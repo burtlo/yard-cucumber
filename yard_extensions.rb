@@ -26,6 +26,18 @@ module YARD::CodeObjects
   end
   
   #
+  # Transforms
+  #
+  class StepTransformObject < Base
+    attr_reader :value
+    
+    def value=(value)
+      @value = format_source(value)
+    end
+    
+  end
+  
+  #
   # Allow for steps and step definitions to be available on the NamespaceObject
   #  
   NamespaceObject.class_eval do
@@ -38,8 +50,14 @@ module YARD::CodeObjects
 
     attr_accessor :step_definitions
 
-    def step_definitisions(opts = {})
-      children.select {|child| child.type == :stepdefinitions }
+    def step_definitions(opts = {})
+      children.select {|child| child.type == :stepdefinition }
+    end
+    
+    attr_accessor :step_transforms
+    
+    def step_transforms(opts = {})
+      children.select {|child| child.type == :steptransform }
     end
     
   end
@@ -61,7 +79,7 @@ class StepDefinitionHandler < YARD::Handlers::Ruby::Legacy::Base
     #puts "with step definition: #{stepDefinition}"
 	  @@unique_name = @@unique_name + 1
 	
-    obj = register StepDefinitionObject.new(namespace, "#{predicateName}_#{@@unique_name}") {|o| o.source = statement.block.to_s ; o.value = stepDefinition ; o.predicate = predicateName}
+    obj = register StepDefinitionObject.new(namespace, "StepDefinition_#{@@unique_name}") {|o| o.source = statement.block.to_s ; o.value = stepDefinition ; o.predicate = predicateName}
     #obj = register StepDefinitionObject.new(namespace, stepDefinition) {|o| o.source = statement ; o.value = stepDefinition }
     
     parse_block :owner => obj
@@ -69,3 +87,21 @@ class StepDefinitionHandler < YARD::Handlers::Ruby::Legacy::Base
   end
 end
 
+class StepTransformHandler < YARD::Handlers::Ruby::Legacy::Base
+  MATCH = /^Transform\s*(\/[^\/]+\/).+$/
+  handles MATCH
+  
+  @@unique_name = 0
+  
+  def process
+    transformDefinition = statement.tokens.to_s[MATCH,1]
+  	log.debug "#process - transformDefinition = #{transformDefinition}"
+  	@@unique_name = @@unique_name + 1
+
+    obj = register StepTransformObject.new(namespace, "StepTransform_#{@@unique_name}") {|o| o.source = statement.block.to_s ; o.value = transformDefinition }
+    
+    parse_block :owner => obj
+    
+  rescue YARD::Handlers::NamespaceMissingError
+  end
+end

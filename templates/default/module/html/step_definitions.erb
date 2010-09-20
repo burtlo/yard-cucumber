@@ -1,7 +1,7 @@
-<% if object.steps %>
-  <h2>Steps</h2>
+<% if object.step_definitions %>
+  <h2>Step Definitions</h2>
   <dl class="constants">
-    <% object.steps.each do |step| %>
+    <% object.step_definitions.each do |step| %>
 	  <dt>
 	    <span style="font-weight: normal;"><%= step.predicate %></span>
 		<span style="constants"><%= step.value %></span>
