@@ -1,3 +1,4 @@
+#include YARD::Templates::Helpers::HtmlHelper
 
 def init
   super  
@@ -6,17 +7,28 @@ def init
   sections.place(:step_definitions).after(:step_transforms)
   sections.place(:steps).after(:step_definitions)
   
-  log.debug "Step Definition List:"
-  object.step_definitions.each {|stepdef| log.debug "Step definition #{stepdef}"}
+end
+
+
+def step_definitions
   
-  log.debug "Step Tranform List:"
-  object.step_transforms.each {|transform| log.debug "Step transform #{transform}"}
+  # For the given step definition find all the constants
     
-  log.debug "Step List:"
-  object.steps.each {|step| log.debug "Step #{step}"}
+  @steps = object.step_definitions.collect do |stepdef|
+    #log.debug "Step Definition #{stepdef} #{stepdef.value}"
+    
+    constants = stepdef.constants.collect do |stepdef_constant| 
+      log.debug "StepDef\#Constant #{stepdef_constant}"
+      object.constants.find {|constant| stepdef_constant.to_sym == constant.name }
+      #log.debug "StepDef\#Constant #{constants}"
+    end
+    
+    constants.each {|constant| stepdef.value.gsub!(constant.name.to_s,%{<a href="#{url_for(constant)}">#{constant}</a>}) }
+    stepdef
+  end
   
+  # TODO: For the given step definitions find all the steps
+  # 
   
-  log.debug "Children:"
-  object.children.each {|child| log.debug "Child: #{child} #{child.type}"}
-  
+  erb(:step_definitions)
 end

@@ -4,10 +4,10 @@ module YARD::CodeObjects
   # Steps, as implemented in the Feature file
   #
   class StepImplementationObject < Base
-	attr_reader :value
-	attr_reader :predicate
+	  attr_reader :value
+	  attr_reader :predicate
 	
-	def value=(value)
+	  def value=(value)
       @value = format_source(value)
     end
   end
@@ -17,14 +17,18 @@ module YARD::CodeObjects
   #
   class StepDefinitionObject < Base
 
-  attr_reader :value
-	attr_reader :predicate
+    attr_reader :value
+	  attr_reader :predicate
+	  
+	  def constants
+	    value.scan(/\#\{([^\}]+)\}/).flatten
+    end
 	
     def value=(value)
       @value = format_source(value)
     end
   end
-  
+
   #
   # Transforms
   #
@@ -34,7 +38,6 @@ module YARD::CodeObjects
     def value=(value)
       @value = format_source(value)
     end
-    
   end
   
   #
@@ -73,14 +76,19 @@ class StepDefinitionHandler < YARD::Handlers::Ruby::Legacy::Base
   
   def process
 
-    stepDefinition = statement.tokens.to_s[MATCH,3]
     predicateName = statement.tokens.to_s[MATCH,2]
-	  #puts "Processing a #{predicateName}"
+
+    stepDefinition = statement.tokens.to_s[MATCH,3]
+    
+    
+    #puts "Processing a #{predicateName}"
     #puts "with step definition: #{stepDefinition}"
 	  @@unique_name = @@unique_name + 1
 	
-    obj = register StepDefinitionObject.new(namespace, "StepDefinition_#{@@unique_name}") {|o| o.source = statement.block.to_s ; o.value = stepDefinition ; o.predicate = predicateName}
-    #obj = register StepDefinitionObject.new(namespace, stepDefinition) {|o| o.source = statement ; o.value = stepDefinition }
+	  step_instance = StepDefinitionObject.new(namespace, "StepDefinition_#{@@unique_name}") {|o| o.source = statement.block.to_s ; o.value = stepDefinition ; o.predicate = predicateName}
+	  
+    obj = register step_instance 
+    
     
     parse_block :owner => obj
   rescue YARD::Handlers::NamespaceMissingError

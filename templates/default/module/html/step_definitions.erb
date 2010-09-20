@@ -1,8 +1,8 @@
 <% if object.step_definitions %>
   <h2>Step Definitions</h2>
   <dl class="constants">
-    <% object.step_definitions.each do |step| %>
-	  <dt>
+    <%  @steps.each do |step| %>
+	  <dt id="<%= anchor_for(step) %>">
 	    <span style="font-weight: normal;"><%= step.predicate %></span>
 		<span style="constants"><%= step.value %></span>
 	  </dt>
@@ -21,3 +21,4 @@
 </table>
   
 <% end %>
+
