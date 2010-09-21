@@ -6,7 +6,7 @@ Feature: Customer Login
     Given this undefined step definition
 
   @bvt
-  Scenario: Customer with valid login is able to log ing
+  Scenario: Customer with valid login is able to login
     Given that a customer is a valid customer
     When a customer logs in as username 'frank' with password 'default'
     Then I expect them to have logged in successfully
