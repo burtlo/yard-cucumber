@@ -14,7 +14,7 @@ def step_definitions
   
   # For the given step definition find all the constants
     
-  @steps = object.step_definitions.collect do |stepdef|
+  @step_defs = object.step_definitions.collect do |stepdef|
     #log.debug "Step Definition #{stepdef} #{stepdef.value}"
     
     constants = stepdef.constants.collect do |stepdef_constant| 
@@ -31,4 +31,14 @@ def step_definitions
   # 
   
   erb(:step_definitions)
+end
+
+def steps
+  
+  # For all the features, and scenarios, find the steps and then see if they match the step definition...
+  
+  
+  
+  erb(:steps)
+  
 end

@@ -3,8 +3,9 @@
   <dl class="constants">
     <% object.steps.each do |step| %>
 	  <dt>
-	    <span style="font-weight: normal;"><%= step.predicate %></span>
-		<span style="constants"><%= step.value %></span>
+	    <span style="constants"><%= step.name %></span>
+	    <span>in</span>
+	    <span style="constants"><%= step.file %>:<%= step.line %></span>
 	  </dt>
 	  <dd><pre class="code"><%= step.source %></pre></dd>
     <% end %>

@@ -1,0 +1,43 @@
+The initial work to get the Step definition files were harder than the example currently for rspec.  The difference is that you need to make additions to the template in a grander way.  Instead of dovetailing into the current source, it involved finding where YARD started with its elements and how to make the element available in the RootNode.
+
+1. Combed through the gem and found the template directory
+2. Guessed that the root node was where things were started found that it called the module template.
+3. From there I learned that symbols meant files within the structure.
+4. Later I learned that they could also be methods in the setup.rb and that you could still pass operations to the file with a render command
+5. Learned that YARD makes unique names for the methods with the namespace and the file name.  This is normally a great naming scheme, however step definitions are often greater than the allowed file size.  So I created an internal variable that generated a unique value for each step definition.  This was after overriding the size of the line to max 255 characters (running into problems later in windows)
+6. After that I wanted to add the elements to root node so I class_eval'd and opened up and threw the necessary properties and methods on there.
+7. Then I realized that none of my children were present and how to look at the children.  So I debug out'd the children and found that I had failed to register the children.
+
+8. Later sought to tackle how to link to other elements and how that was done with the HMTLHelper.  This helped create the link, which seemed important to do at display time because I did not know how to hook into completing some linking after all the parsing was complete.
+
+9. Linking involved searching and working with regular expressions to create the link
+
+10. Cucumber files were a completely different animal and it involved more work because of having to set up not just handlers and types.
+
+11. Creating a parser, which I hoped to simply pass to Cucumber's step mother and gain access to it's pattern to view the features and details of a feature.
+
+12. Registering the parser 
+
+13. Registering the processor.
+
+14. Without having the processor it would parse but then fail because there was not a processor of the parsed files.
+
+15. Found that you need to have a matching namespace for the handler and have at least a base type there and one handler.  Even if the base was just being called.
+
+16. Cucumber does not allow the movement through the structure naturally and I would need to create functionality for my code to act as a visitor to move through feature.
+
+17. Found that several cucumber variables would need to be set to allow me to traverse the tree.  Looking at new options and error messages that are appearing. 
+
+18. From expection of the Cucumber Textmate bundle that I found, I think that it would be easier to ignore the Cucumber Parser and instead parse the details of the structure as I would normally have done it and suffer any hardships that come that way instead of trying to shoe-horn this together anymore
+
+19. Re-implementation lost me the connection to the Handler.  But I was able to gain it again.
+
+20. Created my own bad parser within the extensions file to create the objects 
+
+21. Realized that I should likely make them CodeObjects but then thought I could get away with them not being code objects.  Found in the code that only code objects can be registered.
+
+22. Because they became code objects I had to change their constructors and and add namespace and all that.
+
+23. With that done the previously existing steps formatter starting blowing up because I did not have predicate or value!  Which meant the step objects were getting parsed and getting delivered to the template.
+
+24. Found them in the template and then for the sake of display showed the file name and the line number that they belong.
