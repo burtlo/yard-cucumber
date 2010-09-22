@@ -4,7 +4,7 @@
     <%  @step_defs.each do |step| %>
 	  <dt id="<%= anchor_for(step) %>">
 	    <span style="font-weight: normal;"><%= step.predicate %></span>
-		<span style="constants"><%= step.value %></span>
+		<span style="constants"><%= step.value_as_link %></span>
 	  </dt>
 	  <dd><pre class="code"><%= step.source %></pre></dd>
     <% end %>

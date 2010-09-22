@@ -50,7 +50,7 @@ module YARD
       end
   
       class Step < YARD::CodeObjects::Base
-    
+        attr_accessor :definition
       end
   
       class FeatureParser < Base
@@ -83,10 +83,10 @@ module YARD
               log.debug "New Feature"
               @current_element = :feature
               new_feature($1)
-            elsif line =~ /^\s*BACKGROUND\s*:(.+)$/i then
+            elsif line =~ /^\s*BACKGROUND\s*:(.*)$/i then
               log.debug "New Background"
               @current_element = :background
-              new_scenario($1)
+              new_scenario("Background")
             elsif line =~ /^\s*SCENARIO(?: OUTLINE)?\s*:(.+)$/i then
               log.debug "New Scenario"
               @current_element = :scenario
@@ -132,20 +132,20 @@ module YARD
         # The new scenario gets any new tags that are hanging out and the current element moves to :scenario
         #
         def new_scenario(scenario_title)
-          @tokens[:feature].send("add_#{@current_element}", @tokens.delete(:scenario)) if (@tokens[:feature] && @tokens[:scenario])
-          @tokens[:scenario] = Scenario.new(:root,scenario_title)
-          @tokens[:scenario].add_file(@file,@tokens[:line_number])
-          @tokens[:scenario].tags = @tokens.delete(:tags)
+          @tokens[:feature].send("add_#{@current_element}", @tokens.delete(@current_element)) if (@tokens[:feature] && @tokens[:scenario])
+          @tokens[@current_element] = Scenario.new(:root,scenario_title)
+          @tokens[@current_element].add_file(@file,@tokens[:line_number])
+          @tokens[@current_element].tags = @tokens.delete(:tags)
         end
     
         def new_step(step_name)
-          @tokens[:scenario].add_step(step_name,@tokens[:line_number]) if @tokens[:scenario]
+          @tokens[@current_element].add_step(step_name,@tokens[:line_number]) if @tokens[@current_element]
         end
     
         #
         # This should likely not be a step and just another method that notes the order
         def new_table_row(table_row)
-          @tokens[:scenario].add_table(table_row,@tokens[:line_number]) if @tokens[:scenario]
+          @tokens[@current_element].add_table(table_row,@tokens[:line_number]) if @tokens[@current_element]
         end
     
         def new_description(line)
@@ -204,18 +204,7 @@ end
 
 module YARD::CodeObjects
   
-  #
-  # Steps, as implemented in the Feature file
-  #
-  class StepImplementationObject < Base
-    attr_reader :value
-    attr_reader :predicate
-	
-    def value=(value)
-      @value = format_source(value)
-    end
-  end
-  
+
   #
   # StepDefinitions, as implemented in a ruby file
   #
@@ -224,14 +213,14 @@ module YARD::CodeObjects
     attr_reader :value
     attr_reader :predicate
 	  
-    def constants
-      value.scan(/\#\{([^\}]+)\}/).flatten
-    end
-	
+	  # This is being used to hold the constants that are replaced. should likely just replace the constants
+	  attr_accessor :value_as_link
+	  attr_accessor :constants
+    
     def value=(value)
       @value = format_source(value)
     end
-  end
+  end 
 
   #
   # Transforms
@@ -243,21 +232,25 @@ module YARD::CodeObjects
       @value = format_source(value)
     end
   end
-  
-  class StepObject< Base
-    
-    attr_reader :value
-    
-    def value=(value)
-      @value = format_source(value)
-    end
-    
-  end
+ 
   
   #
   # Allow for steps and step definitions to be available on the NamespaceObject
   #  
   NamespaceObject.class_eval do
+
+
+    attr_accessor :features
+
+    def features(opts = {})
+      children.select {|child| child.type == :feature }
+    end
+
+    attr_accessor :scenarios
+
+    def scenarios(opts = {})
+      children.select {|child| child.type == :scenario }
+    end
 
     attr_accessor :steps
 
