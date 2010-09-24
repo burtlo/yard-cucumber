@@ -41,3 +41,7 @@ The initial work to get the Step definition files were harder than the example c
 23. With that done the previously existing steps formatter starting blowing up because I did not have predicate or value!  Which meant the step objects were getting parsed and getting delivered to the template.
 
 24. Found them in the template and then for the sake of display showed the file name and the line number that they belong.
+
+25. Wired up the features and scenarios after that to get them to display.  Title, filename and tags.
+
+26.  At this stage it felt that I had accomplished the initial probe to see if this was at all possible.  What I have created is a big mess of code and a parser with some quirks but it worked and wiring it in was the job that I wanted to see if it was possible.  So the next stage would be to clean up the yard_extensions file to be multiple files.  Implement tests around the components that I created.  And work with the templates so that I could get a better display of all the items.  For a short term goal, I think that I am resolved to leave all files in place, consider the parsing/tokenizing locked down, and simply focus on the templates.

@@ -42,10 +42,10 @@ def steps
     
     # TODO: Should replace the constants with their values as well
     # TODO: Should handle when has two definitions
-    object.step_definitions.each do |step_def|
-      log.debug "Looking for a match against #{step_def.value.gsub(/^\/|\/$/,'')}"
-      step.definition = step_def if step =~ /#{step_def.value}/
-    end
+    #object.step_definitions.each do |step_def|
+      #log.debug "Looking for a match against #{step_def.value.gsub(/^\/|\/$/,'')}"
+      #step.definition = step_def if step =~ /#{step_def.value}/
+    #end
     
   end
   
