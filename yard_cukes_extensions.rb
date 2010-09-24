@@ -6,7 +6,7 @@ module YARD
 
       class Feature < YARD::CodeObjects::Base
 
-        attr_accessor :value, :description, :scenarios, :tags
+        attr_accessor :value, :description, :scenarios, :background, :tags
 
         def initialize(namespace,name)
           super(namespace,name.strip)
@@ -17,11 +17,12 @@ module YARD
         end
 
         def add_background(background)
-          @background = background 
+          @background = Scenario.new(:root,"#{name}_background") {|s| s.value = background }
         end
 
         def add_scenario(scenario)
-          @scenarios << scenario
+          @scenarios << Scenario.new(:root,"#{name}_scenario_#{@scenarios.count}") {|s| s.value = scenario }
+          @scenarios.last
         end
 
       end
@@ -54,6 +55,9 @@ module YARD
       end
 
       class FeatureParser < Base
+        
+        attr_accessor :features, :source
+        
         def initialize(source, file = '(stdin)')
           @source = source
           log.debug "FeatureParser file #{file}"
@@ -65,7 +69,6 @@ module YARD
         end
 
         def parse
-          log.debug "Feature File Parsed"
           tokenize
           self
         end
@@ -95,7 +98,7 @@ module YARD
             elsif line =~ /^\s*SCENARIO(?: OUTLINE)?\s*:(.+)$/i then
               log.debug "New Scenario"
               @current_element = :scenario
-              new_scenario($1)
+              new_scenario($1.strip)
             elsif line =~ /^\s*((?:GIVEN|WHEN|THEN|AND|BUT)\s*.+)$/i then
               log.debug "New Step"
               new_step($1)
@@ -104,12 +107,12 @@ module YARD
               new_table_row($1)
             else
               log.debug "New Description"
-              new_description(line)
+              new_description(line) unless line.strip == "" 
             end
             @tokens[:line_number] = @tokens[:line_number] + 1
           end
 
-          @tokens[:feature]
+          @features
 
         end
 
@@ -126,8 +129,8 @@ module YARD
         # tags are cleared, feature becomes the feature that scenarios are added to...
         #
         def new_feature(feature_title)
-          @features << @tokens[:feature].delete if @tokens[:feature]
-          @tokens[:feature] = Feature.new(:root,"feature_#{unique_id}") {|f| f.value = feature_title }
+          @tokens[:feature] = Feature.new(:root,@file.gsub('.','_')) {|f| f.value = feature_title.strip }
+          @features << @tokens[:feature]
           @tokens[:feature].add_file(@file,@tokens[:line_number])
           @tokens[:feature].tags = @tokens.delete(:tags)
         end
@@ -138,8 +141,8 @@ module YARD
         # The new scenario gets any new tags that are hanging out and the current element moves to :scenario
         #
         def new_scenario(scenario_title)
-          @tokens[:feature].send("add_#{@current_element}", @tokens.delete(@current_element)) if (@tokens[:feature] && @tokens[:scenario])
-          @tokens[@current_element] = Scenario.new(:root,"scenario_#{unique_id}") {|s| s.value = scenario_title }
+          @tokens[@current_element] = @tokens[:feature].send("add_#{@current_element}",scenario_title) if @tokens[:feature]
+          
           @tokens[@current_element].add_file(@file,@tokens[:line_number])
           @tokens[@current_element].tags = @tokens.delete(:tags)
         end
@@ -155,7 +158,7 @@ module YARD
         end
 
         def new_description(line)
-          @tokens[@current_element].description << line
+          @tokens[@current_element].description << line.strip if (@current_element && @tokens[@current_element])
         end
 
         def enumerator
