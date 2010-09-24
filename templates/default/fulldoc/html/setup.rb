@@ -1,4 +1,3 @@
-include Helpers::ModuleHelper
 
 def init
   super

@@ -1,5 +1,5 @@
 @customer
-Feature: Customer Login
+Feature: Customer Login Feature
   As a customer of the product I am able to login as myself
 
   Background:

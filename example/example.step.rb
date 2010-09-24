@@ -22,3 +22,10 @@ Then /^I expect them to have logged in successfully $/ do
   pending "Validation that the customer has logged in successfully"  
 end
 
+When /^the customer logs out$/ do
+  pending
+end
+
+Then /^I expect the customer to be shown the logout page$/ do 
+  pending
+end

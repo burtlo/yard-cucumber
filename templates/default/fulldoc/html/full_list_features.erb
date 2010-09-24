@@ -1,7 +1,7 @@
 <% n = 1 %>
 <% @features.each do |feature| %>
   <li class="r<%= n %>">
-    <%= linkify feature, feature.name(true) %> 
+	<a href="<%= feature.name %>"><%= feature.value %></a>
   </li>
   <% n = n == 2 ? 1 : 2 %>
 <% end %>

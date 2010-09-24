@@ -4,7 +4,7 @@
     <% object.features.each do |feature| %>
 	  <dt>
 	    <span style="constants"><%= feature.tags %></span><br/>
-	    Feature:<span style="constants"><%= feature.name %></span>
+	    Feature:<span style="constants"><%= feature.value %></span>
 	    <span style="constants"><%= feature.file %>:<%= feature.line %></span>
 	  </dt>
 	  <dd><pre class="code"><%= feature.description %></pre></dd>
