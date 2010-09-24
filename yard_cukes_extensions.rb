@@ -38,9 +38,9 @@ module YARD
           @tags = []
         end
 
-        def add_step(step,unique_name,linenumber)
-          step = Step.new(:root,unique_name) {|s| s.value = step }
-          step.add_file(@files[0][0],linenumber)
+        def add_step(step,linenumber)
+          step = Step.new(:root,"#{name}_step_#{@steps.count}") {|s| s.value = step }
+          step.add_file(@files.first.first,linenumber)
           @steps << step
         end
 
@@ -148,7 +148,7 @@ module YARD
         end
 
         def new_step(step_name)
-          @tokens[@current_element].add_step(step_name,"step_#{unique_id}",@tokens[:line_number]) if @tokens[@current_element]
+          @tokens[@current_element].add_step(step_name,@tokens[:line_number]) if @tokens[@current_element]
         end
 
         #

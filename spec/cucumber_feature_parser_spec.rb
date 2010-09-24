@@ -56,8 +56,55 @@ module YARD::Parser::Cucumber
       @parser.features.first.background.files.first[1].should_not be_nil
     end
 
+    it "should have steps" do
+      @parser.features.first.scenarios.first.steps.should_not be_nil
+      if @background
+        @background.each_with_index do |step,index|
+          @parser.features.first.background.steps[index].value.should == step
+        end
+      end
+    end
 
+  end
 
+  shared_examples_for "with a scenario" do
+    it "should have a scenario" do 
+      @parser.features.first.scenarios.first.should_not be_nil
+    end
+
+    it "should have a unique scenario name" do
+      @parser.features.first.scenarios.first.name.should == "#{FEATURE_FILE_NAME}_scenario_0".gsub('.','_').to_sym
+    end
+
+    it "should have a value for the scenario" do
+      @parser.features.first.scenarios.first.value.should == "Ninja striking an opponent in the morning"  
+    end
+
+    it "should have tags" do
+      @parser.features.first.scenarios.first.tags.should include("@ninja")
+    end
+
+    it "should have a file" do
+      @parser.features.first.scenarios.first.files.first[0].should == FEATURE_FILE_NAME
+    end
+
+    it "should have a line number" do
+      @parser.features.first.scenarios.first.files.first[1].should_not be_nil
+    end
+
+    it "should have steps" do
+      @parser.features.first.scenarios.first.steps.should_not be_nil
+      if @scenarios
+        @scenarios.each_with_index do |scenario,scenario_index|
+          @parser.features.first.scenarios[scenario_index].should_not be_nil
+
+          scenario.each_with_index do |step,step_index|
+            @parser.features.first.scenarios[scenario_index].steps[step_index].name.should == "#{FEATURE_FILE_NAME.gsub('.','_')}_scenario_#{scenario_index}_step_#{step_index}".to_sym
+            @parser.features.first.scenarios[scenario_index].steps[step_index].value.should == step
+          end
+        end
+      end
+    end
   end
 
   describe "Feature Parser" do
@@ -107,20 +154,25 @@ module YARD::Parser::Cucumber
         FEATURE_FILE_NAME = "new.exciting.feature"
 
         before(:each) do
+          
+          @background = [ "Given that I have taken a nap" ]
+          
+          @scenarios = [ [ "Given that there is an opponent", 
+            "And a reason to fight him", 
+            "When I karate strike him", 
+            "Then I expect him to fall" ] ]
+          
           @parser = FeatureParser.new(%{
             @bvt @build @wip
             Feature: #{FEATURE_NAME}
             This feature is going to save the company.
 
             Background:
-            Given that I have taken a nap
+            #{@background.join("\n")}
 
             @ninja
             Scenario: Ninja striking an opponent in the morning
-            Given that there is an opponent
-            And a reason to fight him
-            When I karate strike hime
-            Then I expect him to fall
+            #{@scenarios.join("\n")}
             },FEATURE_FILE_NAME)
 
             @parser = @parser.parse
@@ -133,30 +185,10 @@ module YARD::Parser::Cucumber
 
           it_should_behave_like "basic feature file"
           it_should_behave_like "with a background"
+          it_should_behave_like "with a scenario"
 
-          it "should have a scenario" do 
-            @parser.features.first.scenarios.first.should_not be_nil
-          end
 
-          it "should have a unique scenario name" do
-            @parser.features.first.scenarios.first.name.should == "#{FEATURE_FILE_NAME}_scenario_0".gsub('.','_').to_sym
-          end
 
-          it "should have a value for the scenario" do
-            @parser.features.first.scenarios.first.value.should == "Ninja striking an opponent in the morning"  
-          end
-          
-          it "should have tags" do
-            @parser.features.first.scenarios.first.tags.should include("@ninja")
-          end
-          
-          it "should have a file" do
-            @parser.features.first.scenarios.first.files.first[0].should == FEATURE_FILE_NAME
-          end
-          
-          it "should have a line number" do
-            @parser.features.first.scenarios.first.files.first[1].should_not be_nil
-          end
 
         end
 
