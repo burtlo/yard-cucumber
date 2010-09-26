@@ -8,16 +8,19 @@
 	color: gray;
 }
 
-.feature .title {
+
+/* Features and Tags */
+
+* .title {
 	padding: 10px;
 	font-size: 24px;
 }
 
-.feature .title .pre {
+* .title .pre {
 	color: green;
 }
 
-.feature .title .name {
+* .title .name {
 	font-weight: bold;
 	color: black;
 }
@@ -94,4 +97,9 @@
 }
 .step .predicate {
 	color: #5D5C5B;
+}
+
+.tag .member {
+	margin: 10px 30px 10px 30px;
+	padding: 20px;
 }

@@ -19,17 +19,21 @@ module YARD
         end
       
         def add_background(background)
-          @background = Scenario.new(:root,"#{name}_background") {|s| s.value = background }
+          @background = Scenario.new(:root,"#{name}_background") {|s| s.value = background ; s.feature = self  }
         end
 
         def add_scenario(scenario)
-          @scenarios << Scenario.new(:root,"#{name}_scenario_#{@scenarios.count}") {|s| s.value = scenario }
+          @scenarios << Scenario.new(:root,"#{name}_scenario_#{@scenarios.count}") {|s| s.value = scenario ; s.feature = self }
           @scenarios.last
         end
         
         def tags=(tags)
           tags.each_with_index do |tag,index|
-            @tags << Tag.new(:root,"#{name}_tag_#{tag[1..-1]}_#{index}") {|t| t.value = tag ; t.add_file(@files.first[0],@files.first[1]) }
+            @tags << Tag.new(:root,"#{name}_tag_#{tag[1..-1]}_#{index}") do |t| 
+              t.value = tag
+              t.add_file(@files.first[0],@files.first[1])
+              t.feature = self
+            end
           end
         end
         
@@ -42,7 +46,7 @@ module YARD
 
       class Scenario < YARD::CodeObjects::Base
 
-        attr_accessor :value, :description, :steps, :tags
+        attr_accessor :value, :description, :steps, :tags, :feature
 
         def initialize(namespace,name)
           super(namespace,name.to_s.strip)
@@ -59,7 +63,12 @@ module YARD
 
         def tags=(tags)
           tags.each_with_index do |tag,index|
-            @tags << Tag.new(:root,"#{name}_tag_#{tag[1..-1]}_#{index}") {|t| t.value = tag ; t.add_file(@files.first[0],@files.first[1]) }
+            @tags << Tag.new(:root,"#{name}_tag_#{tag[1..-1]}_#{index}") do |t| 
+              t.value = tag
+              t.add_file(@files.first[0],@files.first[1])
+              t.feature = self.feature
+              t.scenario = self
+            end
           end
         end
 
@@ -90,13 +99,29 @@ module YARD
       
       class Tag < YARD::CodeObjects::Base
         
-        attr_accessor :value
+        attr_accessor :value, :feature, :scenario
         
         #TODO: this is likely a bad hack because I couldn't understand path
         def filename
           "#{self.name.to_s.gsub(/\//,'_')}.html"
         end
+                
+      end
+      
+      class TagUsage < YARD::CodeObjects::Base
         
+        attr_accessor :tags
+        
+        def filename
+          "#{self.name}.html"
+        end
+        
+        def push(tag)
+          @tags = [] unless @tags
+          @tags << tag
+        end
+        
+        alias_method :<<, :push
         
       end
 

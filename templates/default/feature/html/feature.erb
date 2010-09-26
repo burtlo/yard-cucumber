@@ -6,7 +6,11 @@
 
 	<div class="meta">
 		<%= @feature.files.first.first %>
-		<div class="tags"><%= @feature.tags.collect { |tags| tags.value }.join("&nbsp;&nbsp;") %></div>		
+		<div class="tags">
+			<% @feature.tags.each do |tag| %>
+			<a href="tag_<%= tag.value %>.html"><%= tag.value %></a>
+			<% end %>
+		</div>		
 	</div>
 
 	<div class="description">
@@ -51,7 +55,11 @@
 			<span class="name"><%= scenario.value %></span>
 		</div>
 		<% unless scenario.tags.empty? %>
-		<div class="tags"><%= scenario.tags.collect { |tags| tags.value }.join("&nbsp;&nbsp;") %></div>		
+		<div class="tags">
+			<% scenario.tags.each do |tag| %>
+			<a href="tag_<%= tag.value %>.html"><%= tag.value %></a>
+			<% end %>
+		</div>
 		<% end%>
 		<% unless scenario.description.empty? %>
 		<div class="description">

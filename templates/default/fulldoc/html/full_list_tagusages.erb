@@ -1,0 +1,10 @@
+<% n = 1 %>
+<% @tags.each do |name,uses| %>
+  <li class="r<%= n %>">
+	<span class='object_link'>
+		<a href="<%= uses.filename %>"><%= name %></a>
+	</span>
+    <small><%= uses.tags.count %></small>
+  </li>
+  <% n = n == 2 ? 1 : 2 %>
+<% end %>

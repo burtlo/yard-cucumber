@@ -1,0 +1,25 @@
+<div class="tag">
+	<div class="title">
+		<span class="pre">Tag:</span>
+		<span class="name"><%= @tags.tags.first.value %></span>
+	</div>
+	<% if @tags.tags %>
+	<% @tags.tags.each do |tag| %>
+		<% if tag.scenario %>
+		<div class="member">
+			Feature: <a href="<%= tag.feature.filename %>"><%= tag.feature.value %></a>
+			<div><%= tag.feature.description.join("\n") %></div>
+			<br/>
+			Scenario: <a href="<%= tag.scenario.filename %>"><%= tag.scenario.value %></a>
+			<div><%= tag.scenario.description.join("\n") %></div>
+			
+		</div>
+		<% else %>
+		<div class="member">
+			Feature: <a href="<%= tag.feature.filename %>"><%= tag.feature.value %></a>
+			<div><%= tag.feature.description.join("\n") %></div>
+		</div>
+		<% end %>
+	<% end %>
+	<% end%>
+</div>
