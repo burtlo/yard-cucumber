@@ -7,7 +7,7 @@ require File.dirname(__FILE__) + "/yard_cukes_extensions.rb"
 
 module YARD::CodeObjects
   
-  NamespaceObject.class_eval do
+  NamespaceObject.instance_eval do
 
     attr_accessor :features
 

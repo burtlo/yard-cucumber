@@ -9,7 +9,7 @@ module YARD
         attr_accessor :value, :description, :scenarios, :background, :tags
 
         def initialize(namespace,name)
-          super(namespace,name.strip)
+          super(namespace,name.to_s.strip)
           @description = []
           @background
           @scenarios = []
@@ -32,7 +32,7 @@ module YARD
         attr_accessor :value, :description, :steps, :tags
 
         def initialize(namespace,name)
-          super(namespace,name.strip)
+          super(namespace,name.to_s.strip)
           @description = []
           @steps = []
           @tags = []
