@@ -29,3 +29,10 @@ end
 Then /^I expect the customer to be shown the logout page$/ do 
   pending
 end
+
+#
+# Some details about the helper method that might be picked up in the documentation.
+#
+def a_helper_method
+  puts "performs some operation"
+end

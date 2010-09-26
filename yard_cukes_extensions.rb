@@ -8,6 +8,8 @@ module YARD
 
         attr_accessor :value, :description, :scenarios, :background, :tags
 
+        attr_accessor :filename
+
         def initialize(namespace,name)
           super(namespace,name.to_s.strip)
           @description = []
@@ -15,7 +17,7 @@ module YARD
           @scenarios = []
           @tags = []
         end
-
+      
         def add_background(background)
           @background = Scenario.new(:root,"#{name}_background") {|s| s.value = background }
         end
@@ -23,6 +25,16 @@ module YARD
         def add_scenario(scenario)
           @scenarios << Scenario.new(:root,"#{name}_scenario_#{@scenarios.count}") {|s| s.value = scenario }
           @scenarios.last
+        end
+        
+        def tags=(tags)
+          tags.each_with_index do |tag,index|
+            @tags << Tag.new(:root,"#{name}_tag_#{tag}_#{index}") {|t| t.value = tag }
+          end
+        end
+        
+        def filename
+          "cucumber_#{self.name.to_s.gsub(/\//,'_')}.html"
         end
 
       end
@@ -44,6 +56,12 @@ module YARD
           @steps << step
         end
 
+        def tags=(tags)
+          tags.each_with_index do |tag,index|
+            @tags << Tag.new(:root,"#{name}_tag_#{tag}_#{index}") {|t| t.value = tag }
+          end
+        end
+
         def add_table(row,unique_name,linenumber)
           add_step(row,unique_name,linenumber)
         end
@@ -52,6 +70,21 @@ module YARD
 
       class Step < YARD::CodeObjects::Base
         attr_accessor :value, :definition
+        attr_reader :predicate, :line
+        
+        def predicate
+          value.split(' ').first
+        end
+        
+        def line
+          value.split(' ',2)[1]
+        end
+      end
+      
+      class Tag < YARD::CodeObjects::Base
+        
+        attr_accessor :value
+        
       end
 
       class FeatureParser < Base
@@ -60,53 +93,38 @@ module YARD
         
         def initialize(source, file = '(stdin)')
           @source = source
-          log.debug "FeatureParser file #{file}"
           @file = file
           @namespaces
-          @@unique_id = 0
           @features = []
-          @tokens = { :tags => [], :line_number => 0 }
+          @tokens = { }
         end
 
         def parse
+          @features = []
+          @tokens = { :tags => [], :line_number => 1 }
           tokenize
           self
         end
 
-        def unique_id
-          @@unique_id = @@unique_id + 1
-        end
-
         def tokenize
-          log.debug "Feature File Tokening"
-
-          @tokens[:line_number] = 1
-
+          
           @source.each do |line|
-            log.debug "Tokenizing: #{line}"
             if line =~ /^\s*(@.+)/ then
-              log.debug "New Tag"
               new_tags($1.split(' '))
             elsif line =~ /^\s*FEATURE\s*:(.+)$/i then
-              log.debug "New Feature"
               @current_element = :feature
               new_feature($1)
             elsif line =~ /^\s*BACKGROUND\s*:(.*)$/i then
-              log.debug "New Background"
               @current_element = :background
               new_scenario("Background")
             elsif line =~ /^\s*SCENARIO(?: OUTLINE)?\s*:(.+)$/i then
-              log.debug "New Scenario"
               @current_element = :scenario
               new_scenario($1.strip)
             elsif line =~ /^\s*((?:GIVEN|WHEN|THEN|AND|BUT)\s*.+)$/i then
-              log.debug "New Step"
               new_step($1)
             elsif line =~ /^\s*\|(.+)$/i then
-              log.debug "New Table"
               new_table_row($1)
             else
-              log.debug "New Description"
               new_description(line) unless line.strip == "" 
             end
             @tokens[:line_number] = @tokens[:line_number] + 1
@@ -132,7 +150,7 @@ module YARD
           @tokens[:feature] = Feature.new(:root,@file.gsub('.','_')) {|f| f.value = feature_title.strip }
           @features << @tokens[:feature]
           @tokens[:feature].add_file(@file,@tokens[:line_number])
-          @tokens[:feature].tags = @tokens.delete(:tags)
+          @tokens[:feature].tags = @tokens.delete(:tags) || []
         end
 
 
@@ -142,9 +160,8 @@ module YARD
         #
         def new_scenario(scenario_title)
           @tokens[@current_element] = @tokens[:feature].send("add_#{@current_element}",scenario_title) if @tokens[:feature]
-          
           @tokens[@current_element].add_file(@file,@tokens[:line_number])
-          @tokens[@current_element].tags = @tokens.delete(:tags)
+          @tokens[@current_element].tags = @tokens.delete(:tags) || []
         end
 
         def new_step(step_name)
@@ -182,9 +199,9 @@ module YARD
         class << self
           include Parser::Cucumber
           def handles?(node)
-            log.debug "Cucumber:Base handles? #{node}"
+            #log.debug "Cucumber:Base handles? #{node}"
             handlers.any? do |a_handler|
-              log.debug "A handler: #{a_handler}"
+              #log.debug "A handler: #{a_handler}"
             end
           end
           include Parser::Cucumber
@@ -196,7 +213,7 @@ module YARD
         handles Parser::Cucumber::Feature
 
         def process 
-          log.debug "FeatureHandler Online"
+          #log.debug "FeatureHandler Online"
 
           feature_instance = statement
 

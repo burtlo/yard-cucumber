@@ -1,0 +1,78 @@
+<div class="feature">
+	<div class="title">
+		<span class="pre">Feature:</span>
+		<span class="name"><%= @feature.value %></span>
+	</div>
+
+	<div class="meta">
+		<%= @feature.files.first.first %>
+		<div class="tags"><%= @feature.tags.collect { |tags| tags.value }.join("&nbsp;&nbsp;") %></div>		
+	</div>
+
+	<div class="description">
+		<%= @feature.description.join("\n<br/>") %>
+	</div>
+
+	<% if @feature.background %>
+	<div class="background">
+		<div class="title">
+			<span class="pre">Background:</span>
+			<!--<span class="name"><%= @feature.background.value %></span>-->
+		</div>
+		<% unless @feature.background.tags.empty? %>
+		<!--<div class="tags"><%= @feature.background.tags.collect { |tags| tags.value }.join("&nbsp;&nbsp;") %></div>-->		
+		<% end%>
+		<% unless @feature.background.description.empty? %>
+		<div class="description">
+			<%= @feature.background.description.join("\n<br/>") %>
+		</div>
+		<% end %>
+		<div class="steps">
+			<% if @feature.background.steps %>
+			<% @feature.background.steps.each do |step| %>
+			<!-- TODO: Style the first word differently -->
+			<!-- TODO: Link the step to the step definition -->
+			<!-- TODO: Steps without links should appear different -->
+			<div class="step"><span class="predicate"><%= step.predicate %></span>&nbsp;<%= step.line %></div>
+			<% end %>
+			<% else %>
+			<span>No Steps Defined</span>
+			<% end %>
+		</div>
+
+	</div>
+	<% end %> 
+
+	<% if @feature.scenarios %>
+	<% @feature.scenarios.each do |scenario| %>
+	<div class="scenario">
+		<div class="title">
+			<span class="pre">Scenario:</span>
+			<span class="name"><%= scenario.value %></span>
+		</div>
+		<% unless scenario.tags.empty? %>
+		<div class="tags"><%= scenario.tags.collect { |tags| tags.value }.join("&nbsp;&nbsp;") %></div>		
+		<% end%>
+		<% unless scenario.description.empty? %>
+		<div class="description">
+			<%= scenario.description.join("\n<br/>") %>
+		</div>
+		<% end %>
+		<div class="steps">
+			<% if scenario.steps %>
+			<% scenario.steps.each do |step| %>
+			<!-- TODO: Style the first word differently -->
+			<!-- TODO: Link the step to the step definition -->
+			<!-- TODO: Steps without links should appear different -->
+			<div class="step"><span class="predicate"><%= step.predicate %></span>&nbsp;<%= step.line %></div>
+			<% end %>
+			<% else %>
+			<span>No Steps Defined</span>
+			<% end %>
+		</div>
+	</div>
+	<% end %>
+	<% end %>
+
+</div>
+

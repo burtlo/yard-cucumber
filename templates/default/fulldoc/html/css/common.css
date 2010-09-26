@@ -1,0 +1,97 @@
+
+.feature {
+	
+}
+
+.feature .tags {
+	font-family: monospace;
+	color: gray;
+}
+
+.feature .title {
+	padding: 10px;
+	font-size: 24px;
+}
+
+.feature .title .pre {
+	color: green;
+}
+
+.feature .title .name {
+	font-weight: bold;
+	color: black;
+}
+
+.feature .meta { 
+	margin-left: 30px;
+	color: gray;
+}
+
+.feature .description {
+	margin: 10px 30px 0px 30px;
+	padding: 10px 20px 20px 10px;
+	background-color: #F5F5F5;
+	color: #343332;
+	border: #C7C5C5 solid 1px;
+	font-family: 'Trebuchet MS', Arial, Helvetica;
+}
+
+.feature .background {
+	margin-top: 30px;
+	margin-left: 20px;
+}
+
+.feature .background .title {
+	font-size: 16px;
+}
+.feature .background .title .pre {
+	color: blue;
+}
+.feature .background .title .name {
+	
+}
+.feature .background .description {
+	
+}
+
+.feature .background .steps {
+	margin-top: 20px;
+	margin-left: 30px;
+	font-size: 12px;
+}
+
+.feature .scenario {
+	margin-top: 30px;
+	margin-left: 20px;
+}
+
+.feature .scenario .title {
+	font-size: 16px;
+}
+.feature .scenario .title .pre {
+	color: #00AAD2;	
+}
+.feature .scenario .title .name {
+	
+}
+.feature .scenario .tags {
+	margin-left: 30px;
+}
+.feature .scenario .description {
+	
+}
+
+.feature .scenario .steps {
+	margin-top: 20px;
+	margin-left: 30px;
+	font-size: 12px;
+}
+
+.feature .step {
+	padding: 4px;
+	font-size: 14px;
+	font-weight: bold;
+}
+.feature .step .predicate {
+	color: #5D5C5B;
+}

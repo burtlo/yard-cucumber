@@ -1,7 +1,7 @@
 <% n = 1 %>
 <% @features.each do |feature| %>
   <li class="r<%= n %>">
-	<a href="<%= feature.name %>"><%= feature.value %></a>
+	<a href="<%= feature.filename %>"><%= feature.value %></a>
   </li>
   <% n = n == 2 ? 1 : 2 %>
 <% end %>
