@@ -29,12 +29,13 @@ module YARD
         
         def tags=(tags)
           tags.each_with_index do |tag,index|
-            @tags << Tag.new(:root,"#{name}_tag_#{tag}_#{index}") {|t| t.value = tag }
+            @tags << Tag.new(:root,"#{name}_tag_#{tag[1..-1]}_#{index}") {|t| t.value = tag ; t.add_file(@files.first[0],@files.first[1]) }
           end
         end
         
+        #TODO: this is likely a bad hack because I couldn't understand path
         def filename
-          "cucumber_#{self.name.to_s.gsub(/\//,'_')}.html"
+          "#{self.name.to_s.gsub(/\//,'_')}.html"
         end
 
       end
@@ -58,13 +59,19 @@ module YARD
 
         def tags=(tags)
           tags.each_with_index do |tag,index|
-            @tags << Tag.new(:root,"#{name}_tag_#{tag}_#{index}") {|t| t.value = tag }
+            @tags << Tag.new(:root,"#{name}_tag_#{tag[1..-1]}_#{index}") {|t| t.value = tag ; t.add_file(@files.first[0],@files.first[1]) }
           end
         end
 
         def add_table(row,unique_name,linenumber)
           add_step(row,unique_name,linenumber)
         end
+        
+        #TODO: this is likely a bad hack because I couldn't understand path
+        def filename
+          "#{self.name.to_s.gsub(/\//,'_')}.html"
+        end
+        
 
       end
 
@@ -84,6 +91,12 @@ module YARD
       class Tag < YARD::CodeObjects::Base
         
         attr_accessor :value
+        
+        #TODO: this is likely a bad hack because I couldn't understand path
+        def filename
+          "#{self.name.to_s.gsub(/\//,'_')}.html"
+        end
+        
         
       end
 
@@ -199,9 +212,9 @@ module YARD
         class << self
           include Parser::Cucumber
           def handles?(node)
-            #log.debug "Cucumber:Base handles? #{node}"
+            log.debug "Cucumber::Base#handles? #{node.class}"
             handlers.any? do |a_handler|
-              #log.debug "A handler: #{a_handler}"
+              log.debug "A handler: #{a_handler}"
             end
           end
           include Parser::Cucumber
@@ -213,15 +226,10 @@ module YARD
         handles Parser::Cucumber::Feature
 
         def process 
-          #log.debug "FeatureHandler Online"
-
-          feature_instance = statement
-
-
+          log.debug "FeatureHandler Online #{statement}"
         rescue YARD::Handlers::NamespaceMissingError
         end
       end
-
     end
 
     Processor.register_handler_namespace :feature, Cucumber

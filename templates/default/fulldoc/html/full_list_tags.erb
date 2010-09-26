@@ -1,0 +1,10 @@
+<% n = 1 %>
+<% @tags.each do |tag| %>
+  <li class="r<%= n %>">
+	<span class='object_link'>
+		<a href="<%= tag.filename %>"><%= tag.value %></a>
+	</span>
+    <small><%= tag.files.first.first %></small>
+  </li>
+  <% n = n == 2 ? 1 : 2 %>
+<% end %>

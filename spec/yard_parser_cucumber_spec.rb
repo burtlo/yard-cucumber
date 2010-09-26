@@ -74,6 +74,14 @@ module YARD::Parser::Cucumber
           @parser.features.first.tags.find_all {|tag| tag.value == expected_tag }.count.should == 1
         end
       end
+      
+      it "the feature's tags should have a file" do
+        @parser.features.first.tags.each do |tag|
+          tag.files.should_not be_nil
+          tag.files.should_not be_empty
+          tag.files.first.first.should == @feature[:file]
+        end
+      end
 
       it "the feature should have a description" do
         @parser.features.first.description.join("\n") == "This feature is going to save the company."
@@ -107,7 +115,7 @@ module YARD::Parser::Cucumber
         @parser.features.first.background.files.first[0].should == @feature[:file]
       end
 
-      it "the backgroundshould have a line number" do
+      it "the background should have a line number" do
         @parser.features.first.background.files.first[1].should_not be_nil
       end
 
@@ -116,6 +124,15 @@ module YARD::Parser::Cucumber
         if @background
           @background.each_with_index do |step,index|
             @parser.features.first.background.steps[index].value.should == step
+          end
+        end
+      end
+      
+      it "the background steps should have files and line numbers" do
+        if @background
+          @background.each_with_index do |step,index|
+            @parser.features.first.background.steps[index].files.first[0].should == @feature[:file]
+            @parser.features.first.background.steps[index].files.first[1].should_not be_nil
           end
         end
       end
@@ -167,6 +184,17 @@ module YARD::Parser::Cucumber
               @parser.features.first.scenarios[scenario_index].steps[step_index].name.should == "#{@feature[:file].gsub('.','_')}_scenario_#{scenario_index}_step_#{step_index}".to_sym
               @parser.features.first.scenarios[scenario_index].steps[step_index].value.should == step
             end
+          end
+        end
+      end
+    end
+    
+    it "each scenario's steps should have files and line numbers" do
+      if @scenarios
+        @scenarios.each_with_index do |step,index|
+          scenario[:steps].each_with_index do |step,step_index|
+            @parser.features.first.scenarios[scenario_index].steps[step_index].files.first[0].should == @feature[:file]
+            @parser.features.first.scenarios[scenario_index].steps[step_index].files.first[1].should_not be_nil
           end
         end
       end

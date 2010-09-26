@@ -3,7 +3,7 @@
 	
 }
 
-.feature .tags {
+.tags {
 	font-family: monospace;
 	color: gray;
 }
@@ -60,38 +60,38 @@
 	font-size: 12px;
 }
 
-.feature .scenario {
+.scenario {
 	margin-top: 30px;
 	margin-left: 20px;
 }
 
-.feature .scenario .title {
+.scenario .title {
 	font-size: 16px;
 }
-.feature .scenario .title .pre {
+.scenario .title .pre {
 	color: #00AAD2;	
 }
-.feature .scenario .title .name {
+.scenario .title .name {
 	
 }
-.feature .scenario .tags {
+.scenario .tags {
 	margin-left: 30px;
 }
-.feature .scenario .description {
+.scenario .description {
 	
 }
 
-.feature .scenario .steps {
+.scenario .steps {
 	margin-top: 20px;
 	margin-left: 30px;
 	font-size: 12px;
 }
 
-.feature .step {
+.scenario .step, .background .step {
 	padding: 4px;
 	font-size: 14px;
 	font-weight: bold;
 }
-.feature .step .predicate {
+.step .predicate {
 	color: #5D5C5B;
 }

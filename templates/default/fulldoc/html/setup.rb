@@ -1,33 +1,45 @@
 
 def init
   super
-  log.debug "templates.default.fulldoc#init"
-  
-  #T('feature').run(options)
-  
-  
   asset("js/cucumber.js",file("js/cucumber.js",true))
-  
+
+  # Because I don't parse correctly I have to find all my scenarios, steps, and tags
+  @scenarios = []
+  @tags = []
   @features = Registry.all(:feature)
   
   @features.each do |feature|
-    feature_serialize(feature)
+    serialize_object(feature)
+
+    feature.tags.each do |tag|
+      @tags << tag
+      serialize_object(tag)
+    end
+
+    feature.scenarios.each do |scenario|
+      @scenarios << scenario
+      serialize_object(scenario)
+    end
   end
   
-  @list_type = "features"
-  @list_title = "Feature List"
-  asset('feature_list.html', erb(:full_list))
+  create_full_list(@features)
+  create_full_list(@scenarios)
+  create_full_list(@tags)
 end
 
-def feature_serialize(object)
+def serialize_object(object)
   options[:object] = object
-  options[:css_data] = file('css/style.css', true) + "\n" + file('css/common.css', true)
-  options[:js_data] = file('js/jquery.js', true) + file('js/app.js', true)
-  
-  log.info "Serializer Path #{options[:serializer].serialized_path(object)}"
   Templates::Engine.with_serializer(object.filename, options[:serializer]) do
     T('layout').run(options)
   end
+end
+
+def create_full_list(objects)
+  #if objects
+    @list_type = "#{objects.first.type.to_s.capitalize}s"
+    @list_title = "#{objects.first.type.to_s.capitalize} List"
+    asset("#{objects.first.type}_list.html",erb(:full_list))
+  #end
 end
 
 
