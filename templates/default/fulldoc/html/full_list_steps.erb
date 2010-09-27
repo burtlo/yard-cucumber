@@ -1,0 +1,12 @@
+<% n = 1 %>
+<% @steps.each do |step| %>
+  <li class="r<%= n %>">
+	<span class='object_link'>
+		<a href="<%= step.scenario.feature.filename %>">
+			<span class="pre"><%= step.predicate %></span>
+			<span class="name"><%= step.line %></span>
+		</a>
+	</span>
+  </li>
+  <% n = n == 2 ? 1 : 2 %>
+<% end %>

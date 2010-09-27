@@ -7,15 +7,21 @@ module YARD::CodeObjects
   #
   class StepDefinitionObject < Base
 
-    attr_reader :value
-    attr_reader :predicate
-
-    # This is being used to hold the constants that are replaced. should likely just replace the constants
-    attr_accessor :value_as_link
+    attr_reader :predicate, :value, :compare_value
     attr_accessor :constants
 
     def value=(value)
       @value = format_source(value)
+    end
+    
+    def compare_value
+      
+      base_value = value
+      self.constants.each do |constant|
+        #TODO: This replacement should only be done when it is seen in an escape
+        base_value.gsub!(/\#\{\s*#{constant.name.to_s}\s*\}/,constant.value[1..-2])
+      end
+      base_value
     end
   end 
 

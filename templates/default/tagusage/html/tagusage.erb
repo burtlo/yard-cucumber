@@ -3,23 +3,60 @@
 		<span class="pre">Tag:</span>
 		<span class="name"><%= @tags.tags.first.value %></span>
 	</div>
+	<!-- TODO: this should be re-factored so that the difference is just the indirect/direct -->
 	<% if @tags.tags %>
 	<% @tags.tags.each do |tag| %>
 		<% if tag.scenario %>
 		<div class="member">
-			Feature: <a href="<%= tag.feature.filename %>"><%= tag.feature.value %></a>
-			<div><%= tag.feature.description.join("\n") %></div>
-			<br/>
-			Scenario: <a href="<%= tag.scenario.filename %>"><%= tag.scenario.value %></a>
-			<div><%= tag.scenario.description.join("\n") %></div>
 			
+			<div class="feature indirect">
+				<div class="title">
+					<span class="pre">Feature:</span>
+					<span class="name">
+						<a href="<%= tag.scenario.feature.filename %>"><%= tag.scenario.feature.value %></a>
+					</span>
+				</div>
+				<div class="description"><%= tag.scenario.feature.description.join("\n") %></div>
+			</div>
+			
+			<div class="scenario direct">
+				<div class="title">
+					<span class="pre">Scenario:</span>
+					<span class="name">
+						<a href="<%= tag.scenario.feature.filename %>"><%= tag.scenario.value %></a>
+					</span>
+				</div>
+				<div class="description"><%= tag.scenario.description.join("\n") %></div>
+			</div>
+				
 		</div>
 		<% else %>
 		<div class="member">
-			Feature: <a href="<%= tag.feature.filename %>"><%= tag.feature.value %></a>
-			<div><%= tag.feature.description.join("\n") %></div>
+			
+			<div class="feature direct">
+				<div class="title">
+					<span class="pre">Feature:</span>
+					<span class="name">
+						<a href="<%= tag.feature.filename %>"><%= tag.feature.value %></a>
+					</span>
+				</div>
+				<div class="description"><%= tag.feature.description.join("\n") %></div>
+			</div>
+			
+			<% tag.feature.scenarios.each do |scenario| %>
+			<div class="scenario indirect">
+				<div class="title">
+					<span class="pre">Scenario:</span>
+					<span class="name">
+						<a href="<%= scenario.feature.filename %>"><%= scenario.value %></a>
+					</span>
+				</div>
+				<div class="description"><%= scenario.description.join("\n") %></div>
+			</div>
+			<% end %>
 		</div>
 		<% end %>
+	
 	<% end %>
 	<% end%>
 </div>

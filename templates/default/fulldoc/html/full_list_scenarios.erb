@@ -2,7 +2,7 @@
 <% @scenarios.each do |scenario| %>
   <li class="r<%= n %>">
 	<span class='object_link'>
-		<a href="<%= scenario.filename %>"><%= scenario.value %></a>
+		<a href="<%= scenario.feature.filename %>"><%= scenario.value %></a>
 	</span>
   </li>
   <% n = n == 2 ? 1 : 2 %>

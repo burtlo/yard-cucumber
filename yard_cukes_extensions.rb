@@ -56,7 +56,7 @@ module YARD
         end
 
         def add_step(step,linenumber)
-          step = Step.new(:root,"#{name}_step_#{@steps.count}") {|s| s.value = step }
+          step = Step.new(:root,"#{name}_step_#{@steps.count}") {|s| s.value = step ; s.scenario = self }
           step.add_file(@files.first.first,linenumber)
           @steps << step
         end
@@ -66,7 +66,6 @@ module YARD
             @tags << Tag.new(:root,"#{name}_tag_#{tag[1..-1]}_#{index}") do |t| 
               t.value = tag
               t.add_file(@files.first[0],@files.first[1])
-              t.feature = self.feature
               t.scenario = self
             end
           end
@@ -85,7 +84,7 @@ module YARD
       end
 
       class Step < YARD::CodeObjects::Base
-        attr_accessor :value, :definition
+        attr_accessor :value, :definition, :scenario
         attr_reader :predicate, :line
         
         def predicate

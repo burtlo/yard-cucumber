@@ -1,36 +1,29 @@
 def init
   super  
-  sections.place(:features).after(:constant_summary)
-  sections.place(:scenarios).after(:features)
-  sections.place(:steps).after(:scenarios)
+  sections.place(:steps).after(:constant_summary)
   sections.place(:step_transforms).after(:steps)
-  sections.place(:step_definitions).after(:step_transforms)
-  
-  
-  
 end
 
 
-def step_definitions
-
-  # For the given step definition find all the constants
-  if object.step_definitions
-
-    object.step_definitions.each do |stepdef|
-      stepdef.constants = stepdef.value.scan(/\#\{([^\}]+)\}/).flatten.collect do |stepdef_constant| 
-        log.debug "StepDef\#Constant #{stepdef_constant}"
-        object.constants.find {|constant| stepdef_constant.to_sym == constant.name }
-      end
-    
-      stepdef.constants.each {|constant| stepdef.value_as_link = stepdef.value.gsub(constant.name.to_s,%{<a href="#{url_for(constant)}">#{constant}</a>}) }
-
-      @step_defs = object.step_definitions
-  end
-  
-end
-
-erb(:step_definitions)
-end
+# def step_definitions
+# 
+#   # For the given step definition find all the constants
+#   if object.step_definitions
+# 
+#     object.step_definitions.each do |stepdef|
+#       stepdef.constants = stepdef.value.scan(/\#\{([^\}]+)\}/).flatten.collect do |stepdef_constant| 
+#         log.debug "StepDef\#Constant #{stepdef_constant}"
+#         object.constants.find {|constant| stepdef_constant.to_sym == constant.name }
+#       end
+#     
+#       stepdef.constants.each {|constant| stepdef.value_as_link = stepdef.value.gsub(constant.name.to_s,%{<a href="#{url_for(constant)}">#{constant}</a>}) }
+# 
+#       @step_defs = object.step_definitions
+#   end
+#   
+# end
+# 
+# end
 
 def steps
 

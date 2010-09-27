@@ -11,32 +11,46 @@ def init
   @features.each do |feature|
     serialize_object(feature)
 
-    feature.tags.each do |tag|
-      @tags << tag
-      #serialize_object(tag)
-    end
+    feature.tags.each { |tag| @tags << tag }
 
     feature.scenarios.each do |scenario|
       @scenarios << scenario
-      
-      scenario.tags.each do |tag|
-        @tags << tag
-      end
-      
-      serialize_object(scenario)
+      #serialize_object(scenario)
+      scenario.tags.each { |tag| @tags << tag }
     end
   end
   
   @tags = find_unique_tags(@tags)
   
-  @tags.each do |tag,tag_objects|
-    serialize_object(tag_objects)
-  end
+  @tags.each { |tag,tag_objects| serialize_object(tag_objects) }
   
   create_full_list(@tags.values,"Tag Usage")
   
   create_full_list(@features)
   create_full_list(@scenarios)
+  
+  
+  @step_definitions = Registry.all(:stepdefinition)
+  
+  create_full_list(@step_definitions,"Step Definition")
+
+  @steps = Registry.all(:step)
+  
+  create_full_list(@steps)
+
+  # Find all CONSTANTS that are in the step definitions and in some way replace them for their match value
+  
+  @step_definitions.each do |stepdef|
+    stepdef.constants = stepdef.value.scan(/\#\{([^\}]+)\}/).flatten.collect do |stepdef_constant| 
+      object.constants.find {|constant| stepdef_constant.to_sym == constant.name }
+    end
+    
+    log.debug "Step Definition Compare Value: #{stepdef.compare_value}"
+  end
+  
+  
+
+  # TODO: Find all the steps that would be matched by the step definitions. O(n^2)
   
   
 end

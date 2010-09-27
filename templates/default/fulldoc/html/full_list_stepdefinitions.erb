@@ -1,0 +1,10 @@
+<% n = 1 %>
+<% @step_definitions.each do |stepdef| %>
+  <li class="r<%= n %>">
+	<span class='object_link'>
+		<span class="pre"><%= stepdef.predicate %></span>
+		<span class="name"><%= stepdef.value %></span>
+	</span>
+  </li>
+  <% n = n == 2 ? 1 : 2 %>
+<% end %>
