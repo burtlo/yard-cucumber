@@ -12,11 +12,64 @@ module YARD::CodeObjects
     describe StepDefinitionObject do
 
       before(:each) do
-        @attributes = [ :value, :predicate, :constants ]
+        @attributes = [ :value, :predicate, :constants, :compare_value ]
         @object = StepDefinitionObject.new(:root,:unique_name)
       end
 
+      class TestObject
+        attr_accessor :name, :value
+        def initialize ; yield self ; end
+      end
+
       it_should_behave_like "CodeObjects"
+      
+      context "compare_value" do
+
+        [ { :value => "/THERE (?:IS|ARE) THREE \#\{ CONSTANTS \} IN HERE \#\{ FOR\} YOU TO \#\{FIND \}",
+          :results => [ 'CONSTANTS', 'FOR', 'FIND' ] } ].each do |data|
+
+            it "should find all the constants within the step definition" do
+              
+              stepdef = StepDefinitionObject.new(:root,"name")
+              stepdef.value = data[:value]
+
+              
+              data[:results].each do |result|
+                stepdef._value_constants(data[:value]).should include(result)
+                stepdef._value_constants.should include(result)
+              end
+              
+            end
+          end
+        
+        
+        [ { :value => "/WHEN THE \#\{NOUN\} HITS THE FAN/", 
+                  :constants => [ TestObject.new{|c| c.name = "NOUN" ; c.value = "/SMURF/" } ], :result => "WHEN THE SMURF HITS THE FAN" },
+
+                  { :value => "/\#\{ SUBJECT \} WALK INTO THE \#\{ PLACE\} AND ASK THE \#\{PERSON \}/", 
+                  :constants => [ TestObject.new{|c| c.name = "SUBJECT" ; c.value = "/1 PERSON/" }, 
+                    TestObject.new{|c| c.name = "PLACE" ; c.value = "/BAR/" },
+                    TestObject.new{|c| c.name = "PERSON" ; c.value = "/BARTENDER/" } ], 
+                    :result => "1 PERSON WALK INTO THE BAR AND ASK THE BARTENDER" },
+                            
+           ].each do |data|
+
+          it "should replace all constants found within (#{data[:value]}) the value" do
+            
+            stepdef = StepDefinitionObject.new(:root,"name")
+            stepdef.value = data[:value]
+            stepdef.constants = data[:constants]
+            
+            stepdef.compare_value.should == data[:result]
+
+          end
+
+        end
+
+
+      end
+      
+      
 
     end
 

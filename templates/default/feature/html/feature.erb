@@ -73,6 +73,7 @@
 			<!-- TODO: Link the step to the step definition -->
 			<!-- TODO: Steps without links should appear different -->
 			<div class="step"><span class="predicate"><%= step.predicate %></span>&nbsp;<%= step.line %></div>
+			<div class="step"><%= step.definition.value if step.definition %></div>
 			<% end %>
 			<% else %>
 			<span>No Steps Defined</span>

@@ -65,7 +65,7 @@ module YARD
           tags.each_with_index do |tag,index|
             @tags << Tag.new(:root,"#{name}_tag_#{tag[1..-1]}_#{index}") do |t| 
               t.value = tag
-              t.add_file(@files.first[0],@files.first[1])
+              t.add_file(@files.first.first,@files.first.last)
               t.scenario = self
             end
           end
@@ -92,7 +92,7 @@ module YARD
         end
         
         def line
-          value.split(' ',2)[1]
+          value.split(' ',2).last
         end
       end
       
