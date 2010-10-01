@@ -202,7 +202,11 @@ module YARD
         end
 
         def new_step(step_name)
-          @tokens[@current_element].add_step(step_name,@tokens[:line_number]) if @tokens[@current_element]
+          if @current_element == :feature
+            @tokens[@current_element].description << step_name.strip if @tokens[@current_element]
+          else
+            @tokens[@current_element].add_step(step_name,@tokens[:line_number]) if @tokens[@current_element]
+          end
         end
 
         #
