@@ -5,24 +5,33 @@
 
 .tags {
 	font-family: monospace;
-	color: gray;
+	font-size: 14px;
 }
 
-
-/* Features and Tags */
 
 * .title {
 	padding: 10px;
-	font-size: 24px;
+	font-size: 24px;	
+}
+
+.feature > .title {
+	margin: 20px 20px 10px 20px;
+	padding-left: 0px;
+	border-bottom: 1px solid #E3E3E3;
+}
+
+.feature .meta .file {
+	float: right;
+	margin-right: 20px;
 }
 
 * .title .pre {
-	color: green;
+	color: #696969;
 }
 
 * .title .name {
 	font-weight: bold;
-	color: black;
+	color: #3F3F3F;
 }
 
 .feature .meta { 
@@ -31,70 +40,71 @@
 }
 
 .feature .description {
-	margin: 10px 30px 0px 30px;
+	margin: 10px 20px 0px 30px;
 	padding: 10px 20px 20px 10px;
-	background-color: #F5F5F5;
+/*	background-color: #F5F5F5;*/
 	color: #343332;
-	border: #C7C5C5 solid 1px;
+/*	border: #C7C5C5 solid 1px;*/
 	font-family: 'Trebuchet MS', Arial, Helvetica;
 }
 
-.feature .background {
-	margin-top: 30px;
+.odd {
+ 	background-color: #F0F6F9;
+}
+
+.even {
+	background-color: #FFFFFF;
+}
+
+
+.feature #background {
+	margin-top: 10px;
 	margin-left: 20px;
 }
 
-.feature .background .title {
-	font-size: 16px;
-}
-.feature .background .title .pre {
-	color: blue;
-}
-.feature .background .title .name {
-	
-}
-.feature .background .description {
-	
-}
-
-.feature .background .steps {
-	margin-top: 20px;
-	margin-left: 30px;
-	font-size: 12px;
-}
-
-.scenario {
-	margin-top: 30px;
+.feature .scenario {
+	margin-top: 40px;
 	margin-left: 20px;
 }
 
-.scenario .title {
+.scenario .title, #background .title {
 	font-size: 16px;
-}
-.scenario .title .pre {
-	color: #00AAD2;	
-}
-.scenario .title .name {
-	
-}
-.scenario .tags {
-	margin-left: 30px;
-}
-.scenario .description {
-	
+	padding-left: 0px;
+	margin: 0px 20px 0px 10px;
+	border-bottom: 1px solid #E3E3E3;
 }
 
-.scenario .steps {
-	margin-top: 20px;
-	margin-left: 30px;
+.feature #background .title .pre {
+	color: #346F97;
+}
+
+
+.scenario .steps, #background .steps {
+	margin: 20px 20px 0px 30px;
 	font-size: 12px;
 }
 
-.scenario .step, .background .step {
+.scenario .step, #background .step {
 	padding: 4px;
 	font-size: 14px;
 	font-weight: bold;
 }
+
+.feature #background .title .name {}
+.feature #background .description {}
+
+.scenario .title .name {}
+.scenario .description {}
+
+.scenario .title .pre {
+	color: #00AAD2;	
+}
+
+.scenario .tags {
+	margin-left: 30px;
+	margin-top: 10px;
+}
+
 .step .predicate {
 	color: #5D5C5B;
 }
