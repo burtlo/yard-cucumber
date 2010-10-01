@@ -3,8 +3,9 @@
   <li class="r<%= n %>">
 	<span class='object_link'>
 		<span class="pre"><%= stepdef.predicate %></span>
-		<span class="name"><%= stepdef.value %></span>
+		<span class="name"><%= stepdef.value %></span>&nbsp;&nbsp;
 	</span>
+	<span class="">(<%= "#{stepdef.files.first.first}:#{stepdef.files.first.last}" %>)<span>
   </li>
   <% n = n == 2 ? 1 : 2 %>
 <% end %>

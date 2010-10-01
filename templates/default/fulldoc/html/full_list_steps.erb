@@ -7,6 +7,7 @@
 			<span class="name"><%= step.line %></span>
 		</a>
 	</span>
+	<span class="">(<%= "#{step.files.first.first}:#{step.files.first.last}" %>)<span>
   </li>
   <% n = n == 2 ? 1 : 2 %>
 <% end %>

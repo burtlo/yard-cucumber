@@ -4,6 +4,7 @@
 	<span class='object_link'>
 		<a href="<%= scenario.feature.filename %>"><%= scenario.value %></a>
 	</span>
+	<span class="">(<%= "#{scenario.files.first.first}:#{scenario.files.first.last}" %>)<span>
   </li>
   <% n = n == 2 ? 1 : 2 %>
 <% end %>

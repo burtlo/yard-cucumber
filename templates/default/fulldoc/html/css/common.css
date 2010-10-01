@@ -14,13 +14,13 @@
 	font-size: 24px;	
 }
 
-.feature > .title {
+.feature > .title, .tag > .title {
 	margin: 20px 20px 10px 20px;
 	padding-left: 0px;
 	border-bottom: 1px solid #E3E3E3;
 }
 
-.feature .meta .file {
+.meta .file {
 	float: right;
 	margin-right: 20px;
 }
@@ -57,15 +57,16 @@
 }
 
 
-.feature #background {
+#background {
 	margin-top: 10px;
 	margin-left: 20px;
 }
 
-.feature .scenario {
+.scenario {
 	margin-top: 40px;
 	margin-left: 20px;
 }
+
 
 .scenario .title, #background .title {
 	font-size: 16px;
@@ -74,7 +75,7 @@
 	border-bottom: 1px solid #E3E3E3;
 }
 
-.feature #background .title .pre {
+#background .title .pre {
 	color: #346F97;
 }
 
@@ -90,8 +91,8 @@
 	font-weight: bold;
 }
 
-.feature #background .title .name {}
-.feature #background .description {}
+#background .title .name {}
+#background .description {}
 
 .scenario .title .name {}
 .scenario .description {}
@@ -122,8 +123,12 @@
 	color: black;
 }
 
-
-.tag .member {
-	margin: 10px 30px 10px 30px;
-	padding: 20px;
+/* Overrides for scenarios in the tag view */
+.tag .scenario {
+	margin-left: 30px;
+	margin-top: 0px;
 }
+.tag .scenario .title {
+	border-bottom: none;
+}
+/* Overrides for scenarios in the tag view */
