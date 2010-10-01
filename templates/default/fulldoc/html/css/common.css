@@ -109,6 +109,20 @@
 	color: #5D5C5B;
 }
 
+.step .details {
+	padding: 10px;
+	margin-left: 20px;
+	color: #343332;
+}
+.step .details .pre {
+	
+}
+.step .details .name {
+	font-family: monospace;
+	color: black;
+}
+
+
 .tag .member {
 	margin: 10px 30px 10px 30px;
 	padding: 20px;

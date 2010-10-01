@@ -20,8 +20,7 @@
 	<% if @feature.background %>
 	
 	<script type="text/javascript" charset="utf-8">
-		$(function() {
-
+	$(function() {
 		$('#background .toggle').click(function() {
 			$("#backgroundSteps").toggle('blind');
 
@@ -29,7 +28,7 @@
 
 			stateIndicator.innerHTML = (stateIndicator.innerHTML === '+' ? '-' : '+'); 
 			return false;
-		})
+		});
 	});
 	</script>
 	
@@ -61,21 +60,20 @@
 	
 	<script type="text/javascript" charset="utf-8">
 		$(function() {
+			$('#scenario<%=scenario_index%> .toggle').click(function() {
+				$("#scenario<%=scenario_index%>Steps").toggle('blind');
 
-		$('#scenario<%=scenario_index%> .toggle').click(function() {
-			$("#scenario<%=scenario_index%>Steps").toggle('blind');
+				var stateIndicator = $('#scenario<%=scenario_index%> a.toggle')[0]
 
-			var stateIndicator = $('#scenario<%=scenario_index%> a.toggle')[0]
-
-			stateIndicator.innerHTML = (stateIndicator.innerHTML === '+' ? '-' : '+'); 
-			return false;
-		})
-	});
+				stateIndicator.innerHTML = (stateIndicator.innerHTML === '+' ? '-' : '+'); 
+				return false;
+			});
+		});
 	</script>
 	
 	<div <%= "id='scenario#{scenario_index}'" %>  class="scenario">
 		<div class="title">
-			<a class="toggle">-<a>
+			<a class="toggle">-</a>
 			<span class="pre">Scenario:</span>
 			<span class="name"><%= scenario.value %></span>
 		</div>
@@ -95,13 +93,31 @@
 		<div <%= "id='scenario#{scenario_index}Steps'" %> class="steps">
 			<% if scenario.steps %>
 			<% scenario.steps.each_with_index do |step,index| %>
-			<!-- TODO: Style the first word differently -->
-			<!-- TODO: Link the step to the step definition -->
-			<!-- TODO: Steps without links should appear different -->
-			<div class="step <%= (index + 1) % 2 == 0 ? 'even' : 'odd' %>">
-				<span class="predicate"><%= step.predicate %></span>&nbsp;<%= step.line %>
+			<div <%= "id='scenario#{scenario_index}Step#{index}'" %> class="step <%= (index + 1) % 2 == 0 ? 'even' : 'odd' %>">
+				<span class="predicate"><%= step.predicate %></span>
+				
+				<% if step.definition %>
+					<script type="text/javascript" charset="utf-8">
+					$('<%= "#scenario#{scenario_index}Step#{index}" %>').hover(
+						function () { $('<%= "#scenario#{scenario_index}Step#{index} div.details" %>').toggle('blind'); },
+						function () { $('<%= "#scenario#{scenario_index}Step#{index} div.details" %>').toggle('blind'); }
+					);
+					
+					$('<%= "#scenario#{scenario_index}Step#{index} div.details" %>').show();
+					
+					</script>
+					<a href="stepdefinition_list.html"><%= step.line %></a>
+					<div class="details" style="display: none;">
+						<span style="pre">Step definition:</span>
+						<span class="name"><%= step.definition.value %></span>&nbsp;&nbsp; 
+						(<%= step.definition.file.first.first %>)
+					</div>
+				<% else %>
+					<%= step.line %>
+				<% end %>
+				
 			</div>
-			<div class="step"><%= step.definition.value if step.definition %></div>
+			
 			<% end %>
 			<% else %>
 			<span>No Steps Defined</span>
