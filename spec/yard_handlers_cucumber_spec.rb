@@ -1,4 +1,3 @@
-
 module YARD::Handlers::Cucumber
 
   context Base do

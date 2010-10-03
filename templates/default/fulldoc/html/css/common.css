@@ -34,9 +34,12 @@
 	color: #3F3F3F;
 }
 
-.feature .meta { 
+.meta { 
 	margin-left: 30px;
 	color: gray;
+}
+.scenario .meta .tags {
+	margin-left: 0px;
 }
 
 .feature .description {
@@ -86,7 +89,8 @@
 }
 
 .scenario .step, #background .step {
-	padding: 4px;
+	margin-top: 4px;
+        padding: 4px;
 	font-size: 14px;
 	font-weight: bold;
 }
@@ -111,8 +115,7 @@
 }
 
 .step .details {
-	padding: 10px;
-	margin-left: 20px;
+	float: right;
 	color: #343332;
 }
 .step .details .pre {

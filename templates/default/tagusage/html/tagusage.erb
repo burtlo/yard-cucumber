@@ -1,15 +1,15 @@
 <div class="tag">
 	<div class="title">
 		<span class="pre">Tag:</span>
-		<span class="name"><%= @tags.tags.first.value %></span>
+		<span class="name"><%= @tags.value %></span>
 		
 	</div>
 	
 	<div class="meta">
 		<div class="file">Usage: 
-		<%= @tag_usage[:features] > 0 ? "#{@tag_usage[:features]} feature#{@tag_usage[:features] > 1 ? 's' : ''} (with #{@tag_usage[:indirect_scenarios]} scenario#{@tag_usage[:indirect_scenarios] > 1 ? 's' : ''})" : "" %>
-		<%= " and " if @tag_usage[:features] > 0 && @tag_usage[:direct_scenarios] > 0 %>
-		<%= @tag_usage[:direct_scenarios] > 0 ? "#{@tag_usage[:direct_scenarios]} scenario#{@tag_usage[:direct_scenarios] > 1 ? 's' : ''}" : "" %>
+		<%= @tags.feature_count > 0 ? "#{@tags.feature_count} feature#{@tags.feature_count > 1 ? 's' : ''} (with #{@tags.indirect_scenario_count} scenario#{@tags.indirect_scenario_count > 1 ? 's' : ''})" : "" %>
+		<%= " and " if @tags.feature_count > 0 && @tags.scenario_count > 0 %>
+		<%= @tags.scenario_count > 0 ? "#{@tags.scenario_count} scenario#{@tags.scenario_count > 1 ? 's' : ''}" : "" %>
 		</div>		
 	</div>
 	

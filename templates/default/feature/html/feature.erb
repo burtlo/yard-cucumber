@@ -77,13 +77,16 @@
 			<span class="pre">Scenario:</span>
 			<span class="name"><%= scenario.value %></span>
 		</div>
-		<% unless scenario.tags.empty? %>
-		<div class="tags">
-			<% scenario.tags.each do |tag| %>
-			<a href="tag_<%= tag.value %>.html"><%= tag.value %></a>
-			<% end %>
-		</div>
+                <div class="meta">
+                  <div class="file">Line: <%= scenario.files.first.last %></div>
+                  <% unless scenario.tags.empty? %>
+                  <div class="tags">
+                          <% scenario.tags.each do |tag| %>
+                          <a href="tag_<%= tag.value %>.html"><%= tag.value %></a>
+                          <% end %>
+                  </div>
 		<% end%>
+		</div>
 		<% unless scenario.description.empty? %>
 		<div class="description">
 			<%= scenario.description.join("\n<br/>") %>
@@ -99,8 +102,8 @@
 				<% if step.definition %>
 					<script type="text/javascript" charset="utf-8">
 					$('<%= "#scenario#{scenario_index}Step#{index}" %>').hover(
-						function () { $('<%= "#scenario#{scenario_index}Step#{index} div.details" %>').toggle('blind'); },
-						function () { $('<%= "#scenario#{scenario_index}Step#{index} div.details" %>').toggle('blind'); }
+						function () { $('<%= "#scenario#{scenario_index}Step#{index} div.details" %>').toggle('slide'); },
+						function () { $('<%= "#scenario#{scenario_index}Step#{index} div.details" %>').toggle('slide'); }
 					);
 					
 					$('<%= "#scenario#{scenario_index}Step#{index} div.details" %>').show();
@@ -108,9 +111,7 @@
 					</script>
 					<a href="stepdefinition_list.html"><%= step.line %></a>
 					<div class="details" style="display: none;">
-						<span style="pre">Step definition:</span>
-						<span class="name"><%= step.definition.value %></span>&nbsp;&nbsp; 
-						(<%= step.definition.file.first.first %>)
+						(<%= "#{step.definition.files.first.first}:#{step.definition.files.first.last}" %>)
 					</div>
 				<% else %>
 					<%= step.line %>

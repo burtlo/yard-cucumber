@@ -1,5 +1,4 @@
 
-
 module YARD
   module Parser
     module Cucumber
@@ -23,7 +22,12 @@ module YARD
         end
 
         def add_scenario(scenario)
-          @scenarios << Scenario.new(:root,"#{name}_scenario_#{@scenarios.count}") {|s| s.value = scenario ; s.feature = self }
+          @scenarios << Scenario.new(:root,"#{name}_scenario_#{@scenarios.length}") {|s| s.value = scenario ; s.feature = self }
+          @scenarios.last
+        end
+        
+        def add_scenario_outline(scenario)
+          @scenarios << Scenario.new(:root,"#{name}_scenario_#{@scenarios.length}") {|s| s.value = scenario ; s.feature = self ; s.outline = true }
           @scenarios.last
         end
         
@@ -46,21 +50,23 @@ module YARD
 
       class Scenario < YARD::CodeObjects::Base
 
-        attr_accessor :value, :description, :steps, :tags, :feature
+        attr_accessor :value, :description, :steps, :tags, :feature, :examples
+        attr_reader :outline
 
         def initialize(namespace,name)
           super(namespace,name.to_s.strip)
           @description = []
           @steps = []
           @tags = []
+          @examples = []
         end
 
         def add_step(step,linenumber)
-          step = Step.new(:root,"#{name}_step_#{@steps.count}") {|s| s.value = step ; s.scenario = self }
+          step = Step.new(:root,"#{name}_step_#{@steps.length}") {|s| s.value = step ; s.scenario = self }
           step.add_file(@files.first.first,linenumber)
           @steps << step
         end
-
+        
         def tags=(tags)
           tags.each_with_index do |tag,index|
             @tags << Tag.new(:root,"#{name}_tag_#{tag[1..-1]}_#{index}") do |t| 
@@ -71,8 +77,12 @@ module YARD
           end
         end
 
-        def add_table(row,unique_name,linenumber)
-          add_step(row,unique_name,linenumber)
+        def add_table(row,linenumber)
+          @steps.last.add_table_row(row,linenumber)
+        end
+        
+        def add_example(row,linenumber)
+          examples << row
         end
         
         #TODO: this is likely a bad hack because I couldn't understand path
@@ -85,7 +95,8 @@ module YARD
 
       class Step < YARD::CodeObjects::Base
         attr_accessor :value, :definition, :scenario
-        attr_reader :predicate, :line
+        attr_reader :predicate, :line, :multiline_arguments
+        
         
         def predicate
           value.split(' ').first
@@ -94,6 +105,12 @@ module YARD
         def line
           value.split(' ',2).last
         end
+        
+        def add_table_row(row,linenumber) 
+          @multiline_arguments = [] unless @additional_lines
+          @multiline_arguments << row
+        end
+        
       end
       
       class Tag < YARD::CodeObjects::Base
@@ -109,6 +126,8 @@ module YARD
       
       class TagUsage < YARD::CodeObjects::Base
         
+        attr_reader :value
+        
         attr_accessor :tags
         
         def filename
@@ -118,7 +137,35 @@ module YARD
         def push(tag)
           @tags = [] unless @tags
           @tags << tag
+                    
+          if tag.scenario
+            @scenario_count = 0 unless @scenario_count
+            @scenario_count += 1 
+          else
+            @feature_count = 0 unless @feature_count
+              @indirect_scenario_count = 0 unless @indirect_scenario_count
+            @feature_count += 1
+            @indirect_scenario_count += tag.feature.scenarios.length
+          end
+          
         end
+        
+        def scenario_count
+          @scenario_count || 0
+        end
+        
+        def feature_count
+          @feature_count || 0
+        end
+        
+        def indirect_scenario_count
+          @indirect_scenario_count || 0
+        end
+        
+        def total_scenario_count
+          scenario_count + indirect_scenario_count
+        end
+        
         
         alias_method :<<, :push
         
@@ -134,11 +181,15 @@ module YARD
           @namespaces
           @features = []
           @tokens = { }
+          @in_a_multiline_step = false
+          @in_a_scenario_outline = false
         end
 
         def parse
           @features = []
           @tokens = { :tags => [], :line_number => 1 }
+          @in_a_multiline_step = false
+          @in_a_scenario_outline = false
           tokenize
           self
         end
@@ -154,15 +205,31 @@ module YARD
             elsif line =~ /^\s*BACKGROUND\s*:(.*)$/i then
               @current_element = :background
               new_scenario("Background")
-            elsif line =~ /^\s*SCENARIO(?: OUTLINE)?\s*:(.+)$/i then
+            elsif line =~ /^\s*SCENARIO\s*:(.+)$/i then
               @current_element = :scenario
               new_scenario($1.strip)
+            elsif line =~ /^\s*SCENARIO OUTLINE\s*:(.+)$/i then
+              @current_element = :scenario_outline
+              new_scenario($1.strip)
+            elsif line =~ /^\s*Examples\s*:\s*$/i then
+              @in_a_scenario_outline = true
             elsif line =~ /^\s*((?:GIVEN|WHEN|THEN|AND|BUT)\s*.+)$/i then
               new_step($1)
             elsif line =~ /^\s*\|(.+)$/i then
+              if @in_a_scenario_outline
+                new_scenario_example($1)
+              else
+                new_table_row($1)
+              end
+            elsif line =~ /^\s*"""(.+)$/i then
+              @in_a_multiline_step ?  @in_a_multiline_step = false : @in_a_multiline_step = true
               new_table_row($1)
             else
-              new_description(line) unless line.strip == "" 
+              if @in_a_multiline_step
+                new_table_row($1)
+              else
+                new_description(line) unless line.strip == ""
+              end
             end
             @tokens[:line_number] = @tokens[:line_number] + 1
           end
@@ -212,7 +279,11 @@ module YARD
         #
         # This should likely not be a step and just another method that notes the order
         def new_table_row(table_row)
-          @tokens[@current_element].add_table(table_row,"row_#{unique_id}",@tokens[:line_number]) if @tokens[@current_element]
+          @tokens[@current_element].add_table(table_row,@tokens[:line_number]) if @tokens[@current_element]
+        end
+
+        def new_scenario_example(example_row)
+          @tokens[@current_element].add_example(example_row,@tokens[:line_number]) if @tokens[@current_element]
         end
 
         def new_description(line)

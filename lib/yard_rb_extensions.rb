@@ -22,6 +22,10 @@ module YARD::CodeObjects
       @constants.each do |name,constant|
         base_value.gsub!(/\#\{\s*#{name.to_s}\s*\}/,constant.value.gsub(/^\/|\/$/,''))
       end
+      # TODO: When constants have constants it is important to replace them... this should be recursive and not just done twice
+      @constants.each do |name,constant|
+        base_value.gsub!(/\#\{\s*#{name.to_s}\s*\}/,constant.value.gsub(/^\/|\/$/,''))
+      end
       base_value
     end
     

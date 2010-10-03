@@ -20,16 +20,21 @@ def init
 
   @step_definitions.each do |stepdef|
     stepdef.constants = stepdef._value_constants.each do |stepdef_constant| 
-      object.constants.each do |constant| 
-        stepdef.constants[stepdef_constant] = constant if stepdef_constant.to_sym == constant.name
+      object.constants.each do |constant|
+        if stepdef_constant.to_sym == constant.name
+          stepdef.constants[stepdef_constant] = constant
+          stepdef.constants.merge(unpack_constants(constant))
+        end
+          
       end
     end
 
-    log.debug "Step Definition Compare Value: #{stepdef.compare_value}"
+    #log.debug "Step Definition Compare Value: #{stepdef.compare_value}"
   end
 
   @steps.each do |step|
     @step_definitions.each do |stepdef|
+      log.debug "Step Definition: #{stepdef.compare_value}"
       if %r{#{stepdef.compare_value}}.match(step.line)
         step.definition = stepdef
         stepdef.steps << step
@@ -54,14 +59,11 @@ def init
 
   @tags = find_unique_tags(@tags)
   @tags.each { |tag,tag_objects| serialize_object(tag_objects) }
+  @tagusage = @tags.values.sort {|x,y| y.total_scenario_count <=> x.total_scenario_count }
 
-  create_full_list(@tags.values,"Tag Usage")
+  create_full_list(@tagusage,"Tag Usage")
   create_full_list(@features)
   create_full_list(@scenarios)
-
-
-
-
 
 end
 
@@ -87,13 +89,25 @@ def find_unique_tags(tags)
   tags_hash = {}
 
   tags.each do |tag|
-    tags_hash[tag.value] = YARD::Parser::Cucumber::TagUsage.new(:root,"tag_#{tag.value}") unless tags_hash[tag.value]
+    tags_hash[tag.value] = YARD::Parser::Cucumber::TagUsage.new(:root,"tag_#{tag.value}"){|t| t.value = tag.value } unless tags_hash[tag.value]
     tags_hash[tag.value.to_s] << tag
   end
 
   tags_hash
 end
 
+def unpack_constants(constant)
+  # if the constant value has a name of another constant then we want to return it as a hash with the constant name as the key,value
+  inner_constants = {}
+  
+  constant.value.scan(/\#\{([^\}]+)\}/).flatten.collect { |value| value.strip }.each do |inner_constant|
+    inner_constant_match = object.constants.find {|constant| constant.name == inner_constant }
+
+    inner_constants.merge({ inner_constant => inner_constant_match }) if inner_constant_match
+  end
+  
+  inner_constants
+end
 
 
 

@@ -1,9 +1,3 @@
-require 'rubygems'
-require 'yard'
-
-require File.dirname(__FILE__) + "/yard_rb_extensions.rb"
-require File.dirname(__FILE__) + "/yard_cukes_extensions.rb"
-
 
 module YARD::CodeObjects
   
