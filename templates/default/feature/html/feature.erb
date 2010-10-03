@@ -18,7 +18,7 @@
 	</div>
 
 	<% if @feature.background %>
-	
+ 
 	<script type="text/javascript" charset="utf-8">
 	$(function() {
 		$('#background .toggle').click(function() {
@@ -31,7 +31,7 @@
 		});
 	});
 	</script>
-	
+
 	<div id="background">
 		<div class="title">
 			<a class="toggle">-</a>
@@ -39,13 +39,40 @@
 		</div>
 		<% unless @feature.background.description.empty? %>
 		<div class="description">
-			<%= @feature.background.description.join("\n<br/>") %>
+			<%= h(@feature.background.description.join("\n<br/>")) %>
 		</div>
 		<% end %>
+		
+		<!-- Background and scenario should have the same display with some minor changes -->
+		
 		<div id="backgroundSteps" class="steps">
 			<% if @feature.background.steps %>
-			<% @feature.background.steps.each_with_index do |step,index| %>
-			<div class="step <%= (index + 1) % 2 == 0 ? 'even' : 'odd' %>"><span class="predicate"><%= step.predicate %></span>&nbsp;<%= step.line %></div>
+			<%  @feature.background.steps.each_with_index do |step,index| %>
+			<div <%= "id='backgroundStep#{index}'" %> class="step <%= (index + 1) % 2 == 0 ? 'even' : 'odd' %>">
+				<span class="predicate"><%= step.predicate %></span>
+
+				<% if step.definition %>
+				<script type="text/javascript" charset="utf-8">
+				$('<%= "#backgroundStep#{index}" %>').hover(
+					function () { $('<%= "#backgroundStep#{index} div.details" %>').toggle('slide'); },
+					function () { $('<%= "#backgroundStep#{index} div.details" %>').toggle('slide'); }
+				);
+
+				$('<%= "#backgroundStep#{index} div.details" %>').show();
+
+				</script>
+				<span class="defined">
+					<a href="stepdefinition_list.html"><%= h(step.line) %></a>
+					<div class="details" style="display: none;">
+						(<%= h("#{step.definition.files.first.first}:#{step.definition.files.first.last}") %>)
+					</div>
+				</span>
+				<% else %>
+				<span class="undefined"><%= h(step.line) %></span>
+				<% end %>
+
+			</div>
+
 			<% end %>
 			<% else %>
 			<span>No Steps Defined</span>
@@ -57,73 +84,124 @@
 
 	<% if @feature.scenarios %>
 	<% @feature.scenarios.each_with_index do |scenario,scenario_index| %>
-	
+
 	<script type="text/javascript" charset="utf-8">
-		$(function() {
-			$('#scenario<%=scenario_index%> .toggle').click(function() {
-				$("#scenario<%=scenario_index%>Steps").toggle('blind');
+	$(function() {
+		$('#scenario<%=scenario_index%> .toggle').click(function() {
+			$("#scenario<%=scenario_index%>Steps").toggle('blind');
 
-				var stateIndicator = $('#scenario<%=scenario_index%> a.toggle')[0]
+			var stateIndicator = $('#scenario<%=scenario_index%> a.toggle')[0]
 
-				stateIndicator.innerHTML = (stateIndicator.innerHTML === '+' ? '-' : '+'); 
-				return false;
-			});
+			stateIndicator.innerHTML = (stateIndicator.innerHTML === '+' ? '-' : '+'); 
+			return false;
 		});
+	});
 	</script>
-	
+
 	<div <%= "id='scenario#{scenario_index}'" %>  class="scenario">
 		<div class="title">
 			<a class="toggle">-</a>
-			<span class="pre">Scenario:</span>
-			<span class="name"><%= scenario.value %></span>
+			<span class="pre">Scenario <%= scenario.outline ? "Outline" : "" %>:</span>
+			<span class="name"><%= h(scenario.value) %></span>
 		</div>
-                <div class="meta">
-                  <div class="file">Line: <%= scenario.files.first.last %></div>
-                  <% unless scenario.tags.empty? %>
-                  <div class="tags">
-                          <% scenario.tags.each do |tag| %>
-                          <a href="tag_<%= tag.value %>.html"><%= tag.value %></a>
-                          <% end %>
-                  </div>
-		<% end%>
+		<div class="meta">
+			<div class="file">Line: <%= scenario.files.first.last %></div>
+			<% unless scenario.tags.empty? %>
+			<div class="tags">
+				<% scenario.tags.each do |tag| %>
+				<a href="tag_<%= tag.value %>.html"><%= tag.value %></a>
+				<% end %>
+			</div>
+			<% end%>
 		</div>
 		<% unless scenario.description.empty? %>
 		<div class="description">
-			<%= scenario.description.join("\n<br/>") %>
+			<%= h(scenario.description.join("\n<br/>")) %>
 		</div>
 		<% end %>
-		
+
 		<div <%= "id='scenario#{scenario_index}Steps'" %> class="steps">
 			<% if scenario.steps %>
 			<% scenario.steps.each_with_index do |step,index| %>
 			<div <%= "id='scenario#{scenario_index}Step#{index}'" %> class="step <%= (index + 1) % 2 == 0 ? 'even' : 'odd' %>">
 				<span class="predicate"><%= step.predicate %></span>
-				
+
 				<% if step.definition %>
-					<script type="text/javascript" charset="utf-8">
-					$('<%= "#scenario#{scenario_index}Step#{index}" %>').hover(
-						function () { $('<%= "#scenario#{scenario_index}Step#{index} div.details" %>').toggle('slide'); },
-						function () { $('<%= "#scenario#{scenario_index}Step#{index} div.details" %>').toggle('slide'); }
-					);
-					
-					$('<%= "#scenario#{scenario_index}Step#{index} div.details" %>').show();
-					
-					</script>
-					<a href="stepdefinition_list.html"><%= step.line %></a>
+				<script type="text/javascript" charset="utf-8">
+				$('<%= "#scenario#{scenario_index}Step#{index}" %>').hover(
+					function () { $('<%= "#scenario#{scenario_index}Step#{index} div.details" %>').toggle('slide'); },
+					function () { $('<%= "#scenario#{scenario_index}Step#{index} div.details" %>').toggle('slide'); }
+				);
+
+				$('<%= "#scenario#{scenario_index}Step#{index} div.details" %>').show();
+
+				</script>
+				<span class="defined">
+					<a href="stepdefinition_list.html"><%= h(step.line) %></a>
 					<div class="details" style="display: none;">
-						(<%= "#{step.definition.files.first.first}:#{step.definition.files.first.last}" %>)
+						(<%= h("#{step.definition.files.first.first}:#{step.definition.files.first.last}") %>)
 					</div>
+				</span>
 				<% else %>
-					<%= step.line %>
+				<span class="undefined"><%= h(step.line) %></span>
 				<% end %>
 				
+				<% if step.multiline_arguments %>
+				<div class="multiline">
+					<table style="width: <%= step.multiline_arguments.first.split("|").length * 100 %> px;">
+
+						<thead>
+							<tr>
+								<% step.multiline_arguments.first.split("|").each_with_index do |column,column_index| %>
+								<th class="<%= (column_index + 1) % 2 == 0 ? 'even' : 'odd' %>"><%= h(column.strip) %></td>
+								<% end %>
+							</tr>
+						</thead>
+						
+						<% step.multiline_arguments[1..-1].each do |row| %>
+						<tr>
+							<% row.split("|").each_with_index do |column,column_index| %>
+							<td class="<%= (column_index + 1) % 2 == 0 ? 'even' : 'odd' %>"><%= h(column.strip) %></td>
+							<% end %>
+						</tr>
+						<% end %>
+					</table>
+				</div>
+				
+				<% end %>
+				
+
 			</div>
-			
+
 			<% end %>
 			<% else %>
 			<span>No Steps Defined</span>
 			<% end %>
 		</div>
+		
+		<% if scenario.outline %>
+		<div class="outline">
+			<table>
+				<thead>
+					<tr>
+						<% scenario.examples.first.split("|").each_with_index do |column,column_index| %>
+						<th class="<%= (column_index + 1) % 2 == 0 ? 'even' : 'odd' %>"><%= h(column.strip) %></td>
+						<% end %>
+					</tr>
+				</thead>
+				
+				<% scenario.examples[1..-1].each do |row| %>
+				<tr>
+					<% row.split("|").each_with_index do |column,column_index| %>
+					<td class="<%= (column_index + 1) % 2 == 0 ? 'even' : 'odd' %>"><%= h(column.strip) %></td>
+					<% end %>
+				</tr>
+				<% end %>
+			</table>
+		</div>
+		
+		<% end %>
+		
 	</div>
 	<% end %>
 	<% end %>

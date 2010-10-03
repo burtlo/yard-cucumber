@@ -107,9 +107,20 @@ module YARD
         end
         
         def add_table_row(row,linenumber) 
-          @multiline_arguments = [] unless @additional_lines
+          @multiline_arguments = [] unless @multiline_arguments
           @multiline_arguments << row
         end
+        
+        # TODO: This should be refactored to support a Table Object
+        
+        def has_table?
+          @multiline_arguments && !@multiline_arguments.is_empty?
+        end
+        
+        def has_string?
+          @multiline_arguments && !@multiline_arguments.is_empty?
+        end
+        
         
       end
       
@@ -207,15 +218,19 @@ module YARD
               new_scenario("Background")
             elsif line =~ /^\s*SCENARIO\s*:(.+)$/i then
               @current_element = :scenario
+              @in_a_scenario_outline = false
               new_scenario($1.strip)
             elsif line =~ /^\s*SCENARIO OUTLINE\s*:(.+)$/i then
               @current_element = :scenario_outline
+              @in_a_scenario_outline = false
               new_scenario($1.strip)
             elsif line =~ /^\s*Examples\s*:\s*$/i then
               @in_a_scenario_outline = true
             elsif line =~ /^\s*((?:GIVEN|WHEN|THEN|AND|BUT)\s*.+)$/i then
               new_step($1)
-            elsif line =~ /^\s*\|(.+)$/i then
+            elsif line =~ /^\s*\|(.+)\|\s*$/i then
+              log.debug "Table Row: #{$1}"
+              
               if @in_a_scenario_outline
                 new_scenario_example($1)
               else
@@ -276,8 +291,6 @@ module YARD
           end
         end
 
-        #
-        # This should likely not be a step and just another method that notes the order
         def new_table_row(table_row)
           @tokens[@current_element].add_table(table_row,@tokens[:line_number]) if @tokens[@current_element]
         end
@@ -311,9 +324,9 @@ module YARD
         class << self
           include Parser::Cucumber
           def handles?(node)
-            log.debug "Cucumber::Base#handles? #{node.class}"
+            #log.debug "Cucumber::Base#handles? #{node.class}"
             handlers.any? do |a_handler|
-              log.debug "A handler: #{a_handler}"
+              #log.debug "A handler: #{a_handler}"
             end
           end
           include Parser::Cucumber
@@ -325,7 +338,7 @@ module YARD
         handles Parser::Cucumber::Feature
 
         def process 
-          log.debug "FeatureHandler Online #{statement}"
+          #log.debug "FeatureHandler Online #{statement}"
         rescue YARD::Handlers::NamespaceMissingError
         end
       end

@@ -114,17 +114,41 @@
 	color: #5D5C5B;
 }
 
+.step .undefined {
+	border-bottom: 1px dashed #E99494;
+}
+.step .defined {}
 .step .details {
 	float: right;
 	color: #343332;
 }
-.step .details .pre {
-	
-}
+.step .details .pre {}
 .step .details .name {
 	font-family: monospace;
 	color: black;
 }
+
+.multiline {
+	margin-top: 10px;
+	margin-left: 20px;
+}
+.outline {
+	margin-top: 20px;
+	margin-left: 40px;
+}
+.multiline table tr, .outline table tr {
+	padding: 4px;
+}
+.multiline table thead tr th, .outline table thead tr th {
+	text-align: left;
+	padding: 4px;
+	background-color: #A8C0A8;
+}
+.multiline table tr td, .outline table tr td {
+	width: 150px;
+	padding: 4px;
+}
+
 
 /* Overrides for scenarios in the tag view */
 .tag .scenario {
