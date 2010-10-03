@@ -66,6 +66,12 @@ def init
   create_full_list(@features)
   create_full_list(@scenarios)
 
+  @step_transformers = YARD::CodeObjects::StepTransformersObject.new(:root,"steptransformers")
+  
+  @step_definitions.each {|stepdef| @step_transformers << stepdef }
+
+  serialize_object(@step_transformers)
+  
 end
 
 def asset(path, content)
@@ -74,9 +80,9 @@ end
 
 def serialize_object(object)
   options[:object] = object
-  Templates::Engine.with_serializer(object.filename, options[:serializer]) do
-    T('layout').run(options)
-  end
+   Templates::Engine.with_serializer(object.filename, options[:serializer]) do
+      T('layout').run(options)
+   end
 end
 
 def create_full_list(objects,friendly_name=nil)

@@ -2,9 +2,9 @@
 <% @scenarios.each do |scenario| %>
   <li class="r<%= n %>">
 	<span class='object_link'>
-		<a href="<%= scenario.feature.filename %>"><%= scenario.value %></a>
+		<a href="<%= scenario.feature.filename %>"><%= h(scenario.value) %></a>
 	</span>
-	<span class="">(<%= "#{scenario.files.first.first}:#{scenario.files.first.last}" %>)<span>
+	<span class="">(<%= h(scenario.location) %>)<span>
   </li>
   <% n = n == 2 ? 1 : 2 %>
 <% end %>

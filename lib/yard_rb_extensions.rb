@@ -6,8 +6,8 @@ module YARD::CodeObjects
   # StepDefinitions, as implemented in a ruby file
   #
   class StepDefinitionObject < Base
-
-    attr_reader :predicate, :value, :compare_value 
+    
+    attr_reader :predicate, :value, :compare_value, :source 
     attr_accessor :constants, :steps
     
     def value=(value)
@@ -38,10 +38,33 @@ module YARD::CodeObjects
       value.each do |val| 
         @constants[val.name.to_s] = val if val.respond_to?(:name) && val.respond_to?(:value)
       end
-    end
-    
+    end    
     
   end 
+  
+  class StepTransformersObject < Base
+    
+    attr_reader :source
+    attr_accessor :definitions, :transforms
+    
+    def push(stepobject)
+      if stepobject.is_a?(StepDefinitionObject)
+        @definitions = [] unless @definitions
+        @definitions << stepobject
+      elsif stepobject.ia_a?(StepTransformObject)
+        @transforms = [] unless @transforms
+        @transforms << stepobject
+      end
+    end
+    
+    alias_method :<< , :push
+    
+    def filename
+      "#{name}.html"
+    end
+    
+  end
+  
 
   #
   # Transforms

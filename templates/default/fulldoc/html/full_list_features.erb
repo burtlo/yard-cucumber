@@ -2,9 +2,9 @@
 <% @features.each do |feature| %>
   <li class="r<%= n %>">
 	<span class='object_link'>
-		<a href="<%= feature.filename %>"><%= feature.value %></a>
+		<a href="<%= feature.filename %>"><%= h(feature.value) %></a>
 	</span>
-	<span class="">(<%= feature.files.first.first %>)<span>
+	<span class="">(<%= h(feature.file) %>)<span>
   </li>
   <% n = n == 2 ? 1 : 2 %>
 <% end %>

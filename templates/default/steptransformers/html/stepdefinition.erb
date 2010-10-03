@@ -1,0 +1,38 @@
+<div class="title">
+	<div class="name">Step Definitions</div>
+</div>
+
+<div style="margin: 10px;">&nbsp;</div>
+
+
+<% @step_transformers.definitions.each_with_index do |stepdef,index| %>
+
+<div class="stepdef">
+	<a name="<%= stepdef.name %>">
+	<div class="title">
+		<span class="pre"><%= stepdef.predicate %></span>
+		<span class="name"><%= stepdef.value %></span>
+		<div style="float: right;"><%= h( "#{stepdef.files.first.first}:#{stepdef.files.first.last}" ) %></div>
+	</div>
+
+
+	<div class="steps">
+		<% if stepdef.steps && !stepdef.steps.empty? %>
+		<% stepdef.steps.each_with_index do |step,step_index| %>	
+		<div class="step <%= (step_index + 1) % 2 == 0 ? 'even' : 'odd' %>">
+			<%= h("#{step.predicate} #{step.line}") %>
+			<div class="details"><a href="<%= step.scenario.feature.filename %>"><%= h(step.location) %></a></div>
+		</div>
+		<% end %>
+		<% else %>
+		<span class="undefined">No steps were found to match this step definition.</span>
+		<% end%>
+	</div>
+
+
+	<div class="source">
+		<!-- <%= h(stepdef.source) %> -->
+	</div>
+</div>
+
+<% end %>

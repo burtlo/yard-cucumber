@@ -3,7 +3,24 @@ module YARD
   module Parser
     module Cucumber
 
+      module CucumberLocationHelper
+
+        def line_number
+          files.first.last
+        end
+        
+        def file
+          files.first.first
+        end
+
+        def location
+          "#{files.first.first}:#{files.first.last}"
+        end
+        
+      end
+
       class Feature < YARD::CodeObjects::Base
+        include CucumberLocationHelper
 
         attr_accessor :value, :description, :scenarios, :background, :tags
 
@@ -49,6 +66,7 @@ module YARD
       end
 
       class Scenario < YARD::CodeObjects::Base
+        include CucumberLocationHelper
 
         attr_accessor :value, :description, :steps, :tags, :feature, :examples
         attr_reader :outline
@@ -90,10 +108,11 @@ module YARD
           "#{self.name.to_s.gsub(/\//,'_')}.html"
         end
         
-
       end
 
       class Step < YARD::CodeObjects::Base
+        include CucumberLocationHelper
+        
         attr_accessor :value, :definition, :scenario
         attr_reader :predicate, :line, :multiline_arguments
         
@@ -120,11 +139,11 @@ module YARD
         def has_string?
           @multiline_arguments && !@multiline_arguments.is_empty?
         end
-        
-        
+                        
       end
       
       class Tag < YARD::CodeObjects::Base
+        include CucumberLocationHelper
         
         attr_accessor :value, :feature, :scenario
         
@@ -175,12 +194,12 @@ module YARD
         
         def total_scenario_count
           scenario_count + indirect_scenario_count
-        end
-        
+        end        
         
         alias_method :<<, :push
         
       end
+
 
       class FeatureParser < Base
         

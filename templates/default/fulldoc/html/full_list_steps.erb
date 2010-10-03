@@ -4,10 +4,10 @@
 	<span class='object_link'>
 		<a href="<%= step.scenario.feature.filename %>">
 			<span class="pre"><%= step.predicate %></span>
-			<span class="name"><%= step.line %></span>
+			<span class="name"><%= h(step.line) %></span>
 		</a>
 	</span>
-	<span class="">(<%= "#{step.files.first.first}:#{step.files.first.last}" %>)<span>
+	<span class="">(<%= h(step.location) %>)<span>
   </li>
   <% n = n == 2 ? 1 : 2 %>
 <% end %>

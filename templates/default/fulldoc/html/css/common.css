@@ -159,3 +159,16 @@
 	border-bottom: none;
 }
 /* Overrides for scenarios in the tag view */
+
+.stepdef .title {
+	font-size: 14px;
+	margin-top: 30px;
+	border-bottom: 1px solid #E3E3E3;
+}
+
+.stepdef .steps {
+	margin: 10px 0px 0px 30px;
+}
+.stepdef .steps .step {
+	padding: 4px;
+}

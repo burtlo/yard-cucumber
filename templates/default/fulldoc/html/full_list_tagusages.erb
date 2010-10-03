@@ -2,7 +2,7 @@
 <% @tagusage.each do |usage| %>
   <li class="r<%= n %>">
 	<span class='object_link'>
-		<a href="<%= usage.filename %>"><%= usage.value %></a>
+		<a href="<%= usage.filename %>"><%= h(usage.value) %></a>
 	</span>
 	<small><%= usage.total_scenario_count %></small>
   </li>
