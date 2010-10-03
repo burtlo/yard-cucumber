@@ -18,7 +18,7 @@
 	</div>
 
 	<% if @feature.background %>
- 
+
 	<script type="text/javascript" charset="utf-8">
 	$(function() {
 		$('#background .toggle').click(function() {
@@ -42,9 +42,9 @@
 			<%= h(@feature.background.description.join("\n<br/>")) %>
 		</div>
 		<% end %>
-		
+
 		<!-- Background and scenario should have the same display with some minor changes -->
-		
+
 		<div id="backgroundSteps" class="steps">
 			<% if @feature.background.steps %>
 			<%  @feature.background.steps.each_with_index do |step,index| %>
@@ -145,7 +145,7 @@
 				<% else %>
 				<span class="undefined"><%= h(step.line) %></span>
 				<% end %>
-				
+
 				<% if step.multiline_arguments %>
 				<div class="multiline">
 					<table style="width: <%= step.multiline_arguments.first.split("|").length * 100 %> px;">
@@ -154,11 +154,43 @@
 							<tr>
 								<% step.multiline_arguments.first.split("|").each_with_index do |column,column_index| %>
 								<th class="<%= (column_index + 1) % 2 == 0 ? 'even' : 'odd' %>"><%= h(column.strip) %></td>
+									<% end %>
+								</tr>
+							</thead>
+
+							<% step.multiline_arguments[1..-1].each do |row| %>
+							<tr>
+								<% row.split("|").each_with_index do |column,column_index| %>
+								<td class="<%= (column_index + 1) % 2 == 0 ? 'even' : 'odd' %>"><%= h(column.strip) %></td>
+								<% end %>
+							</tr>
+							<% end %>
+						</table>
+					</div>
+
+					<% end %>
+
+
+				</div>
+
+				<% end %>
+				<% else %>
+				<span>No Steps Defined</span>
+				<% end %>
+			</div>
+
+			<% if scenario.outline %>
+			<div class="outline">
+				<table>
+					<thead>
+						<tr>
+							<% scenario.examples.first.split("|").each_with_index do |column,column_index| %>
+							<th class="<%= (column_index + 1) % 2 == 0 ? 'even' : 'odd' %>"><%= h(column.strip) %></td>
 								<% end %>
 							</tr>
 						</thead>
-						
-						<% step.multiline_arguments[1..-1].each do |row| %>
+
+						<% scenario.examples[1..-1].each do |row| %>
 						<tr>
 							<% row.split("|").each_with_index do |column,column_index| %>
 							<td class="<%= (column_index + 1) % 2 == 0 ? 'even' : 'odd' %>"><%= h(column.strip) %></td>
@@ -167,44 +199,12 @@
 						<% end %>
 					</table>
 				</div>
-				
+
 				<% end %>
-				
 
 			</div>
-
 			<% end %>
-			<% else %>
-			<span>No Steps Defined</span>
 			<% end %>
-		</div>
-		
-		<% if scenario.outline %>
-		<div class="outline">
-			<table>
-				<thead>
-					<tr>
-						<% scenario.examples.first.split("|").each_with_index do |column,column_index| %>
-						<th class="<%= (column_index + 1) % 2 == 0 ? 'even' : 'odd' %>"><%= h(column.strip) %></td>
-						<% end %>
-					</tr>
-				</thead>
-				
-				<% scenario.examples[1..-1].each do |row| %>
-				<tr>
-					<% row.split("|").each_with_index do |column,column_index| %>
-					<td class="<%= (column_index + 1) % 2 == 0 ? 'even' : 'odd' %>"><%= h(column.strip) %></td>
-					<% end %>
-				</tr>
-				<% end %>
-			</table>
-		</div>
-		
-		<% end %>
-		
-	</div>
-	<% end %>
-	<% end %>
 
-</div>
+		</div>
 
