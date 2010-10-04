@@ -1,10 +1,8 @@
 require 'rubygems'
 require 'rake'
 require 'hoe'
-
-require 'spec/rake/spectask'
-require 'spec/expectations'
 require 'yard'
+require 'rspec/core/rake_task'
 
 task :default => :yard
 
@@ -30,9 +28,3 @@ Rake::TaskManager.class_eval do
     @tasks.delete(task_name.to_s)
   end
 end
-
-Rake.application.remove_task(:spec)
-
-rspec_task = Spec::Rake::SpecTask.new
-rspec_task.spec_files = FileList['lib/city.rb']
-rspec_task.spec_opts  = ['-c','-f specdoc']
