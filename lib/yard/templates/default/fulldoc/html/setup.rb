@@ -11,9 +11,7 @@ def init
 
   @step_definitions = Registry.all(:stepdefinition)
   @steps = Registry.all(:step)
-
-  
-  
+    
   create_full_list(@step_definitions,"Step Definition")
   create_full_list(@steps)
 
@@ -96,7 +94,7 @@ def find_unique_tags(tags)
   tags_hash = {}
 
   tags.each do |tag|
-    tags_hash[tag.value] = YARD::Parser::Cucumber::TagUsage.new(:root,"tag_#{tag.value}"){|t| t.value = tag.value } unless tags_hash[tag.value]
+    tags_hash[tag.value] = YARD::CodeObjects::Cucumber::TagUsage.new(:root,"tag_#{tag.value}"){|t| t.value = tag.value } unless tags_hash[tag.value]
     tags_hash[tag.value.to_s] << tag
   end
 

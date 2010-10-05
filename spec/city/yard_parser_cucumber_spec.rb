@@ -3,47 +3,47 @@ require File.dirname(__FILE__) + '/feature_parser_spec_examples.rb'
 
 module YARD::Parser::Cucumber
 
-  describe Tag do
+  describe YARD::CodeObjects::Cucumber::Tag do
     
     [:value].each do |attribute|
       it "should respond to method #{attribute}" do
-        Tag.new(:root,"tag_name").should respond_to(attribute)
+        YARD::CodeObjects::Cucumber::Tag.new(:root,"tag_name").should respond_to(attribute)
       end
     end
     
   end
 
-  describe Step do
+  describe YARD::CodeObjects::Cucumber::Step do
     
     [:value, :definition].each do |attribute|
       it "should respond to method #{attribute}" do
-        Step.new(:root,"name").should respond_to(attribute)
+        YARD::CodeObjects::Cucumber::Step.new(:root,"name").should respond_to(attribute)
       end
     end
     
     it "should return the line prefix and the remainder" do
-      step = Step.new(:root,"name") {|s| s.value = "Given something something" }
+      step = YARD::CodeObjects::Cucumber::Step.new(:root,"name") {|s| s.value = "Given something something" }
       step.predicate.should == "Given"
       step.line.should == "something something"
     end
     
   end
   
-  describe Scenario do
+  describe YARD::CodeObjects::Cucumber::Scenario do
     
     [:value, :description, :steps, :tags ].each do |attribute|
       it "should respond to method #{attribute}" do
-        Scenario.new(:root,"name").should respond_to(attribute)
+        YARD::CodeObjects::Cucumber::Scenario.new(:root,"name").should respond_to(attribute)
       end
     end
     
   end
   
-  describe Feature do
+  describe YARD::CodeObjects::Cucumber::Feature do
     
     [:value, :description, :scenarios, :background, :tags ].each do |attribute|
       it "should respond to method #{attribute}" do
-        Feature.new(:root,"name").should respond_to(attribute)
+        YARD::CodeObjects::Cucumber::Feature.new(:root,"name").should respond_to(attribute)
       end
     end
     

@@ -1,6 +1,6 @@
 <div class="feature">
 	<div class="title">
-		<span class="pre">Feature:</span>
+		<span class="pre"><%= @feature.keyword %>:</span>
 		<span class="name"><%= @feature.value %></span>
 	</div>
 
@@ -14,7 +14,7 @@
 	</div>
 
 	<div class="description">
-		<%= @feature.description.join("\n<br/>") %>
+		<%= @feature.description %>
 	</div>
 
 	<% if @feature.background %>
@@ -49,7 +49,7 @@
 			<% if @feature.background.steps %>
 			<%  @feature.background.steps.each_with_index do |step,index| %>
 			<div <%= "id='backgroundStep#{index}'" %> class="step <%= (index + 1) % 2 == 0 ? 'even' : 'odd' %>">
-				<span class="predicate"><%= step.predicate %></span>
+				<span class="predicate"><%= step.keyword %></span>
 
 				<% if step.definition %>
 				<script type="text/javascript" charset="utf-8">
@@ -71,22 +71,22 @@
 				<span class="undefined"><%= h(step.line) %></span>
 				<% end %>
 
-				<% if step.multiline_arguments %>
+				<% if step.has_table? %>
 				<div class="multiline">
-					<table style="width: <%= step.multiline_arguments.first.split("|").length * 100 %> px;">
+					<table style="">
 
 						<thead>
 							<tr>
-								<% step.multiline_arguments.first.split("|").each_with_index do |column,column_index| %>
-								<th class="<%= (column_index + 1) % 2 == 0 ? 'even' : 'odd' %>"><%= h(column.strip) %></td>
+								<% step.multiline_arg.each_with_index do |column,column_index| %>
+								<th class="<%= (column_index + 1) % 2 == 0 ? 'even' : 'odd' %>"><%= h(column.to_s.strip) %></td>
 									<% end %>
 								</tr>
 							</thead>
 
-							<% step.multiline_arguments[1..-1].each do |row| %>
+							<% step.multiline_arg[1..-1].each do |row| %>
 							<tr>
 								<% row.split("|").each_with_index do |column,column_index| %>
-								<td class="<%= (column_index + 1) % 2 == 0 ? 'even' : 'odd' %>"><%= h(column.strip) %></td>
+								<td class="<%= (column_index + 1) % 2 == 0 ? 'even' : 'odd' %>"><%= h(column.to_s.strip) %></td>
 								<% end %>
 							</tr>
 							<% end %>
@@ -125,7 +125,7 @@
 		<div <%= "id='scenario#{scenario_index}'" %>  class="scenario">
 			<div class="title">
 				<a class="toggle">-</a>
-				<span class="pre">Scenario <%= scenario.outline ? "Outline" : "" %>:</span>
+				<span class="pre">Scenario<%= !scenario.examples.empty? ? " Outline" : "" %>:</span>
 				<span class="name"><%= h(scenario.value) %></span>
 			</div>
 			<div class="meta">
@@ -148,7 +148,7 @@
 				<% if scenario.steps %>
 				<% scenario.steps.each_with_index do |step,index| %>
 				<div <%= "id='scenario#{scenario_index}Step#{index}'" %> class="step <%= (index + 1) % 2 == 0 ? 'even' : 'odd' %>">
-					<span class="predicate"><%= step.predicate %></span>
+					<span class="predicate"><%= step.keyword %></span>
 
 					<% if step.definition %>
 					<script type="text/javascript" charset="utf-8">
@@ -170,21 +170,21 @@
 					<span class="undefined"><%= h(step.line) %></span>
 					<% end %>
 
-					<% if step.multiline_arguments %>
+					<% if step.has_table? %>
 					<div class="multiline">
-						<table style="width: <%= step.multiline_arguments.first.split("|").length * 100 %> px;">
+						<table style="">
 
 							<thead>
 								<tr>
-									<% step.multiline_arguments.first.split("|").each_with_index do |column,column_index| %>
+									<% step.multiline_arg.first.each_with_index do |column,column_index| %>
 									<th class="<%= (column_index + 1) % 2 == 0 ? 'even' : 'odd' %>"><%= h(column.strip) %></td>
 										<% end %>
 									</tr>
 								</thead>
 
-								<% step.multiline_arguments[1..-1].each do |row| %>
+								<% step.multiline_arg[1..-1].each do |row| %>
 								<tr>
-									<% row.split("|").each_with_index do |column,column_index| %>
+									<% row.each_with_index do |column,column_index| %>
 									<td class="<%= (column_index + 1) % 2 == 0 ? 'even' : 'odd' %>"><%= h(column.strip) %></td>
 									<% end %>
 								</tr>
@@ -203,21 +203,21 @@
 					<% end %>
 				</div>
 
-				<% if scenario.outline %>
+				<% if scenario.examples && !scenario.examples.empty? %>
 				<div class="outline">
 					<table>
 						<thead>
 							<tr>
-								<% scenario.examples.first.split("|").each_with_index do |column,column_index| %>
-								<th class="<%= (column_index + 1) % 2 == 0 ? 'even' : 'odd' %>"><%= h(column.strip) %></td>
+								<% scenario.examples.first.each_with_index do |column,column_index| %>
+								<th class="<%= (column_index + 1) % 2 == 0 ? 'even' : 'odd' %>"><%= h(column.to_s.strip) %></td>
 									<% end %>
 								</tr>
 							</thead>
 
 							<% scenario.examples[1..-1].each do |row| %>
 							<tr>
-								<% row.split("|").each_with_index do |column,column_index| %>
-								<td class="<%= (column_index + 1) % 2 == 0 ? 'even' : 'odd' %>"><%= h(column.strip) %></td>
+								<% row.each_with_index do |column,column_index| %>
+								<td class="<%= (column_index + 1) % 2 == 0 ? 'even' : 'odd' %>"><%= h(column.to_s.strip) %></td>
 								<% end %>
 							</tr>
 							<% end %>

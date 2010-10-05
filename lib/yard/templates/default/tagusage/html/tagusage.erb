@@ -24,7 +24,7 @@
 				<a href="<%= tag.scenario.feature.filename %>"><%= tag.scenario.feature.value %></a>
 			</span>
 		</div>
-		<div class="description"><%= tag.scenario.feature.description.join("\n") %></div>
+		<div class="description"><%= tag.scenario.feature.description %></div>
 	</div>
 
 	<div class="scenario direct">
@@ -34,7 +34,7 @@
 				<a href="<%= tag.scenario.feature.filename %>"><%= tag.scenario.value %></a>
 			</span>
 		</div>
-		<div class="description"><%= tag.scenario.description.join("\n") %></div>
+		<div class="description"><%= tag.scenario.description %></div>
 	</div>
 	<% else %>
 	<div class="feature direct">
@@ -44,7 +44,7 @@
 				<a href="<%= tag.feature.filename %>"><%= tag.feature.value %></a>
 			</span>
 		</div>
-		<div class="description"><%= tag.feature.description.join("\n") %></div>
+		<div class="description"><%= tag.feature.description %></div>
 	</div>
 
 	<% tag.feature.scenarios.each do |scenario| %>
@@ -55,7 +55,7 @@
 				<a href="<%= scenario.feature.filename %>"><%= scenario.value %></a>
 			</span>
 		</div>
-		<div class="description"><%= scenario.description.join("\n") %></div>
+		<div class="description"><%= scenario.description %></div>
 	</div>
 	<% end %>
 	<% end %>
