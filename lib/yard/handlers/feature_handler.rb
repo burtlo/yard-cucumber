@@ -7,7 +7,18 @@ module YARD
         handles CodeObjects::Cucumber::Feature
 
         def process 
-          log.debug "FeatureHandler Online #{statement}"
+          log.debug "FeatureHandler: #{statement.class}"
+          
+          statement.scenarios.each do |scenario|
+            log.debug "Scenario: #{scenario}"
+            
+            scenario.steps.each do |step|
+              log.info "Step: #{step}"
+            end
+            
+          end
+          
+          
         rescue YARD::Handlers::NamespaceMissingError
         end
         

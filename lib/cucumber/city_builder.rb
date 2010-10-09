@@ -9,7 +9,6 @@ module Cucumber
       end
 
       def ast
-        puts "AST"
         @feature || @multiline_arg
       end
 

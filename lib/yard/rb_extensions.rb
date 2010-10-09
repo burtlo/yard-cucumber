@@ -7,7 +7,7 @@ module YARD::CodeObjects
   #
   class StepDefinitionObject < Base
     
-    attr_reader :predicate, :value, :compare_value, :source 
+    attr_reader :keyword, :value, :compare_value, :source 
     attr_accessor :constants, :steps
     
     def value=(value)
@@ -91,20 +91,52 @@ class StepDefinitionHandler < YARD::Handlers::Ruby::Legacy::Base
 
   def process
 
-    predicateName = statement.tokens.to_s[MATCH,2]
-    stepDefinition = statement.tokens.to_s[MATCH,3]
-
+    keyword = statement.tokens.to_s[MATCH,2]
+    step_definition = statement.tokens.to_s[MATCH,3]
     @@unique_name = @@unique_name + 1
 
-    step_instance = StepDefinitionObject.new(namespace, "StepDefinition_#{@@unique_name}") {|o| o.source = statement.block.to_s ; o.value = stepDefinition ; o.predicate = predicateName}
+    stepdef_instance = StepDefinitionObject.new(namespace, "StepDefinition_#{@@unique_name}") {|o| o.source = statement.block.to_s ; o.value = step_definition ; o.keyword = keyword}
 
-    obj = register step_instance 
+    begin
+      # Look for all constants within the step definitions
+      stepdef_instance.constants = stepdef_instance._value_constants.each do |stepdef_constant| 
+        owner.constants.each do |constant|
+          if stepdef_constant.to_sym == constant.name
+            log.info "Step definition #{stepdef_instance.value} linked to constant #{constant.name}"
+            stepdef_instance.constants[stepdef_constant] = constant
+            stepdef_instance.constants.merge(unpack_constants(constant))
+          end
+        end
+      end
+      
+    rescue Exception => e
+      log.error "Failed to link step definition to constants. This will make step definition to step linking impossible if constants are present.  #{e}"
+    end
+    
+
+    obj = register stepdef_instance 
 
 
     parse_block :owner => obj
   rescue YARD::Handlers::NamespaceMissingError
   end
+  
+  
+  def unpack_constants(constant)
+    # if the constant value has a name of another constant then we want to return it as a hash with the constant name as the key,value
+    inner_constants = {}
+
+    constant.value.scan(/\#\{([^\}]+)\}/).flatten.collect { |value| value.strip }.each do |inner_constant|
+      inner_constant_match = object.constants.find {|constant| constant.name == inner_constant }
+
+      inner_constants.merge({ inner_constant => inner_constant_match }) if inner_constant_match
+    end
+
+    inner_constants
+  end
+  
 end
+
 
 class StepTransformHandler < YARD::Handlers::Ruby::Legacy::Base
   MATCH = /^Transform\s*(\/[^\/]+\/).+$/

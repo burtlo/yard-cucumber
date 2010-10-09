@@ -27,17 +27,6 @@ module YARD::CodeObjects::Cucumber
       @definition = @description = @keyword = @multiline_arg = @value = nil
     end
 
-
-
-    def predicate
-      value.split(' ').first
-    end
-
-    def line
-      value.split(' ',2).last
-    end
-
-
     # TODO: This should be refactored to support a Table Object
 
     def has_table?

@@ -15,34 +15,18 @@ def init
   create_full_list(@step_definitions,"Step Definition")
   create_full_list(@steps)
 
-  # Find all CONSTANTS that are in the step definitions and in some way replace them for their match value
-
-  @step_definitions.each do |stepdef|
-    stepdef.constants = stepdef._value_constants.each do |stepdef_constant| 
-      object.constants.each do |constant|
-        if stepdef_constant.to_sym == constant.name
-          stepdef.constants[stepdef_constant] = constant
-          stepdef.constants.merge(unpack_constants(constant))
-        end
-          
-      end
-    end
-
-    #log.debug "Step Definition Compare Value: #{stepdef.compare_value}"
-  end
-
-  @steps.each do |step|
-    @step_definitions.each do |stepdef|
-      log.debug "Step Definition: #{stepdef.compare_value}"
-      if %r{#{stepdef.compare_value}}.match(step.line)
-        step.definition = stepdef
-        stepdef.steps << step
-        log.debug "STEP #{step} has found its definition #{stepdef}"
-        break
-      end
-    end
-
-  end
+  # @steps.each do |step|
+  #   @step_definitions.each do |stepdef|
+  #     log.debug "Step Definition: #{stepdef.compare_value}"
+  #     if %r{#{stepdef.compare_value}}.match(step.line)
+  #       step.definition = stepdef
+  #       stepdef.steps << step
+  #       log.debug "STEP #{step} has found its definition #{stepdef}"
+  #       break
+  #     end
+  #   end
+  # 
+  # end
 
 
   @features.each do |feature|
@@ -100,20 +84,4 @@ def find_unique_tags(tags)
 
   tags_hash
 end
-
-def unpack_constants(constant)
-  # if the constant value has a name of another constant then we want to return it as a hash with the constant name as the key,value
-  inner_constants = {}
-  
-  constant.value.scan(/\#\{([^\}]+)\}/).flatten.collect { |value| value.strip }.each do |inner_constant|
-    inner_constant_match = object.constants.find {|constant| constant.name == inner_constant }
-
-    inner_constants.merge({ inner_constant => inner_constant_match }) if inner_constant_match
-  end
-  
-  inner_constants
-end
-
-
-
 

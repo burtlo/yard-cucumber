@@ -13,7 +13,7 @@ module YARD::CodeObjects
     describe StepDefinitionObject do
 
       before(:each) do
-        @attributes = [ :value, :predicate, :constants, :compare_value ]
+        @attributes = [ :value, :keyword, :constants, :compare_value ]
         @object = StepDefinitionObject.new(:root,:unique_name)
       end
 

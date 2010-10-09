@@ -23,7 +23,7 @@ module YARD::Parser::Cucumber
     
     it "should return the line prefix and the remainder" do
       step = YARD::CodeObjects::Cucumber::Step.new(:root,"name") {|s| s.value = "Given something something" }
-      step.predicate.should == "Given"
+      step.keyword.should == "Given"
       step.line.should == "something something"
     end
     

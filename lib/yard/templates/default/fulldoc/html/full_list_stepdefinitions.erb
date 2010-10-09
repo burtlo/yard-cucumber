@@ -2,7 +2,7 @@
 <% @step_definitions.each do |stepdef| %>
   <li class="r<%= n %>">
 	<span class='object_link'>
-		<span class="pre"><%= stepdef.predicate %></span>
+		<span class="pre"><%= stepdef.keyword %></span>
 		<a href="steptransformers.html#<%= stepdef.name %>"><span class="name"><%= h(stepdef.value) %></span></a>&nbsp;&nbsp;
 	</span>
 	<span class="">(<%= h("#{stepdef.files.first.first}:#{stepdef.files.first.last}") %>)<span>
