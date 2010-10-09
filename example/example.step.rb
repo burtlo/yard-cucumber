@@ -30,7 +30,7 @@ Then /^I expect the customer to be shown the logout page$/ do
   pending
 end
 
-And /^this third undefined step definition$/ do
+And /^this third defined step definition$/ do
   pending
 end
 

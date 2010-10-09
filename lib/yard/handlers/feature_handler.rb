@@ -8,13 +8,13 @@ module YARD
 
         def process 
                     
-          # Of the steps in the feature, find the step definitions that match
+          # For the background and the scenario, find the steps that have definitions
           process_scenario(statement.background) if statement.background
           
           statement.scenarios.each do |scenario|
             process_scenario(scenario)
           end
-
+          
         rescue YARD::Handlers::NamespaceMissingError
         end
         

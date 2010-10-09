@@ -128,10 +128,18 @@
 	color: black;
 }
 
-.multiline {
+.multiline, .text {
 	margin-top: 10px;
 	margin-left: 20px;
 }
+
+.text {
+	padding: 20px;
+	background-color: #F5F5F5;
+	color: #343332;
+}
+
+
 .outline {
 	margin-top: 20px;
 	margin-left: 40px;

@@ -3,7 +3,7 @@ Feature: Customer Account
   As a customer of the product I am able to configure settings for my account
 
   Background:
-    Given this third undefined step definition
+    Given this third defined step definition
 
   @bvt
   Scenario: Customer is able to change their password
@@ -17,3 +17,14 @@ Feature: Customer Account
     When the customer visits the account settings page
     Then I expect the customer to be presented with the login page
 	
+  @wip
+  Scenario: Customer cannot change settings if they are not logged in
+    Given that a customer that is logged in to the system
+	When the customer visits the account settings page
+	And edits their the biography to state:
+	"""
+		I am an avid golfer, spelunker, and designer of clothing for stuffed
+		animals.
+	"""
+    Then I expect the customer to be presented with the login page
+

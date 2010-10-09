@@ -71,19 +71,25 @@
 				<span class="undefined"><%= h(step.value) %></span>
 				<% end %>
 
+				<% if step.has_text? %>
+				<div class="text">
+					<%= h(step.text) %>
+				</div>
+				<% end %>
+
 				<% if step.has_table? %>
 				<div class="multiline">
 					<table style="">
 
 						<thead>
 							<tr>
-								<% step.multiline_arg.each_with_index do |column,column_index| %>
+								<% step.table.each_with_index do |column,column_index| %>
 								<th class="<%= (column_index + 1) % 2 == 0 ? 'even' : 'odd' %>"><%= h(column.to_s.strip) %></td>
 									<% end %>
 								</tr>
 							</thead>
 
-							<% step.multiline_arg[1..-1].each do |row| %>
+							<% step.table[1..-1].each do |row| %>
 							<tr>
 								<% row.split("|").each_with_index do |column,column_index| %>
 								<td class="<%= (column_index + 1) % 2 == 0 ? 'even' : 'odd' %>"><%= h(column.to_s.strip) %></td>
@@ -169,6 +175,12 @@
 					<% else %>
 					<span class="undefined"><%= h(step.value) %></span>
 					<% end %>
+					
+					<% if step.has_text? %>
+					<div class="text">
+						<%= h(step.text) %>
+					</div>
+					<% end %>
 
 					<% if step.has_table? %>
 					<div class="multiline">
@@ -176,13 +188,13 @@
 
 							<thead>
 								<tr>
-									<% step.multiline_arg.first.each_with_index do |column,column_index| %>
+									<% step.table.first.each_with_index do |column,column_index| %>
 									<th class="<%= (column_index + 1) % 2 == 0 ? 'even' : 'odd' %>"><%= h(column.strip) %></td>
 										<% end %>
 									</tr>
 								</thead>
 
-								<% step.multiline_arg[1..-1].each do |row| %>
+								<% step.table[1..-1].each do |row| %>
 								<tr>
 									<% row.each_with_index do |column,column_index| %>
 									<td class="<%= (column_index + 1) % 2 == 0 ? 'even' : 'odd' %>"><%= h(column.strip) %></td>
@@ -211,7 +223,6 @@
 								<th class="odd" colspan="10"><%= h(scenario.examples.first.first.to_s.strip) %></td>
 							</tr>
 						</thead>
-						
 						<% scenario.examples.first.find {|example| example.is_a?(Array) }.each_with_index do |row,row_index| %>
 					    	<tr>
 								<% row.each do |column| %>

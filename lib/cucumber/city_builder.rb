@@ -98,9 +98,9 @@ module Cucumber
         multiline_arg = rubify(step.multiline_arg)
         case(multiline_arg)
         when Gherkin::Formatter::Model::PyString
-          @table_owner.examples = multiline_arg.value
+          @table_owner.text = multiline_arg.value
         when Array
-          @table_owner.multiline_arg = matrix(multiline_arg)
+          @table_owner.table = matrix(multiline_arg)
         end
         
         @table_owner.scenario = @step_container
