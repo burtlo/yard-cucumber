@@ -30,6 +30,10 @@ Then /^I expect the customer to be shown the logout page$/ do
   pending
 end
 
+And /^this third undefined step definition$/ do
+  pending
+end
+
 #
 # Some details about the helper method that might be picked up in the documentation.
 #
