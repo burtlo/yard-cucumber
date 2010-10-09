@@ -208,19 +208,17 @@
 					<table>
 						<thead>
 							<tr>
-								<% scenario.examples.first.each_with_index do |column,column_index| %>
-								<th class="<%= (column_index + 1) % 2 == 0 ? 'even' : 'odd' %>"><%= h(column.to_s.strip) %></td>
-									<% end %>
-								</tr>
-							</thead>
-
-							<% scenario.examples[1..-1].each do |row| %>
-							<tr>
-								<% row.each_with_index do |column,column_index| %>
-								<td class="<%= (column_index + 1) % 2 == 0 ? 'even' : 'odd' %>"><%= h(column.to_s.strip) %></td>
+								<th class="odd" colspan="10"><%= h(scenario.examples.first.first.to_s.strip) %></td>
+							</tr>
+						</thead>
+						
+						<% scenario.examples.first.find {|example| example.is_a?(Array) }.each_with_index do |row,row_index| %>
+					    	<tr>
+								<% row.each do |column| %>
+									<td class="<%= (row_index + 1) % 2 == 0 ? 'even' : 'odd' %>"><%= h(column.to_s.strip) %></td>
 								<% end %>
 							</tr>
-							<% end %>
+						<% end %>
 						</table>
 					</div>
 
