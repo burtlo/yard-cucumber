@@ -16,7 +16,6 @@ module YARD::Parser::Cucumber
     end
 
     def parse
-      log.info "FeatureParser"
       begin
         @parser.parse(@source, @file, 0)
         @feature = @builder.ast

@@ -7,7 +7,7 @@ module YARD
           include Parser::Cucumber
           def handles?(node)
             handlers.any? do |a_handler|
-              log.debug "A handler: #{a_handler}"
+              log.debug "YARD::Handlers::Cucumber::Base#handles?"
             end
           end
           include Parser::Cucumber

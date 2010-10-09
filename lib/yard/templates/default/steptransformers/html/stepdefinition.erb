@@ -20,7 +20,7 @@
 		<% if stepdef.steps && !stepdef.steps.empty? %>
 		<% stepdef.steps.each_with_index do |step,step_index| %>	
 		<div class="step <%= (step_index + 1) % 2 == 0 ? 'even' : 'odd' %>">
-			<%= h("#{step.predicate} #{step.line}") %>
+			<%= h("#{step.keyword} #{step.value}") %>
 			<div class="details"><a href="<%= step.scenario.feature.filename %>"><%= h(step.location) %></a></div>
 		</div>
 		<% end %>

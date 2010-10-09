@@ -15,20 +15,6 @@ def init
   create_full_list(@step_definitions,"Step Definition")
   create_full_list(@steps)
 
-  # @steps.each do |step|
-  #   @step_definitions.each do |stepdef|
-  #     log.debug "Step Definition: #{stepdef.compare_value}"
-  #     if %r{#{stepdef.compare_value}}.match(step.line)
-  #       step.definition = stepdef
-  #       stepdef.steps << step
-  #       log.debug "STEP #{step} has found its definition #{stepdef}"
-  #       break
-  #     end
-  #   end
-  # 
-  # end
-
-
   @features.each do |feature|
     serialize_object(feature)
 

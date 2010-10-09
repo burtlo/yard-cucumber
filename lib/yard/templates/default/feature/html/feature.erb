@@ -62,13 +62,13 @@
 
 				</script>
 				<span class="defined">
-					<a href="steptransformers.html#<%= step.definition.name %>"><%= h(step.line) %></a>
+					<a href="steptransformers.html#<%= step.definition.name %>"><%= h(step.value) %></a>
 					<div class="details" style="display: none;">
 						(<%= h("#{step.definition.files.first.first}:#{step.definition.files.first.last}") %>)
 					</div>
 				</span>
 				<% else %>
-				<span class="undefined"><%= h(step.line) %></span>
+				<span class="undefined"><%= h(step.value) %></span>
 				<% end %>
 
 				<% if step.has_table? %>
@@ -161,13 +161,13 @@
 
 					</script>
 					<span class="defined">
-						<a href="steptransformers.html#<%= step.definition.name %>"><%= h(step.line) %></a>
+						<a href="steptransformers.html#<%= step.definition.name %>"><%= h(step.value) %></a>
 						<div class="details" style="display: none;">
 							(<%= h("#{step.definition.files.first.first}:#{step.definition.files.first.last}") %>)
 						</div>
 					</span>
 					<% else %>
-					<span class="undefined"><%= h(step.line) %></span>
+					<span class="undefined"><%= h(step.value) %></span>
 					<% end %>
 
 					<% if step.has_table? %>
