@@ -127,7 +127,7 @@ class StepDefinitionHandler < YARD::Handlers::Ruby::Legacy::Base
     inner_constants = {}
 
     constant.value.scan(/\#\{([^\}]+)\}/).flatten.collect { |value| value.strip }.each do |inner_constant|
-      inner_constant_match = object.constants.find {|constant| constant.name == inner_constant }
+      inner_constant_match = owner.constants.find {|constant| constant.name == inner_constant }
 
       inner_constants.merge({ inner_constant => inner_constant_match }) if inner_constant_match
     end
