@@ -1,18 +1,11 @@
 require 'rake'
 require 'echoe'
-require 'yard'
-require 'rspec/core/rake_task'
 
-task :default => :yard
+task :default => :gendoc
 
 task :gendoc do
   `yardoc -e lib/city.rb -p lib/yard/templates 'example/**/*.rb' 'example/**/*.feature' --quiet --verbose`
 end
-
-yard_task = YARD::Rake::YardocTask.new
-yard_task.files = FileList['example/**/*.feature','example/**/*.rb']
-yard_task.options = %w{ -e lib/city.rb -p lib/yard/templates 'example/**/*.rb' 'examples/**/*.feature' --debug }
-
 
 Echoe.new('cucumber-in-the-yard', '1.0') do |g|
   g.author = "Frank;lin Webber"
