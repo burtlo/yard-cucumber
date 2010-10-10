@@ -59,9 +59,13 @@ def serialize_object(object)
 end
 
 def create_full_list(objects,friendly_name=nil)
-  @list_type = "#{objects.first.type.to_s}s"
-  @list_title = "#{friendly_name || objects.first.type.to_s.capitalize} List"
-  asset("#{objects.first.type}_list.html",erb(:full_list))
+  if !objects.empty?
+    @list_type = "#{objects.first.type.to_s}s"
+    @list_title = "#{friendly_name || objects.first.type.to_s.capitalize} List"
+    asset("#{objects.first.type}_list.html",erb(:full_list))
+  else
+    log.warn "Full List: Failed to create a list because the objects array is empty."
+  end
 end
 
 def find_unique_tags(tags)

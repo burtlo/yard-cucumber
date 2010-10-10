@@ -4,7 +4,7 @@
 
 <div style="margin: 10px;">&nbsp;</div>
 
-
+<% if @step_transformers.definitions %>
 <% @step_transformers.definitions.each_with_index do |stepdef,index| %>
 
 <div class="stepdef">
@@ -35,4 +35,5 @@
 	</div>
 </div>
 
+<% end %>
 <% end %>
