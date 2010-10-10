@@ -14,12 +14,30 @@ Example
 
 An example, particularly the example features included with the project, of CITY can be viewed at
 
-  http://recursivegames.com/cukes/
+   [http://recursivegames.com/cukes/](http://recursivegames.com/cukes/)    
 
-**1.** Users are able to search by Feature, Tags, and Scenario.
-**2.** Feature pages display the entire Feature in a decently formatted HTML representation
-**3.** From a feature, a user can select a tag to view all scenarios that are associated with the tag
-**4.** From a feature, steps that have step definitions link to a step definition index that shows all uses.
+**1. Users are able to search by Feature, Tags, and Scenario.**
+
+Appended to the traditional search areas is the ability to now search by Feature, Tag, and Scenario.
+
+**2. Feature pages are displayed in a decently formatted HTML representation**
+
+As opposed to pointing team members, stakeholders, and product owners to feature files which require 
+an editor with syntax highlighting.  As well as providing the ability to quickly follow tags and steps 
+for more information.
+
+**3. Tag pages display all the Features and scenarios that currently employ the tag.**
+
+Providing quick access to the important tag divisions that have been created in a project.  
+On the top of the page there are some quick calculations of the number of features and scenarios that
+share the specified tag. 
+
+**4. Steps link to Step definitions.  Step definitions show all uses. **
+
+Step definitions are displayed in their own index page and for each step definition a list of implemented
+steps for this step definition.  This is useful for providing example documentation and quickly understanding
+which scenarios are affected by a change to a step definition.
+
 
 Installation
 ------------
