@@ -97,7 +97,7 @@ class StepDefinitionHandler < YARD::Handlers::Ruby::Legacy::Base
       stepdef_instance.constants = stepdef_instance._value_constants.each do |stepdef_constant| 
         owner.constants.each do |constant|
           if stepdef_constant.to_sym == constant.name
-            log.info "Replacing #{constant.name} with its value in the step definition #{stepdef_instance.value}"
+            #log.debug "Replacing #{constant.name} with its value in the step definition #{stepdef_instance.value}"
             stepdef_instance.constants[constant.name] = unpack_constants(constant.value)
           end
         end

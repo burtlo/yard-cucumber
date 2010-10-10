@@ -4,7 +4,9 @@ require 'echoe'
 task :default => :gendoc
 
 task :gendoc do
-  `yardoc -e lib/city.rb -p lib/yard/templates 'example/**/*.rb' 'example/**/*.feature' --quiet --verbose`
+  #`yardoc -e lib/city.rb -p lib/yard/templates 'example/**/*.rb' 'example/**/*.feature' --debug`
+  `yardoc -e lib/city.rb -p lib/yard/templates 'common/**/*.rb' 'browser/**/*.rb' 'jmx/**/*.rb' --no-output --debug`
+  `yardoc -e lib/city.rb -p lib/yard/templates 'common/**/*.rb' 'browser/**/*.rb' 'jmx/**/*.rb' 'definitions/**/*.rb' 'features/**/*.feature' --debug`
 end
 
 Echoe.new('cucumber-in-the-yard', '1.0') do |g|

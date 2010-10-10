@@ -39,7 +39,7 @@
 		</div>
 		<% unless @feature.background.description.empty? %>
 		<div class="description">
-			<%= h(@feature.background.description.join("\n<br/>")) %>
+			<%= h(@feature.background.description) %>
 		</div>
 		<% end %>
 
@@ -83,16 +83,16 @@
 
 						<thead>
 							<tr>
-								<% step.table.each_with_index do |column,column_index| %>
-								<th class="<%= (column_index + 1) % 2 == 0 ? 'even' : 'odd' %>"><%= h(column.to_s.strip) %></td>
+								<% step.table.first.each_with_index do |column,column_index| %>
+								<th class="<%= (column_index + 1) % 2 == 0 ? 'even' : 'odd' %>"><%= h(column.strip) %></td>
 									<% end %>
 								</tr>
 							</thead>
 
 							<% step.table[1..-1].each do |row| %>
 							<tr>
-								<% row.split("|").each_with_index do |column,column_index| %>
-								<td class="<%= (column_index + 1) % 2 == 0 ? 'even' : 'odd' %>"><%= h(column.to_s.strip) %></td>
+								<% row.each_with_index do |column,column_index| %>
+								<td class="<%= (column_index + 1) % 2 == 0 ? 'even' : 'odd' %>"><%= h(column.strip) %></td>
 								<% end %>
 							</tr>
 							<% end %>
@@ -146,7 +146,7 @@
 			</div>
 			<% unless scenario.description.empty? %>
 			<div class="description">
-				<%= h(scenario.description.join("\n<br/>")) %>
+				<%= h(scenario.description) %>
 			</div>
 			<% end %>
 

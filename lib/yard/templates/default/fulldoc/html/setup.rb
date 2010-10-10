@@ -4,41 +4,46 @@ def init
   super
   asset("js/cucumber.js",file("js/cucumber.js",true))
 
-  # Because I don't parse correctly I have to find all my scenarios, steps, and tags
-  @scenarios = []
-  @tags = []
   @features = Registry.all(:feature)
+  
+  if @features
 
-  @step_definitions = Registry.all(:stepdefinition)
-  @steps = Registry.all(:step)
-    
-  create_full_list(@step_definitions,"Step Definition")
-  create_full_list(@steps)
+    @scenarios = []
+    @tags = []
 
-  @features.each do |feature|
-    serialize_object(feature)
+    @features.each do |feature|
+      serialize_object(feature)
 
-    feature.tags.each { |tag| @tags << tag }
+      feature.tags.each { |tag| @tags << tag }
 
-    feature.scenarios.each do |scenario|
-      @scenarios << scenario
-      scenario.tags.each { |tag| @tags << tag }
+      feature.scenarios.each do |scenario|
+        @scenarios << scenario
+        scenario.tags.each { |tag| @tags << tag }
+      end
     end
+
+    @tags = find_unique_tags(@tags)
+    @tags.each { |tag,tag_objects| serialize_object(tag_objects) }
+    @tagusage = @tags.values.sort {|x,y| y.total_scenario_count <=> x.total_scenario_count }
+
+    create_full_list(@tagusage,"Tag Usage") if @tagusage
+    create_full_list(@features) if @features
+    create_full_list(@scenarios) if @scenarios
+
+    @steps = Registry.all(:step)
+    create_full_list(@steps) if @steps
+
   end
 
-  @tags = find_unique_tags(@tags)
-  @tags.each { |tag,tag_objects| serialize_object(tag_objects) }
-  @tagusage = @tags.values.sort {|x,y| y.total_scenario_count <=> x.total_scenario_count }
-
-  create_full_list(@tagusage,"Tag Usage")
-  create_full_list(@features)
-  create_full_list(@scenarios)
-
-  @step_transformers = YARD::CodeObjects::StepTransformersObject.new(:root,"steptransformers")
+  @step_definitions = Registry.all(:stepdefinition)
   
-  @step_definitions.each {|stepdef| @step_transformers << stepdef }
+  if @step_definitions
+    create_full_list(@step_definitions,"Step Definition") 
+    @step_transformers = YARD::CodeObjects::StepTransformersObject.new(:root,"steptransformers")
+    @step_definitions.each {|stepdef| @step_transformers << stepdef }
+    serialize_object(@step_transformers)
+  end
 
-  serialize_object(@step_transformers)
   
 end
 

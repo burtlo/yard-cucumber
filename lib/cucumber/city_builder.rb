@@ -21,7 +21,7 @@ module Cucumber
           f.keyword = feature.keyword
           f.value = feature.name
           f.tags = []
-          
+
           feature.tags.map{|tag| tag.name}.each_with_index do |tag,index|
             f.tags << YARD::CodeObjects::Cucumber::Tag.new(:root,"#{f.name}_feature_tag_#{index}") do |t| 
               t.value = tag
@@ -29,8 +29,7 @@ module Cucumber
               t.feature = f
             end
           end
-          
-        end
+      end
           
       end
 
