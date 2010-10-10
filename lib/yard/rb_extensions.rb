@@ -17,14 +17,9 @@ module YARD::CodeObjects
     end
     
     def compare_value
-      
       base_value = value.gsub(/^\/|\/$/,'')
-      @constants.each do |name,constant|
-        base_value.gsub!(/\#\{\s*#{name.to_s}\s*\}/,constant.value.gsub(/^\/|\/$/,''))
-      end
-      # TODO: When constants have constants it is important to replace them... this should be recursive and not just done twice
-      @constants.each do |name,constant|
-        base_value.gsub!(/\#\{\s*#{name.to_s}\s*\}/,constant.value.gsub(/^\/|\/$/,''))
+      @constants.each do |name,value|
+        base_value.gsub!(/\#\{\s*#{name.to_s}\s*\}/,value.gsub(/^\/|\/$/,''))
       end
       base_value
     end
@@ -102,9 +97,8 @@ class StepDefinitionHandler < YARD::Handlers::Ruby::Legacy::Base
       stepdef_instance.constants = stepdef_instance._value_constants.each do |stepdef_constant| 
         owner.constants.each do |constant|
           if stepdef_constant.to_sym == constant.name
-            log.info "Step definition #{stepdef_instance.value} linked to constant #{constant.name}"
-            stepdef_instance.constants[stepdef_constant] = constant
-            stepdef_instance.constants.merge(unpack_constants(constant))
+            log.info "Replacing #{constant.name} with its value in the step definition #{stepdef_instance.value}"
+            stepdef_instance.constants[constant.name] = unpack_constants(constant.value)
           end
         end
       end
@@ -122,18 +116,24 @@ class StepDefinitionHandler < YARD::Handlers::Ruby::Legacy::Base
   end
   
   
-  def unpack_constants(constant)
-    # if the constant value has a name of another constant then we want to return it as a hash with the constant name as the key,value
-    inner_constants = {}
-
-    constant.value.scan(/\#\{([^\}]+)\}/).flatten.collect { |value| value.strip }.each do |inner_constant|
-      inner_constant_match = owner.constants.find {|constant| constant.name == inner_constant }
-
-      inner_constants.merge({ inner_constant => inner_constant_match }) if inner_constant_match
+  def unpack_constants(constant_value)
+    constant_value.scan(/\#\{([^\}]+)\}/).flatten.collect { |value| value.strip }.each do |inner_constant|
+      inner_constant_match = owner.constants.find {|constant| constant.name.to_s == inner_constant }
+      
+      if inner_constant_match
+        constant_value.gsub!(/\#\{#{inner_constant}\}/,unpack_constants(inner_constant_match.value))
+      end
+      
     end
-
-    inner_constants
+    
+    constant_value.gsub!(/^('|"|\/)|('|"|\/)$/,'')
+    constant_value
   end
+  
+  # Look at the step definition to see if it has any escaped constants
+  # For each constant we need to replace that with the constant value (hash of the constant:value)
+  # For those constants that have constants we need to look at their values and replace them in the value
+  
   
 end
 

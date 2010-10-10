@@ -1,6 +1,8 @@
 
 
-CUSTOMER = /(an?|the) customer/
+CUSTOMER = /(?:(?:an?|the) customer|#{TEDDY_BEAR})/
+
+TEDDY_BEAR = /teddy bear/
 
 Transform /^an? customer$/ do |customer|
   "a transformed customer"
@@ -32,6 +34,10 @@ end
 
 And /^this third defined step definition$/ do
   pending
+end
+
+And /^edits their the biography to state:$/ do |bio|
+  pending "text_field not present for bio #{bio} for this release"
 end
 
 #
