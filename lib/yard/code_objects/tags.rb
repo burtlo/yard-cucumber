@@ -1,19 +1,4 @@
 
-module CucumberLocationHelper
-
-  def line_number
-    files.first.last
-  end
-
-  def file
-    files.first.first
-  end
-
-  def location
-    "#{files.first.first}:#{files.first.last}"
-  end
-
-end
 
 module YARD::CodeObjects::Cucumber
 
@@ -22,13 +7,13 @@ module YARD::CodeObjects::Cucumber
 
     attr_accessor :value, :feature, :scenario
 
-    #TODO: this is likely a bad hack because I couldn't understand path
     def filename
       "#{self.name.to_s.gsub(/\//,'_')}.html"
     end
 
   end
 
+  
   class TagUsage < YARD::CodeObjects::Base
 
     attr_reader :value

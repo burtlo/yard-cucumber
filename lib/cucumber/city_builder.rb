@@ -13,8 +13,7 @@ module Cucumber
       end
 
       def feature(feature)
-        log.debug  "FEATURE: #{feature.name} #{feature.line} #{feature.keyword} #{feature.description}"
-        
+        #log.debug  "FEATURE: #{feature.name} #{feature.line} #{feature.keyword} #{feature.description}"
         @feature = YARD::CodeObjects::Cucumber::Feature.new(:root,@file.gsub('.','_')) do |f|
           f.comments = feature.comments.map{|comment| comment.value}.join("\n")
           f.description = feature.description
@@ -36,7 +35,7 @@ module Cucumber
       end
 
       def background(background)
-        log.debug "BACKGROUND #{background.keyword} #{background.name} #{background.line} #{background.description}"
+        #log.debug "BACKGROUND #{background.keyword} #{background.name} #{background.line} #{background.description}"
         @background = YARD::CodeObjects::Cucumber::Scenario.new(:root,"#{@feature.name}_background") do |b|
           b.comments = background.comments.map{|comment| comment.value}.join("\n")
           b.description = background.description
@@ -51,7 +50,7 @@ module Cucumber
       end
 
       def scenario(statement)
-        log.debug "SCENARIO"
+        #log.debug "SCENARIO"
         scenario = YARD::CodeObjects::Cucumber::Scenario.new(:root,"#{@feature.name}_scenario_#{@feature.scenarios.length + 1}") do |s|
           s.comments = statement.comments.map{|comment| comment.value}.join("\n")
           s.description = statement.description
@@ -78,7 +77,7 @@ module Cucumber
       end
 
       def examples(examples)
-        log.debug "EXAMPLES"
+        #log.debug "EXAMPLES"
         @step_container.examples << [
           examples.keyword,
           examples.name,
@@ -88,7 +87,7 @@ module Cucumber
       end
 
       def step(step)
-        log.debug "STEP #{step.multiline_arg}"
+        #log.debug "STEP #{step.multiline_arg}"
         @table_owner = YARD::CodeObjects::Cucumber::Step.new(:root,"#{@feature.name}_#{step.line}") do |s|
           s.keyword = step.keyword
           s.value = step.name

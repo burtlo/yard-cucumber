@@ -119,21 +119,14 @@ class StepDefinitionHandler < YARD::Handlers::Ruby::Legacy::Base
   def unpack_constants(constant_value)
     constant_value.scan(/\#\{([^\}]+)\}/).flatten.collect { |value| value.strip }.each do |inner_constant|
       inner_constant_match = owner.constants.find {|constant| constant.name.to_s == inner_constant }
-      
       if inner_constant_match
         constant_value.gsub!(/\#\{#{inner_constant}\}/,unpack_constants(inner_constant_match.value))
       end
-      
     end
     
     constant_value.gsub!(/^('|"|\/)|('|"|\/)$/,'')
     constant_value
   end
-  
-  # Look at the step definition to see if it has any escaped constants
-  # For each constant we need to replace that with the constant value (hash of the constant:value)
-  # For those constants that have constants we need to look at their values and replace them in the value
-  
   
 end
 

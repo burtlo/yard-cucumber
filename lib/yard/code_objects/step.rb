@@ -1,19 +1,4 @@
 
-module CucumberLocationHelper
-
-  def line_number
-    files.first.last
-  end
-
-  def file
-    files.first.first
-  end
-
-  def location
-    "#{files.first.first}:#{files.first.last}"
-  end
-
-end
 
 module YARD::CodeObjects::Cucumber
 
@@ -26,8 +11,6 @@ module YARD::CodeObjects::Cucumber
       super(namespace,name.to_s.strip)
       @definition = @description = @keyword = @table = @text = @value = nil
     end
-
-    # TODO: This should be refactored to support a Table Object
 
     def has_table?
       !@table.nil?
