@@ -9,6 +9,17 @@ Step Definitions, Transforms, and Tags and provides a documentation interface th
 easily view and investigate the test suite.  This tools hopes to bridge the gap of being able
 to provide your feature descriptions to your Product Owners and Stakeholders.
 
+Example
+-------
+
+An example, particularly the example features included with the project, of CITY can be viewed at
+
+  http://recursivegames.com/cukes/
+
+**1.** Users are able to search by Feature, Tags, and Scenario.
+**2.** Feature pages display the entire Feature in a decently formatted HTML representation
+**3.** From a feature, a user can select a tag to view all scenarios that are associated with the tag
+**4.** From a feature, steps that have step definitions link to a step definition index that shows all uses.
 
 Installation
 ------------
@@ -80,23 +91,8 @@ functionality may provide a valuable tool for many as I feel it helps more solid
 the documentation by putting a coat of paint on it.
 
 
-== FEATURES/PROBLEMS:
-
-**1. Searchable Features, Scenarios, Steps, and Tags**: Similar to how YARD provides the ability to search through classes and methods, CITY provides the ability to search through all of the requirements documentation quickly and easily through the browser.  This makes it easy to provide reports for product owners and other stakeholders.
-
-**2. Tags**: Tag view will show all features and scenarios that employ the tag.
-
-**3. Steps map to Step Definitions**: Steps provide links to their step definitions so developers and maintainers of the requirements suite can quickly find their way around the project.  As well, step definitions report all their implemented step definitions to provide a quick way of understanding the impact of augmenting a step definition as well as providing examples.
-
-== SYNOPSIS:
-
-== REQUIREMENTS:
-
-== INSTALL:
-
-== DEVELOPERS:
-
-== LICENSE:
+LICENSE
+-------
 
 (The MIT License)
 

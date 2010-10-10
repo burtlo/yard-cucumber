@@ -1,3 +1,9 @@
-=== 0.5.0 / 2010-10-02
+=== 1.1 / 2010-10-10
+
+* FIX: Feature template had references to old methods for description (when it was an array)
+* FIX: Empty feature files caused the documentation to fail; ignoring emptying feature files
+* FIX: Tags, Step definitions, and other CodeObjects that were not present caused rendering to fail; Checking for nil
+
+=== 1.0 / 2010-10-10
 
 * Initial Release
