@@ -17,7 +17,10 @@ Feature: Customer Logout Feature
     Given that a customer is a valid customer
     And the customer has the following details:
       | Name  | Email       | Age |
-      | Frank | f@email.com | 22  | 
+      | Roger | r@email.com | 22  |
+	And the customer has the following details:
+      | Name  | Email       | Age |
+      | Roger | r@email.com | 22  |
     When a customer logs in as username 'frank' with password 'default'
 	And visits the customer update page
 	Then I expect the customer is able able to post to their profile

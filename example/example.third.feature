@@ -4,6 +4,9 @@ Feature: Customer Account
 
   Background:
     Given this third defined step definition
+	And the customer has the following details:
+      | Name  | Email       | Age |
+      | Roger | r@email.com | 22  |
 
   @bvt
   Scenario: Customer is able to change their password

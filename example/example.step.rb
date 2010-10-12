@@ -36,6 +36,10 @@ And /^this third defined step definition$/ do
   pending
 end
 
+And /^the customer has the following details:$/ do |table|
+  pending "Table of data #{table.hashes}"
+end
+
 And /^edits their the biography to state:$/ do |bio|
   pending "text_field not present for bio #{bio} for this release"
 end
