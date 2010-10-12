@@ -7,7 +7,7 @@ task :gendoc do
   `yardoc -e lib/city.rb -p lib/yard/templates 'example/**/*.rb' 'example/**/*.feature' --debug`
 end
 
-Echoe.new('cucumber-in-the-yard', '1.1') do |g|
+Echoe.new('cucumber-in-the-yard', '1.2') do |g|
   g.author = "Frank;lin Webber"
   g.email = "franklin.webber@gmail.com"
   g.url = "http://github.com/burtlo/Cucumber-In-The-Yard"

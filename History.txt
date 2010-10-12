@@ -1,3 +1,12 @@
+=== 1.3 /
+
+* (7rans requested) Step definitions to show their source code; required a better source definition to be stored during creation of the CodeObject
+
+=== 1.2 / 2010-10-10
+
+* FIX: Empty Step Definitions caused failure during serialization
+* FIX: Empty Step Definitions caused failure during rendering HTML
+
 === 1.1 / 2010-10-10
 
 * FIX: Feature template had references to old methods for description (when it was an array)

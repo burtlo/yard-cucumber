@@ -90,7 +90,11 @@ class StepDefinitionHandler < YARD::Handlers::Ruby::Legacy::Base
     step_definition = statement.tokens.to_s[MATCH,3]
     @@unique_name = @@unique_name + 1
 
-    stepdef_instance = StepDefinitionObject.new(namespace, "StepDefinition_#{@@unique_name}") {|o| o.source = statement.block.to_s ; o.value = step_definition ; o.keyword = keyword}
+    stepdef_instance = StepDefinitionObject.new(namespace, "StepDefinition_#{@@unique_name}") do |o| 
+      o.source = "#{keyword} #{step_definition} #{statement.block}\nend"
+      o.value = step_definition
+      o.keyword = keyword
+    end
 
     begin
       # Look for all constants within the step definitions

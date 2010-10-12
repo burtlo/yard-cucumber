@@ -174,7 +174,7 @@
 	border-bottom: 1px solid #E3E3E3;
 }
 
-.stepdef .steps {
+.stepdef .steps, .stepdef .source {
 	margin: 10px 0px 0px 30px;
 }
 .stepdef .steps .step {

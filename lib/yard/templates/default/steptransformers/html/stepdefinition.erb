@@ -28,10 +28,21 @@
 		<span class="undefined">No steps were found to match this step definition.</span>
 		<% end%>
 	</div>
-
-
+	
 	<div class="source">
-		<!-- <%= h(stepdef.source) %> -->
+		<span class="showSource">
+		[ <a href="#" class="toggleSource">Show source</a> ]	
+		</span>
+		<table class="source_code">
+			<tr>
+				<td>
+					<pre class="lines"><%= "" %><%= h format_lines(stepdef) %></pre>
+				</td>
+				<td>
+					<pre class="code"><%= "" %><%= html_syntax_highlight stepdef.source %></pre>
+				</td>
+			</tr>
+		</table>
 	</div>
 </div>
 
