@@ -91,7 +91,7 @@ class StepDefinitionHandler < YARD::Handlers::Ruby::Legacy::Base
     @@unique_name = @@unique_name + 1
 
     stepdef_instance = StepDefinitionObject.new(namespace, "StepDefinition_#{@@unique_name}") do |o| 
-      o.source = "#{keyword} #{step_definition} #{statement.block}\nend"
+      o.source = "#{keyword} #{step_definition} do #{statement.block.to_s =~ /^\s*\|.+/ ? '' : "\n  "}#{statement.block.to_s}\nend"
       o.value = step_definition
       o.keyword = keyword
     end

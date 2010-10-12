@@ -20,7 +20,7 @@ When /^a customer logs in as username '([^']+)' with password '([^']+)'$/ do |us
   pending "Customer logs in with #{username} and #{password}"
 end
 
-Then /^I expect them to have logged in successfully $/ do 
+Then /^I expect them to have logged in successfully$/ do 
   pending "Validation that the customer has logged in successfully"  
 end
 
