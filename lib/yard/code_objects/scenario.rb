@@ -19,7 +19,23 @@ module YARD::CodeObjects::Cucumber
     def filename
       "#{self.name.to_s.gsub(/\//,'_')}.html"
     end
-
+    
+    def outline?
+      @examples && !examples.empty?
+    end
+    
+    def example_keyword
+      @examples.first.first.to_s.strip
+    end
+    
+    def example_headers
+      @examples.first.find {|example| example.is_a?(Array) }.first
+    end
+    
+    def example_data
+      @examples.first.find {|example| example.is_a?(Array) }[1..-1]
+    end
+    
   end
 
 end

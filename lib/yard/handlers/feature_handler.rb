@@ -11,7 +11,7 @@ module YARD
           if statement
             # For the background and the scenario, find the steps that have definitions
             process_scenario(statement.background) if statement.background
-          
+            
             statement.scenarios.each do |scenario|
               process_scenario(scenario)
             end
@@ -24,6 +24,7 @@ module YARD
         
         
         def process_scenario(scenario)
+
           scenario.steps.each do |step|
             owner.step_definitions.each do |stepdef|
               

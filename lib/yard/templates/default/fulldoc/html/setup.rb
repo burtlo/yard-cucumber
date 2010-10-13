@@ -5,58 +5,39 @@ def init
   asset("js/cucumber.js",file("js/cucumber.js",true))
 
   @features = Registry.all(:feature)
-  
+
   if @features
-
-    @scenarios = []
-    @tags = []
-
-    @features.each do |feature|
-      serialize_object(feature)
-
-      feature.tags.each { |tag| @tags << tag }
-
-      feature.scenarios.each do |scenario|
-        @scenarios << scenario
-        scenario.tags.each { |tag| @tags << tag }
-      end
-    end
-
-    @tags = find_unique_tags(@tags)
-    @tags.each { |tag,tag_objects| serialize_object(tag_objects) }
-    @tagusage = @tags.values.sort {|x,y| y.total_scenario_count <=> x.total_scenario_count }
-
-    create_full_list(@tagusage,"Tag Usage") if @tagusage
-    create_full_list(@features) if @features
-    create_full_list(@scenarios) if @scenarios
-
-    @steps = Registry.all(:step)
-    create_full_list(@steps) if @steps
-
+    @features.each {|feature| serialize(feature) } 
+    create_full_list(@features)
   end
 
-  @step_definitions = Registry.all(:stepdefinition)
+  @tags = Registry.all(:tag)
   
+  if @tags
+    @tags = find_unique_tags(@tags)
+    @tags.each { |tag,tag_objects| serialize(tag_objects) }
+    @tagusage = @tags.values.sort {|x,y| y.total_scenario_count <=> x.total_scenario_count }
+    create_full_list(@tagusage,"Tag Usage") if @tagusage
+  end
+
+  @scenarios = Registry.all(:scenario)
+  create_full_list(@scenarios) if @scenarios
+
+  @steps = Registry.all(:step)
+  create_full_list(@steps) if @steps
+
+  @step_definitions = Registry.all(:stepdefinition)
+
   if @step_definitions
     create_full_list(@step_definitions,"Step Definition") 
     @step_transformers = YARD::CodeObjects::StepTransformersObject.new(:root,"steptransformers")
     @step_definitions.each {|stepdef| @step_transformers << stepdef }
-    serialize_object(@step_transformers)
+    serialize(@step_transformers)
   end
 
-  
+
 end
 
-def asset(path, content)
-  options[:serializer].serialize(path, content) if options[:serializer]
-end
-
-def serialize_object(object)
-  options[:object] = object
-   Templates::Engine.with_serializer(object.filename, options[:serializer]) do
-      T('layout').run(options)
-   end
-end
 
 def create_full_list(objects,friendly_name=nil)
   if !objects.empty?
