@@ -21,7 +21,7 @@
 		<div class="title">
 			<span class="pre">Feature:</span>
 			<span class="name">
-				<a href="<%= tag.scenario.feature.filename %>"><%= tag.scenario.feature.value %></a>
+				<a href="<%= "#{tag.scenario.feature.name}.html" %>"><%= tag.scenario.feature.value %></a>
 			</span>
 		</div>
 		<div class="description"><%= tag.scenario.feature.description %></div>
@@ -31,7 +31,7 @@
 		<div class="title">
 			<span class="pre">Scenario:</span>
 			<span class="name">
-				<a href="<%= tag.scenario.feature.filename %>"><%= tag.scenario.value %></a>
+				<a href="<%= "#{tag.scenario.feature.name}.html" %>"><%= tag.scenario.value %></a>
 			</span>
 		</div>
 		<div class="description"><%= tag.scenario.description %></div>
@@ -41,7 +41,7 @@
 		<div class="title">
 			<span class="pre">Feature:</span>
 			<span class="name">
-				<a href="<%= tag.feature.filename %>"><%= tag.feature.value %></a>
+				<a href="<%= "#{tag.feature.name}.html" %>"><%= tag.feature.value %></a>
 			</span>
 		</div>
 		<div class="description"><%= tag.feature.description %></div>
@@ -52,7 +52,7 @@
 		<div class="title">
 			<span class="pre">Scenario:</span>
 			<span class="name">
-				<a href="<%= scenario.feature.filename %>"><%= scenario.value %></a>
+				<a href="<%= "#{scenario.feature.name}.html" %>"><%= scenario.value %></a>
 			</span>
 		</div>
 		<div class="description"><%= scenario.description %></div>

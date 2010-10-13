@@ -64,7 +64,7 @@
 				<span class="defined">
 					<a href="steptransformers.html#<%= step.definition.name %>"><%= h(step.value) %></a>
 					<div class="details" style="display: none;">
-						(<%= h("#{step.definition.files.first.first}:#{step.definition.files.first.last}") %>)
+						(<%= h( step.definition.location ) %>)
 					</div>
 				</span>
 				<% else %>

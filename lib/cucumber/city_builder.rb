@@ -14,7 +14,7 @@ module Cucumber
 
       def feature(feature)
         #log.debug  "FEATURE: #{feature.name} #{feature.line} #{feature.keyword} #{feature.description}"
-        @feature = YARD::CodeObjects::Cucumber::Feature.new(:root,@file.gsub('.','_')) do |f|
+        @feature = YARD::CodeObjects::Cucumber::Feature.new(:root,@file.gsub(/\/|\./,'_')) do |f|
           f.comments = feature.comments.map{|comment| comment.value}.join("\n")
           f.description = feature.description
           f.add_file(@file,feature.line)

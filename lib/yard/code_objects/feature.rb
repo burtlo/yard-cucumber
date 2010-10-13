@@ -2,9 +2,8 @@
 
 module YARD::CodeObjects::Cucumber
 
-  class Feature < YARD::CodeObjects::Base
-    include CucumberLocationHelper
-
+  class Feature < Base
+    
     attr_accessor :background, :comments, :description, :keyword, :scenarios, :tags, :value
 
     def initialize(namespace,name)
@@ -12,11 +11,6 @@ module YARD::CodeObjects::Cucumber
       @comments = []
       @scenarios = []
       @tags = []
-    end
-
-    #TODO: this is likely a bad hack because I couldn't understand path
-    def filename
-      "#{self.name.to_s.gsub(/\//,'_')}.html"
     end
 
   end

@@ -1,8 +1,8 @@
 <% n = 1 %>
-<% @features.each do |feature| %>
+<% @items.each do |feature| %>
   <li class="r<%= n %>">
 	<span class='object_link'>
-		<a href="<%= feature.filename %>"><%= h(feature.value) %></a>
+		<a href="<%= "#{feature.name}.html" %>"><%= h(feature.value) %></a>
 	</span>
 	<span class="">(<%= h(feature.file) %>)<span>
   </li>

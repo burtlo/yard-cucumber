@@ -2,9 +2,8 @@
 
 module YARD::CodeObjects::Cucumber
 
-  class Step < YARD::CodeObjects::Base
-    include CucumberLocationHelper
-
+  class Step < Base
+    
     attr_accessor :definition, :keyword, :scenario, :table, :text, :value
     
     def initialize(namespace,name)

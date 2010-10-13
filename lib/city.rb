@@ -7,7 +7,7 @@ require File.dirname(__FILE__) + "/cucumber/city_builder.rb"
 
 require 'yard'
 
-require File.dirname(__FILE__) + "/yard/code_objects/cucumber_location_helper.rb"
+require File.dirname(__FILE__) + "/yard/code_objects/base.rb"
 require File.dirname(__FILE__) + "/yard/code_objects/feature.rb"
 require File.dirname(__FILE__) + "/yard/code_objects/scenario.rb"
 require File.dirname(__FILE__) + "/yard/code_objects/step.rb"

@@ -1,13 +1,13 @@
 <% n = 1 %>
-<% @steps.each do |step| %>
+<% @items.each do |step| %>
   <li class="r<%= n %>">
 	<span class='object_link'>
-		<a href="<%= step.scenario.feature.filename %>">
+		<a href="<%= "#{step.scenario.feature.name}.html" %>">
 			<span class="pre"><%= step.keyword %></span>
 			<span class="name"><%= h(step.value) %></span>
 		</a>
 	</span>
-	<span class="">(<%= h(step.files.first.first) %>)<span>
+	<span class="">(<%= h(step.file) %>)<span>
   </li>
   <% n = n == 2 ? 1 : 2 %>
 <% end %>

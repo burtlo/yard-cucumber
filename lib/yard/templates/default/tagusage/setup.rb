@@ -1,5 +1,5 @@
 def init
   super
   sections.push :tagusage
-  @tags = object  
+  @tags = object
 end

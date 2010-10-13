@@ -12,7 +12,7 @@
 	<div class="title">
 		<span class="pre"><%= stepdef.keyword %></span>
 		<span class="name"><%= stepdef.value %></span>
-		<div style="float: right;"><%= h( "#{stepdef.files.first.first}:#{stepdef.files.first.last}" ) %></div>
+		<div style="float: right;"><%= h( stepdef.location ) %></div>
 	</div>
 
 
@@ -21,7 +21,7 @@
 		<% stepdef.steps.each_with_index do |step,step_index| %>	
 		<div class="step <%= (step_index + 1) % 2 == 0 ? 'even' : 'odd' %>">
 			<%= h("#{step.keyword} #{step.value}") %>
-			<div class="details"><a href="<%= step.scenario.feature.filename %>"><%= h(step.location) %></a></div>
+			<div class="details"><a href="<%= "#{step.scenario.feature.name}.html" %>"><%= h(step.location) %></a></div>
 		</div>
 		<% end %>
 		<% else %>

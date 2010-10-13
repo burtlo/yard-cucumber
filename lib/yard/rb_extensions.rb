@@ -6,6 +6,7 @@ module YARD::CodeObjects
   # StepDefinitions, as implemented in a ruby file
   #
   class StepDefinitionObject < Base
+    include Cucumber::LocationHelper
     
     attr_reader :keyword, :value, :compare_value, :source 
     attr_accessor :constants, :steps
@@ -54,9 +55,6 @@ module YARD::CodeObjects
     
     alias_method :<< , :push
     
-    def filename
-      "#{name}.html"
-    end
     
   end
   
@@ -65,6 +63,8 @@ module YARD::CodeObjects
   # Transforms
   #
   class StepTransformObject < Base
+    include Cucumber::LocationHelper
+    
     attr_reader :value
 
     def value=(value)

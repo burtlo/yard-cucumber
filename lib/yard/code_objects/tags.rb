@@ -2,27 +2,19 @@
 
 module YARD::CodeObjects::Cucumber
 
-  class Tag < YARD::CodeObjects::Base
-    include CucumberLocationHelper
+  class Tag < Base
 
     attr_accessor :value, :feature, :scenario
-
-    def filename
-      "#{self.name.to_s.gsub(/\//,'_')}.html"
-    end
-
+    
   end
 
   
-  class TagUsage < YARD::CodeObjects::Base
+  class TagUsage < Base
 
     attr_reader :value
 
     attr_accessor :tags
 
-    def filename
-      "#{self.name}.html"
-    end
 
     def push(tag)
       @tags = [] unless @tags

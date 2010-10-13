@@ -2,9 +2,8 @@
 
 module YARD::CodeObjects::Cucumber
 
-  class Scenario < YARD::CodeObjects::Base
-    include CucumberLocationHelper
-
+  class Scenario < Base
+    
     attr_accessor :value, :description, :steps, :tags, :feature, :examples
     
     def initialize(namespace,name)
@@ -14,10 +13,9 @@ module YARD::CodeObjects::Cucumber
       @tags = []
       @examples = []
     end
-
-    #TODO: this is likely a bad hack because I couldn't understand path
-    def filename
-      "#{self.name.to_s.gsub(/\//,'_')}.html"
+    
+    def background?
+      @keyword == "Background"
     end
     
     def outline?
