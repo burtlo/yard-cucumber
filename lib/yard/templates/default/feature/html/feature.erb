@@ -8,7 +8,7 @@
 		<div class="file"><%= h(@feature.file) %></div>
 		<div class="tags">
 			<% @feature.tags.each do |tag| %>
-			<a href="tag_<%= tag.value %>.html"><%= tag.value %></a>
+			<a href="tag_<%= tag.name %>.html"><%= tag.value %></a>
 			<% end %>
 		</div>		
 	</div>
@@ -139,7 +139,7 @@
 			<% unless scenario.tags.empty? %>
 			<div class="tags">
 				<% scenario.tags.each do |tag| %>
-				<a href="tag_<%= tag.value %>.html"><%= tag.value %></a>
+				<a href="tag_<%= tag.name %>.html"><%= tag.value %></a>
 				<% end %>
 			</div>
 			<% end%>

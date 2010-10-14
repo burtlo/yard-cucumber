@@ -12,13 +12,13 @@ def init
   end
 
   
-  @tags = find_unique_tags(@tags)
+  @tags = Registry.all(:tag)
   
   if @tags
-    @tags.each { |tag,tag_objects| serialize_tags(tag_objects) }
+    @tags.each {|tag| log.debug "#{tag.name}" }
     
-    @tagusage = @tags.values.sort {|x,y| y.total_scenario_count <=> x.total_scenario_count }
-    generate_full_list(@tagusage,"Tag Usage") if @tagusage
+    @tags.each {|tag| serialize(tag) }
+    generate_full_list @tags.sort {|x,y| y.total_scenario_count <=> x.total_scenario_count }
   end
 
   @scenarios = Registry.all(:scenario).find_all {|scenario| !scenario.background? }
@@ -49,25 +49,3 @@ def generate_full_list(objects,friendly_name=nil)
     log.warn "Full List: Failed to create a list because the objects array is empty."
   end
 end
-
-def serialize_tags(tags)
-  options[:object] = tags
-  Templates::Engine.with_serializer("#{tags.name}.html", options[:serializer]) do
-    T('layout').run(options)
-  end
-end
-
-def find_unique_tags(tags)
-
-  tags_hash = {}
-
-  Registry.all(:tag).each do |tag|
-    unless tags_hash[tag.value]
-      tags_hash[tag.value] = YARD::CodeObjects::Cucumber::TagUsage.new(:root,"tag_#{tag.value}") {|t| t.value = tag.value } 
-    end
-    tags_hash[tag.value.to_s] << tag
-  end
-
-  tags_hash
-end
-

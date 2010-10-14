@@ -1,13 +1,15 @@
 History.txt
+Manifest
 README.md
 Rakefile
+example/empty.feature
 example/example.feature
 example/example.step.rb
 example/example.third.feature
 example/second_example.feature
 lib/city.rb
 lib/cucumber/city_builder.rb
-lib/yard/code_objects/cucumber_location_helper.rb
+lib/yard/code_objects/base.rb
 lib/yard/code_objects/feature.rb
 lib/yard/code_objects/scenario.rb
 lib/yard/code_objects/step.rb
@@ -16,8 +18,8 @@ lib/yard/extensions.rb
 lib/yard/handlers/base.rb
 lib/yard/handlers/feature_handler.rb
 lib/yard/parser/feature.rb
-lib/yard/rb_extensions.rb
 lib/yard/rake/city_task.rb
+lib/yard/rb_extensions.rb
 lib/yard/templates/default/feature/html/feature.erb
 lib/yard/templates/default/feature/setup.rb
 lib/yard/templates/default/fulldoc/html/css/common.css
@@ -26,7 +28,7 @@ lib/yard/templates/default/fulldoc/html/full_list_features.erb
 lib/yard/templates/default/fulldoc/html/full_list_scenarios.erb
 lib/yard/templates/default/fulldoc/html/full_list_stepdefinitions.erb
 lib/yard/templates/default/fulldoc/html/full_list_steps.erb
-lib/yard/templates/default/fulldoc/html/full_list_tagusages.erb
+lib/yard/templates/default/fulldoc/html/full_list_tags.erb
 lib/yard/templates/default/fulldoc/html/index.erb
 lib/yard/templates/default/fulldoc/html/js/cucumber.js
 lib/yard/templates/default/fulldoc/html/setup.rb
@@ -38,8 +40,8 @@ lib/yard/templates/default/scenario/html/scenario.erb
 lib/yard/templates/default/scenario/setup.rb
 lib/yard/templates/default/steptransformers/html/stepdefinition.erb
 lib/yard/templates/default/steptransformers/setup.rb
-lib/yard/templates/default/tagusage/html/tagusage.erb
-lib/yard/templates/default/tagusage/setup.rb
+lib/yard/templates/default/tag/html/tag.erb
+lib/yard/templates/default/tag/setup.rb
 spec/city/feature_parser_spec_examples.rb
 spec/city/gherkin_loader_spec.rb
 spec/city/test.feature
@@ -48,4 +50,3 @@ spec/city/yard_namespace_object_spec.rb
 spec/city/yard_parser_cucumber_spec.rb
 spec/city/yard_rb_extensions_spec.rb
 spec/spec_helper.rb
-Manifest

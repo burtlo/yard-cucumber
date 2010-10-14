@@ -4,52 +4,28 @@ module YARD::CodeObjects::Cucumber
 
   class Tag < Base
 
-    attr_accessor :value, :feature, :scenario
+    attr_accessor :value, :owners
     
-  end
-
-  
-  class TagUsage < Base
-
-    attr_reader :value
-
-    attr_accessor :tags
-
-
-    def push(tag)
-      @tags = [] unless @tags
-      @tags << tag
-
-      if tag.scenario
-        @scenario_count = 0 unless @scenario_count
-        @scenario_count += 1 
-      else
-        @feature_count = 0 unless @feature_count
-        @indirect_scenario_count = 0 unless @indirect_scenario_count
-        @feature_count += 1
-        @indirect_scenario_count += tag.feature.scenarios.length
-      end
-
-    end
-
+    
     def scenario_count
-      @scenario_count || 0
+      @owners.find_all{|owner| owner.is_a?(Scenario) }.size
     end
-
+    
     def feature_count
-      @feature_count || 0
+      @owners.find_all{|owner| owner.is_a?(Feature) }.size
     end
-
+    
     def indirect_scenario_count
-      @indirect_scenario_count || 0
+      scenarios = 0
+      @owners.find_all{|owner| owner.is_a?(Feature) }.each {|feature| scenarios += feature.scenarios.size }
+      scenarios
     end
-
+    
     def total_scenario_count
       scenario_count + indirect_scenario_count
-    end        
-
-    alias_method :<<, :push
-
+    end
+    
+    
   end
 
 end

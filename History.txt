@@ -1,4 +1,12 @@
-=== 1.3 / 2010-10-12
+=== 1.4 / 2010-10
+
+* Tagusage has been retired
+* Tags are found during parsing by name or created and all uses are appended to the exising or newly created object
+* Tagusage template renamed and fixed up for just a tag and all the references
+* Tags are named tag_TAG (removed the @ as it was encoded during file serialization and I couldn't find an encoder helper)
+* Cleaned up all references in the fulldoc, full list to references tags
+
+=== 1.3 / 2010-10-13
 
 * (7rans requested) Step definitions to show their source code; required a better source definition to be stored during creation of the CodeObject
 * Fixes to the Feature template which had some unclosed table header elements
@@ -6,6 +14,9 @@
 * Scenario Outlines, Tables, and Multiline Strings had other minor CSS changes
 * Step tables and Scenario Example tables are no longer locked to 150px; instead that is the minimum width
 * Tables and Multiline Strings (PyStrings) are no longer displayed in the steps frame which was causing ugliness with the striping of the rows
+* (lsegal strongly recommended) Removed the pervasive use of filename in the CodeObjects
+* Cleaned up the fulldoc setup to remove the redundancy
+* Updated all the templates to support the lack of filename
 
 === 1.2 / 2010-10-10
 
