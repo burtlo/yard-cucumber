@@ -1,10 +1,8 @@
 <% n = 1 %>
 <% @items.each do |scenario| %>
   <li class="r<%= n %>">
-	<span class='object_link'>
-		<a href="<%= "#{scenario.feature.name}.html" %>"><%= h(scenario.value) %></a>
-	</span>
-	<span class="">(<%= h(scenario.location) %>)<span>
+	<%= linkify scenario.feature, scenario.value %>
+	<small><%= h(scenario.location) %></small>
   </li>
   <% n = n == 2 ? 1 : 2 %>
 <% end %>

@@ -1,0 +1,23 @@
+<% object.features.each do |feature| %>
+<div class="feature direct">
+	<div class="title">
+		<span class="pre">Feature:</span>
+		<span class="name">
+			<a href="<%= url_for feature %>"><%= feature.value %></a>
+		</span>
+	</div>
+	<div class="description"><%= feature.description %></div>
+	
+	<% feature.scenarios.each do |scenario| %>
+	<div class="scenario indirect">
+		<div class="title">
+			<span class="pre">Scenario:</span>
+			<span class="name">
+				<a href="<%= url_for feature %>"><%= scenario.value %></a>
+			</span>
+		</div>
+		<div class="description"><%= scenario.description %></div>
+	</div>
+	<% end %>
+
+<% end %>

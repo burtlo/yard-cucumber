@@ -1,0 +1,20 @@
+<div class="multiline">
+	<table style="">
+
+		<thead>
+			<tr>
+				<% @step.table.first.each_with_index do |column,column_index| %>
+				<th class="<%= (column_index + 1) % 2 == 0 ? 'even' : 'odd' %>"><%= h(column.strip) %></th>
+				<% end %>
+			</tr>
+		</thead>
+
+		<% @step.table[1..-1].each_with_index do |row,row_index| %>
+		<tr class="<%= (row_index + 1) % 2 == 0 ? 'even' : 'odd' %>">
+			<% row.each_with_index do |column,column_index| %>
+			<td><%= h(column.strip) %></td>
+			<% end %>
+		</tr>
+		<% end %>
+	</table>
+</div>

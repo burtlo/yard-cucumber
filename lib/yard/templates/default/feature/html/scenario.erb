@@ -1,0 +1,43 @@
+<script type="text/javascript" charset="utf-8">
+$(function() {
+	$('#<%= @id %> .toggle').click(function() {
+		$("#<%= @id %>Steps").toggle('blind');
+
+		var stateIndicator = $('#<%= @id %> a.toggle')[0]
+
+		stateIndicator.innerHTML = (stateIndicator.innerHTML === '+' ? '-' : '+'); 
+		return false;
+	});
+});
+</script>
+
+<div id="<%= @id %>" class="scenario">
+	<div class="title">
+		<a class="toggle">-</a>
+		<span class="pre"><%= @scenario.keyword %>:</span>
+		<span class="name"><%= h @scenario.value %></span>
+	</div>
+	<div class="meta">
+		<div class="file">Line: <%= @scenario.line_number %></div>
+		<% unless @scenario.tags.empty? %>
+		<div class="tags">
+			<% @scenario.tags.each do |tag| %>
+			<a href="<%= url_for tag %>"><%= tag.value %></a>
+			<% end %>
+		</div>
+		<% end%>
+	</div>
+	<% unless @scenario.description.empty? %>
+	<div class="description">
+		<%= h @scenario.description %>
+	</div>
+	<% end %>
+
+	<div id="<%= @id %>Steps" class="steps">
+		<%= @scenario.steps ? erb(:steps) : erb(:no_steps_defined) %>
+		
+	</div>
+
+	<%= erb(:outline) if @scenario.outline? %>
+
+</div>

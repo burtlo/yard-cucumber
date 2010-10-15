@@ -1,5 +1,5 @@
 def init
   super
-  sections.push :tag
   @tag = object
+  sections.push :tag, [:feature, :scenario]
 end

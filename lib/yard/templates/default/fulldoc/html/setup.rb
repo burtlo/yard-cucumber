@@ -10,15 +10,14 @@ def init
     @features.each {|feature| serialize(feature) } 
     generate_full_list(@features)
   end
+  
 
   
   @tags = Registry.all(:tag)
   
   if @tags
-    @tags.each {|tag| log.debug "#{tag.name}" }
-    
     @tags.each {|tag| serialize(tag) }
-    generate_full_list @tags.sort {|x,y| y.total_scenario_count <=> x.total_scenario_count }
+    generate_full_list @tags.sort {|x,y| y.all_scenarios.size <=> x.all_scenarios.size }
   end
 
   @scenarios = Registry.all(:scenario).find_all {|scenario| !scenario.background? }
@@ -27,17 +26,13 @@ def init
   @steps = Registry.all(:step)
   generate_full_list(@steps) if @steps
 
-  @step_definitions = Registry.all(:stepdefinition)
-
-  if @step_definitions
-    generate_full_list(@step_definitions,"Step Definition") 
-    @step_transformers = YARD::CodeObjects::StepTransformersObject.new(:root,"steptransformers")
-    @step_definitions.each {|stepdef| @step_transformers << stepdef }
-    serialize(@step_transformers)
+  Templates::Engine.with_serializer(YARD::CodeObjects::Cucumber::CUCUMBER_STEPTRANSFORM_NAMESPACE, options[:serializer]) do
+    options[:object] = YARD::CodeObjects::Cucumber::CUCUMBER_STEPTRANSFORM_NAMESPACE
+    T('layout').run(options)
   end
 
-
 end
+
 
 def generate_full_list(objects,friendly_name=nil)
   if !objects.empty?
@@ -48,4 +43,14 @@ def generate_full_list(objects,friendly_name=nil)
   else
     log.warn "Full List: Failed to create a list because the objects array is empty."
   end
+end
+
+#
+# Remove CUCUMBER namespace from the class list
+#
+def class_list(root = Registry.root)
+  root.instance_eval { children.delete YARD::CodeObjects::Cucumber::CUCUMBER_NAMESPACE } if root == Registry.root
+  out = super(root)
+  root.instance_eval { children << YARD::CodeObjects::Cucumber::CUCUMBER_NAMESPACE } if root == Registry.root
+  out
 end

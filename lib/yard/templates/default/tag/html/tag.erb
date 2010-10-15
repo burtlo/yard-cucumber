@@ -7,57 +7,12 @@
 
 	<div class="meta">
 		<div class="file">Usage: 
-			<%= @tag.feature_count > 0 ? "#{@tag.feature_count} feature#{@tag.feature_count > 1 ? 's' : ''} (with #{@tag.indirect_scenario_count} scenario#{@tag.indirect_scenario_count > 1 ? 's' : ''})" : "" %>
-			<%= " and " if @tag.feature_count > 0 && @tag.scenario_count > 0 %>
-			<%= @tag.scenario_count > 0 ? "#{@tag.scenario_count} scenario#{@tag.scenario_count > 1 ? 's' : ''}" : "" %>
+			<%= @tag.features.size > 0 ? "#{@tag.features.size} feature#{@tag.features.size > 1 ? 's' : ''} (with #{@tag.indirect_scenarios.size} scenario#{@tag.indirect_scenarios.size > 1 ? 's' : ''})" : "" %>
+			<%= " and " if @tag.features.size > 0 && @tag.scenarios.size > 0 %>
+			<%= @tag.scenarios.size > 0 ? "#{@tag.scenarios.size} scenario#{@tag.scenarios.size > 1 ? 's' : ''}" : "" %>
 		</div>		
 	</div>
 
-	<% @tag.owners.each do |owner| %>
+	<%= yieldall :object => @tag %>
 
-	<% if owner.is_a?(YARD::CodeObjects::Cucumber::Scenario) %>
-	<div class="feature indirect">
-		<div class="title">
-			<span class="pre">Feature:</span>
-			<span class="name">
-				<a href="<%= "#{owner.feature.name}.html" %>"><%= owner.feature.value %></a>
-			</span>
-		</div>
-		<div class="description"><%= owner.feature.description %></div>
-	</div>
-
-	<div class="scenario direct">
-		<div class="title">
-			<span class="pre">Scenario:</span>
-			<span class="name">
-				<a href="<%= "#{owner.feature.name}.html" %>"><%= owner.value %></a>
-			</span>
-		</div>
-		<div class="description"><%= owner.description %></div>
-	</div>
-	<% else %>
-	<div class="feature direct">
-		<div class="title">
-			<span class="pre">Feature:</span>
-			<span class="name">
-				<a href="<%= "#{owner.name}.html" %>"><%= owner.value %></a>
-			</span>
-		</div>
-		<div class="description"><%= owner.description %></div>
-	</div>
-
-	<% owner.scenarios.each do |scenario| %>
-	<div class="scenario indirect">
-		<div class="title">
-			<span class="pre">Scenario:</span>
-			<span class="name">
-				<a href="<%= "#{owner.name}.html" %>"><%= scenario.value %></a>
-			</span>
-		</div>
-		<div class="description"><%= scenario.description %></div>
-	</div>
-	<% end %>
-	<% end %>
-
-	<% end %>
 </div>

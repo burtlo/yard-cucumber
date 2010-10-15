@@ -3,9 +3,9 @@
   <li class="r<%= n %>">
 	<span class='object_link'>
 		<span class="pre"><%= stepdef.keyword %></span>
-		<a href="steptransformers.html#<%= stepdef.name %>"><span class="name"><%= h(stepdef.value) %></span></a>&nbsp;&nbsp;
+	  	<a href="<%= url_for stepdef %>"><span class="name"><%= h(stepdef.value) %></span></a>&nbsp;&nbsp;
 	</span>
-	<span class="">(<%= h(stepdef.location) %>)<span>
+	<small><%= h(stepdef.location) %></small>
   </li>
   <% n = n == 2 ? 1 : 2 %>
 <% end %>

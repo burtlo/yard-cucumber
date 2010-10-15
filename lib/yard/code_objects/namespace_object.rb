@@ -2,7 +2,16 @@
 module YARD::CodeObjects
   
   NamespaceObject.class_eval do
-
+    
+    def remove_child(child)
+      children.delete(child)
+    end
+    
+    def add_child(child)
+      children << child
+    end
+    
+    
     attr_accessor :features
 
     def features(opts = {})
@@ -34,5 +43,5 @@ module YARD::CodeObjects
     end
 
   end
-
+  
 end

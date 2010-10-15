@@ -26,7 +26,8 @@ module YARD
         def process_scenario(scenario)
 
           scenario.steps.each do |step|
-            owner.step_definitions.each do |stepdef|
+            YARD::Registry.all(:stepdefinition).each do |stepdef|
+              #log.debug "Looking at step #{step} against #{stepdef}"
               
               if stepdef.compare_value =~ /.+\#\{[^\}]+\}.+/
                 #log.debug "Step definition has packed constant #{stepdef.compare_value}"
@@ -34,7 +35,7 @@ module YARD
                 if %r{#{stepdef.compare_value}}.match(step.value)
                   step.definition = stepdef
                   stepdef.steps << step
-                  log.debug "STEP #{step} has found its definition #{stepdef}"
+                  #log.debug "STEP #{step} has found its definition #{stepdef}"
                   break
                 end
               end

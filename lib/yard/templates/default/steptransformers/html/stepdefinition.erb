@@ -1,27 +1,18 @@
-<div class="title">
-	<div class="name">Step Definitions</div>
-</div>
-
-<div style="margin: 10px;">&nbsp;</div>
-
-<% if @step_transformers.definitions %>
-<% @step_transformers.definitions.each_with_index do |stepdef,index| %>
-
 <div class="stepdef">
-	<a name="<%= stepdef.name %>">
+	<a name="<%= anchor_for @stepdefinition %>">
 	<div class="title">
-		<span class="pre"><%= stepdef.keyword %></span>
-		<span class="name"><%= stepdef.value %></span>
-		<div style="float: right;"><%= h( stepdef.location ) %></div>
+		<span class="pre"><%= @stepdefinition.keyword %></span>
+		<span class="name"><%= @stepdefinition.value %></span>
+		<div style="float: right;"><%= h( @stepdefinition.location ) %></div>
 	</div>
 
 
 	<div class="steps">
-		<% if stepdef.steps && !stepdef.steps.empty? %>
-		<% stepdef.steps.each_with_index do |step,step_index| %>	
+		<% if @stepdefinition.steps && !@stepdefinition.steps.empty? %>
+		<% @stepdefinition.steps.each_with_index do |step,step_index| %>	
 		<div class="step <%= (step_index + 1) % 2 == 0 ? 'even' : 'odd' %>">
 			<%= h("#{step.keyword} #{step.value}") %>
-			<div class="details"><a href="<%= "#{step.scenario.feature.name}.html" %>"><%= h(step.location) %></a></div>
+			<div class="details"><a href="<%= url_for step.scenario.feature %>"><%= h(step.location) %></a></div>
 		</div>
 		<% end %>
 		<% else %>
@@ -36,15 +27,12 @@
 		<table class="source_code">
 			<tr>
 				<td>
-					<pre class="lines"><%= "" %><%= h format_lines(stepdef) %></pre>
+					<pre class="lines"><%= "" %><%= h format_lines(@stepdefinition) %></pre>
 				</td>
 				<td>
-					<pre class="code"><%= "" %><%= html_syntax_highlight stepdef.source %></pre>
+					<pre class="code"><%= "" %><%= html_syntax_highlight @stepdefinition.source %></pre>
 				</td>
 			</tr>
 		</table>
 	</div>
 </div>
-
-<% end %>
-<% end %>

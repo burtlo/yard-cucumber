@@ -1,0 +1,19 @@
+<div class="outline">
+	<div class="keyword"> <%= h @scenario.example_keyword %> </div>
+	<table>
+		<thead>
+			<tr>
+				<% @scenario.example_headers.each_with_index do |header,header_index| %>
+				<th><%= h(header) %></th>
+				<% end %>
+			</tr>
+		</thead>
+		<% @scenario.example_data.each_with_index do |row,row_index| %>
+		<tr class="<%= (row_index + 1) % 2 == 0 ? 'even' : 'odd' %>" >
+			<% row.each_with_index do |column,column_index| %>
+			<td><%= h(column.to_s.strip) %></td>
+			<% end %>
+		</tr>
+		<% end %>
+	</table>
+</div>

@@ -1,0 +1,34 @@
+<% @scenario.steps.each_with_index do |step,index| %>
+	<% @step = step %>
+
+
+	<div <%= "id='#{@id}Step#{index}'" %> class="step <%= (index + 1) % 2 == 0 ? 'even' : 'odd' %>">
+		<span class="predicate"><%= step.keyword %></span>
+
+		<% if step.definition %>
+		<script type="text/javascript" charset="utf-8">
+		$('<%= "#{@id}Step#{index}" %>').hover(
+			function () { $('<%= "#{@id}Step#{index} div.details" %>').toggle('slide'); },
+			function () { $('<%= "#{@id}Step#{index} div.details" %>').toggle('slide'); }
+		);
+
+		$('<%= "#{@id}Step#{index} div.details" %>').show();
+
+		</script>
+		<span class="defined">
+			<a href="<%= url_for step.definition %>"><%= h(step.value) %></a>
+			<div class="details" style="display: none;">
+				(<%= h step.definition.location %>)
+			</div>
+		</span>
+		<% else %>
+		<span class="undefined"><%= h step.value %></span>
+		<% end %>
+
+	</div>
+
+	<%= erb(:table) if step.has_table? %>
+	<%= erb(:pystring) if step.has_text? %>
+
+
+	<% end %>

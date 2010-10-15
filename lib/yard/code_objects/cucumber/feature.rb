@@ -2,7 +2,7 @@
 
 module YARD::CodeObjects::Cucumber
 
-  class Feature < Base
+  class Feature < NamespaceObject
     
     attr_accessor :background, :comments, :description, :keyword, :scenarios, :tags, :value
 

@@ -2,7 +2,7 @@
 
 module YARD::CodeObjects::Cucumber
 
-  class Scenario < Base
+  class Scenario < NamespaceObject
     
     attr_accessor :value, :description, :steps, :tags, :feature, :examples
     
