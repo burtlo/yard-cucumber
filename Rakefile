@@ -5,7 +5,7 @@ task :default => :gendoc
 
 task :gendoc do
   `rm -rf doc`
-  `yardoc -e lib/city.rb -p lib/templates 'example/**/*.rb' 'example/**/*.feature' --debug`
+  `yardoc -e lib/city.rb -p lib/templates 'example/**/*' --debug`
 end
 
 Echoe.new('cucumber-in-the-yard', '1.4') do |g|

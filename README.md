@@ -19,6 +19,8 @@ An example, particularly the example features included with the project, of CITY
 **1. Users are able to search by Feature, Tags, and Scenario.**
 
 Appended to the traditional search areas is the ability to now search by Feature, Tag, and Scenario.
+The user is able to search by steps, though I have not placed those links on the page, in step_list.html
+found in the root of the output directory.
 
 **2. Feature pages are displayed in a decently formatted HTML representation**
 
@@ -32,7 +34,7 @@ Providing quick access to the important tag divisions that have been created in 
 On the top of the page there are some quick calculations of the number of features and scenarios that
 share the specified tag. 
 
-**4. Steps link to Step definitions.  Step definitions show all uses. **
+**4. Steps link to Step definitions.  Step definitions show all uses.**
 
 Step definitions are displayed in their own index page and for each step definition a list of implemented
 steps for this step definition.  This is useful for providing example documentation and quickly understanding
@@ -107,6 +109,48 @@ having the requirements documented.  This is in contrast to other projects that 
 scale to test the functionality of small software component.  Though, ultimately, I realized that the 
 functionality may provide a valuable tool for many as I feel it helps more solidly bridge the reporting of 
 the documentation by putting a coat of paint on it.
+
+Roadmap
+-------
+
+**Version 1**
+
+Current feature set is all that I had planned for this first release.  
+
+**1. Users are able to search by Feature, Tags, and Scenario.**
+**2. Feature pages are displayed in a decently formatted HTML representation**
+**3. Tag pages display all the Features and scenarios that currently employ the tag.**
+**4. Steps link to Step definitions.  Step definitions show all uses.**
+
+Subsequent updates are fixes or enhancements to the fundamental structure behind the scenes.  Lsegal,
+has been extremely helpful in assisting me with the re-organization and refinement of this first release.
+
+**Future Feature Ideas**
+
+**1. Users are able to search Features, Scenarios, and Tags in a unified search box.**
+
+I want to rid the three added search fields and provide one unified search field that will use YARD's
+namespace structure (similar to how Class List works).
+
+**2. Tag pages provide the ability to exclude other tags that intersect.**
+
+Adding a list of tags currently used by the features and scenarios in the below list (that are not the
+current tag).  Allowing the visualization of what the execution of the requirements pass would look like.
+Output of a sample generated tag command-line would be displayed to assist with execution.  On selection
+update of the total features and scenarios affected by the changes in the filtering.
+
+I would like to also address some layout and formatting on the page.  Scenarios will also link to the scenarios
+feature page, show their descriptions, and of course all their other tags.
+
+**3. Step Trasnforms would be displayed where they are used**
+
+These tricky pieces of code tend to trip me up and others on the project.  I want to be able to show which steps
+that have mapped to step definitions are being affected by step transforms.
+
+**4. Highlight the sections of steps that match in the step definition**
+
+Similar to the great output that Cucumber uses to show what is the variable part of the step definition, I would like
+to have the steps displayed differently to illustrate that they are the variable in the statement.
 
 
 LICENSE

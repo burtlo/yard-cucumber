@@ -17,10 +17,10 @@ module YARD::Parser
         non_feature_files = files.reject {|x| x =~ /^.+\.feature$/}
         feature_files = files.find_all {|x| x =~ /^.+\.feature$/ }
         
-        support_files = non_feature_files.find_all {|file| file =~ /.+\/suppport\/.+\.rb$/ }
+        support_files = non_feature_files.find_all {|file| file =~ /support\/.+\.rb$/ }
         other_files = non_feature_files - support_files
         
-        environment_files = support_files.find_all {|file| file =~ /.+\/suppport\/env.+\.rb$/ }
+        environment_files = support_files.find_all {|file| file =~ /support\/env.*\.rb$/ }
         environment_files.sort_by {|x| x.length if x }
         
         support_files = support_files - environment_files
