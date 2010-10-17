@@ -5,11 +5,19 @@ module Cucumber
       include Gherkin::Rubify
 
       def initialize(file)
+        @namespace = YARD::CodeObjects::Cucumber::CUCUMBER_NAMESPACE
+        find_or_create_namespace(file)
         @file = file
       end
 
       def ast
         @feature || @multiline_arg
+      end
+
+      def find_or_create_namespace(file)
+        file.split('/')[0..-2].each do |directory|
+          @namespace = @namespace.children.find {|child| child.name == directory } || YARD::CodeObjects::Cucumber::NamespaceObject.new(@namespace,directory)
+        end
       end
 
       def find_or_create_tag(tag_name,parent)
@@ -24,7 +32,7 @@ module Cucumber
 
       def feature(feature)
         #log.debug  "FEATURE: #{feature.name} #{feature.line} #{feature.keyword} #{feature.description}"
-        @feature = YARD::CodeObjects::Cucumber::Feature.new(YARD::CodeObjects::Cucumber::CUCUMBER_FEATURE_NAMESPACE,@file.gsub(/\/|\./,'_')) do |f|
+        @feature = YARD::CodeObjects::Cucumber::Feature.new(@namespace,File.basename(@file.gsub('.feature','').gsub('.','_'))) do |f|
           f.comments = feature.comments.map{|comment| comment.value}.join("\n")
           f.description = feature.description
           f.add_file(@file,feature.line)

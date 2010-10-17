@@ -1,10 +1,26 @@
-=== 1.4 / 2010-10
+=== 1.4 / 2010-10-17
 
 * Tagusage has been retired
 * Tags are found during parsing by name or created and all uses are appended to the exising or newly created object
 * Tagusage template renamed and fixed up for just a tag and all the references
 * Tags are named tag_TAG (removed the @ as it was encoded during file serialization and I couldn't find an encoder helper)
 * Cleaned up all references in the fulldoc, full list to references tags
+
+* Moved Cucumber CodeObjects, Handlers, and Parsers to a Cucumber sub-directory
+* Moved StepDefinition and StepTransforms form extensions.rb to individual StepObject and Handlers files 
+
+* (lsegal advice) Created Cucumber Namespace and sub namespaces for features, tags, and step transformers.
+* (lsegal advice) Started to break apart the feature.erb into smaller digestable erb sections
+
+* Feature namespace now parallels the directory structure of the feature directory (from where it is parsed)
+* Feature files have simpler names; i.e. featurefile.html instead of featurefile.feature.html
+* Feature page title now states Feature: The Feature ( KEYWORD: FEATURE_TITLE )
+* Moved the templates to lib/templates so I could use yard/templates to override the YARD helpers
+
+* Changed document parsing to mirror the order imposed by Cucumber, this is to stop features being loaded before step definitions.
+  This should hopefully address the issue where steps were not being mapped correctly to step definitions.  This fixed the issue
+  in the small and large test suite I ran it against.
+  
 
 === 1.3 / 2010-10-13
 

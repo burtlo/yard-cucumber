@@ -4,7 +4,7 @@ module YARD::Rake
   
     def initialize(name = :yard)
       super
-      self.options += [ "-e", "#{ File.dirname(__FILE__)}/../../city.rb", "-p", "#{File.dirname(__FILE__)}/../templates" ]
+      self.options += [ "-e", "#{ File.dirname(__FILE__)}/../../city.rb", "-p", "#{File.dirname(__FILE__)}/../../templates" ]
     end
     
   end

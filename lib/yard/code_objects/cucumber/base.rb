@@ -20,15 +20,9 @@ module YARD::CodeObjects::Cucumber
   class Base < YARD::CodeObjects::Base
     include LocationHelper
     
-    # def sep ; '/' ; end
-    
-    # def path
-    #       if parent && !parent.root?
-    #         [ "Cucumber$", name.to_s ].join(sep)
-    #       else
-    #         name.to_s
-    #       end
-    #     end
+    def path
+      @value || super
+    end
 
   end
 

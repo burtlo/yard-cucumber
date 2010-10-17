@@ -3,11 +3,12 @@ module YARD::CodeObjects::Cucumber
   
   class NamespaceObject < YARD::CodeObjects::NamespaceObject
     include LocationHelper
+    
+    def value ; nil ; end
   end
   
   CUCUMBER_NAMESPACE = NamespaceObject.new(:root, "requirements")
   CUCUMBER_TAG_NAMESPACE = NamespaceObject.new(CUCUMBER_NAMESPACE, "tags")
-  CUCUMBER_FEATURE_NAMESPACE = NamespaceObject.new(CUCUMBER_NAMESPACE, "features")
   
   class StepTransformersObject < NamespaceObject ; end
   
