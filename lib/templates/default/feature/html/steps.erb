@@ -16,9 +16,9 @@
 
 		</script>
 		<span class="defined">
-			<a href="<%= url_for step.definition %>"><%= h(step.value) %></a>
-			<div class="details" style="display: none;">
-				(<%= h step.definition.location %>)
+			<%= highlight_matches(step) %>
+			<div class="details">
+				<a href="<%= url_for step.definition %>">?</a>
 			</div>
 		</span>
 		<% else %>

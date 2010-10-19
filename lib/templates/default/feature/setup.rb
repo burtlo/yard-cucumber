@@ -26,3 +26,17 @@ def scenarios
   
   scenarios
 end
+
+
+def highlight_matches(step)
+  
+  value = h(step.value)
+  
+  if step.definition
+    step.value.match(%r{#{step.definition.compare_value}}).to_a[1..-1].each do |match|
+      value.gsub!(h(match),"<span class='match'>#{h(match)}</span>")
+    end
+  end
+  
+  value
+end

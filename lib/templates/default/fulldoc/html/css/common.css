@@ -51,14 +51,8 @@
 	font-family: 'Trebuchet MS', Arial, Helvetica;
 }
 
-.odd {
- 	background-color: #F0F6F9;
-}
-
-.even {
-	background-color: #FFFFFF;
-}
-
+.odd { background-color: #F0F6F9; }
+.even { background-color: #FFFFFF; }
 
 #background {
 	margin-top: 10px;
@@ -110,30 +104,16 @@
 	margin-top: 10px;
 }
 
-.step .predicate {
-	color: #5D5C5B;
-}
-
-.step .undefined {
-	border-bottom: 1px dashed #E99494;
-}
+.step .predicate { color: #5D5C5B; }
+.step .undefined { border-bottom: 1px dashed #E99494; }
 .step .defined {}
-.step .details {
-	float: right;
-	color: #343332;
-}
+.step .details { float: right; color: #343332; }
 .step .details .pre {}
-.step .details .name {
-	font-family: monospace;
-	color: black;
-}
+.step .details .name { font-family: monospace; color: black; }
+.step .defined .match { color: #346F97; }
 
-.multiline, .text {
-	margin-top: 10px;
-	margin-left: 20px;
-}
-
-.text {
+.multiline, .text { margin-top: 10px; margin-left: 20px; }
+.text { 
 	padding: 20px;
 	background-color: #F8F8FF;
 	color: #444444;

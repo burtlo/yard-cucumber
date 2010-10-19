@@ -64,7 +64,7 @@ module YARD
               YARD::Registry.all(:steptransform).each do |steptrans|
                 #log.debug "Looking at transform #{steptrans.value}"
                 if %r{#{steptrans.compare_value}}.match(match)
-                  log.debug "Step #{step} is affected by the transform #{steptrans}"
+                  #log.debug "Step #{step} is affected by the transform #{steptrans}"
                   step.transforms << steptrans
                   steptrans.steps << step
                 end
