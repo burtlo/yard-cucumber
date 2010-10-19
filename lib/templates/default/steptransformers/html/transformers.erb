@@ -1,0 +1,48 @@
+
+<div style="margin: 10px;">&nbsp;</div>
+
+<div class="title">
+	<div class="name"><%= @item_title %></div>
+</div>
+
+<div style="margin: 10px;">&nbsp;</div>
+
+<% @items.each do |item| %>
+
+<div class="stepdef">
+	<a name="<%= anchor_for item %>"></a>
+	<div class="title">
+		<span class="pre"><%= item.keyword %></span>
+		<span class="name"><%= item.value %></span>
+		<div style="float: right;"><%= h( item.location ) %></div>
+	</div>
+
+	<div class="method_details_list">
+		<table class="source_code">
+			<tr>
+				<td>
+					<pre class="lines"><%= "" %><%= h format_lines(item) %></pre>
+				</td>
+				<td>
+					<pre class="code"><%= "" %><%= html_syntax_highlight item.source %></pre>
+				</td>
+			</tr>
+		</table>
+	</div>
+
+	<div class="steps">
+		<% if item.steps && !item.steps.empty? %>
+		<% item.steps.each_with_index do |step,step_index| %>	
+		<div class="step <%= (step_index + 1) % 2 == 0 ? 'even' : 'odd' %>">
+			<%= link_transformed_step(step) %>
+			<div class="details"><a href="<%= url_for step.scenario.feature %>"><%= h(step.location) %></a></div>
+		</div>
+		<% end %>
+		<% else %>
+		<span class="undefined">No steps were found to match this <%= @item_type %>.</span>
+		<% end%>
+	</div>
+
+</div>
+
+<% end %>

@@ -8,7 +8,13 @@ module YARD::CodeObjects
 
     def value=(value)
       @value = format_source(value)
+      @steps = []
     end
+    
+    def compare_value
+      value.gsub(/^\/|\/$/,'')
+    end
+    
   end
   
 end
