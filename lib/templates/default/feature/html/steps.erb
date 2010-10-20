@@ -6,15 +6,6 @@
 		<span class="predicate"><%= step.keyword %></span>
 
 		<% if step.definition %>
-		<script type="text/javascript" charset="utf-8">
-		$('<%= "#{@id}Step#{index}" %>').hover(
-			function () { $('<%= "#{@id}Step#{index} div.details" %>').toggle('slide'); },
-			function () { $('<%= "#{@id}Step#{index} div.details" %>').toggle('slide'); }
-		);
-
-		$('<%= "#{@id}Step#{index} div.details" %>').show();
-
-		</script>
 		<span class="defined">
 			<%= highlight_matches(step) %>
 			<div class="details">

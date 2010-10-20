@@ -40,6 +40,18 @@ Step definitions are displayed in their own index page and for each step definit
 steps for this step definition.  This is useful for providing example documentation and quickly understanding
 which scenarios are affected by a change to a step definition.
 
+**5. Step Transforms are displayed as links in the step definitions**
+
+After finding the Step to Step Definition link it looks at the match groups within the step and find which
+ones match the step transforms.  Step transform links can be found after following a link from the step to 
+the step definition.
+
+**6. Highlight the sections of steps that match in the step definition**
+
+Steps highlight the match groups in a different color to show which parts of the step are matched in the step
+definition.
+
+
 
 Installation
 ------------
@@ -113,18 +125,6 @@ the documentation by putting a coat of paint on it.
 Roadmap
 -------
 
-**Version 1**
-
-Current feature set is all that I had planned for this first release.  
-
-**1. Users are able to search by Feature, Tags, and Scenario.**
-**2. Feature pages are displayed in a decently formatted HTML representation**
-**3. Tag pages display all the Features and scenarios that currently employ the tag.**
-**4. Steps link to Step definitions.  Step definitions show all uses.**
-
-Subsequent updates are fixes or enhancements to the fundamental structure behind the scenes.  Lsegal,
-has been extremely helpful in assisting me with the re-organization and refinement of this first release.
-
 **Future Feature Ideas**
 
 **1. Users are able to search Features, Scenarios, and Tags in a unified search box.**
@@ -142,16 +142,10 @@ update of the total features and scenarios affected by the changes in the filter
 I would like to also address some layout and formatting on the page.  Scenarios will also link to the scenarios
 feature page, show their descriptions, and of course all their other tags.
 
-**3. Step Trasnforms would be displayed where they are used**
+**3. Performance enhancements**
 
-These tricky pieces of code tend to trip me up and others on the project.  I want to be able to show which steps
-that have mapped to step definitions are being affected by step transforms.
-
-**4. Highlight the sections of steps that match in the step definition**
-
-Similar to the great output that Cucumber uses to show what is the variable part of the step definition, I would like
-to have the steps displayed differently to illustrate that they are the variable in the statement.
-
+At the current rate the documentation generation is dreadfully slow for the project.  After implementing a few 
+more of these features I will look at addressing the performance to see where this can be optimized.
 
 LICENSE
 -------
