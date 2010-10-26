@@ -1,8 +1,23 @@
 <% n = 1 %>
 <% @items.each do |tag| %>
   <li class="r<%= n %>">
+	<a class='toggle'></a>
 	<%= linkify tag, tag.value %>
 	<small><%= tag.all_scenarios.size %></small>
   </li>
+	<ul>
+	<% tag.features.each do |feature| %>
+	<li>
+		<%= linkify feature, feature.value %>
+		<small><%= feature.location %></small>
+	</li>
+	<% end %>
+	<% tag.scenarios.each do |scenario| %>
+	<li>
+		<%= linkify scenario, scenario.value %>
+		<small><%= scenario.location %></small>
+	</li>
+	<% end %>
+	</ul>
   <% n = n == 2 ? 1 : 2 %>
 <% end %>
