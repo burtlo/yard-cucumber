@@ -20,8 +20,8 @@ def init
     generate_full_list @tags.sort {|x,y| y.all_scenarios.size <=> x.all_scenarios.size }
   end
 
-  @scenarios = Registry.all(:scenario).find_all {|scenario| !scenario.background? }
-  generate_full_list(@scenarios) if @scenarios
+  #@scenarios = Registry.all(:scenario).find_all {|scenario| !scenario.background? }
+  #generate_full_list(@scenarios) if @scenarios
 
   @steps = Registry.all(:step)
   generate_full_list(@steps) if @steps
@@ -39,6 +39,7 @@ def generate_full_list(objects,friendly_name=nil)
     @items = objects
     @list_type = "#{objects.first.type.to_s}s"
     @list_title = "#{friendly_name || objects.first.type.to_s.capitalize} List"
+    @list_class = "class"
     asset("#{objects.first.type}_list.html",erb(:full_list))
   else
     log.warn "Full List: Failed to create a list because the objects array is empty."

@@ -1,5 +1,4 @@
 History.txt
-Manifest
 README.md
 Rakefile
 example/empty.feature
@@ -24,8 +23,6 @@ lib/templates/default/feature/setup.rb
 lib/templates/default/fulldoc/html/css/common.css
 lib/templates/default/fulldoc/html/full_list.erb
 lib/templates/default/fulldoc/html/full_list_features.erb
-lib/templates/default/fulldoc/html/full_list_requirements.erb
-lib/templates/default/fulldoc/html/full_list_scenarios.erb
 lib/templates/default/fulldoc/html/full_list_stepdefinitions.erb
 lib/templates/default/fulldoc/html/full_list_steps.erb
 lib/templates/default/fulldoc/html/full_list_tags.erb
@@ -61,3 +58,4 @@ lib/yard/parser/cucumber/feature.rb
 lib/yard/parser/source_parser.rb
 lib/yard/rake/city_task.rb
 lib/yard/templates/helpers/base_helper.rb
+Manifest

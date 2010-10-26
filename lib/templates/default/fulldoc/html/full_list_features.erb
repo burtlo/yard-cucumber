@@ -1,7 +1,19 @@
-<% n = 1 %>
 <% @items.each do |feature| %>
-  <li class="r<%= n %>">
+<li>
+	<%= "<a class='toggle'></a>" unless feature.scenarios.empty? %>
 	<%= linkify feature, feature.value %>
-  </li>
-  <% n = n == 2 ? 1 : 2 %>
+	<small><%= feature.location %></small>
+</li>
+
+<% if feature.scenarios %>
+<ul>
+	<% feature.scenarios.each do |scenario| %>
+	<li>
+		<%= linkify feature, scenario.value %>
+		<small><%= scenario.location %></small>
+	</li>
+	<% end %>
+</ul>
+<% end %>
+</li>
 <% end %>

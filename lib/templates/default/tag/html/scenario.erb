@@ -16,6 +16,20 @@
 			<a href="<%= url_for scenario.feature %>"><%= scenario.value %></a>
 		</span>
 	</div>
-	<div class="description"><%= scenario.description %></div>
+	<div class="meta">
+		<div class="file">Line: <%= scenario.line_number %></div>
+		<% unless scenario.tags.empty? %>
+		<div class="tags">
+			<% scenario.tags.each do |tag| %>
+			<a href="<%= url_for tag %>"><%= tag.value %></a>
+			<% end %>
+		</div>
+		<% end%>
+	</div>
+	<% unless scenario.description.empty? %>
+	<div class="description">
+		<%= h scenario.description %>
+	</div>
+	<% end %>
 </div>
 <% end %>

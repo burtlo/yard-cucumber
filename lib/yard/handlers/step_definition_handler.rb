@@ -1,6 +1,7 @@
 
 
 class StepDefinitionHandler < YARD::Handlers::Ruby::Legacy::Base
+  #TODO: This needs to become language independent.
   MATCH = /^((When|Given|And|Then)\s*(\/[^\/]+\/).+)$/
   handles MATCH
 
@@ -17,13 +18,17 @@ class StepDefinitionHandler < YARD::Handlers::Ruby::Legacy::Base
       o.value = step_definition
       o.keyword = keyword
     end
+    
+    find_steps_defined_in_block(statement.block)
 
     begin
       # Look for all constants within the step definitions
       stepdef_instance.constants = stepdef_instance._value_constants.each do |stepdef_constant| 
         owner.constants.each do |constant|
           if stepdef_constant.to_sym == constant.name
-            #log.debug "Replacing #{constant.name} with its value in the step definition #{stepdef_instance.value}"
+            log.debug "Constant #{constant.name} was found in the step definition #{stepdef_instance.value}, attempting to replace that value"
+            returned_constant = unpack_constants(constant.value)
+            log.debug "Post procedure on CONSTANT looks like #{returned_constant}"
             stepdef_instance.constants[constant.name] = unpack_constants(constant.value)
           end
         end
@@ -52,6 +57,26 @@ class StepDefinitionHandler < YARD::Handlers::Ruby::Legacy::Base
     
     constant_value.gsub!(/^('|"|\/)|('|"|\/)$/,'')
     constant_value
+  end
+  
+  #
+  # Step Definitions can contain defined steps within them.  While it is likely that they could not
+  # very easily be parsed because of variables that are only calculated at runtime, it would be nice
+  # to at least list those in use within a step definition and if you can find a match, go ahead and
+  # make it
+  #
+  def find_steps_defined_in_block(block)
+    #log.debug "#{block} #{block.class}"
+    block.each_with_index do |token,index|
+      #log.debug "Token #{token.class} #{token.text}"
+        if token.is_a?(YARD::Parser::Ruby::Legacy::RubyToken::TkCONSTANT)  && 
+          token.text =~ /^(given|when|then|and)$/i &&
+          block[index + 2].is_a?(YARD::Parser::Ruby::Legacy::RubyToken::TkSTRING)
+          log.debug "Step found in Step Definition: #{block[index + 2].text} "
+        end
+          
+    end
+    
   end
   
 end

@@ -1,8 +1,0 @@
-<% n = 1 %>
-<% @items.each do |scenario| %>
-  <li class="r<%= n %>">
-	<%= linkify scenario.feature, scenario.value %>
-	<small><%= h(scenario.location) %></small>
-  </li>
-  <% n = n == 2 ? 1 : 2 %>
-<% end %>

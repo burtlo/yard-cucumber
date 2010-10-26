@@ -12,7 +12,7 @@ module YARD::CodeObjects::Cucumber
       @examples = {}
       @transforms = []
     end
-
+    
     def has_table?
       !@table.nil?
     end

@@ -1,46 +1,14 @@
+.feature {}
+.tags { font-family: monospace;	font-size: 14px; }
+* .title { padding: 10px; font-size: 24px; }
 
-.feature {
-	
-}
+.feature > .title, .tag > .title { margin: 20px 20px 10px 20px;	padding-left: 0px; border-bottom: 1px solid #E3E3E3; }
+.meta .file { float: right;	margin-right: 20px; }
+* .title .pre {	color: #696969; }
+* .title .name { font-weight: bold;	color: #3F3F3F; }
 
-.tags {
-	font-family: monospace;
-	font-size: 14px;
-}
-
-
-* .title {
-	padding: 10px;
-	font-size: 24px;	
-}
-
-.feature > .title, .tag > .title {
-	margin: 20px 20px 10px 20px;
-	padding-left: 0px;
-	border-bottom: 1px solid #E3E3E3;
-}
-
-.meta .file {
-	float: right;
-	margin-right: 20px;
-}
-
-* .title .pre {
-	color: #696969;
-}
-
-* .title .name {
-	font-weight: bold;
-	color: #3F3F3F;
-}
-
-.meta { 
-	margin-left: 30px;
-	color: gray;
-}
-.scenario .meta .tags {
-	margin-left: 0px;
-}
+.meta { margin-left: 30px; color: gray; }
+.scenario .meta .tags { margin-left: 0px; }
 
 .feature .description {
 	margin: 10px 20px 0px 30px;
@@ -146,14 +114,16 @@
 
 
 /* Overrides for scenarios in the tag view */
-.tag .scenario {
-	margin-left: 30px;
-	margin-top: 0px;
-}
-.tag .scenario .title {
-	border-bottom: none;
-}
+
+.tag .feature { margin-left: 20px; }
+.tag .scenario { margin-top: 0px;  margin-left: 20px; padding-left: 30px;	}
+.tag .scenario .title { border-bottom: none; }
+.tag .scenario .meta { margin-top: 0px; }
 /* Overrides for scenarios in the tag view */
+
+.direct { background-color: #E3E3E3; }
+.indirect { background-color: #F5F5F5; }
+
 
 .stepdef .title {
 	font-size: 14px;
@@ -167,3 +137,4 @@
 .stepdef .steps .step {
 	padding: 4px;
 }
+

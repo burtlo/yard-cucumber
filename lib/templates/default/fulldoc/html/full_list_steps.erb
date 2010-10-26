@@ -2,7 +2,7 @@
 <% @items.each do |step| %>
   <li class="r<%= n %>">
 	<span class='object_link'>
-		<a href="<%= "#{step.scenario.feature.name}.html" %>">
+		<a href="<%= url_for step.scenario.feature %>">
 			<span class="pre"><%= step.keyword %></span>
 			<span class="name"><%= h(step.value) %></span>
 		</a>

@@ -17,6 +17,7 @@ Given /^that (#{CUSTOMER}) is a valid customer$/ do |customer|
 end
 
 When /^a customer logs in as username '([^']+)' with password '([^']+)'$/ do |username,password|
+  Given "that the customer is a valid customer"
   pending "Customer logs in with #{username} and #{password}"
 end
 
