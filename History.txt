@@ -1,3 +1,14 @@
+=== 1.5 / 2010-10-25
+
+* Steps that have found their step definitions will also attempt to find their
+  step transforms (However step transforms are not unpacked yet like step
+  definitions).
+* Scenario Outlines will expand, behind the scenes, and match like traditional
+  scenarios.
+* FIX - duplication of owners that the tag reports has been removed.
+* INFO level messaging while processing features and scenarios to help assist
+  with feedback during the long processing.
+
 === 1.4 / 2010-10-17
 
 * Tagusage has been retired

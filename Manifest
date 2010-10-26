@@ -4,12 +4,12 @@ README.md
 Rakefile
 example/empty.feature
 example/example.feature
-example/example.step.rb
 example/example.third.feature
 example/second_example.feature
-features/definitions/city_step.rb
-features/definitions/test.setup.and.teardown.rb
-features/features.feature
+example/step_definitions/example.step.rb
+example/step_definitions/support/env.rb
+example/step_definitions/support/env_support.rb
+example/step_definitions/support/support.rb
 lib/city.rb
 lib/cucumber/city_builder.rb
 lib/templates/default/feature/html/background.erb
@@ -36,8 +36,8 @@ lib/templates/default/layout/html/headers.erb
 lib/templates/default/layout/html/search.erb
 lib/templates/default/scenario/html/scenario.erb
 lib/templates/default/scenario/setup.rb
-lib/templates/default/steptransformers/html/stepdefinition.erb
 lib/templates/default/steptransformers/html/steptransformers.erb
+lib/templates/default/steptransformers/html/transformers.erb
 lib/templates/default/steptransformers/setup.rb
 lib/templates/default/tag/html/feature.erb
 lib/templates/default/tag/html/scenario.erb
@@ -47,6 +47,7 @@ lib/yard/code_objects/cucumber/base.rb
 lib/yard/code_objects/cucumber/feature.rb
 lib/yard/code_objects/cucumber/namespace_object.rb
 lib/yard/code_objects/cucumber/scenario.rb
+lib/yard/code_objects/cucumber/scenario_outline.rb
 lib/yard/code_objects/cucumber/step.rb
 lib/yard/code_objects/cucumber/tag.rb
 lib/yard/code_objects/namespace_object.rb
