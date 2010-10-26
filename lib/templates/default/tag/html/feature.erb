@@ -8,38 +8,41 @@
 	</div>
 	<div class="meta">
 		<div class="file"><%= h(feature.file) %></div>
-		<div class="tags">
+		<div class="tags">Tags: 
 			<% feature.tags.each do |tag| %>
 			<a href="<%= url_for tag %>"><%= tag.value %></a>
 			<% end %>
 		</div>		
 	</div>
-	<div class="description"><%= feature.description %></div>
-	
-	<% feature.scenarios.each do |scenario| %>
-	<div class="scenario indirect">
-		<div class="title">
-			<span class="pre"><%= scenario.keyword %></span>
-			<span class="name">
-				<a href="<%= url_for feature %>"><%= scenario.value %></a>
-			</span>
-		</div>
-		<div class="meta">
-			<div class="file">Line: <%= scenario.line_number %></div>
-			<% unless scenario.tags.empty? %>
-			<div class="tags">
-				<% scenario.tags.each do |tag| %>
-				<a href="<%= url_for tag %>"><%= tag.value %></a>
-				<% end %>
-			</div>
-			<% end%>
-		</div>
-		<% unless scenario.description.empty? %>
-		<div class="description">
-			<%= h scenario.description %>
-		</div>
-		<% end %>	
+	<div class="description">
+		<%= feature.description %>
 	</div>
-	<% end %>
-
+</div>
+<% feature.scenarios.each do |scenario| %>
+<div class="scenario indirect">
+	<div class="title">
+		<span class="pre"><%= scenario.keyword %></span>
+		<span class="name">
+			<a href="<%= url_for feature %>"><%= scenario.value %></a>
+		</span>
+	</div>
+	<div class="meta">
+		<div class="file">
+			<%= scenario.location %>
+		</div>
+		<% unless scenario.tags.empty? %>
+		<div class="tags">
+			Tags: <% scenario.tags.each do |tag| %>
+			<a href="<%= url_for tag %>"><%= tag.value %></a>
+			<% end %>
+		</div>
+		<% end%>
+	</div>
+	<% unless scenario.description.empty? %>
+	<div class="description">
+		<%= h scenario.description %>
+	</div>
+	<% end %>	
+</div>
+<% end %>
 <% end %>

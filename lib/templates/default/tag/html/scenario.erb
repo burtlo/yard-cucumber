@@ -6,6 +6,14 @@
 			<a href="<%= url_for scenario.feature %>"><%= scenario.feature.value %></a>
 		</span>
 	</div>
+	<div class="meta">
+		<div class="file"><%= h(scenario.feature.file) %></div>
+		<div class="tags">Tags: 
+			<% scenario.feature.tags.each do |tag| %>
+			<a href="<%= url_for tag %>"><%= tag.value %></a>
+			<% end %>
+		</div>		
+	</div>
 	<div class="description"><%= scenario.feature.description %></div>
 </div>
 
@@ -17,9 +25,9 @@
 		</span>
 	</div>
 	<div class="meta">
-		<div class="file">Line: <%= scenario.line_number %></div>
+		<div class="file"><%= scenario.location %></div>
 		<% unless scenario.tags.empty? %>
-		<div class="tags">
+		<div class="tags">Tags:
 			<% scenario.tags.each do |tag| %>
 			<a href="<%= url_for tag %>"><%= tag.value %></a>
 			<% end %>

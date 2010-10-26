@@ -14,7 +14,7 @@
 	<% end %>
 	<% tag.scenarios.each do |scenario| %>
 	<li>
-		<%= linkify scenario, scenario.value %>
+		<%= linkify scenario.feature, scenario.value %>
 		<small><%= scenario.location %></small>
 	</li>
 	<% end %>

@@ -13,9 +13,7 @@
 .feature .description {
 	margin: 10px 20px 0px 30px;
 	padding: 10px 20px 20px 10px;
-/*	background-color: #F5F5F5;*/
 	color: #343332;
-/*	border: #C7C5C5 solid 1px;*/
 	font-family: 'Trebuchet MS', Arial, Helvetica;
 }
 
@@ -120,9 +118,6 @@
 .tag .scenario .title { border-bottom: none; }
 .tag .scenario .meta { margin-top: 0px; }
 /* Overrides for scenarios in the tag view */
-
-.direct { background-color: #E3E3E3; }
-.indirect { background-color: #F5F5F5; }
 
 
 .stepdef .title {
