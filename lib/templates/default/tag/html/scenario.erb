@@ -1,7 +1,7 @@
 <% object.scenarios.each do |scenario| %>
 <div class="feature indirect">
 	<div class="title">
-		<span class="pre">Feature:</span>
+		<span class="pre"><%= scenario.feature.keyword %></span>
 		<span class="name">
 			<a href="<%= url_for scenario.feature %>"><%= scenario.feature.value %></a>
 		</span>
@@ -11,7 +11,7 @@
 
 <div class="scenario direct">
 	<div class="title">
-		<span class="pre">Scenario:</span>
+		<span class="pre"><%= scenario.keyword %></span>
 		<span class="name">
 			<a href="<%= url_for scenario.feature %>"><%= scenario.value %></a>
 		</span>

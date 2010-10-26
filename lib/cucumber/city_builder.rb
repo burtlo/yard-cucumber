@@ -109,11 +109,11 @@ module Cucumber
         @step_container.example_data.length.times do |row_index|
 
           scenario = YARD::CodeObjects::Cucumber::Scenario.new(@step_container,"example_#{@step_container.scenarios.length + 1}") do |s|
-            s.comments = @comments
-            s.description = @description
+            s.comments = @step_container.comments
+            s.description = @step_container.description
             s.add_file(@file,@step_container.line_number)
-            s.keyword = @keyword
-            s.value = "#{@value} (#{@step_container.scenarios.length + 1})"
+            s.keyword = @step_container.keyword
+            s.value = "#{@step_container.value} (#{@step_container.scenarios.length + 1})"
 
             #TODO: Should scenario instances have their own tag instances?
           end

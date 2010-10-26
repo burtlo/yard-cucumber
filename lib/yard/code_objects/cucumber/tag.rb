@@ -11,7 +11,7 @@ module YARD::CodeObjects::Cucumber
     end
     
     def scenarios
-      @owners.find_all{|owner| owner.is_a?(Scenario) }
+      @owners.find_all{|owner| owner.is_a?(Scenario) || owner.is_a?(ScenarioOutline) }
     end
         
     def indirect_scenarios
