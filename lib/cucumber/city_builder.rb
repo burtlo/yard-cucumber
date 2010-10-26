@@ -21,7 +21,7 @@ module Cucumber
       end
 
       def find_or_create_tag(tag_name,parent)
-        log.debug "Processing tag #{tag_name}"
+        #log.debug "Processing tag #{tag_name}"
         tag_code_object = YARD::Registry.all(:tag).find {|tag| tag.value == tag_name } || 
           YARD::CodeObjects::Cucumber::Tag.new(YARD::CodeObjects::Cucumber::CUCUMBER_TAG_NAMESPACE,tag_name.gsub('@','')) {|t| t.owners = [] ; t.value = tag_name }
 
@@ -32,7 +32,7 @@ module Cucumber
       end
 
       def feature(feature)
-        log.debug  "FEATURE: #{feature.name} #{feature.line} #{feature.keyword} #{feature.description}"
+        #log.debug  "FEATURE: #{feature.name} #{feature.line} #{feature.keyword} #{feature.description}"
         @feature = YARD::CodeObjects::Cucumber::Feature.new(@namespace,File.basename(@file.gsub('.feature','').gsub('.','_'))) do |f|
           f.comments = feature.comments.map{|comment| comment.value}.join("\n")
           f.description = feature.description
@@ -61,7 +61,7 @@ module Cucumber
       end
 
       def scenario(statement)
-        log.debug "SCENARIO"
+        #log.debug "SCENARIO"
         scenario = YARD::CodeObjects::Cucumber::Scenario.new(@feature,"scenario_#{@feature.scenarios.length + 1}") do |s|
           s.comments = statement.comments.map{|comment| comment.value}.join("\n")
           s.description = statement.description
@@ -120,8 +120,8 @@ module Cucumber
 
           @step_container.steps.each do |step|
             step_instance = YARD::CodeObjects::Cucumber::Step.new(scenario,step.line_number) do |s|
-              s.keyword = step.keyword
-              s.value = step.value
+              s.keyword = step.keyword.dup
+              s.value = step.value.dup
               s.add_file(@file,step.line_number)
             end
 
