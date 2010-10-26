@@ -4,11 +4,12 @@ module YARD::CodeObjects::Cucumber
 
   class Step < Base
     
-    attr_accessor :definition, :keyword, :scenario, :table, :text, :transforms, :value
+    attr_accessor :definition, :examples, :keyword, :scenario, :table, :text, :transforms, :value
     
     def initialize(namespace,name)
       super(namespace,name.to_s.strip)
       @definition = @description = @keyword = @table = @text = @value = nil
+      @examples = {}
       @transforms = []
     end
 
@@ -20,10 +21,21 @@ module YARD::CodeObjects::Cucumber
       !@text.nil?
     end
     
+    def definition=(stepdef)
+      @definition = stepdef
+      stepdef.steps << self
+    end
+    
     def transformed?
       !@transforms.empty?
     end
-
+    
+    def compare_values
+      
+      @scenario.example_hash.collect do |stub,replacements|
+        replacements.collect {|replace| value.gsub("<#{stub}>",replace) }
+      end.flatten
+    end
   end
 
 end

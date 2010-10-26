@@ -8,6 +8,7 @@ require 'yard'
 require File.dirname(__FILE__) + "/yard/code_objects/cucumber/base.rb"
 require File.dirname(__FILE__) + "/yard/code_objects/cucumber/namespace_object.rb"
 require File.dirname(__FILE__) + "/yard/code_objects/cucumber/feature.rb"
+require File.dirname(__FILE__) + "/yard/code_objects/cucumber/scenario_outline.rb"
 require File.dirname(__FILE__) + "/yard/code_objects/cucumber/scenario.rb"
 require File.dirname(__FILE__) + "/yard/code_objects/cucumber/step.rb"
 require File.dirname(__FILE__) + "/yard/code_objects/cucumber/tag.rb"

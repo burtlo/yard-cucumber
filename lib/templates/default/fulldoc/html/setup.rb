@@ -14,7 +14,7 @@ def init
 
   
   @tags = Registry.all(:tag)
-  
+
   if @tags
     @tags.each {|tag| serialize(tag) }
     generate_full_list @tags.sort {|x,y| y.all_scenarios.size <=> x.all_scenarios.size }

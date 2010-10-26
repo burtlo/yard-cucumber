@@ -10,4 +10,3 @@ Feature: Customer Login Feature
     Given that a customer is a valid customer
     When a customer logs in as username 'frank' with password 'default'
     Then I expect them to have logged in successfully
-
