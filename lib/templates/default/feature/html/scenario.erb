@@ -18,7 +18,7 @@ $(function() {
 		<span class="name"><%= h @scenario.value %></span>
 	</div>
 	<div class="meta">
-		<div class="file">Line: <%= @scenario.line_number %></div>
+		<div class="file"><%= @scenario.location %></div>
 		<% unless @scenario.tags.empty? %>
 		<div class="tags">
 			<% @scenario.tags.each do |tag| %>
