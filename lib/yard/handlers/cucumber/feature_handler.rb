@@ -34,7 +34,7 @@ module YARD
         rescue YARD::Handlers::NamespaceMissingError
         rescue Exception => exception
           log.error "Skipping feature because an error has occurred."
-          log.debug "#\n{exception}\n#{exception.backtrace.join("\n")}\n"
+          log.debug "\n#{exception}\n#{exception.backtrace.join("\n")}\n"
         end
 
 

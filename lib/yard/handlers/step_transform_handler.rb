@@ -1,6 +1,6 @@
 
 class StepTransformHandler < YARD::Handlers::Ruby::Legacy::Base
-  MATCH = /^Transform\s*(\/[^\/]+\/).+$/
+  MATCH = /^Transform\s*(\/.+\/)\s+do\s+\|.+\|\s*$/
   handles MATCH
 
   @@unique_name = 0

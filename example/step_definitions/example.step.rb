@@ -12,6 +12,10 @@ Transform /^the customer$/ do |customer|
   "the transformed customer"
 end
 
+Transform /^((?:\d{1,2}[\/-]){2}(?:\d\d){1,2})?\s*(\w{3})?\s*(\d{1,2}:\d{2}\s*(?:AM|PM)?)$/ do |date,day,time|
+  "#{date} #{day} #{time}"
+end
+
 Given /^that (#{CUSTOMER}) is a valid customer$/ do |customer|
   pending "Customer #{customer} validation"  
 end
@@ -21,8 +25,8 @@ When /^a customer logs in as username '([^']+)' with password '([^']+)'$/ do |us
   pending "Customer logs in with #{username} and #{password}"
 end
 
-Then /^I expect them to have logged in successfully$/ do 
-  pending "Validation that the customer has logged in successfully"  
+Then /^I expect them to have logged in (successfully|miserably)$/ do |success|
+  pending "Validation that the customer has logged in #{success}"
 end
 
 When /^the customer logs out$/ do
@@ -33,7 +37,7 @@ Then /^I expect the customer to be shown the logout page$/ do
   pending
 end
 
-And /^this third defined step definition$/ do
+And /^this (third) defined step definition$/ do |number|
   pending
 end
 
@@ -41,8 +45,8 @@ And /^the customer has the following details:$/ do |table|
   pending "Table of data #{table.hashes}"
 end
 
-And /^edits their the biography to state:$/ do |bio|
-  pending "text_field not present for bio #{bio} for this release"
+And /^edits their the (biography) to state:$/ do |section,text|
+  pending "text_field not present for #{section} #{bio} for this release"
 end
 
 #

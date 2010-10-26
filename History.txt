@@ -1,3 +1,18 @@
+=== 1.5.2 / 2010-10-26
+
+* FIX - Step Transform YARD handler regex was poorly formed and raised exceptions
+  when a transform contained a forward-slash (even if escaped).
+
+=== 1.5.1 / 2010-10-26
+
+* Unified Feature/Scenario search field that resembles the Namespace-Class field
+* Tag search also displays immediate features/scenarios
+* Removed Scenario searching field
+* Added filename and line number to a number of locations
+* Minor Tag template enhancements
+* FIX - Scenario Outline Reference was being replaced with the first example
+* FIX - Scenario Outlines were not getting counted for tags
+
 === 1.5 / 2010-10-25
 
 * Steps that have found their step definitions will also attempt to find their

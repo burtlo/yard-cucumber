@@ -23,12 +23,12 @@ class StepDefinitionHandler < YARD::Handlers::Ruby::Legacy::Base
 
     begin
       # Look for all constants within the step definitions
-      stepdef_instance.constants = stepdef_instance._value_constants.each do |stepdef_constant| 
-        owner.constants.each do |constant|
+      stepdef_instance._value_constants.each do |stepdef_constant| 
+        YARD::Registry.all(:constant).each do |constant|
           if stepdef_constant.to_sym == constant.name
-            log.debug "Constant #{constant.name} was found in the step definition #{stepdef_instance.value}, attempting to replace that value"
+            #log.debug "Constant #{constant.name} was found in the step definition #{stepdef_instance.value}, attempting to replace that value"
             returned_constant = unpack_constants(constant.value)
-            log.debug "Post procedure on CONSTANT looks like #{returned_constant}"
+            #log.debug "CONSTANT: #{constant.name}\nFINAL: #{returned_constant}"
             stepdef_instance.constants[constant.name] = unpack_constants(constant.value)
           end
         end
