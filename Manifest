@@ -1,4 +1,5 @@
 History.txt
+Manifest
 README.md
 Rakefile
 example/empty.feature
@@ -58,4 +59,3 @@ lib/yard/parser/cucumber/feature.rb
 lib/yard/parser/source_parser.rb
 lib/yard/rake/city_task.rb
 lib/yard/templates/helpers/base_helper.rb
-Manifest

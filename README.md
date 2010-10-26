@@ -127,10 +127,11 @@ Roadmap
 
 **Future Feature Ideas**
 
-**1. Users are able to search Features, Scenarios, and Tags in a unified search box.**
+**1. Represent instances of scenarios for scenario outlines.**
 
-I want to rid the three added search fields and provide one unified search field that will use YARD's
-namespace structure (similar to how Class List works).
+Display all the values that would normally be substituted into a scenario for the scenario outline. To 
+make it easier to represent them to product owners.  As well as link the instance of the step definitions
+for developers.
 
 **2. Tag pages provide the ability to exclude other tags that intersect.**
 
