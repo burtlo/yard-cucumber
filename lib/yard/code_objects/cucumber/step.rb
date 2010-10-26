@@ -29,13 +29,7 @@ module YARD::CodeObjects::Cucumber
     def transformed?
       !@transforms.empty?
     end
-    
-    def compare_values
-      
-      @scenario.example_hash.collect do |stub,replacements|
-        replacements.collect {|replace| value.gsub("<#{stub}>",replace) }
-      end.flatten
-    end
+
   end
 
 end

@@ -2,7 +2,7 @@
 
 class StepDefinitionHandler < YARD::Handlers::Ruby::Legacy::Base
   #TODO: This needs to become language independent.
-  MATCH = /^((When|Given|And|Then)\s*(\/[^\/]+\/).+)$/
+  MATCH = /^((When|Given|And|Then)\s*(\/.+\/)\s+do(?:\s\|.+\|)?\s*)$/
   handles MATCH
 
   @@unique_name = 0

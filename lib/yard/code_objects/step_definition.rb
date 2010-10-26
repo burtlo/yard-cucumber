@@ -12,18 +12,20 @@ module YARD::CodeObjects
       @value = format_source(value)
       @constants = {}
       @steps = []
+      @compare_value = nil
     end
     
     def compare_value
-      base_value = value.gsub(/^\/|\/$/,'')
-      @constants.each do |name,value|
-        base_value.gsub!(/\#\{\s*#{name.to_s}\s*\}/,value.gsub(/^\/|\/$/,''))
+      unless @compare_value
+        @compare_value = value.gsub(/^\/|\/$/,'')
+        @constants.each do |name,value|
+          @compare_value.gsub!(/\#\{\s*#{name.to_s}\s*\}/,value.gsub(/^\/|\/$/,''))
+        end
       end
-      base_value
+      @compare_value
     end
     
     def _value_constants(data=@value)
-      #Hash[*data.scan(/\#\{([^\}]+)\}/).flatten.collect {|value| [value.strip,nil]}.flatten]
       data.scan(/\#\{([^\}]+)\}/).flatten.collect { |value| value.strip }
     end
     

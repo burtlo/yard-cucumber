@@ -1,5 +1,3 @@
-
-
 CUSTOMER = /(?:(?:an?|the) customer|#{TEDDY_BEAR})/
 
 TEDDY_BEAR = /teddy bear/
@@ -48,6 +46,14 @@ end
 And /^edits their the (biography) to state:$/ do |section,text|
   pending "text_field not present for #{section} #{bio} for this release"
 end
+
+#
+# Complicated step definition with optional parameters
+#
+Given /^(?:I create )?an? (?:(active|deactive|inactive|simulated)d?)? ?project(?:[\s,]*(?:with)? ?(?:an?|the)? (?:(?:the size? (?:at|of)? ?(\d+)|named? (?:of )?'([^']+)'|start date (?:of )?((?:(?:\d{1,2}[\/-]){2}(?:\d\d){1,2}))|end date (?:of )?((?:(?:\d{1,2}[\/-]){2}(?:\d\d){1,2}))|user range (?:of )?(\d+-\d+)|description (?:of )?'([^']+)'|nicknamed? (?:of )?'([^']+)')[,\s]*)* ?)?$/ do |state,size,name,start_date,end_date,user_range,description,nickname|
+  pending "#{state} #{size} #{name} #{start_date} #{end_date} #{user_range} #{description} #{nickname}"
+end
+
 
 #
 # Some details about the helper method that might be picked up in the documentation.

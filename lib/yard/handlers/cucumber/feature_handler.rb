@@ -61,11 +61,9 @@ module YARD
             #log.debug "Looking at step #{step_value} against #{stepdef}"
 
             if stepdef.compare_value =~ /.+\#\{[^\}]+\}.+/
-              log.warn "Step definition has packed constant #{stepdef.compare_value}"
+              log.warn "Step definition still has a unpacked constant #{stepdef.compare_value}"
             else
-              if %r{#{stepdef.compare_value}}.match(step_value)
-                return stepdef
-              end
+              return stepdef if %r{#{stepdef.compare_value}}.match(step_value)
             end
           end
 

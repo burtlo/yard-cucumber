@@ -24,7 +24,14 @@ Feature: Customer Logout Feature
     When a customer logs in as username 'frank' with password 'default'
 	And visits the customer update page
 	Then I expect the customer is able able to post to their profile
-	
+
+  @optional_parameters
+  Scenario: Project
+  # This step definition has some optional parameters
+  Given a project
+  And an inactive project
+  And a project with the name 'optional', start date 10/26/2010, nicknamed 'norman'
+
   @product
   Scenario Outline: Customers that bought a product are included in their product groups
     Given that <Customer> is a valid customer
