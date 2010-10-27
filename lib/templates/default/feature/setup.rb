@@ -33,9 +33,13 @@ def highlight_matches(step)
   value = h(step.value)
   
   if step.definition
-    step.value.match(%r{#{step.definition.compare_value}}).to_a[1..-1].compact.each do |match|
-      #log.debug "Highlighting: #{match} #{match.class}"
-      value.gsub!(h(match),"<span class='match'>#{h(match)}</span>")
+    matches = step.value.match(%r{#{step.definition.compare_value}})
+    
+    if matches
+      matches[1..-1].reverse.each_with_index do |match,index|
+        next if match == nil
+        value[matches.begin((matches.size - 1) - index)..(matches.end((matches.size - 1) - index) - 1)] = "<span class='match'>#{match}</span>"
+      end
     end
   end
   

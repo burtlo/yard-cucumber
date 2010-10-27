@@ -26,11 +26,16 @@ Feature: Customer Logout Feature
 	Then I expect the customer is able able to post to their profile
 
   @optional_parameters
-  Scenario: Project
-  # This step definition has some optional parameters
-  Given a project
-  And an inactive project
-  And a project with the name 'optional', start date 10/26/2010, nicknamed 'norman'
+  Scenario: Optional Parameter Step Definition
+    # This step definition has some optional parameters
+    Given a project
+    And an inactive project
+    And a project with the name 'optional', start date 10/26/2010, nicknamed 'norman'
+
+  @highlighting
+  Scenario: Highlighting
+    Given a duck that has a bill
+    Then I expect the duck to quack
 
   @product
   Scenario Outline: Customers that bought a product are included in their product groups

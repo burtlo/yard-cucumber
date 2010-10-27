@@ -56,6 +56,19 @@ end
 
 
 #
+# The highlighting replacement uses a span which had trouble when blindly using
+# a gsub replacement.
+#
+Given /(a|\d+) ducks? that ha(?:s|ve) (a|\d+) bills?/ do |duck_count,bills_count|
+  pending
+end
+
+Then /I expect the (duck|bird) to (\w+)/ do |animal,verb|
+  pending
+end
+
+
+#
 # Some details about the helper method that might be picked up in the documentation.
 #
 def a_helper_method
