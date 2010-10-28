@@ -25,10 +25,8 @@ class StepTransformHandler < YARD::Handlers::Ruby::Legacy::Base
       instance._value_constants.each do |instance_constants| 
         @constants.each do |constant|
           if instance_constants.to_sym == constant.name
-            log.debug "Constant #{constant.name} was found in the step definition #{stepdef_instance.value}, attempting to replace that value"
             returned_constant = unpack_constants(constant.value)
-            log.debug "CONSTANT: #{constant.name}\nFINAL: #{returned_constant}"
-            obj.constants[constant.name] = unpack_constants(constant.value)
+            instance.constants[constant.name] = unpack_constants(constant.value)
           end
         end
       end
