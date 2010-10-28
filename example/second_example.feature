@@ -5,7 +5,7 @@ Feature: Customer Logout Feature
   Background:
     Given this undefined step definition
 
-  @bvt
+  @bvt @param2 @param3
   Scenario: Customer that is logged in is able to log out
     Given that a customer is a valid customer
     And a customer logs in as username 'frank' with password 'default'

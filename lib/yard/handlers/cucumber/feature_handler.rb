@@ -16,7 +16,6 @@ module YARD
 
 
           if statement
-            log.info "Processing Feature: #{statement.value}"
             # For the background and the scenario, find the steps that have definitions
             process_scenario(statement.background) if statement.background
 

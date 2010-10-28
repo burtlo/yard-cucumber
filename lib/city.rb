@@ -5,6 +5,11 @@ require 'gherkin/formatter/tag_count_formatter'
 
 require 'yard'
 
+module CucumberInTheYARD
+  VERSION = '1.5.4' unless defined?(CucumberInTheYARD::VERSION)
+end
+
+
 require File.dirname(__FILE__) + "/yard/code_objects/cucumber/base.rb"
 require File.dirname(__FILE__) + "/yard/code_objects/cucumber/namespace_object.rb"
 require File.dirname(__FILE__) + "/yard/code_objects/cucumber/feature.rb"

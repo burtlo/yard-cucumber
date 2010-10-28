@@ -1,3 +1,14 @@
+=== 1.5.4 / 2010-10-28
+
+* Optimization - Found that for a large test suite that the processing time was
+  approaching 2 hours (oh boy!).  Reduced that time to a few minutes by optimizing
+  the feature handler to cache all step definitions and step transforms.
+
+* Step Transforms will now attempt to unpack any constants found within them.
+* FIX - Step Transforms were not being parsed because the regex incorrectly included
+  the block.
+* FIX - Features and Scenarios with multiple tags were not being displayed
+
 === 1.5.3 / 2010-10-26
 
 * FIX - Step Definition YARD handler regex was poorly formed and raised exceptions

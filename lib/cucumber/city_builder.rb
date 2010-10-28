@@ -27,7 +27,7 @@ module Cucumber
 
         tag_code_object.add_file(@file,parent.line)
 
-        parent.tags << tag_code_object unless parent.tags.find {|tag| tag_code_object }
+        parent.tags << tag_code_object unless parent.tags.find {|tag| tag == tag_code_object }
         tag_code_object.owners << parent unless tag_code_object.owners.find {|owner| owner == parent}
       end
 
