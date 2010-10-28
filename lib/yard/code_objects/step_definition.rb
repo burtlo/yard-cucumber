@@ -5,8 +5,8 @@ module YARD::CodeObjects
   class StepDefinitionObject < Base
     include Cucumber::LocationHelper
     
-    attr_reader :keyword, :value, :compare_value, :source 
-    attr_accessor :constants, :steps
+    attr_reader :constants, :keyword, :source, :value  
+    attr_accessor :steps
     
     def value=(value)
       @value = format_source(value)

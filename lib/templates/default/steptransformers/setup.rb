@@ -12,8 +12,8 @@ def stepdefinitions
 end
 
 def steptransforms
-  @item_title = "Step Transformers"
-  @item_type = "step transformer"
+  @item_title = "Step Transforms"
+  @item_type = "step transform"
   @items = YARD::Registry.all(:steptransform)
   erb(:transformers)
 end

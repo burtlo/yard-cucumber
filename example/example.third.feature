@@ -17,6 +17,7 @@ Feature: Customer Account
   @wip
   Scenario: Customer cannot change settings if they are not logged in
     Given that a customer is a valid customer
+    And that teddy bear is a valid customer
     When the customer visits the account settings page
     Then I expect the customer to be presented with the login page
 	

@@ -10,6 +10,11 @@ Transform /^the customer$/ do |customer|
   "the transformed customer"
 end
 
+Transform /^#{TEDDY_BEAR}$/ do |teddy|
+  "the tranformed teddy bear"
+end
+
+
 Transform /^((?:\d{1,2}[\/-]){2}(?:\d\d){1,2})?\s*(\w{3})?\s*(\d{1,2}:\d{2}\s*(?:AM|PM)?)$/ do |date,day,time|
   "#{date} #{day} #{time}"
 end

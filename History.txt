@@ -1,3 +1,12 @@
+=== 1.5.3 / 2010-10-26
+
+* FIX - Step Definition YARD handler regex was poorly formed and raised exceptions
+  when it contained a forward-slash (even if escaped).
+* FIX - Step highlighting was causing 'Out Of Memory' issues because
+  gsub could not handle nil values.
+* FIX - Step highlighting failed to replace matches properly causing for corrupted
+  HTML span values to appear in the highlighted step definitions
+
 === 1.5.2 / 2010-10-26
 
 * FIX - Step Transform YARD handler regex was poorly formed and raised exceptions
