@@ -5,11 +5,14 @@ module YARD
 
         handles CodeObjects::Cucumber::Feature
 
+        @@step_definitions = nil
+        @@step_transforms = nil
+        
         def process
 
           # Create a cache of all of the step definitions and the step transforms
-          @step_definitions = cache(:stepdefinition)
-          @step_transforms = cache(:steptransform)
+          @@step_definitions = cache(:stepdefinition) unless @@step_definitions
+          @@step_transforms = cache(:steptransform) unless @@step_transforms
 
 
           if statement
@@ -19,13 +22,13 @@ module YARD
 
             statement.scenarios.each do |scenario|
               if scenario.outline?
-                log.info "Scenario Outline: #{scenario.value}"
+                #log.info "Scenario Outline: #{scenario.value}"
                 scenario.scenarios.each_with_index do |example,index|
-                  log.info " * Processing Example #{index + 1}"
+                  #log.info " * Processing Example #{index + 1}"
                   process_scenario(example)
                 end
               else
-                log.info "Processing Scenario: #{scenario.value}"
+                #log.info "Processing Scenario: #{scenario.value}"
                 process_scenario(scenario)
               end
             end
@@ -63,14 +66,14 @@ module YARD
         end
 
         def match_step_to_step_definition_and_transforms(step)
-          @step_definitions.each do |stepdef,stepdef_object|
+          @@step_definitions.each do |stepdef,stepdef_object|
 
             stepdef_matches = step.value.match(stepdef)
 
             if stepdef_matches
               step.definition = stepdef_object
               stepdef_matches[-1..1].each do |match|
-                @step_transforms.each do |steptrans,steptransform_object|
+                @@step_transforms.each do |steptrans,steptransform_object|
                   if steptrans.match(match)
                     step.transforms << steptransform_object
                     steptransform_object.steps << step
