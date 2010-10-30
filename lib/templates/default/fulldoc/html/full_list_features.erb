@@ -1,3 +1,6 @@
+<li>
+  <%= linkify YARD::CodeObjects::Cucumber::CUCUMBER_NAMESPACE, "All Features" %>
+</li>
 <% @items.each do |feature| %>
 <li>
 	<%= "<a class='toggle'></a>" unless feature.scenarios.empty? %>
