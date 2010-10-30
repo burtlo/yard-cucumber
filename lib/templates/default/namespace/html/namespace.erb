@@ -1,0 +1,46 @@
+<% if @namespace %>
+  <div id="cukes_logo">&nbsp;</div>
+  <div class="requirements">
+
+    <div class="summary">
+      <span class="name">Features:</span><span class="value"><%= features.size %></span>
+      <span class="name">Scenarios:</span><span class="value"><%= scenarios.size %></span>
+      <span class="name">Steps:</span><span class="value"><%= steps.size %></span>
+      <span class="name">Tags:</span><span class="value"><%= tags.size %></span>
+    </div>
+    <div class="tags"><span class="name">Tags:</span>
+      <%= tags.collect {|tag| linkify(tag,tag.value) }.join(",\n") %>
+    </div>
+
+    <div id="features" style="margin-left: 40px;">
+      <div class="title"><span style="font-size: 24px; font-weight: bold; color: #3F3F3F;">Features</span></div>
+    </div>
+    <% i = 0 %>
+    <table style="margin-left: 10px;">
+      <tr>
+        <td valign='top' width="50%">
+          <% all_features_by_letter.sort_by {|l,o| l.to_s }.each do |letter, objects| %>
+            <% if (i += 1) % 13 == 0 %>
+            </td><td valign='top' width="50%">
+              <% i = 0 %>
+            <% end %>
+            <ul id="alpha_<%= letter %>" class="alpha">
+              <li class="letter"><%= letter %></li>
+              <ul>
+                <% objects.each do |obj| %>
+                  <li>
+                    <%= linkify obj, obj.value %>
+                    <small>(<%= obj.file %>)</small>
+                  </li>
+                <% end %>
+              </ul>
+            </ul>
+          <% end %>
+        </td>
+      </tr>
+    </table>
+
+  </div>
+<% end %>
+
+

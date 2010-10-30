@@ -11,17 +11,12 @@ def init
     generate_full_list(@features)
   end
   
-
-  
   @tags = Registry.all(:tag)
 
   if @tags
     @tags.each {|tag| serialize(tag) }
     generate_full_list @tags.sort {|x,y| y.all_scenarios.size <=> x.all_scenarios.size }
   end
-
-  #@scenarios = Registry.all(:scenario).find_all {|scenario| !scenario.background? }
-  #generate_full_list(@scenarios) if @scenarios
 
   @steps = Registry.all(:step)
   generate_full_list(@steps) if @steps
@@ -31,6 +26,11 @@ def init
     T('layout').run(options)
   end
 
+  feature_directories = YARD::CodeObjects::Cucumber::CUCUMBER_NAMESPACE.children.find_all {|child| child.is_a?(YARD::CodeObjects::Cucumber::FeatureDirectory) }
+
+  serialize(YARD::CodeObjects::Cucumber::CUCUMBER_NAMESPACE)
+  serialize_feature_directories(feature_directories)
+  
 end
 
 
@@ -54,4 +54,14 @@ def class_list(root = Registry.root)
   out = super(root)
   root.instance_eval { children << YARD::CodeObjects::Cucumber::CUCUMBER_NAMESPACE } if root == Registry.root
   out
+end
+
+def serialize_feature_directories(namespaces)
+  namespaces.each do |namespace|
+    Templates::Engine.with_serializer(namespace, options[:serializer]) do
+      options[:object] = namespace
+      T('layout').run(options)
+    end
+    serialize_feature_directories(namespace.children.find_all {|child| child.is_a?(YARD::CodeObjects::Cucumber::FeatureDirectory)})
+  end
 end
