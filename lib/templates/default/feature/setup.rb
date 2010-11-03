@@ -5,7 +5,7 @@ def init
   sections.push :feature
   
   sections.push :background if object.background
-  sections.push :scenarios if object.scenarios  
+  sections.push :scenarios if object.scenarios
     
 end
 

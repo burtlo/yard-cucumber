@@ -1,0 +1,76 @@
+<% if @directory %>
+  <div class="requirements">
+    <div class="title">
+      <span class="pre">Directory:</span>
+      <span class="name"><%= h @directory.name.to_s.capitalize %></span>
+    </div>
+    <div class="meta">
+      <div class="file"><%= h(@directory.file) %></div>
+    </div>
+    <div class="summary">
+      <span class="name">Features:</span><span class="value"><%= features.size %></span>
+      <span class="name">Scenarios:</span><span class="value"><%= scenarios.size %></span>
+    </div>
+    <div class="tags"><span class="name">Tags:</span>
+      <%= tags.collect {|tag| linkify(tag,tag.value) }.join(",\n") %>
+    </div>
+
+
+    <% if @directories_by_letter && !@directories_by_letter.empty? %>
+      <div id="directory">
+        <div class="title"><span class="name">Subdirectories</span></div>
+      </div>
+      <% i = 0 %>
+      <table>
+        <tr>
+          <td valign='top' width="33%">
+            <% @directories_by_letter.each do |directory| %>
+              <% if (i += 1) % 8 == 0 %>
+              </td><td valign='top' width="33%">
+                <% i = 0 %>
+              <% end %>
+              <ul>
+                <%= linkify directory, directory.name %>
+              </ul>
+            <% end %>
+          </td>
+        </tr>
+      </table>
+
+    <% end %>
+
+    <% if @objects_by_letter && !@objects_by_letter.empty? %>
+      <div id="features">
+        <div class="title"><span class="name">Features</span></div>
+      </div>
+      <% i = 0 %>
+      <table>
+        <tr>
+          <td valign='top' width="33%">
+            <% @objects_by_letter.sort_by {|l,o| l.to_s }.each do |letter, objects| %>
+              <% if (i += 1) % 8 == 0 %>
+              </td><td valign='top' width="33%">
+                <% i = 0 %>
+              <% end %>
+              <ul id="alpha_<%= letter %>" class="alpha">
+                <li class="letter"><%= letter %></li>
+                <ul>
+                  <% objects.each do |obj| %>
+                    <li>
+                      <%= linkify obj, obj.value %>
+                      <% if !obj.namespace.root? %>
+                        <small>(<%= obj.namespace.file %>)</small>
+                      <% end %>
+                    </li>
+                  <% end %>
+                </ul>
+              </ul>
+            <% end %>
+          </td>
+        </tr>
+      </table>
+    <% end %>
+  <% end %>
+
+</div>
+

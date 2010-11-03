@@ -1,48 +1,29 @@
-<% object.features.each do |feature| %>
-<div class="feature direct">
-	<div class="title">
-		<span class="pre"><%= feature.keyword %></span>
-		<span class="name">
-			<a href="<%= url_for feature %>"><%= feature.value %></a>
-		</span>
-	</div>
-	<div class="meta">
-		<div class="file"><%= h(feature.file) %></div>
-		<div class="tags">Tags: 
-			<% feature.tags.each do |tag| %>
-			<a href="<%= url_for tag %>"><%= tag.value %></a>
-			<% end %>
-		</div>		
-	</div>
-	<div class="description">
-		<%= feature.description %>
-	</div>
+<div id="features">
+  <div class="title"><span class="name">Features</span></div>
 </div>
-<% feature.scenarios.each do |scenario| %>
-<div class="scenario indirect">
-	<div class="title">
-		<span class="pre"><%= scenario.keyword %></span>
-		<span class="name">
-			<a href="<%= url_for feature %>"><%= scenario.value %></a>
-		</span>
-	</div>
-	<div class="meta">
-		<div class="file">
-			<%= scenario.location %>
-		</div>
-		<% unless scenario.tags.empty? %>
-		<div class="tags">
-			Tags: <% scenario.tags.each do |tag| %>
-			<a href="<%= url_for tag %>"><%= tag.value %></a>
-			<% end %>
-		</div>
-		<% end%>
-	</div>
-	<% unless scenario.description.empty? %>
-	<div class="description">
-		<%= h scenario.description %>
-	</div>
-	<% end %>	
-</div>
-<% end %>
-<% end %>
+<% i = 0 %>
+<table>
+  <tr>
+    <td valign='top' width="33%">
+      <% all_features_by_letter.sort_by {|l,o| l.to_s }.each do |letter, objects| %>
+        <% if (i += 1) % 8 == 0 %>
+        </td><td valign='top' width="33%">
+          <% i = 0 %>
+        <% end %>
+        <ul id="alpha_<%= letter %>" class="alpha">
+          <li class="letter"><%= letter %></li>
+          <ul>
+            <% objects.each do |obj| %>
+              <li>
+                <%= linkify obj, obj.value %>
+                <% if !obj.namespace.root? %>
+                  <small>(<%= obj.namespace.file %>)</small>
+                <% end %>
+              </li>
+            <% end %>
+          </ul>
+        </ul>
+      <% end %>
+    </td>
+  </tr>
+</table>

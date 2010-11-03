@@ -52,6 +52,10 @@ And /^edits their the (biography) to state:$/ do |section,text|
   pending "text_field not present for #{section} #{bio} for this release"
 end
 
+Then /I expect (#{CUSTOMER}) to be a member of the '([^']+)' group/ do |customer,product|
+  pending "Customer #{customer} with product #{product}"
+end
+
 #
 # Complicated step definition with optional parameters
 #

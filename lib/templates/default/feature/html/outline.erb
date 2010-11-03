@@ -1,19 +1,51 @@
+<% @scenario.scenarios.each_with_index do |scenario,example_index| %>
+  <div id="<%= "#{@id}Example#{example_index + 1}Steps" %>" style="display: none;" class="steps">
+    <% scenario.steps.each_with_index do |step,index| %>
+      <% @step = step %>
+
+
+      <div <%= "id='#{@id}Example#{example_index + 1}Step#{index}'" %> class="step <%= (index + 1) % 2 == 0 ? 'even' : 'odd' %>">
+        <span class="predicate"><%= step.keyword %></span>
+
+        <% if step.definition %>
+          <span class="defined">
+            <%=  highlight_matches(step) %>
+            <div class="details">
+              <a href="<%= url_for step.definition %>">?</a>
+            </div>
+          </span>
+        <% else %>
+          <span class="undefined"><%= h step.value %></span>
+        <% end %>
+
+      </div>
+
+      <%= erb(:table) if step.has_table? %>
+      <%= erb(:pystring) if step.has_text? %>
+
+
+    <% end %>
+  </div>
+<% end %>
+
+
 <div class="outline">
-	<div class="keyword"> <%= h @scenario.example_keyword %> </div>
-	<table>
-		<thead>
-			<tr>
-				<% @scenario.example_headers.each_with_index do |header,header_index| %>
-				<th><%= h(header) %></th>
-				<% end %>
-			</tr>
-		</thead>
-		<% @scenario.example_data.each_with_index do |row,row_index| %>
-		<tr class="<%= (row_index + 1) % 2 == 0 ? 'even' : 'odd' %>" >
-			<% row.each_with_index do |column,column_index| %>
-			<td><%= h(column.to_s.strip) %></td>
-			<% end %>
-		</tr>
-		<% end %>
-	</table>
+  <div class="keyword"> <%= h @scenario.example_keyword %> </div>
+  <table>
+    <thead>
+      <tr>
+        <% @scenario.example_headers.each_with_index do |header,header_index| %>
+          <th><%= h(header) %></th>
+        <% end %>
+      </tr>
+    </thead>
+    <% @scenario.example_data.each_with_index do |row,row_index| %>
+      <tr class="<%= (row_index + 1) % 2 == 0 ? 'even' : 'odd' %>"
+          onclick="<%= "toggleScenarioExample('#{@id}',#{row_index + 1});" %>">
+            <% row.each_with_index do |column,column_index| %>
+          <td><%= h(column.to_s.strip) %></td>
+        <% end %>
+      </tr>
+    <% end %>
+  </table>
 </div>

@@ -29,15 +29,13 @@ $(function() {
 	</div>
 	<% unless @scenario.description.empty? %>
 	<div class="description">
-		<%= h @scenario.description %>
+          <%= h @scenario.description %>
 	</div>
 	<% end %>
 
-	<div id="<%= @id %>Steps" class="steps">
-		<%= @scenario.steps ? erb(:steps) : erb(:no_steps_defined) %>
-		
-	</div>
-
-	<%= erb(:outline) if @scenario.outline? %>
-
+        <div id="<%= @id %>Steps" class="steps">
+          <%= @scenario.steps ? erb(:steps) : erb(:no_steps_defined) %>
+        </div>
+  
+        <%= erb(:outline) if @scenario.outline? %>
 </div>
