@@ -1,25 +1,25 @@
 <% @scenario.steps.each_with_index do |step,index| %>
-	<% @step = step %>
+  <% @step = step %>
 
 
-	<div <%= "id='#{@id}Step#{index}'" %> class="step <%= (index + 1) % 2 == 0 ? 'even' : 'odd' %>">
-		<span class="predicate"><%= step.keyword %></span>
+  <div <%= "id='#{@id}Step#{index}'" %> class="step <%= (index + 1) % 2 == 0 ? 'even' : 'odd' %>">
+    <span class="predicate"><%= step.keyword %></span>
 
-		<% if step.definition %>
-		<span class="defined">
-			<%=  highlight_matches(step) %>
-			<div class="details">
-				<a href="<%= url_for step.definition %>">?</a>
-			</div>
-		</span>
-		<% else %>
-		<span class="undefined"><%= h step.value %></span>
-		<% end %>
+    <% if step.definition %>
+      <span class="defined">
+        <%=  highlight_matches(step) %>
+        <div class="details">
+          <a href="<%= url_for step.definition %>">?</a>
+        </div>
+      </span>
+    <% else %>
+      <span class="undefined"><%= h step.value %></span>
+    <% end %>
 
-	</div>
+  </div>
 
-	<%= erb(:table) if step.has_table? %>
-	<%= erb(:pystring) if step.has_text? %>
+  <%= erb(:table) if step.has_table? %>
+  <%= erb(:pystring) if step.has_text? %>
 
 
-	<% end %>
+<% end %>
