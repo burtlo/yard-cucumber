@@ -7,7 +7,7 @@ def self.show_version_changes(version)
   changes = []  
   grab_changes = false
 
-  File.open("#{File.dirname(__FILE__)}/History.txt",'r') do |file|
+  File.open('History.txt','r') do |file|
     while (line = file.gets) do
     
       if line =~ /^===\s*#{version.gsub('.','\.')}\s*\/\s*(.+)\s*$/
