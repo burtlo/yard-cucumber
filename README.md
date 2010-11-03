@@ -51,6 +51,11 @@ the step definition.
 Steps highlight the match groups in a different color to show which parts of the step are matched in the step
 definition.
 
+**7. Represent instances of scenarios for scenario outlines.**
+
+Display all the values that would normally be substituted into a scenario for the scenario outline. To 
+make it easier to represent them to product owners.  As well as link the instance of the step definitions
+for developers.
 
 
 Installation
@@ -127,26 +132,25 @@ Roadmap
 
 **Future Feature Ideas**
 
-**1. Represent instances of scenarios for scenario outlines.**
+**1. Feature/Scenario Tag unions and intersections**
 
-Display all the values that would normally be substituted into a scenario for the scenario outline. To 
-make it easier to represent them to product owners.  As well as link the instance of the step definitions
-for developers.
+Create an AJAX interface that would allow the user to specify tags to union, intersect, or exclude to 
+produce a list of features and scenarios that would execute.  The output could also provide an example
+command line parameter list to produce the feature/scenario execution results.
 
-**2. Tag pages provide the ability to exclude other tags that intersect.**
+Visualization of this execution with some graphing library for some extra points.
 
-Adding a list of tags currently used by the features and scenarios in the below list (that are not the
-current tag).  Allowing the visualization of what the execution of the requirements pass would look like.
-Output of a sample generated tag command-line would be displayed to assist with execution.  On selection
-update of the total features and scenarios affected by the changes in the filtering.
+**2. Performance enhancements**
 
-I would like to also address some layout and formatting on the page.  Scenarios will also link to the scenarios
-feature page, show their descriptions, and of course all their other tags.
+The current rate of documentation is not dreadfully slow anymore but more performance enhancements could
+always be performed to produce the documentation faster.
 
-**3. Performance enhancements**
+**3. Requirements Only Docuementation**
 
-At the current rate the documentation generation is dreadfully slow for the project.  After implementing a few 
-more of these features I will look at addressing the performance to see where this can be optimized.
+'fulldoc' is the default documentation generated but I have this thought that a requirements-only document
+may be useful.  Essentially the first draft would be the current documentation minus the class and method
+links/searches and replacing the index.html.
+
 
 LICENSE
 -------
