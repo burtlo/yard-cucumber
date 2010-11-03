@@ -151,6 +151,21 @@ always be performed to produce the documentation faster.
 may be useful.  Essentially the first draft would be the current documentation minus the class and method
 links/searches and replacing the index.html.
 
+**4. Before, After, and Around Hooks**
+
+Document the additional before, after, and around hooks that Cucumber uses.  Specifically display the before, after, and around
+hooks that are tied to tags (unions and intersections) on the tag pages.
+
+**5. Layout refinements of the step definition / step tranform page**
+
+More work could be done to make this page more searchable, sortable, and usable.
+
+
+**6. Table Step Transforms**
+
+The table step transform matching would be nice to show which tables are affected by table transforms
+
+
 
 LICENSE
 -------
