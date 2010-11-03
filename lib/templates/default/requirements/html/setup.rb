@@ -2,9 +2,11 @@ def init
   super
   sections.push :namespace
   @namespace = object
+
 end
 
 def namespace
+  @directories = Registry.all(:featuredirectory)
   erb(:namespace)
 end
 

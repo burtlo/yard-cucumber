@@ -1,4 +1,8 @@
+<li>
+  <%= linkify YARD::CodeObjects::Cucumber::CUCUMBER_TAG_NAMESPACE, "All Tags" %>
+</li>
 <% n = 1 %>
+
 <% @items.each do |tag| %>
   <li class="r<%= n %>">
 	<%= linkify tag, tag.value %>

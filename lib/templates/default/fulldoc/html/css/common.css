@@ -2,21 +2,21 @@
 .summary * { padding: 5px 0px 5px 10px; }
 .feature {}
 .tags { font-family: monospace;	font-size: 14px; }
-* .title { padding: 10px; font-size: 24px; }
+.title { padding: 10px; font-size: 24px; }
 
 .feature > .title, .tag > .title, .requirements > .title { margin: 20px 20px 10px 20px;	padding-left: 0px; border-bottom: 1px solid #E3E3E3; }
 .meta .file { float: right; margin-right: 20px; }
-* .title .pre {	color: #696969; }
-* .title .name { font-weight: bold; color: #3F3F3F; }
+.title .pre {	color: #696969; }
+.title .name { font-weight: bold; color: #3F3F3F; }
 
 .meta { margin-left: 30px; color: gray; }
 .scenario .meta .tags { margin-left: 0px; }
 
 .feature .description, .requirements .summary {
-	margin: 10px 20px 0px 30px;
-	padding: 10px 20px 20px 10px;
-	color: #343332;
-	font-family: 'Trebuchet MS', Arial, Helvetica;
+    margin: 10px 20px 0px 30px;
+    padding: 10px 20px 20px 10px;
+    color: #343332;
+    font-family: 'Trebuchet MS', Arial, Helvetica;
 }
 
 .summary .name, .tags .name { color: gray; }
@@ -26,39 +26,42 @@
 .even { background-color: #FFFFFF; }
 
 #background, #features { margin-top: 10px; margin-left: 20px; }
+
 #directory { margin-top: 20px; margin-left: 20px; }
 
-
 .scenario { margin-top: 40px; margin-left: 20px; }
-.scenario .title, #background .title, #directory .title, #features .title {
-	font-size: 16px;
-	padding-left: 0px;
-	margin: 0px 20px 0px 10px;
-	border-bottom: 1px solid #E3E3E3;
+.scenario .title, #background .title {
+    font-size: 16px;
+    padding-left: 0px;
+    margin: 0px 20px 0px 10px;
+    border-bottom: 1px solid #E3E3E3;
 }
 
-#background .title .pre, #directory .title .name, #features .title .name {
-	color: #346F97;
-}
+#directory .title, #features .title { padding-left: 0px; margin-left: 10px; border-bottom: 1px solid #E3E3E3; }
+#directory .title .name, #features .title .name { font-weight: normal; }
+
+
+
+#background .title .pre { color: #346F97; }
 .requirements .tags { margin-left: 50px; margin-right: 30px; }
 
-.requirements ul.alpha { font-size: 1.1em; }
-.requirements ul.alpha { padding-bottom: 10px; list-style: none; }
-.requirements ul.alpha li.letter { font-size: 1.4em; padding-bottom: 10px; }
-.requirements ul.alpha ul { padding-left: 15px; }
-.requirements ul small { color: #666; font-size: 0.7em; }
+* ul.alpha { font-size: 1.1em; }
+* ul.alpha { padding-bottom: 10px; list-style: none; }
+* ul.alpha li.letter { font-size: 1.4em; padding-bottom: 10px; }
+* ul.alpha ul { padding-left: 15px; }
+* ul small { color: #666; font-size: 0.7em; }
 
 
 .scenario .steps, #background .steps {
-	margin: 20px 20px 0px 30px;
-	font-size: 12px;
+    margin: 20px 20px 0px 30px;
+    font-size: 12px;
 }
 
 .scenario .step, #background .step {
-	margin-top: 4px;
-	padding: 4px;
-	font-size: 14px;
-	font-weight: bold;
+    margin-top: 4px;
+    padding: 4px;
+    font-size: 14px;
+    font-weight: bold;
 }
 
 #background .title .name {}
@@ -80,34 +83,34 @@
 
 .multiline, .text { margin-top: 10px; margin-left: 20px; }
 .text { 
-	padding: 20px;
-	background-color: #F8F8FF;
-	color: #444444;
-	border: 1px solid #DEDEDE;
+    padding: 20px;
+    background-color: #F8F8FF;
+    color: #444444;
+    border: 1px solid #DEDEDE;
 }
 
 
 .outline {
-	margin-top: 20px;
-	margin-left: 40px;
+    margin-top: 20px;
+    margin-left: 40px;
 }
 .outline .keyword {
-	padding: 4px;
-	font-weight: bold;
-	font-size: 16px;
+    padding: 4px;
+    font-weight: bold;
+    font-size: 16px;
 }
 
 .multiline table tr, .outline table tr {
-	padding: 4px;
+    padding: 4px;
 }
 .multiline table thead tr th, .outline table thead tr th {
-	text-align: left;
-	padding: 4px;
-	background-color: #A8C0A8;
+    text-align: left;
+    padding: 4px;
+    background-color: #A8C0A8;
 }
 .multiline table tr td, .outline table tr td {
-	min-width: 100px;
-	padding: 4px 10px 4px 10px;
+    min-width: 100px;
+    padding: 4px 10px 4px 10px;
 }
 
 
@@ -121,16 +124,16 @@
 
 
 .stepdef .title {
-	font-size: 14px;
-	margin-top: 30px;
-	border-bottom: 1px solid #E3E3E3;
+    font-size: 14px;
+    margin-top: 30px;
+    border-bottom: 1px solid #E3E3E3;
 }
 
 .stepdef .steps, .stepdef .method_details_list {
-	margin: 10px 0px 0px 30px;
+    margin: 10px 0px 0px 30px;
 }
 .stepdef .steps .step {
-	padding: 4px;
+    padding: 4px;
 }
 
 #cukes_links { margin: 10px auto 10px auto; 

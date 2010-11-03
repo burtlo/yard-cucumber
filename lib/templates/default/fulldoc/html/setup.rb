@@ -30,7 +30,8 @@ def init
 
   serialize(YARD::CodeObjects::Cucumber::CUCUMBER_NAMESPACE)
   serialize_feature_directories(feature_directories)
-  
+
+  serialize(YARD::CodeObjects::Cucumber::CUCUMBER_TAG_NAMESPACE)
 end
 
 

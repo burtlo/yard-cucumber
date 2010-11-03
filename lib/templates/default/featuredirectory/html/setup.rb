@@ -6,7 +6,7 @@ end
 
 def directory
   @objects_by_letter = all_types_by_letter(YARD::CodeObjects::Cucumber::Feature)
-  @directories_by_letter = all_types_by_letter(YARD::CodeObjects::Cucumber::FeatureDirectory)
+  @directories_by_letter = @directory.children.find_all {|child| child.is_a?(YARD::CodeObjects::Cucumber::FeatureDirectory) }.sort_by {|dir| dir.name }
   erb(:directory)
 end
 

@@ -20,7 +20,7 @@
     </div>
 
     <div id="features" style="margin-left: 40px;">
-      <div class="title"><span style="font-size: 24px; font-weight: bold; color: #3F3F3F;">Features</span></div>
+      <div class="title"><span class="name">Features</span></div>
     </div>
     <% i = 0 %>
     <table style="margin-left: 10px;">
@@ -46,6 +46,29 @@
         </td>
       </tr>
     </table>
+
+    <% if @directories && !@directories.empty? %>
+      <div id="directory" style="margin-left: 40px;">
+        <div class="title"><span class="name">Subdirectories</span></div>
+      </div>
+      <% i = 0 %>
+      <table style="margin-left: 10px;">
+        <tr>
+          <td valign='top' width="33%">
+            <% @directories.each do |directory| %>
+              <% if (i += 1) % 8 == 0 %>
+              </td><td valign='top' width="33%">
+                <% i = 0 %>
+              <% end %>
+              <ul>
+                <%= linkify directory, directory.name %>
+              </ul>
+            <% end %>
+          </td>
+        </tr>
+      </table>
+
+    <% end %>
 
   </div>
 <% end %>
