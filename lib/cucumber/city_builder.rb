@@ -125,10 +125,15 @@ module Cucumber
               s.keyword = step.keyword.dup
               s.value = step.value.dup
               s.add_file(@file,step.line_number)
+
+              s.text = step.text.dup if step.has_text?
+              s.table = clone_table(step.table) if step.has_table?
             end
 
             @step_container.example_values_for_row(row_index).each do |key,text|
               step_instance.value.gsub!("<#{key}>",text)
+              step_instance.text.gsub!("<#{key}>",text) if step_instance.has_text?
+              step_instance.table[1..-1].each{|row| row.each{|col| col.gsub!("<#{key}>",text)}} if step_instance.has_table?
             end
 
             step_instance.scenario = scenario
@@ -159,6 +164,7 @@ module Cucumber
         when Gherkin::Formatter::Model::PyString
           @table_owner.text = multiline_arg.value
         when Array
+          #log.info "Matrix: #{matrix(multiline_arg).collect{|row| row.collect{|cell| cell.class } }.flatten.join("\n")}"
           @table_owner.table = matrix(multiline_arg)
         end
         
@@ -183,6 +189,10 @@ module Cucumber
           row.line = gherkin_row.line
           row
         end
+      end
+
+      def clone_table(base)
+        base.map {|row| row.map {|cell| cell.dup }}
       end
     end
   end
