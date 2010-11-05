@@ -18,20 +18,13 @@ def init
     generate_full_list @tags.sort {|x,y| y.all_scenarios.size <=> x.all_scenarios.size }
   end
 
-  @steps = Registry.all(:step)
-  generate_full_list(@steps) if @steps
-
-  Templates::Engine.with_serializer(YARD::CodeObjects::Cucumber::CUCUMBER_STEPTRANSFORM_NAMESPACE, options[:serializer]) do
-    options[:object] = YARD::CodeObjects::Cucumber::CUCUMBER_STEPTRANSFORM_NAMESPACE
-    T('layout').run(options)
-  end
-
   feature_directories = YARD::CodeObjects::Cucumber::CUCUMBER_NAMESPACE.children.find_all {|child| child.is_a?(YARD::CodeObjects::Cucumber::FeatureDirectory) }
 
   serialize(YARD::CodeObjects::Cucumber::CUCUMBER_NAMESPACE)
+  serialize(YARD::CodeObjects::Cucumber::CUCUMBER_STEPTRANSFORM_NAMESPACE)
+  serialize(YARD::CodeObjects::Cucumber::CUCUMBER_TAG_NAMESPACE)  
   serialize_feature_directories(feature_directories)
 
-  serialize(YARD::CodeObjects::Cucumber::CUCUMBER_TAG_NAMESPACE)
 end
 
 

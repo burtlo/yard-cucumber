@@ -1,3 +1,9 @@
+=== 1.6.0 / 2010-11-02
+
+* Feature directories, subdirectories, and Tags breadcrumb pages are present
+* Scenario Outlines now display each example inline when the example is clicked
+* 'All Features' and 'All Tags' links in the search fields
+
 === 1.5.4 / 2010-10-28
 
 * Optimization - Found that for a large test suite that the processing time was
