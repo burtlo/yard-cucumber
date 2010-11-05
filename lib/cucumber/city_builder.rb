@@ -133,7 +133,7 @@ module Cucumber
             @step_container.example_values_for_row(row_index).each do |key,text|
               step_instance.value.gsub!("<#{key}>",text)
               step_instance.text.gsub!("<#{key}>",text) if step_instance.has_text?
-              step_instance.table[1..-1].each{|row| row.each{|col| col.gsub!("<#{key}>",text)}} if step_instance.has_table?
+              step_instance.table.each{|row| row.each{|col| col.gsub!("<#{key}>",text)}} if step_instance.has_table?
             end
 
             step_instance.scenario = scenario

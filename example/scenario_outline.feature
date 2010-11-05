@@ -34,3 +34,13 @@ Feature: Scenario Outline
      | name | price |
      | toy  | $99   |
      | game | $49   |
+
+  Scenario Outline: Step contains a table; table header uses an example
+    Given the following table:
+      | name   | <denomination> | quantity |
+      | <name> | <price>        | 100000   |
+
+    Examples:
+     | name | price | denomination    |
+     | toy  | 99    | cost in euros   |
+     | game | 49    | cost in dollars |
