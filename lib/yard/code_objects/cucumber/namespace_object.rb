@@ -7,7 +7,7 @@ module YARD::CodeObjects::Cucumber
   end
 
   class Requirements < NamespaceObject ; end
-  class Tags < NamespaceObject ; end
+  class FeatureTags < NamespaceObject ; end
   class StepTransformersObject < NamespaceObject ; end
 
   class FeatureDirectory < YARD::CodeObjects::NamespaceObject
@@ -21,7 +21,7 @@ module YARD::CodeObjects::Cucumber
 
   CUCUMBER_NAMESPACE = Requirements.new(:root, "requirements")
   
-  CUCUMBER_TAG_NAMESPACE = Tags.new(CUCUMBER_NAMESPACE, "tags")
+  CUCUMBER_TAG_NAMESPACE = FeatureTags.new(CUCUMBER_NAMESPACE, "tags")
   
   CUCUMBER_STEPTRANSFORM_NAMESPACE = StepTransformersObject.new(CUCUMBER_NAMESPACE, "step_transformers")
   

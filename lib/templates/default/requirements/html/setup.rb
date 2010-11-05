@@ -6,7 +6,6 @@ def init
 end
 
 def namespace
-  @directories = Registry.all(:featuredirectory)
   erb(:namespace)
 end
 
@@ -18,18 +17,30 @@ def all_features_by_letter
   hash
 end
 
+def all_directories_by_letter
+  hash = {}
+  objects = feature_directories
+  objects = run_verifier(objects)
+  objects.each {|o| (hash[o.value.to_s[0,1].upcase] ||= []) << o }
+  hash
+end
+
+def feature_directories
+  @feature_directories ||= Registry.all(:featuredirectory)
+end
+
 def features
-  Registry.all(:feature)
+  @features ||= Registry.all(:feature)
 end
 
 def scenarios
-  Registry.all(:scenario)
+  @scenarios ||= Registry.all(:scenario)
 end
 
 def steps
-  Registry.all(:step)
+  @steps ||= Registry.all(:step)
 end
 
 def tags
-  Registry.all(:tag)
+  @tags ||= Registry.all(:tag)
 end
