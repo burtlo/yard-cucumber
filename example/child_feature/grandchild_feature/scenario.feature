@@ -1,6 +1,6 @@
 @scenarios
 Feature: Scenario
-  As a customer of the product I am able to logout
+  As a reader of the documentation I expect that scenario are documented correctly
 
   Background:
     Given this background step

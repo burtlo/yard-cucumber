@@ -23,9 +23,9 @@ def link_transformed_step(step)
   value = "#{step.keyword}#{step.value}"
   
   if step.transformed?
-    step.value.match(%r{#{step.definition.compare_value}}).to_a.each do |match|
+    step.value.match(step.definition.regex).to_a.each do |match|
       step.transforms.each do |transform|
-        value.gsub!(match,"<a href='#{url_for(transform)}'>#{match}</a>") if %r{#{transform.compare_value}}.match(match)
+        value.gsub!(match,"<a href='#{url_for(transform)}'>#{match}</a>") if transform.regex.match(match)
       end
     end
   end

@@ -1,6 +1,6 @@
 @scenarios
 Feature: Scenario
-  As a customer of the product I am able to logout
+  As a reader of the documentation I expect that scenario are documented correctly
 
   Background:
     Given this background step
@@ -11,9 +11,9 @@ Feature: Scenario
   @second
   Scenario: Scenario With Steps
     Given this first step
-	When this second step
-	Then this third step
-	
+    When this second step
+    Then this third step
+
   @third @optional_parameters
   Scenario: Optional Parameter Step Definition
     # This step definition has some optional parameters
@@ -35,18 +35,17 @@ Feature: Scenario
   @sixth @text
   Scenario: Scenario With Text
     Given the following text:
-    """
-      Oh what a bother!
-    """
+      """
+        Oh what a bother!
+      """
 
   @seventh @comments
-  Scenario: Scenario with comments and 
+  Scenario: Scenario with comments and
     with multiple lines for the name
+
     # First Comment
     Given this first step
     # Second Comment
     And this second step
     # Third Comment
     And this third step
-    # Comments after the last step, where do they go?
-

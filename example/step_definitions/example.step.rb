@@ -1,6 +1,7 @@
-CUSTOMER = /(?:(?:an?|the) customer|#{TEDDY_BEAR})/
 
-TEDDY_BEAR = /teddy bear/
+Transform /^#{CUSTOMER}$/ do |customer|
+  "a transformed customer"
+end
 
 Transform /^an? customer$/ do |customer|
   "a transformed customer"
@@ -8,6 +9,10 @@ end
 
 Transform /^the customer$/ do |customer|
   "the transformed customer"
+end
+
+Transform /^(#{ORDER}) customer$/ do |order|
+  "#{order} customer"
 end
 
 Transform /^#{TEDDY_BEAR}$/ do |teddy|

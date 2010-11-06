@@ -33,7 +33,7 @@ def highlight_matches(step)
   value = h(step.value)
   
   if step.definition
-    matches = step.value.match(%r{#{step.definition.compare_value}})
+    matches = step.value.match(step.definition.regex)
     
     if matches
       matches[1..-1].reverse.each_with_index do |match,index|

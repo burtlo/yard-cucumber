@@ -49,7 +49,7 @@ module YARD
         # 
         def cache(type)
           YARD::Registry.all(type).inject({}) do |hash,item| 
-            hash[%r{#{item.compare_value}}] = item unless item.compare_value =~ /.+\#\{[^\}]+\}.+/
+            hash[item.regex] = item if item.regex
             hash
           end
         end
