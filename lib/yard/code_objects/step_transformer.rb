@@ -11,7 +11,7 @@ module YARD::CodeObjects
     ESCAPE_PATTERN = /#\{\s*(\w+)\s*\}/
 
     def value=(value)
-      @value = strip_regex_from(format_source(value))
+      @value = format_source(value)
 
       until (nested = constants_from_value).empty?
         nested.each {|n| @value.gsub!(value_regex(n),find_value_for_constant(n)) }
@@ -21,7 +21,7 @@ module YARD::CodeObjects
     end
 
     def regex
-      @regex ||= /#{@value}/
+      @regex ||= /#{strip_regex_from(@value)}/
     end
 
     def constants_from_value(data=@value)
