@@ -6,7 +6,7 @@ require 'gherkin/formatter/tag_count_formatter'
 require 'yard'
 
 module CucumberInTheYARD
-  VERSION = '1.6.0' unless defined?(CucumberInTheYARD::VERSION)
+  VERSION = '1.6.1' unless defined?(CucumberInTheYARD::VERSION)
 end
 
 

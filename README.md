@@ -4,58 +4,33 @@ Cucumber-In-The-YARD (CITY): A Requirements Documentation Tool
 Synopsis
 --------
 
-Cucumber-In-The-Yard is a YARD extension that processes Cucumber Features, Scenarios, Steps,
-Step Definitions, Transforms, and Tags and provides a documentation interface that allows you
-easily view and investigate the test suite.  This tools hopes to bridge the gap of being able
-to provide your feature descriptions to your Product Owners and Stakeholders.
+Cucumber-In-The-Yard is a YARD extension that processes Cucumber features, scenarios, steps,
+tags, step definitions, and even transforms to provide documentation similar to what you expect
+to how YARD displays classes, methods and constants.  This tools bridges the gap of having 
+feature files found in your source code and true documentation that your team, product owners
+and stakeholders can use.
 
-Example
--------
+Examples
+--------
 
-An example, particularly the example features included with the project, of CITY can be viewed at
+I have created a trivial, example project to help provide a quick visualization of the resulting
+documentation.  I encourage you to look at it as an example and see if it would assist your 
+project from a multitude of perspectives: as the project's core developer; another developer or 
+a new developer; quality assurance engineer; or product owner/stakeholder.
 
-   [http://recursivegames.com/cukes/](http://recursivegames.com/cukes/)    
+The implemented example has been deployed at [http://recursivegames.com/cukes/](http://recursivegames.com/cukes/).
 
-**1. Users are able to search by Feature, Tags, and Scenario.**
+**1. Formatted Features** [example](http://recursivegames.com/cukes/requirements/example/second_example.html)
 
-Appended to the traditional search areas is the ability to now search by Feature, Tag, and Scenario.
-The user is able to search by steps, though I have not placed those links on the page, in step_list.html
-found in the root of the output directory.
+**2. Search through features, scenarios, and tags** [example](http://recursivegames.com/cukes/feature_list.html) & [example](http://recursivegames.com/cukes/tag_list.html)
 
-**2. Feature pages are displayed in a decently formatted HTML representation**
+**4. View features and scenarios by tag** [example](http://recursivegames.com/cukes/requirements/tags/bvt.html)
 
-As opposed to pointing team members, stakeholders, and product owners to feature files which require 
-an editor with syntax highlighting.  As well as providing the ability to quickly follow tags and steps 
-for more information.
+**5. Steps link to their step definitions** [example](http://recursivegames.com/cukes/requirements/example/second_example.html)
 
-**3. Tag pages display all the Features and scenarios that currently employ the tag.**
+**6. Step definitions show implemented steps** [example](http://recursivegames.com/cukes/requirements/step_transformers.html#definition_1-stepdefinition)
 
-Providing quick access to the important tag divisions that have been created in a project.  
-On the top of the page there are some quick calculations of the number of features and scenarios that
-share the specified tag. 
-
-**4. Steps link to Step definitions.  Step definitions show all uses.**
-
-Step definitions are displayed in their own index page and for each step definition a list of implemented
-steps for this step definition.  This is useful for providing example documentation and quickly understanding
-which scenarios are affected by a change to a step definition.
-
-**5. Step Transforms are displayed as links in the step definitions**
-
-After finding the Step to Step Definition link it looks at the match groups within the step and find which
-ones match the step transforms.  Step transform links can be found after following a link from the step to 
-the step definition.
-
-**6. Highlight the sections of steps that match in the step definition**
-
-Steps highlight the match groups in a different color to show which parts of the step are matched in the step
-definition.
-
-**7. Represent instances of scenarios for scenario outlines.**
-
-Display all the values that would normally be substituted into a scenario for the scenario outline. To 
-make it easier to represent them to product owners.  As well as link the instance of the step definitions
-for developers.
+**7. Step definitions show the step transforms used** [example](http://recursivegames.com/cukes/requirements/step_transformers.html#definition_1-stepdefinition)
 
 
 Installation
@@ -73,10 +48,6 @@ To install CITY use the following command:
     
 (Add `sudo` if you're installing under a POSIX system as root)
 
-Alternatively, if you've checked the source out directly, you can call 
-`rake install` from the root project directory.
-
-
 Usage
 -----
 
@@ -88,7 +59,7 @@ You can do this by adding the following to your `Rakefile`:
     require "city"
 
     YARD::Rake::CitydocTask.new do |t|
-      t.files   = ['features/**/*.feature', 'features/**/*.rb', OTHER_PATHS]   # optional
+      t.files   = ['features/**/*', OTHER_PATHS]   # optional
       t.options = ['--any', '--extra', '--opts'] # optional
     end
 
@@ -97,6 +68,10 @@ both the `files` and `options` settings are optional. `files` will default to
 to add. Again, a full list of options is available by typing `yardoc --help`
 in a shell. You can also override the options at the Rake command-line with the
 OPTS environment variable:
+
+**2. YARD command-line**
+
+    $ yardoc -e path/to/cucumber-in-the-yard/lib/city.rb -p path/to/cucumber-in-the-yard/lib/templates 'features/**/*.*'
 
 
 Details
@@ -111,7 +86,9 @@ bringing these requirements to my team, the product owner, and other stakeholder
 
 Initially I tried to expose more of the functionality by providing freshly authored requirements through 
 email, attachments to JIRA tickets, or linked in wiki documents.  None of these methods were very sustainable 
-or successful.  First, I was continually pushing out the documents to those interested.  Second, the documents were displayed to the user in text without the syntax highlighting that was exceedingly helpful for quickly understanding the requirements.
+or successful.  First, I was continually pushing out the documents to those interested.  Second, the documents 
+were displayed to the user in text without the syntax highlighting that was exceedingly 
+helpful for quickly understanding the requirements.
 
 I also found it hard to share the test framework that I had put together with another developer that joined 
 the team.  It was difficult to direct them around the features, tags, step definitions, and transforms.  
@@ -159,7 +136,6 @@ hooks that are tied to tags (unions and intersections) on the tag pages.
 **5. Layout refinements of the step definition / step tranform page**
 
 More work could be done to make this page more searchable, sortable, and usable.
-
 
 **6. Table Step Transforms**
 
