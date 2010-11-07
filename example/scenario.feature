@@ -1,4 +1,4 @@
-@scenarios
+@scenarios @bvt
 Feature: Scenario
   As a reader of the documentation I expect that scenario are documented correctly
 

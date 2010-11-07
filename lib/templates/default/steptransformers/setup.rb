@@ -19,7 +19,7 @@ def steptransforms
 end
 
 def undefined_steps
-  @undefined_steps ||= Registry.all(:step).reject {|s| s.definition }
+  @undefined_steps ||= Registry.all(:step).reject {|s| s.definition || s.scenario.outline? }
   erb(:undefined_steps)
 end
 

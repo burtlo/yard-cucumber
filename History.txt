@@ -1,3 +1,12 @@
+=== 1.6.2 / 2010-11-07
+
+* Undefined Steps are displayed on the Step Transformer page
+* Defined and Undefined steps are better linked to the Transformer page
+
+* FIX Requirements tags were conflicting with YARD tags and being displayed
+  in multiple locations
+* FIX Scenario Outlines Examples failed to show their tables or text
+
 === 1.6.1 / 2010-11-04
 
 * FIX - Feature Directries with sub-directories aborted serialization

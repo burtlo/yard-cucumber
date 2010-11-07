@@ -1,4 +1,4 @@
-@scenario_outlines
+@scenario_outlines @bvt
 Feature: Scenario Outline
   As a reader of the documentation I expect that scenario outlines are documented correctly
 

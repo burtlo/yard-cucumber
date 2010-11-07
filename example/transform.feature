@@ -1,4 +1,4 @@
-@scenarios
+@scenarios @bvt
 Feature: Step Transforms
   As a developer of the test suite I expect that step transforms are documented correctly
 
