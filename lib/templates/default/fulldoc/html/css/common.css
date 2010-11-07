@@ -12,7 +12,7 @@
 .meta { margin-left: 30px; color: gray; }
 .scenario .meta .tags { margin-left: 0px; }
 
-.feature .description, .requirements .summary {
+.feature .description, .requirements .summary, .scenario .description, #background .description {
     margin: 10px 20px 0px 30px;
     padding: 10px 20px 20px 10px;
     color: #343332;
@@ -57,18 +57,20 @@
     font-size: 12px;
 }
 
-.scenario .step, #background .step {
+.scenario .step, #background .step, .steps .none {
     margin-top: 4px;
     padding: 4px;
     font-size: 14px;
     font-weight: bold;
 }
+.steps .none { color: #5D5C5B; }
+
 
 #background .title .name {}
 #background .description {}
 
 .scenario .title .name {}
-.scenario .description {}
+.scenario .description {  }
 
 .scenario .title .pre {	color: #00AAD2; }
 .scenario .tags { margin-left: 30px; margin-top: 10px; }

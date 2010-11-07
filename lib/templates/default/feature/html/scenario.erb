@@ -34,7 +34,7 @@ $(function() {
 	<% end %>
 
         <div id="<%= @id %>Steps" class="steps">
-          <%= @scenario.steps ? erb(:steps) : erb(:no_steps_defined) %>
+          <%= @scenario.steps.empty? ? erb(:no_steps_defined) : erb(:steps) %>
         </div>
   
         <%= erb(:outline) if @scenario.outline? %>
