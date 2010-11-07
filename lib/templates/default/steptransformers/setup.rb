@@ -1,6 +1,6 @@
 def init
   super
-  sections.push :steptransformers, [:stepdefinitions, :steptransforms]
+  sections.push :steptransformers, [:stepdefinitions, :steptransforms], :undefined_steps
 end
 
 
@@ -18,17 +18,28 @@ def steptransforms
   erb(:transformers)
 end
 
+def undefined_steps
+  @undefined_steps ||= Registry.all(:step).reject {|s| s.definition }
+  erb(:undefined_steps)
+end
+
 
 def link_transformed_step(step)
-  value = "#{step.keyword}#{step.value}"
+  value = step.value
   
   if step.transformed?
-    step.value.match(step.definition.regex).to_a.each do |match|
-      step.transforms.each do |transform|
-        value.gsub!(match,"<a href='#{url_for(transform)}'>#{match}</a>") if transform.regex.match(match)
+    matches = step.value.match(step.definition.regex)
+    
+    if matches
+      matches[1..-1].reverse.each_with_index do |match,index|
+        next if match == nil
+        transform = step.transforms.find {|transform| transform.regex.match(match) }
+        
+        value[matches.begin((matches.size - 1) - index)..(matches.end((matches.size - 1) - index) - 1)] = 
+        transform ? "<a href='#{url_for(transform)}'>#{match}</a>" : "<span class='match'>#{match}</span>"
       end
     end
   end
-
+  
   value
 end

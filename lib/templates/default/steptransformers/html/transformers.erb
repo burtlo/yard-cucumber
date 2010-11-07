@@ -34,7 +34,12 @@
 		<% if item.steps && !item.steps.empty? %>
 		<% item.steps.each_with_index do |step,step_index| %>	
 		<div class="step <%= (step_index + 1) % 2 == 0 ? 'even' : 'odd' %>">
+			<span class="predicate">
+			  <%= step.keyword %>
+			</span>
+			<span class="defined">
 			<%= link_transformed_step(step) %>
+			</span>
 			<div class="details"><a href="<%= url_for step.scenario.feature %>"><%= h(step.location) %></a></div>
 		</div>
 		<% end %>
