@@ -25,11 +25,13 @@
 .odd { background-color: #F0F6F9; }
 .even { background-color: #FFFFFF; }
 
-#background, #features { margin-top: 10px; margin-left: 20px; }
+#background, #features, #scenarios { margin-top: 10px; margin-left: 20px; }
 
 #directory { margin-top: 20px; margin-left: 20px; }
 
 .scenario { margin-top: 40px; margin-left: 20px; }
+.requirements * .scenario { margin-top: 0px; margin-left: 0px; }
+
 .scenario .title, #background .title {
     font-size: 16px;
     padding-left: 0px;
@@ -37,10 +39,8 @@
     border-bottom: 1px solid #E3E3E3;
 }
 
-#directory .title, #features .title { padding-left: 0px; margin-left: 10px; border-bottom: 1px solid #E3E3E3; }
-#directory .title .name, #features .title .name { font-weight: normal; }
-
-
+#directory .title, #features .title, #scenarios .title { padding-left: 0px; margin-left: 10px; border-bottom: 1px solid #E3E3E3; }
+#directory .title .name, #features .title .name, #scenarios .title .name { font-weight: normal; }
 
 #background .title .pre { color: #346F97; }
 .requirements .tags { margin-left: 50px; margin-right: 30px; }
@@ -137,6 +137,17 @@
 .stepdef .steps .step {
     padding: 4px;
 }
+
+.tag_search { margin-left: 40px; }
+#tag_search {  margin-left: 40px; width: 500px; height: 20px; }
+#command_example { 
+	margin: 10px 0px 0px 40px; 
+	padding: 20px;
+    background-color: #F8F8FF;
+    color: #444444;
+    border: 1px solid #DEDEDE;
+}
+
 
 #cukes_links { margin: 10px auto 10px auto; 
                border-bottom: 1px solid #E3E3E3;

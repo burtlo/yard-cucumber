@@ -17,6 +17,14 @@ def all_features_by_letter
   hash
 end
 
+def all_scenarios_by_letter
+  hash = {}
+  objects = scenarios
+  objects = run_verifier(objects)
+  objects.each {|o| (hash[o.value.to_s[0,1].upcase] ||= []) << o }
+  hash
+end
+
 def all_directories_by_letter
   hash = {}
   objects = feature_directories
@@ -34,7 +42,7 @@ def features
 end
 
 def scenarios
-  @scenarios ||= Registry.all(:scenario)
+  @scenarios ||= Registry.all(:scenario).reject {|s| s.background? }
 end
 
 def steps
