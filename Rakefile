@@ -7,3 +7,7 @@ task :gendoc do
   `rm -rf .yardoc`
   `yardoc -e lib/city.rb -p lib/templates 'example/**/*.*' --debug`
 end
+
+task :server do
+  `yard server -e lib/city.rb -t lib/templates -t lib/docserver --debug`
+end

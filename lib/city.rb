@@ -35,5 +35,8 @@ require File.dirname(__FILE__) + "/yard/handlers/step_transform_handler.rb"
 
 require File.dirname(__FILE__) + "/yard/parser/source_parser.rb"
 require File.dirname(__FILE__) + "/yard/templates/helpers/base_helper.rb"
+
+require File.dirname(__FILE__) + "/yard/server/commands/list_command.rb"
+
 require File.dirname(__FILE__) + "/yard/rake/city_task.rb"
 
