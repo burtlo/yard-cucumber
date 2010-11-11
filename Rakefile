@@ -9,5 +9,5 @@ task :gendoc do
 end
 
 task :server do
-  `yard server -e lib/city.rb`
+  `yard server -e lib/city.rb --debug`
 end
