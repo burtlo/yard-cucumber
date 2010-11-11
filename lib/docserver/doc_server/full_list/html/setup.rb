@@ -1,6 +1,8 @@
 include T('default/fulldoc/html')
 
 def init
+  # This is the css class type; here we just default to class
+  @list_class = "class"
   case @list_type.to_sym
   when :features; @list_title = "Features"
   when :tags; @list_title = "Tags"

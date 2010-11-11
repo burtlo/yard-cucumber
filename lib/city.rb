@@ -41,5 +41,13 @@ require File.dirname(__FILE__) + "/yard/server/router.rb"
 
 require File.dirname(__FILE__) + "/yard/rake/city_task.rb"
 
+
+#
+# For `yard server` utilize the templates and the static files at these locations
+# before using the defaults 
+#
 YARD::Templates::Engine.register_template_path File.dirname(__FILE__) + '/templates'
 YARD::Templates::Engine.register_template_path File.dirname(__FILE__) + '/docserver'
+
+YARD::Server.register_static_path File.dirname(__FILE__) + "/templates/default/fulldoc/html"
+YARD::Server.register_static_path File.dirname(__FILE__) + "/docserver/default/fulldoc/html"
