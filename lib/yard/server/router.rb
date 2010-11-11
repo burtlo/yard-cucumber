@@ -1,6 +1,6 @@
 module YARD
   module Server
-    class Router
+    class RequirementsRouter
       include StaticCaching
       include Commands
 
