@@ -9,5 +9,5 @@ task :gendoc do
 end
 
 task :server do
-  `yard server -e lib/city.rb -t lib/templates -t lib/docserver -f  YARD::Server::RequirementsRouter`
+  `yard server -e lib/city.rb`
 end

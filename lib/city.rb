@@ -41,3 +41,5 @@ require File.dirname(__FILE__) + "/yard/server/router.rb"
 
 require File.dirname(__FILE__) + "/yard/rake/city_task.rb"
 
+YARD::Templates::Engine.register_template_path File.dirname(__FILE__) + '/templates'
+YARD::Templates::Engine.register_template_path File.dirname(__FILE__) + '/docserver'
