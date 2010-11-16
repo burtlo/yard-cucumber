@@ -1,3 +1,4 @@
+require 'YARD'
 require File.dirname(__FILE__) + "/lib/city"
 
 module CucumberInTheYARD

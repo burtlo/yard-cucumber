@@ -1,3 +1,11 @@
+=== 1.6.3 / 2010-11-16
+
+* `yard server` can now serve up requirements with YARD 0.6.2
+* 'All Tags' page now has a cucumber tag AND filtering tool (beta)
+* Step Defs and Transforms will show comments
+
+* FIX removed warnings by no longer requiring YARD
+
 === 1.6.2 / 2010-11-07
 
 * Undefined Steps are displayed on the Step Transformer page
