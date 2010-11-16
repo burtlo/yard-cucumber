@@ -56,7 +56,7 @@ Gem::Specification.new do |s|
 
   s.add_dependency 'gherkin', '>= 2.2.9'
   s.add_dependency 'cucumber', '>= 0.7.5'
-  s.add_dependency 'yard', '>= 0.6.1'
+  s.add_dependency 'yard', '>= 0.6.2'
   
   s.rubygems_version   = "1.3.7"
   s.files            = `git ls-files`.split("\n")

@@ -18,28 +18,7 @@
     <div class="tags"><span class="name">Tags:</span>
       <%= tags.collect {|tag| linkify(tag,tag.value) }.join(",\n") %>
     </div>
-    
-    <script type="text/javascript" charset="utf-8">
-    var tag_list = [ <%= tags.collect{|t| "'#{t.value}'" }.join(',') %> ];
-    
-    $(function() {
-      $("#tag_search").keyup(function(event) {
-        var tags = determine_tags_used_in_formula($("#tag_search")[0].value);
-        display_example_command_line(tags);
-        display_qualifying_features_and_scenarios(tags);
-      });
-    });
-    </script>    
-
-    
-    <div class="tag search">
-      <div class="title"><span class="name">Cucumber Tag Filter</span></div>
-      <input id="tag_search" type="text" />
-    </div>
-    
-    <div id="command_example"></div>
-    
-
+   
     <% if features && !features.empty? %>
       <div id="features" style="margin-left: 40px;">
         <div class="title"><span class="name">Features</span></div>
@@ -72,41 +51,7 @@
       <!-- No Features Defined -->
     <% end %>
     
-
-    <% if scenarios && !scenarios.empty? %>
-      <div id="scenarios" style="margin-left: 40px;">
-        <div class="title"><span class="name">Scenarios</span></div>
-      </div>
-      <% i = 0 %>
-      <table style="margin-left: 10px;">
-        <tr>
-          <td valign='top' width="50%">
-            <% all_scenarios_by_letter.sort_by {|l,o| l.to_s }.each do |letter, objects| %>
-              <% if (i += 1) % 13 == 0 %>
-              </td><td valign='top' width="50%">
-                <% i = 0 %>
-              <% end %>
-              <ul id="alpha_<%= letter %>" class="alpha">
-                <li class="letter"><%= letter %></li>
-                <ul>
-                  <% objects.each do |obj| %>
-                    <li class="scenario <%= obj.tags.map{|t| t.value }.join(" ") %>">
-                      <%= linkify obj, obj.value %>
-                      <small>(<%= obj.file %>)</small>
-                    </li>
-                  <% end %>
-                </ul>
-              </ul>
-            <% end %>
-          </td>
-        </tr>
-      </table>
-    <% else %>
-      <!-- No Scenarios Defined -->
-    <% end %>
-
-
-
+    
     <% if feature_directories && !feature_directories.empty? %>
       <div id="directory" style="margin-left: 40px;">
         <div class="title"><span class="name">Subdirectories</span></div>

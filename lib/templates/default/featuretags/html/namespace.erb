@@ -1,37 +1,58 @@
 <% if @namespace %>
-  <div class="requirements">
+  <div id="tags" class="requirements">
+    <script type="text/javascript" charset="utf-8">
+      var tag_list = [ <%= tags.collect{|t| "'#{t.value}'" }.join(',') %> ];
+
+      $(function() {
+        $("#tag_search").keyup(function(event) {
+          var tags = determine_tags_used_in_formula($("#tag_search")[0].value);
+          display_example_command_line(tags);
+          display_qualifying_features_and_scenarios(tags);
+        });
+      });
+    </script>
+
     <div class="title">
-      <span class="name">Tags</span>
+      <span class="name">Requirements Tags</span>
     </div>
 
-    <% i = 0 %>
-    <table style="margin-left: 10px;">
-      <tr>
-        <td valign='top' width="50%">
-          <% all_tags_by_letter.sort_by {|l,o| l.to_s }.each do |letter, objects| %>
-            <% if (i += 1) % 8 == 0 %>
-            </td><td valign='top' width="50%">
-              <% i = 0 %>
-            <% end %>
-            <ul id="alpha_<%= letter %>" class="alpha">
-              <li class="letter"><%= letter %></li>
-              <ul>
-                <% objects.each do |obj| %>
-                  <li>
-                    <%= linkify obj, obj.value %>
-                    <small>
-                      ( <%= obj.features.size > 0 ? "#{obj.features.size} feature#{obj.features.size > 1 ? 's' : ''}" : "" %>
-			<%= " and " if obj.features.size > 0 && obj.scenarios.size > 0 %>
-			<%= obj.scenarios.size > 0 ? "#{obj.scenarios.size} scenario#{obj.scenarios.size > 1 ? 's' : ''}" : "" %> )
-                    </small>
-                  </li>
-                <% end %>
-              </ul>
-            </ul>
-          <% end %>
-        </td>
-      </tr>
-    </table>
+    <div class="tags"><span class="name">Tags:</span>
+      <%= tags.collect {|tag| linkify(tag,tag.value) }.join(",\n") %>
+    </div>
+
+    <div>
+      <input id="tag_search" type="text" />
+    </div>
+
+    <div id="command_example">cucumber</div>
+
+    <div id="features">
+      <div class="title">
+        <span class="name">Features</span>
+      </div>
+      <% n = 1 %>
+      <% features.each do |feature| %>
+        <li class="feature r<%= n %> <%= feature.tags.collect{|t| t.value }.join(" ") %>">
+          <%= linkify feature, feature.value %>
+          <small>(<%= h(feature.location) %>)</small>
+        </li>
+        <% n = n == 2 ? 1 : 2 %>
+        <% end %>
+    </div>
+
+    <div id="scenarios">
+      <div class="title">
+        <span class="name">Scenarios</span>
+      </div>
+      <% n = 1 %>
+      <% scenarios.each_with_index do |scenario,index| %>
+        <li class="scenario r<%= n %> <%= scenario.tags.collect{|t| t.value }.join(" ") %>">
+          <%= linkify scenario.feature,  scenario.value %>
+          <small>(<%= h(scenario.feature.location) %>)</small>
+        </li>
+      <% n = n == 2 ? 1 : 2 %>
+      <% end %>
+    </div>
 
   </div>
 <% end %>

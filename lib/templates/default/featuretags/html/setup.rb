@@ -17,5 +17,13 @@ def all_tags_by_letter
 end
 
 def tags
-  Registry.all(:tag)
+  @tags ||= Registry.all(:tag)
+end
+
+def features
+  @features ||= Registry.all(:feature).sort {|x,y| x.value <=> y.value }
+end
+
+def scenarios
+  @scenarios ||= Registry.all(:scenario).reject {|s| s.outline? || s.background? }.sort {|x,y| x.value <=> y.value }
 end

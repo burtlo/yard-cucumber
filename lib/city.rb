@@ -3,8 +3,6 @@ require 'cucumber/parser/gherkin_builder'
 require 'gherkin/parser/parser'
 require 'gherkin/formatter/tag_count_formatter'
 
-require 'yard'
-
 module CucumberInTheYARD
   VERSION = '1.6.2' unless defined?(CucumberInTheYARD::VERSION)
 end

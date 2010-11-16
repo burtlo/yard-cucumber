@@ -8,19 +8,21 @@ def stepdefinitions
   @item_title = "Step Definitions"
   @item_type = "step definition"
   @items = YARD::Registry.all(:stepdefinition)
-  erb(:transformers)
+  erb(:header) + erb(:transformers)
 end
 
 def steptransforms
   @item_title = "Step Transforms"
   @item_type = "step transform"
   @items = YARD::Registry.all(:steptransform)
-  erb(:transformers)
+  erb(:header) + erb(:transformers)
 end
 
 def undefined_steps
+  @item_title = "Undefined Steps"
+  @item_type = "undefined steps"
   @undefined_steps ||= Registry.all(:step).reject {|s| s.definition || s.scenario.outline? }
-  erb(:undefined_steps)
+  erb(:header) + erb(:undefined_steps)
 end
 
 

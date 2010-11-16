@@ -1,12 +1,3 @@
-
-<div style="margin: 10px;">&nbsp;</div>
-
-<div class="title">
-	<div class="name"><%= @item_title %></div>
-</div>
-
-<div style="margin: 10px;">&nbsp;</div>
-
 <% @items.each do |item| %>
 
 <div class="stepdef">
@@ -16,7 +7,9 @@
 		<span class="name"><%= item.value %></span>
 		<div style="float: right;"><%= h( item.location ) %></div>
 	</div>
-
+  <div>
+    <%= T('docstring').run(options.dup.merge({:object => item})) %>
+  </div>
 	<div class="method_details_list">
 		<table class="source_code">
 			<tr>
