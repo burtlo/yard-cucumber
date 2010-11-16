@@ -1,4 +1,4 @@
-=== 1.6.3 / 2010-11-16
+=== 1.6.4 / 2010-11-16
 
 * `yard server` can now serve up requirements with YARD 0.6.2
 * 'All Tags' page now has a cucumber tag AND filtering tool (beta)
