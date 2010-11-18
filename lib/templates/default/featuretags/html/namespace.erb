@@ -4,10 +4,11 @@
       var tag_list = [ <%= tags.collect{|t| "'#{t.value}'" }.join(',') %> ];
 
       $(function() {
-        $("#tag_search").keyup(function(event) {
-          var tags = determine_tags_used_in_formula($("#tag_search")[0].value);
-          display_example_command_line(tags);
-          display_qualifying_features_and_scenarios(tags);
+        $("#tag_search").keyup(function(evt) {
+          var formulaTags = determineTagsUsedInFormula($("#tag_search")[0].value);
+          displayExampleCommandLine(formulaTags);
+          displayQualifyingFeaturesAndScenarios(formulaTags);
+          return evt;
         });
       });
     </script>
