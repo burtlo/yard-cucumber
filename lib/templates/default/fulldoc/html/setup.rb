@@ -20,9 +20,10 @@ def init
 
   feature_directories = YARD::CodeObjects::Cucumber::CUCUMBER_NAMESPACE.children.find_all {|child| child.is_a?(YARD::CodeObjects::Cucumber::FeatureDirectory) }
 
+
   serialize(YARD::CodeObjects::Cucumber::CUCUMBER_NAMESPACE)
   serialize(YARD::CodeObjects::Cucumber::CUCUMBER_STEPTRANSFORM_NAMESPACE)
-  serialize(YARD::CodeObjects::Cucumber::CUCUMBER_TAG_NAMESPACE)  
+  serialize(YARD::CodeObjects::Cucumber::CUCUMBER_TAG_NAMESPACE)
   serialize_feature_directories(feature_directories)
 
 end

@@ -5,27 +5,28 @@
 
       $(function() {
         $("#tag_search").keyup(function(evt) {
-          var formulaTags = determineTagsUsedInFormula($("#tag_search")[0].value);
-          displayExampleCommandLine(formulaTags);
-          displayQualifyingFeaturesAndScenarios(formulaTags);
-          return evt;
+          updateTagFiltering($("#tag_search")[0].value);
         });
       });
     </script>
 
     <div class="title">
-      <span class="name">Requirements Tags</span>
+      <span class="name">Tags</span>
     </div>
 
     <div class="tags"><span class="name">Tags:</span>
       <%= tags.collect {|tag| linkify(tag,tag.value) }.join(",\n") %>
     </div>
 
-    <div>
-      <input id="tag_search" type="text" />
+    <div id="tag_filtering" >
+        <span>Tag Filtering <a href="https://github.com/aslakhellesoy/cucumber/wiki/Tags" target="_blank">?</a></span>
+        <div style="float: right;">
+          <a href="" onclick=" updateTagFiltering(""); return true;">clear</a>
+        </div>
+        <input id="tag_search" type="text" />
+        <span>Command Line:</span>
+        <div id="command_example">cucumber</div>
     </div>
-
-    <div id="command_example">cucumber</div>
 
     <div id="features">
       <div class="title">
@@ -34,8 +35,8 @@
       <% n = 1 %>
       <% features.each do |feature| %>
         <li class="feature r<%= n %> <%= feature.tags.collect{|t| t.value }.join(" ") %>">
-          <%= linkify feature, feature.value %>
-          <small>(<%= h(feature.location) %>)</small>
+        <%= linkify feature, feature.value %>
+          <small>(<%= h(feature.tags.collect{|t| t.value }.join(", ")) %>)</small>
         </li>
         <% n = n == 2 ? 1 : 2 %>
         <% end %>
@@ -49,7 +50,7 @@
       <% scenarios.each_with_index do |scenario,index| %>
         <li class="scenario r<%= n %> <%= scenario.tags.collect{|t| t.value }.join(" ") %>">
           <%= linkify scenario.feature,  scenario.value %>
-          <small>(<%= h(scenario.feature.location) %>)</small>
+          <small>(<%= h(scenario.tags.collect{|t| t.value }.join(", ")) %>)</small>
         </li>
       <% n = n == 2 ? 1 : 2 %>
       <% end %>
