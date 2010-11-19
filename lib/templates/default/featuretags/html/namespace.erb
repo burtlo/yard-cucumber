@@ -29,10 +29,6 @@
       <span class="name">Tags</span>
     </div>
 
-    <div class="tags"><span class="name">Tags:</span>
-      <%= tags.collect {|tag| tagify(tag) }.join(",\n") %>
-    </div>
-
     <div id="tag_filtering" >
         <span>Tag Filtering <a href="https://github.com/aslakhellesoy/cucumber/wiki/Tags" target="_blank">?</a></span>
         
@@ -51,6 +47,10 @@
         <input id="tag_search" type="text" />
         <span>Example command line execution:</span>
         <div id="command_example">cucumber</div>
+    </div>
+
+    <div class="tags" style="margin-top: 20px;"><span class="name">Tags:</span>
+      <%= tags.collect {|tag| tagify(tag) }.join(",\n") %>
     </div>
 
     <div id="features">

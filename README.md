@@ -24,6 +24,8 @@ The implemented example has been deployed at [http://recursivegames.com/cukes/](
 
 **2. Search through features, scenarios, and tags** [example](http://recursivegames.com/cukes/feature_list.html) & [example](http://recursivegames.com/cukes/tag_list.html)
 
+**3. Dynamic Tag Unions and Intersections** [example](http://recursivegames.com/cukes/requirements/tags.html)
+
 **4. View features and scenarios by tag** [example](http://recursivegames.com/cukes/requirements/tags/bvt.html)
 
 **5. Steps link to their step definitions** [example](http://recursivegames.com/cukes/requirements/example/scenario.html)
@@ -110,37 +112,33 @@ Roadmap
 
 **Future Feature Ideas**
 
-**1. Feature/Scenario Tag unions and intersections**
+**1. Table Step Transforms**
 
-Create an AJAX interface that would allow the user to specify tags to union, intersect, or exclude to 
-produce a list of features and scenarios that would execute.  The output could also provide an example
-command line parameter list to produce the feature/scenario execution results.
+The table step transform matching would be nice to show which tables are affected by table transforms
 
-Visualization of this execution with some graphing library for some extra points.
+**2. Before, After, and Around Hooks**
 
-**2. Performance enhancements**
+Document the additional before, after, and around hooks that Cucumber uses.  Specifically display the before, after, and around
+hooks that are tied to tags (unions and intersections) on the tag pages.
 
-The current rate of documentation is not dreadfully slow anymore but more performance enhancements could
-always be performed to produce the documentation faster.
+**3. Layout refinements of the step definition / step tranform page**
 
-**3. Requirements Only Docuementation**
+More work could be done to make this page more searchable, sortable, and usable.
+
+**4. Visualization of /Scenario Tag unions and intersections**
+
+Continue to expand the tag union/intersection tool.  Visualization of this execution with some graphing library for some extra points.
+
+**5. Requirements Only Docuementation**
 
 'fulldoc' is the default documentation generated but I have this thought that a requirements-only document
 may be useful.  Essentially the first draft would be the current documentation minus the class and method
 links/searches and replacing the index.html.
 
-**4. Before, After, and Around Hooks**
+**6. Performance enhancements**
 
-Document the additional before, after, and around hooks that Cucumber uses.  Specifically display the before, after, and around
-hooks that are tied to tags (unions and intersections) on the tag pages.
-
-**5. Layout refinements of the step definition / step tranform page**
-
-More work could be done to make this page more searchable, sortable, and usable.
-
-**6. Table Step Transforms**
-
-The table step transform matching would be nice to show which tables are affected by table transforms
+The current rate of documentation is not dreadfully slow anymore but more performance enhancements could
+always be performed to produce the documentation faster.
 
 
 

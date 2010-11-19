@@ -1,3 +1,7 @@
+=== 1.7.0 / 2010-11-18
+
+* Dynamic Tag Union / Intersection
+
 === 1.6.4 / 2010-11-16
 
 * `yard server` can now serve up requirements with YARD 0.6.2
