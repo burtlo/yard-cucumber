@@ -27,3 +27,7 @@ end
 def scenarios
   @scenarios ||= Registry.all(:scenario).reject {|s| s.outline? || s.background? }.sort {|x,y| x.value <=> y.value }
 end
+
+def tagify(tag)
+  %{<span class="tag" href="#{url_for tag}">#{tag.value}</span>} 
+end

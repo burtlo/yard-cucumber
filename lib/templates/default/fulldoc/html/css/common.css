@@ -114,6 +114,9 @@
     padding: 4px 10px 4px 10px;
 }
 
+/* tag page */
+#tags #features, #tags #scenarios { margin-right: 20px;}
+#tags * .tag { font-family: monospace;	font-size: 14px; cursor: pointer; }
 
 /* Overrides for scenarios in the tag view */
 .tag .feature { margin-left: 20px; }

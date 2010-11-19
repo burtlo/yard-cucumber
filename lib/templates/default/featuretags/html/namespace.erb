@@ -7,6 +7,21 @@
         $("#tag_search").keyup(function(evt) {
           updateTagFiltering($("#tag_search")[0].value);
         });
+        
+         $(".tag").click(function(evt) {
+            if (typeof evt !== "undefined") {
+
+              if (evt.ctrlKey === true)  {
+                window.location = $(this).attr("href");
+              } else if (evt.altKey === true ) {
+                $("#tag_search")[0].value += ($("#tag_search")[0].value != "" ? "," : "") + this.innerHTML;
+                updateTagFiltering($("#tag_search")[0].value);
+              } else {
+                $("#tag_search")[0].value += ($("#tag_search")[0].value != "" ? " " : "") + this.innerHTML;
+                updateTagFiltering($("#tag_search")[0].value);
+              }
+            }
+        });
       });
     </script>
 
@@ -15,16 +30,26 @@
     </div>
 
     <div class="tags"><span class="name">Tags:</span>
-      <%= tags.collect {|tag| linkify(tag,tag.value) }.join(",\n") %>
+      <%= tags.collect {|tag| tagify(tag) }.join(",\n") %>
     </div>
 
     <div id="tag_filtering" >
         <span>Tag Filtering <a href="https://github.com/aslakhellesoy/cucumber/wiki/Tags" target="_blank">?</a></span>
+        
+        <div style="clear: both"></div>
+        
+        <div style="float: left; margin-top: 10px; font-size: 10px; font-style: italic;">
+          Left-click tags to 'AND'; ALT left-click tags to 'OR'
+        </div>
+        
         <div style="float: right;">
           <a href="" onclick=" updateTagFiltering(""); return true;">clear</a>
         </div>
+        
+        <div style="clear: both"></div>
+        
         <input id="tag_search" type="text" />
-        <span>Command Line:</span>
+        <span>Example command line execution:</span>
         <div id="command_example">cucumber</div>
     </div>
 
@@ -36,7 +61,10 @@
       <% features.each do |feature| %>
         <li class="feature r<%= n %> <%= feature.tags.collect{|t| t.value }.join(" ") %>">
         <%= linkify feature, feature.value %>
-          <small>(<%= h(feature.tags.collect{|t| t.value }.join(", ")) %>)</small>
+          <% itags = feature.tags.collect{|t| tagify(t) }.join(", ") %>
+          <% if itags && itags != "" %>
+            - <small><%= itags %></small>
+          <% end %>
         </li>
         <% n = n == 2 ? 1 : 2 %>
         <% end %>
@@ -49,8 +77,11 @@
       <% n = 1 %>
       <% scenarios.each_with_index do |scenario,index| %>
         <li class="scenario r<%= n %> <%= scenario.tags.collect{|t| t.value }.join(" ") %>">
-          <%= linkify scenario.feature,  scenario.value %>
-          <small>(<%= h(scenario.tags.collect{|t| t.value }.join(", ")) %>)</small>
+          <%= linkify scenario.feature, scenario.value %>
+          <% itags = scenario.tags.collect{|t| tagify(t) }.join(", ") %>
+          <% if itags && itags != "" %>
+            - <small><%= itags %></small>
+          <% end %>
         </li>
       <% n = n == 2 ? 1 : 2 %>
       <% end %>
