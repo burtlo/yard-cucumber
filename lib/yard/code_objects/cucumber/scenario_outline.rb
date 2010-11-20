@@ -4,7 +4,7 @@ module YARD::CodeObjects::Cucumber
 
   class ScenarioOutline < NamespaceObject
 
-    attr_accessor :value, :comments, :description, :steps, :tags, :feature
+    attr_accessor :value, :comments, :keyword, :description, :steps, :tags, :feature
     attr_accessor :scenarios, :examples
 
     def initialize(namespace,name)
