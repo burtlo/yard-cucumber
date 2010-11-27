@@ -1,12 +1,10 @@
-require 'gherkin/rubify'
 require 'cucumber/parser/gherkin_builder'
 require 'gherkin/parser/parser'
 require 'gherkin/formatter/tag_count_formatter'
 
 module CucumberInTheYARD
-  VERSION = '1.7.0' unless defined?(CucumberInTheYARD::VERSION)
+  VERSION = '1.7.1' unless defined?(CucumberInTheYARD::VERSION)
 end
-
 
 require File.dirname(__FILE__) + "/yard/code_objects/cucumber/base.rb"
 require File.dirname(__FILE__) + "/yard/code_objects/cucumber/namespace_object.rb"

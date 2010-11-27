@@ -1,3 +1,8 @@
+=== 1.7.1 / 2010-11-27
+
+* FIX Scenario Outline keyword generating an error on CentOS, Ruby 1.8.7
+* FIX Requiring Cucumber before Gherkin so that correct version is loaded
+
 === 1.7.0 / 2010-11-18
 
 * Dynamic Tag Union / Intersection
