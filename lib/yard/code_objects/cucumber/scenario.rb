@@ -3,7 +3,7 @@
 module YARD::CodeObjects::Cucumber
 
   class Scenario < NamespaceObject
-    
+        
     attr_accessor :value, :comments, :keyword, :description, :steps, :tags, :feature
     
     def initialize(namespace,name)

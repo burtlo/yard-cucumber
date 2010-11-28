@@ -15,7 +15,11 @@
           <ul>
             <% objects.each do |obj| %>
               <li>
-                <%= linkify obj.feature, obj.value %>
+                <span class='object_link'>
+               		<a href="<%= url_for(obj.feature,"scenario#{obj.feature.scenarios.index(obj) }") %>">
+               		  <%= h obj.value %>
+               		</a>
+               	</span>
                 <% if !obj.namespace.root? %>
                   <small>(<%= obj.namespace.file %>)</small>
                 <% end %>

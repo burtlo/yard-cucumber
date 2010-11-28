@@ -12,10 +12,14 @@
 <% n = n == 2 ? 1 : 2 %>
 <% if feature.scenarios %>
 <ul>
-	<% feature.scenarios.each do |scenario| %>
+	<% feature.scenarios.each_with_index do |scenario,index| %>
 	<li class="r<%= n %>">
-		<%= linkify feature, scenario.value %>
-		<small><%= scenario.location %></small>
+	  <span class='object_link'>
+   		<a href="<%= url_for(scenario.feature,"scenario#{index}") %>">
+   		  <%= h scenario.value %>
+   		</a>
+   	</span>
+   	<small><%= scenario.location %></small>
 	</li>
         <% n = n == 2 ? 1 : 2 %>
 	<% end %>

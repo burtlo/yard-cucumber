@@ -77,7 +77,11 @@
       <% n = 1 %>
       <% scenarios.each_with_index do |scenario,index| %>
         <li class="scenario r<%= n %> <%= scenario.tags.collect{|t| t.value }.join(" ") %>">
-          <%= linkify scenario.feature, scenario.value %>
+            <span class='object_link'>
+           		<a href="<%= url_for(scenario.feature,"scenario#{scenario.feature.scenarios.index(scenario) }") %>">
+           		  <%= h scenario.value %>
+           		</a>
+           	</span>
           <% itags = scenario.tags.collect{|t| tagify(t) }.join(", ") %>
           <% if itags && itags != "" %>
             - <small><%= itags %></small>

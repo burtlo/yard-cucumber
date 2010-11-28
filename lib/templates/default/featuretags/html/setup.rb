@@ -25,7 +25,7 @@ def features
 end
 
 def scenarios
-  @scenarios ||= Registry.all(:scenario).reject {|s| s.outline? || s.background? }.sort {|x,y| x.value <=> y.value }
+  @scenarios ||= features.collect {|f| f.scenarios.reject {|s| s.background? } }.flatten.sort {|x,y| x.value <=> y.value }
 end
 
 def tagify(tag)
