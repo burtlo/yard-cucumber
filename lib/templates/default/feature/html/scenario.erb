@@ -10,15 +10,15 @@
     });
 
     $('#<%= @id  %> .commentToggle').click(function() {
-      $("#<%= @id %> .meta .comments").toggle('blind');
+      $("#<%= @id %> .comments").toggle('blind');
 
       var stateIndicator = $('#<%= @id %> a.commentToggle')[0]
 
-      stateIndicator.innerHTML = (stateIndicator.innerHTML === ' ? ' ? '&nbsp;!&nbsp;' : '&nbsp;?&nbsp;');
+      stateIndicator.innerHTML = (stateIndicator.innerHTML === '[Show Comments]' ? '[Hide Comments]' : '[Show Comments]');
       return false;
     });
-  });
 
+  });
 </script>
 
 <div id="<%= @id %>" class="scenario">
@@ -28,7 +28,7 @@
     <span class="pre"><%= @scenario.keyword %>:</span>
     <span class="name"><%= h @scenario.value %></span>
     <% if @scenario.comments.length > 0 %>
-      <div style="float:right;"><a class="commentToggle">&nbsp;?&nbsp;</a></div>
+      <div style="float:right; color: gray; font-size: 13px;"><a class="commentToggle">[Show Comments]</a></div>
     <% end %>
   </div>
 
