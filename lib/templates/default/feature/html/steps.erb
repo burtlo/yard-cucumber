@@ -1,12 +1,13 @@
 <% @scenario.steps.each_with_index do |step,index| %>
   <% @step = step %>
 
-
+  <div class="comments" style="display: none;"><%= step.comments %></div>
+  
   <div <%= "id='#{@id}Step#{index}'" %> class="step <%= (index + 1) % 2 == 0 ? 'even' : 'odd' %>">
     <span class="predicate"><%= step.keyword %></span>
 
     <% if @scenario.outline? %>
-      <%= step.value %>
+      <%= h step.value %>
     <% else %>
 
     <% if step.definition %>

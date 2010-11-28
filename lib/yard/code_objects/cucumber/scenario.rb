@@ -8,7 +8,7 @@ module YARD::CodeObjects::Cucumber
     
     def initialize(namespace,name)
       super(namespace,name.to_s.strip)
-      @commants = @description = @keyword = @value = @feature = nil
+      @comments = @description = @keyword = @value = @feature = nil
       @steps = []
       @tags = []
     end

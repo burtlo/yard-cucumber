@@ -39,9 +39,11 @@ Feature: Scenario
       Oh what a bother!
     """
 
+  # Comments before the scenario
   @seventh @comments
-  Scenario: Scenario with comments and 
-    with multiple lines for the name
+  Scenario: Scenario with comments and a description
+    There once was a need for information to be displayed alongside all the
+    entities that I hoped to test
     # First Comment
     Given this first step
     # Second Comment

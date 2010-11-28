@@ -34,7 +34,8 @@ module Cucumber
       end
 
       def feature(feature)
-        #log.debug  "FEATURE: #{feature.name} #{feature.line} #{feature.keyword} #{feature.description}"
+        #log.debug "FEATURE"
+        
         @feature = YARD::CodeObjects::Cucumber::Feature.new(@namespace,File.basename(@file.gsub('.feature','').gsub('.','_'))) do |f|
           f.comments = feature.comments.map{|comment| comment.value}.join("\n")
           f.description = feature.description
@@ -48,7 +49,8 @@ module Cucumber
       end
 
       def background(background)
-        #log.debug "BACKGROUND #{background.keyword} #{background.name} #{background.line} #{background.description}"
+        #log.debug "BACKGROUND"
+        
         @background = YARD::CodeObjects::Cucumber::Scenario.new(@feature,"background") do |b|
           b.comments = background.comments.map{|comment| comment.value}.join("\n")
           b.description = background.description
@@ -64,6 +66,7 @@ module Cucumber
 
       def scenario(statement)
         #log.debug "SCENARIO"
+
         scenario = YARD::CodeObjects::Cucumber::Scenario.new(@feature,"scenario_#{@feature.scenarios.length + 1}") do |s|
           s.comments = statement.comments.map{|comment| comment.value}.join("\n")
           s.description = statement.description
@@ -81,7 +84,7 @@ module Cucumber
 
       def scenario_outline(statement)
         #log.debug "SCENARIO OUTLINE"
-
+        
         outline = YARD::CodeObjects::Cucumber::ScenarioOutline.new(@feature,"scenario_#{@feature.scenarios.length + 1}") do |s|
           s.comments = statement.comments.map{|comment| comment.value}.join("\n")
           s.description = statement.description
@@ -151,12 +154,15 @@ module Cucumber
       end
 
       def step(step)
-        #log.debug "STEP #{step.multiline_arg}"
+        #log.debug "STEP"
+
         @table_owner = YARD::CodeObjects::Cucumber::Step.new(@step_container,"#{step.line}") do |s|
           s.keyword = step.keyword
           s.value = step.name
           s.add_file(@file,step.line)
         end
+
+        @table_owner.comments = step.comments.map{|comment| comment.value}.join("\n")
 
         multiline_arg = rubify(step.multiline_arg)
         

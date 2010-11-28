@@ -12,7 +12,7 @@
 .meta { margin-left: 30px; color: gray; }
 .scenario .meta .tags { margin-left: 0px; }
 
-.feature .description, .requirements .summary, .scenario .description, #background .description {
+.feature .description, .requirements .summary {
     margin: 10px 20px 0px 30px;
     padding: 10px 20px 20px 10px;
     color: #343332;
@@ -67,10 +67,17 @@
 
 
 #background .title .name {}
-#background .description {}
 
 .scenario .title .name {}
-.scenario .description {  }
+
+#background .description, .scenario .description {
+    padding: 10px;
+    background-color: #F8F8FF;
+    color: #444444;
+    margin-right: 20px;
+}
+.scenario .meta .comments { padding: 10px; }
+
 
 .scenario .title .pre {	color: #00AAD2; }
 .scenario .tags { margin-left: 30px; margin-top: 10px; }
