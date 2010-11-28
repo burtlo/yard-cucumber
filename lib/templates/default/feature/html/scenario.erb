@@ -1,64 +1,52 @@
-<script type="text/javascript" charset="utf-8">
-  $(function() {
-    $('#<%= @id %> .toggle').click(function() {
-      $("#<%= @id %>Steps").toggle('blind');
-
-      var stateIndicator = $('#<%= @id %> a.toggle')[0]
-
-      stateIndicator.innerHTML = (stateIndicator.innerHTML === ' + ' ? '&nbsp;-&nbsp;' : '&nbsp;+&nbsp;');
-      return false;
-    });
-
-    $('#<%= @id  %> .commentToggle').click(function() {
-      $("#<%= @id %> .comments").toggle('blind');
-
-      var stateIndicator = $('#<%= @id %> a.commentToggle')[0]
-
-      stateIndicator.innerHTML = (stateIndicator.innerHTML === '[Show Comments]' ? '[Hide Comments]' : '[Show Comments]');
-      return false;
-    });
-
-  });
-</script>
-
-<div id="<%= @id %>" class="scenario">
-
+<div class="scenario">
+  <a name="<%= @id %>">
   <div class="title">
     <a class="toggle">&nbsp;-&nbsp;</a>
     <span class="pre"><%= @scenario.keyword %>:</span>
     <span class="name"><%= h @scenario.value %></span>
-    <% if @scenario.comments.length > 0 %>
-      <div style="float:right; color: gray; font-size: 13px;"><a class="commentToggle">[Show Comments]</a></div>
-    <% end %>
   </div>
 
-  <div class="meta">
-    <div class="file"><%= @scenario.location %></div>
-    <% unless @scenario.tags.empty? %>
-      <div class="tags">
-        <% @scenario.tags.each do |tag| %>
-          <a href="<%= url_for tag %>"><%= tag.value %></a>
-        <% end %>
-      </div>
-    <% end%>
-    <div class="comments" style="display: none;">
-      <span style="font-weight: bold;">Developer's Comments</span><br/><br/>
-      <%= h @scenario.comments %>
+  <% if @scenario.description.length > 0 %>
+  <div class="description">
+    <%= h @scenario.description %>
+  </div>
+  <% end %>
+
+  <% if @scenario.comments.length > 0 %>
+  <div class="comments developer">
+    <%= h @scenario.comments %>
+  </div>
+  <% end %>
+
+  <div class="details">
+    <div class="meta developer">
+      <div class="file"><%= @scenario.location %></div>
+      <% unless @scenario.tags.empty? %>
+        <div style="clear:right;"></div>
+        <div class="tags">
+          <% @scenario.tags.each do |tag| %>
+            <a href="<%= url_for tag %>"><%= tag.value %></a>
+          <% end %>
+        </div>
+      <% end%>
+      <div style="clear: both;"></div>
     </div>
 
-    <% unless @scenario.description.empty? %>
-      <div class="description">
-        <span style="font-weight: bold;">Description</span><br/><br/>
-        <%= h @scenario.description %>
-      </div>
-    <% end %>
+    <div class="steps">
+      <% if @scenario.steps.empty?  %>
+        <%= erb(:no_steps_defined) %>
+      <% else %>
+        <%= @steps = @scenario.steps ; erb(:steps) %>
+      <% end %>
+    </div>
+
+
+    <%= erb(:outline) if @scenario.outline? %>
 
   </div>
-
-
-  <div id="<%= @id %>Steps" class="steps">
-    <%= @scenario.steps.empty? ? erb(:no_steps_defined) : erb(:steps) %>
+  
+  <div class="attributes" style="display:none;">
+    <input type="hidden" name="collapsed" value="false">
   </div>
 
-  <%= erb(:outline) if @scenario.outline? %>
 </div>

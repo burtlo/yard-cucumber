@@ -1,33 +1,33 @@
-<% @scenario.steps.each_with_index do |step,index| %>
+<% @steps.each_with_index do |step,index| %>
   <% @step = step %>
 
-  
-  <div <%= "id='#{@id}Step#{index}'" %> class="step <%= (index + 1) % 2 == 0 ? 'even' : 'odd' %>">
-    <div class="comments" style="display: none;"><%= h step.comments %></div>
-  
+  <% if step.comments && step.comments.length > 0 %>
+  <div class="comments developer"><%= h step.comments %></div>
+  <% end %>
+  <div class="step <%= (index + 1) % 2 == 0 ? 'even' : 'odd' %>">
     <span class="predicate"><%= step.keyword %></span>
 
     <% if @scenario.outline? %>
       <%= h step.value %>
     <% else %>
 
-    <% if step.definition %>
-    <span class="defined">
-      <%=  highlight_matches(step) %>
-      <div class="details">
-        <a href="<%= url_for step.definition %>"><div class="valid">&nbsp;</div></a>
-      </div>
-    </span>
-    <% else %>
-    <span class="undefined">
-      <%= h step.value %>
-      <div class="details">
-        <a href="<%= url_for YARD::CodeObjects::Cucumber::CUCUMBER_STEPTRANSFORM_NAMESPACE %>#undefined_steps">
-          <div class="invalid">&nbsp;</div>
-        </a>  
-      </div>
-    </span>
-    <% end %>
+      <% if step.definition %>
+        <span class="defined">
+          <%=  highlight_matches(step) %>
+          <div class="definition developer">
+            <a href="<%= url_for step.definition %>"><div class="valid">&nbsp;</div></a>
+          </div>
+        </span>
+      <% else %>
+        <span class="undefined">
+          <%= h step.value %>
+          <div class="definition developer">
+            <a href="<%= url_for YARD::CodeObjects::Cucumber::CUCUMBER_STEPTRANSFORM_NAMESPACE %>#undefined_steps">
+              <div class="invalid">&nbsp;</div>
+            </a>
+          </div>
+        </span>
+      <% end %>
 
     <% end %>
   </div>
@@ -36,4 +36,4 @@
   <%= erb(:pystring) if step.has_text? %>
 
 
-  <% end %>
+<% end %>

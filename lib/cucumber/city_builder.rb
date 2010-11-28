@@ -119,8 +119,6 @@ module Cucumber
             s.add_file(@file,@step_container.line_number)
             s.keyword = @step_container.keyword
             s.value = "#{@step_container.value} (#{@step_container.scenarios.length + 1})"
-
-            #TODO: Should scenario instances have their own tag instances?
           end
 
           @step_container.steps.each do |step|

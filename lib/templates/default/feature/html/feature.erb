@@ -1,22 +1,31 @@
+<script type="text/javascript" charset="utf-8">
+  $(function() {
+    $(".developer").hide();
+  });
+</script>
+
 <div class="feature">
-	<div class="title">
-		<span class="pre"><%= @feature.keyword %>:</span>
-		<span class="name"><%= @feature.value %></span>
-	</div>
+  <div class="title">
+    <span class="pre"><%= @feature.keyword %>:</span>
+    <span class="name"><%= @feature.value %></span>
 
-	<div class="meta">
-		<div class="file"><%= h(@feature.file) %></div>
-		<div class="tags">
-			<% @feature.tags.each do |tag| %>
-			<a href="<%= url_for tag %>"><%= tag.value %></a>
-			<% end %>
-		</div>		
-	</div>
+    <div id="view">[More Detail]</div>
+    <div id="expand">[Collapse All]</div>
+</div>
 
-	<div class="description">
-		<%= @feature.description %>
-	</div>
+<div class="meta">
+  <div class="file developer"><%= h(@feature.file) %></div>
+  <div class="tags developer">
+    <% @feature.tags.each do |tag| %>
+      <a href="<%= url_for tag %>"><%= tag.value %></a>
+    <% end %>
+  </div>
+</div>
 
-	<%= yieldall %>
+<div class="description">
+  <%= @feature.description %>
+</div>
+
+<%= yieldall %>
 </div>
 

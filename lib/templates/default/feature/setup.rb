@@ -4,7 +4,6 @@ def init
     
   sections.push :feature
   
-  sections.push :background if object.background
   sections.push :scenarios if object.scenarios
     
 end
@@ -17,6 +16,12 @@ end
 
 def scenarios
   scenarios = ""
+  
+  if @feature.background
+    @scenario = @feature.background
+    @id = "background"
+    scenarios += erb(:scenario)
+  end
   
   @feature.scenarios.each_with_index do |scenario,index|
     @scenario = scenario
