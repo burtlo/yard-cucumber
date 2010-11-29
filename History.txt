@@ -1,7 +1,9 @@
-=== 1.7.1 / 2010-11-27
+=== 1.7.1 / 2010-11-28
 
-* FIX Scenario Outline keyword generating an error on CentOS, Ruby 1.8.7
-* FIX Requiring Cucumber before Gherkin so that correct version is loaded
+* Feature file with layout enhancements
+* Scenarios are now linked/linkable
+* FIX Scenario Outline error on CentOS, Ruby 1.8.7
+* FIX Requiring Cucumber before Gherkin so that correct gherkin is loaded
 
 === 1.7.0 / 2010-11-18
 
