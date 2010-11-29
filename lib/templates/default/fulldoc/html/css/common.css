@@ -13,6 +13,8 @@
 
 .meta { margin-left: 30px; color: gray; }
 .scenario .meta .tags { margin-left: 0px; }
+.feature .meta .tags { float: right; margin-right: 20px; }
+
 
 .feature .description, .requirements .summary {
     margin: 10px 20px 0px 30px;
@@ -47,7 +49,8 @@
 #directory .title .name, #features .title .name, #scenarios .title .name { font-weight: normal; }
 
 #background .title .pre { color: #346F97; }
-.requirements .tags, .scenario .tags { float: right; margin-right: 20px; margin-top: 5px; }
+.requirements .tags { margin-left: 50px; margin-right: 30px; }
+.scenario .tags { float: right; margin-right: 20px; margin-top: 5px; }
 
 
 * ul.alpha { font-size: 1.1em; }

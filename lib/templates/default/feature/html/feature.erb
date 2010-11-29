@@ -15,6 +15,7 @@
 
 <div class="meta">
   <div class="file developer"><%= h(@feature.file) %></div>
+  <div style="clear: right;"></div>
   <div class="tags developer">
     <% @feature.tags.each do |tag| %>
       <a href="<%= url_for tag %>"><%= tag.value %></a>
