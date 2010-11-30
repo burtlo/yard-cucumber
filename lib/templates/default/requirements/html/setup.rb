@@ -50,5 +50,5 @@ def steps
 end
 
 def tags
-  @tags ||= Registry.all(:tag)
+  @tags ||= Registry.all(:tag).sort {|a,b| a.value.to_s <=> b.value.to_s }
 end
