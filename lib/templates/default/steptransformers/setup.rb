@@ -20,7 +20,7 @@ end
 
 def undefined_steps
   @item_title = "Undefined Steps"
-  @item_type = "undefined steps"
+  @item_type = nil
   @undefined_steps ||= Registry.all(:step).reject {|s| s.definition || s.scenario.outline? }
   erb(:header) + erb(:undefined_steps)
 end

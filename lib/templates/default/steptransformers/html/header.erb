@@ -1,7 +1,12 @@
 <div style="margin: 10px;">&nbsp;</div>
 
 <div class="title">
-	<div class="name"><%= @item_title %></div>
+  <div class="name"><%= @item_title %></div>
 </div>
 
 <div style="margin: 10px;">&nbsp;</div>
+
+<% if @item_type %>
+  <div class="control" id="<%= @item_type.gsub(/\s/,'') %>">[Collapse All]</div>
+  <div style="clear: right;"></div>
+<% end %>

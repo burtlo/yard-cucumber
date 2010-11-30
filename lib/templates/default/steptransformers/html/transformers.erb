@@ -1,46 +1,58 @@
 <% @items.each do |item| %>
 
-<div class="stepdef">
-	<a name="<%= anchor_for item %>"></a>
-	<div class="title">
-		<span class="pre"><%= item.keyword %></span>
-		<span class="name"><%= item.value %></span>
-		<div style="float: right;"><%= h( item.location ) %></div>
-	</div>
-  <div>
-    <%= T('docstring').run(options.dup.merge({:object => item})) %>
+  <div class="<%= @item_type.gsub(/\s/,'') %>">
+    <a name="<%= anchor_for item %>"></a>
+    <div class="title">
+      <span class="pre"><%= item.keyword %></span>
+      <span class="name"><%= item.value %></span>
+    </div>
+
+    <div class="details">
+      
+      <div class="meta">
+        <div style="float: right;"><%= h( item.location ) %></div>
+      </div>
+
+      <!-- Comments -->
+      <div>
+        <%= T('docstring').run(options.dup.merge({:object => item})) %>
+      </div>
+
+      <!-- Source Code -->
+      <div class="method_details_list">
+        <table class="source_code">
+          <tr>
+            <td>
+              <pre class="lines"><%= "" %><%= h format_lines(item) %></pre>
+            </td>
+            <td>
+              <pre class="code"><%= "" %><%= html_syntax_highlight item.source %></pre>
+            </td>
+          </tr>
+        </table>
+      </div>
+
+      <!-- Matching Step Instances -->
+      <div class="steps">
+        <% if item.steps && !item.steps.empty? %>
+          <% item.steps.each_with_index do |step,step_index| %>
+            <div class="step <%= (step_index + 1) % 2 == 0 ? 'even' : 'odd' %>">
+              <span class="predicate">
+                <%= step.keyword %>
+              </span>
+              <span class="defined">
+                <%= link_transformed_step(step) %>
+              </span>
+              <div class="definition"><a href="<%= url_for step.scenario.feature %>"><%= h(step.location) %></a></div>
+            </div>
+          <% end %>
+        <% else %>
+          <span class="undefined">No steps were found to match this <%= @item_type %>.</span>
+        <% end%>
+      </div>
+      
+    </div>
+
   </div>
-	<div class="method_details_list">
-		<table class="source_code">
-			<tr>
-				<td>
-					<pre class="lines"><%= "" %><%= h format_lines(item) %></pre>
-				</td>
-				<td>
-					<pre class="code"><%= "" %><%= html_syntax_highlight item.source %></pre>
-				</td>
-			</tr>
-		</table>
-	</div>
-
-	<div class="steps">
-		<% if item.steps && !item.steps.empty? %>
-		<% item.steps.each_with_index do |step,step_index| %>	
-		<div class="step <%= (step_index + 1) % 2 == 0 ? 'even' : 'odd' %>">
-			<span class="predicate">
-			  <%= step.keyword %>
-			</span>
-			<span class="defined">
-			<%= link_transformed_step(step) %>
-			</span>
-			<div class="definition"><a href="<%= url_for step.scenario.feature %>"><%= h(step.location) %></a></div>
-		</div>
-		<% end %>
-		<% else %>
-		<span class="undefined">No steps were found to match this <%= @item_type %>.</span>
-		<% end%>
-	</div>
-
-</div>
 
 <% end %>

@@ -5,6 +5,8 @@
 .title { padding: 10px; font-size: 24px; }
 
 #view, #expand { float: right; font-size: 13px; color: gray; vertical-align: bottom; }
+.control { float: right; font-size: 13px; color: gray; vertical-align: bottom; }
+
 
 .feature > .title, .tag > .title, .requirements > .title { margin: 20px 20px 10px 20px;	padding-left: 0px; border-bottom: 1px solid #E3E3E3; }
 .meta .file { float: right; margin-top: 5px; margin-right: 20px; }
@@ -141,18 +143,18 @@
 .tag .scenario .meta { margin-top: 0px; }
 /* Overrides for scenarios in the tag view */
 
-.stepdef * .docstring { margin-left: 20px; margin-top: 10px; padding: 5px 5px 5px 10px; }
+.steptransform * .docstring, .stepdefinition * .docstring { margin-left: 20px; margin-top: 10px; padding: 5px 5px 5px 10px; }
 
-.stepdef .title {
-    font-size: 14px;
-    margin-top: 30px;
-    border-bottom: 1px solid #E3E3E3;
+.steptransform .title, .stepdefinition .title {
+    font-size: 1.1em; font-weight: normal; font-family: Monaco, Consolas, Courier, monospace;
+    padding: 6px 10px; margin-top: 18px;
+    background: #e5e8ff; border: 1px solid #d8d8e5; -moz-border-radius: 3px; -webkit-border-radius: 3px;
 }
 
-.stepdef .steps, .stepdef .method_details_list {
+.steptransform .steps, .steptransform .method_details_list, .stepdefinition .steps, .stepdefinition .method_details_list {
     margin: 10px 0px 0px 30px;
 }
-.stepdef .steps .step {
+.steptransform .steps .step, .stepdefinition .steps .step {
     padding: 4px;
 }
 #tags * li { padding: 5px; padding-left: 12px; margin: 0 0 0 10px; font-size: 1.1em; list-style: none; }
