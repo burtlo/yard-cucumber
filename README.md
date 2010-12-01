@@ -121,15 +121,15 @@ The table step transform matching would be nice to show which tables are affecte
 Document the additional before, after, and around hooks that Cucumber uses.  Specifically display the before, after, and around
 hooks that are tied to tags (unions and intersections) on the tag pages.
 
-**3. Layout refinements of the step definition / step tranform page**
+**3. Layout refinements of the step definition / step transform page**
 
 More work could be done to make this page more searchable, sortable, and usable.
 
-**4. Visualization of /Scenario Tag unions and intersections**
+**4. Visualization of Tag unions and intersections**
 
 Continue to expand the tag union/intersection tool.  Visualization of this execution with some graphing library for some extra points.
 
-**5. Requirements Only Docuementation**
+**5. Requirements Only Documentation**
 
 'fulldoc' is the default documentation generated but I have this thought that a requirements-only document
 may be useful.  Essentially the first draft would be the current documentation minus the class and method

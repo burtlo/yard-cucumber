@@ -52,3 +52,6 @@ Feature: Scenario
     And this third step
     # Comments after the last step, where do they go?
 
+  Scenario: Step ending with a match with double-quotes
+    When searching the log for the exact match of the message "Entering application."
+    When the step definition has HTML escaped characters like: "<>&"

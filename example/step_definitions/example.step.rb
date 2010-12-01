@@ -81,6 +81,20 @@ Then /I expect the (duck|bird) to (\w+)/ do |animal,verb|
   pending
 end
 
+#
+# This double-quoted step definition caused some problems when being rendered
+#
+When /^searching the log for the exact match of the message "([^"]+)"$/ do |message|
+  pending message
+end
+
+#
+#
+#
+When /^the step definition has HTML escaped characters like: "([^"]+)"$/ do |characters|
+  pending characters
+end
+
 
 #
 # Some details about the helper method that might be picked up in the documentation.

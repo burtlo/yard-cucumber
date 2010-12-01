@@ -34,8 +34,7 @@ end
 
 
 def highlight_matches(step)
-  
-  value = h(step.value)
+  value = step.value.dup
   
   if step.definition
     matches = step.value.match(step.definition.regex)
@@ -43,7 +42,7 @@ def highlight_matches(step)
     if matches
       matches[1..-1].reverse.each_with_index do |match,index|
         next if match == nil
-        value[matches.begin((matches.size - 1) - index)..(matches.end((matches.size - 1) - index) - 1)] = "<span class='match'>#{match}</span>"
+        value[matches.begin((matches.size - 1) - index)..(matches.end((matches.size - 1) - index) - 1)] = "<span class='match'>#{h(match)}</span>"
       end
     end
   end

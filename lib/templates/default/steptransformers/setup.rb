@@ -27,7 +27,7 @@ end
 
 
 def link_transformed_step(step)
-  value = step.value
+  value = step.value.dup
   
   if step.definition
     matches = step.value.match(step.definition.regex)
@@ -37,7 +37,7 @@ def link_transformed_step(step)
         next if match == nil
         transform = step.transforms.find {|transform| transform.regex.match(match) }
         
-        value[matches.begin((matches.size - 1) - index)..(matches.end((matches.size - 1) - index) - 1)] = transform ? "<a href='#{url_for(transform)}'>#{match}</a>" : "<span class='match'>#{match}</span>"
+        value[matches.begin((matches.size - 1) - index)..(matches.end((matches.size - 1) - index) - 1)] = transform ? "<a href='#{url_for(transform)}'>#{h(match)}</a>" : "<span class='match'>#{match}</span>"
       end
     end
   end
