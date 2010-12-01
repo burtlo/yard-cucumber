@@ -1,3 +1,9 @@
+=== 1.7.2 / 2010-11-30
+
+* Step Definition and Transform page enhancements
+* Step Regex links to Rubular
+* FIX Steps with HTML encoded characters will display correctly
+
 === 1.7.1 / 2010-11-28
 
 * Feature file with layout enhancements
