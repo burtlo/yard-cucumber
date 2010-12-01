@@ -1,4 +1,4 @@
-<div class="stepdefinition">
+<div class="transformer">
   <div class="steps">
   <% if @undefined_steps && !@undefined_steps.empty? %>
     <% @undefined_steps.each_with_index do |step,step_index| %>
@@ -7,14 +7,13 @@
       <span class="undefined">
         <%= h step.value %>
       </span>
-      <div class="definition">
-        <a href="<%= url_for step.scenario.feature %>"><%= h(step.location) %></a>
-      </div>
+      <a class="definition" href="<%= url_for step.scenario.feature %>"><%= h(step.location) %></a>
+      <div style="clear: both;"></div>
     </div>
     <% end %>
     <% else %>
     <div class="steps">
-      <span class="undefined">No undefined steps</span>
+      <div class="undefined">No undefined steps</div>
     </div>
     <% end%>
   </div>

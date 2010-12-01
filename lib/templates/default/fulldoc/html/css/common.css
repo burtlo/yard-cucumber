@@ -5,10 +5,9 @@
 .title { padding: 10px; font-size: 24px; }
 
 #view, #expand { float: right; font-size: 13px; color: gray; vertical-align: bottom; }
-.control { float: right; font-size: 13px; color: gray; vertical-align: bottom; }
+.control { float: right; font-size: 13px; color: gray; vertical-align: bottom;  font-family: monospace;	font-size: 14px; cursor: pointer; }
 
-
-.feature > .title, .tag > .title, .requirements > .title { margin: 20px 20px 10px 20px;	padding-left: 0px; border-bottom: 1px solid #E3E3E3; }
+.title { margin: 20px 20px 10px 20px;	padding-left: 0px; border-bottom: 1px solid #E3E3E3; }
 .meta .file { float: right; margin-top: 5px; margin-right: 20px; }
 .title .pre { color: #696969; }
 .title .name { font-weight: bold; color: #3F3F3F; }
@@ -32,7 +31,7 @@
 .selected {	background-color: #FFCC80; }
 
 
-#background, #features, #scenarios { margin-top: 10px; margin-left: 20px; }
+#features, #scenarios { margin-top: 10px; margin-left: 20px; }
 
 
 #directory { margin-top: 20px; margin-left: 20px; }
@@ -40,17 +39,20 @@
 .scenario { margin-top: 40px; margin-left: 20px; }
 .requirements * .scenario { margin-top: 0px; margin-left: 0px; }
 
-.scenario .title, #background .title {
-    font-size: 16px;
-    padding-left: 0px;
-    margin: 0px 20px 0px 10px;
-    border-bottom: 1px solid #E3E3E3;
+.scenario .title, .transformer .title {
+    font-size: 1.1em; font-weight: normal; font-family: Monaco, Consolas, Courier, monospace;
+    padding: 6px 10px; margin-top: 18px;
+    background: #e5e8ff; border: 1px solid #d8d8e5; -moz-border-radius: 3px; -webkit-border-radius: 3px;
 }
+.scenario .title { border: none; }
+.background .title { background: #cbddeb; }
 
 #directory .title, #features .title, #scenarios .title { padding-left: 0px; margin-left: 10px; border-bottom: 1px solid #E3E3E3; }
 #directory .title .name, #features .title .name, #scenarios .title .name { font-weight: normal; }
 
-#background .title .pre { color: #346F97; }
+.scenario .title .pre {	color: #00AAD2; }
+.background .title .pre { color: #346F97; }
+
 .requirements .tags { margin-left: 50px; margin-right: 30px; }
 .scenario .tags { float: right; margin-right: 20px; margin-top: 5px; }
 
@@ -62,12 +64,12 @@
 * ul small { color: #666; font-size: 0.7em; }
 
 
-.scenario .steps, #background .steps {
+.scenario .steps {
     margin: 0px 20px 0px 30px;
     font-size: 12px;
 }
 
-.scenario .step, #background .step, .steps .none {
+.scenario .step, .steps .none {
     margin-top: 4px;
     padding: 4px;
     font-size: 14px;
@@ -75,12 +77,7 @@
 }
 .steps .none { color: #5D5C5B; }
 
-
-#background .title .name {}
-
-.scenario .title .name {}
-
-#background .description, .scenario .description {
+.scenario .description {
     padding: 10px;
     color: #444444;
     margin-right: 20px;
@@ -90,10 +87,9 @@
 .comments { margin-left: 25px; color: gray; padding: 5px; font-size: 13px; }
 .scenario .steps .comments { margin-left: 0px; }
 
-.scenario .title .pre {	color: #00AAD2; }
 
 .step .predicate { color: #5D5C5B; }
-/*.step .undefined { border-bottom: 1px dashed #E99494; }*/
+
 .step .defined {}
 .step .definition { float: right; color: #343332; }
 .step .details .pre {}
@@ -143,20 +139,16 @@
 .tag .scenario .meta { margin-top: 0px; }
 /* Overrides for scenarios in the tag view */
 
-.steptransform * .docstring, .stepdefinition * .docstring { margin-left: 20px; margin-top: 10px; padding: 5px 5px 5px 10px; }
 
-.steptransform .title, .stepdefinition .title {
-    font-size: 1.1em; font-weight: normal; font-family: Monaco, Consolas, Courier, monospace;
-    padding: 6px 10px; margin-top: 18px;
-    background: #e5e8ff; border: 1px solid #d8d8e5; -moz-border-radius: 3px; -webkit-border-radius: 3px;
-}
 
-.steptransform .steps, .steptransform .method_details_list, .stepdefinition .steps, .stepdefinition .method_details_list {
-    margin: 10px 0px 0px 30px;
+.transformer * .docstring { margin-left: 20px; margin-top: 10px; padding: 5px 5px 5px 10px; }
+.transformer .steps, .method_details_list, .steps, .method_details_list {
+    margin: 10px 20px 0px 30px;
 }
-.steptransform .steps .step, .stepdefinition .steps .step {
-    padding: 4px;
-}
+.transformer .steps .step { padding: 4px; }
+
+
+
 #tags * li { padding: 5px; padding-left: 12px; margin: 0 0 0 10px; font-size: 1.1em; list-style: none; }
 
 #tag_search {  margin: 10px 0px 10px 0px; width: 100%; min-width: 200px; height: 20px; }

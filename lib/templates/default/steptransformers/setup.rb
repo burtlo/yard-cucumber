@@ -1,6 +1,6 @@
 def init
   super
-  sections.push :steptransformers, [:stepdefinitions, :steptransforms], :undefined_steps
+  sections.push :stepdefinitions, :steptransforms, :undefined_steps
 end
 
 

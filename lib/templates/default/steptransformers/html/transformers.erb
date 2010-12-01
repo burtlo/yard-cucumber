@@ -1,16 +1,18 @@
 <% @items.each do |item| %>
 
-  <div class="<%= @item_type.gsub(/\s/,'') %>">
+  <div class="transformer <%= @item_type.gsub(/\s/,'') %>">
     <a name="<%= anchor_for item %>"></a>
     <div class="title">
-      <span class="pre"><%= item.keyword %></span>
-      <span class="name"><%= item.value %></span>
+      <span class="pre"><%= h item.keyword %></span>
+      <span class="name"><%= h item.value %></span>
+      <a style="float: right;" href="http://rubular.com/?regex=<%= urlencode item.value %>" target="_blank">Rubular</a>
+      <div style="clear: both;"></div>
     </div>
 
     <div class="details">
-      
-      <div class="meta">
-        <div style="float: right;"><%= h( item.location ) %></div>
+
+      <div class="meta" style="clear: right;">
+        <div class="file"><%= h item.location %></div>
       </div>
 
       <!-- Comments -->
@@ -38,19 +40,20 @@
           <% item.steps.each_with_index do |step,step_index| %>
             <div class="step <%= (step_index + 1) % 2 == 0 ? 'even' : 'odd' %>">
               <span class="predicate">
-                <%= step.keyword %>
+                <%= h step.keyword %>
               </span>
               <span class="defined">
                 <%= link_transformed_step(step) %>
               </span>
-              <div class="definition"><a href="<%= url_for step.scenario.feature %>"><%= h(step.location) %></a></div>
+              <a class="definition" href="<%= url_for step.scenario.feature %>"><%= h step.location %></a>
+              <div style="clear: both;"></div>
             </div>
           <% end %>
         <% else %>
-          <span class="undefined">No steps were found to match this <%= @item_type %>.</span>
+          <div class="undefined">No steps were found to match this <%= @item_type %>.</div>
         <% end%>
       </div>
-      
+
     </div>
 
   </div>
