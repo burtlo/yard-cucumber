@@ -20,21 +20,22 @@ a new developer; quality assurance engineer; or product owner/stakeholder.
 
 The implemented example has been deployed at [http://recursivegames.com/cukes/](http://recursivegames.com/cukes/).
 
-**1. Formatted Features** [example](http://recursivegames.com/cukes/requirements/example/scenario.html)
+**1. View Features and Scenarios** [example](http://recursivegames.com/cukes/requirements/)
 
-**2. Search through features, scenarios, and tags** [example](http://recursivegames.com/cukes/feature_list.html) & [example](http://recursivegames.com/cukes/tag_list.html)
+**2. Search through [features, scenarios](http://recursivegames.com/cukes/feature_list.html), and [tags](http://recursivegames.com/cukes/tag_list.html)**
 
 **3. Dynamic Tag Unions and Intersections** [example](http://recursivegames.com/cukes/requirements/tags.html)
 
-**4. View features and scenarios by tag** [example](http://recursivegames.com/cukes/requirements/tags/bvt.html)
+**4. View all features and scenarios by tag** [example](http://recursivegames.com/cukes/requirements/tags/message.html)
 
-**5. Steps link to their step definitions** [example](http://recursivegames.com/cukes/requirements/example/scenario.html)
+**5. View Step Definitions and Transforms** [example](http://recursivegames.com/cukes/requirements/step_transformers.html)
 
-**6. Step definitions show implemented steps** [example](http://recursivegames.com/cukes/requirements/step_transformers.html#definition_13-stepdefinition)
+**6. All steps [matched](http://recursivegames.com/cukes/requirements/step_transformers.html#definition_5-stepdefinition) to step definitions**
 
-**7. Step definitions show the step transforms used** [example](http://recursivegames.com/cukes/requirements/step_transformers.html#transform_8-steptransform)
+**7. [Steps](http://recursivegames.com/cukes/requirements/step_transformers.html#transform_3-steptransform) that have transforms applied to them**
 
-**8. Undefined steps are listed** [example](http://recursivegames.com/cukes/requirements/step_transformers.html#undefined_steps)
+**8. [Undefined steps](http://recursivegames.com/cukes/requirements/step_transformers.html#undefined_steps) and even [Rubular](http://rubular.com/) links of your step definitions.**
+
 
 Installation
 ------------
