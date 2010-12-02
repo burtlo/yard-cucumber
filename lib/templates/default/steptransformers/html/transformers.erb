@@ -1,6 +1,6 @@
 <% @items.each do |item| %>
 
-<div class="transformer <%= @item_type.gsub(/\s/,'') %>">
+<div class="transformer <%= @item_type.gsub(/\s/,'') %> <%= "nodefinitions" if item.steps.nil? || item.steps.empty? %>">
   <a name="<%= anchor_for item %>"></a>
   <div class="title">
     <span class="pre"><%= h item.keyword %></span>
@@ -11,13 +11,13 @@
 
   <div class="details">
 
-    <div class="meta" style="clear: right;">
-      <div class="file"><%= h item.location %></div>
-    </div>
-
     <!-- Comments -->
     <div>
       <%= T('docstring').run(options.dup.merge({:object => item})) %>
+    </div>
+
+    <div class="meta" style="clear: right;">
+      <div class="file"><%= h item.location %></div>
     </div>
 
     <!-- Source Code -->

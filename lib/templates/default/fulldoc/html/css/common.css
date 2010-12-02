@@ -46,6 +46,10 @@
     padding: 6px 10px; margin-top: 18px;
     background: #e5e8ff; border: 1px solid #d8d8e5; -moz-border-radius: 3px; -webkit-border-radius: 3px;
 }
+.nodefinitions .title {
+    background-color: #F5EADD;  border: 1px solid #d8d8e5; -moz-border-radius: 3px; -webkit-border-radius: 3px;
+}
+
 .scenario .title { border: none; }
 .background .title { background: #cbddeb; }
 
@@ -92,6 +96,7 @@
 
 .step .predicate { color: #5D5C5B; }
 .step .defined {}
+div.undefined { padding: 6px; }
 .step .definition { float: right; color: #343332; }
 .step .details .pre {}
 .step .details .name { font-family: monospace; color: black; }
@@ -142,6 +147,7 @@
 
 
 /* Step Transformer Page */
+.transformer { margin-top: 20px; }
 .transformer * .docstring { margin-left: 20px; margin-top: 10px; padding: 5px 5px 5px 10px; }
 .transformer .steps, .method_details_list, .steps, .method_details_list { margin: 10px 20px 0px 30px; }
 .transformer .steps .step { padding: 6px; font-size: 14px; }
