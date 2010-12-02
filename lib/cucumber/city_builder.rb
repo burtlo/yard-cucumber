@@ -132,6 +132,7 @@ module Cucumber
             end
 
             @step_container.example_values_for_row(row_index).each do |key,text|
+              text ||= "" #handle empty cells in the example table
               step_instance.value.gsub!("<#{key}>",text)
               step_instance.text.gsub!("<#{key}>",text) if step_instance.has_text?
               step_instance.table.each{|row| row.each{|col| col.gsub!("<#{key}>",text)}} if step_instance.has_table?

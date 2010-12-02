@@ -29,10 +29,12 @@ module YARD::CodeObjects::Cucumber
     end
     
     def example_headers
+      return "Error - no example in a Scenario Outline - should it be a Scenario instead?" unless @examples[:rows]
       @examples[:rows].first
     end
     
     def example_data
+      return "" unless @examples[:rows]
       @examples[:rows][1..-1]
     end
 
