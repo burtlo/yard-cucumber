@@ -1,5 +1,5 @@
 @scenario_outlines @bvt
-Feature: Scenario Outline
+Feature: Displaying Scenario Outlines
   As a reader of the documentation I expect that scenario outlines are documented correctly
 
   @first
@@ -22,7 +22,7 @@ Feature: Scenario Outline
     The <noun> jumped over the <place>
     """
     When I click on an example row
- 	Then I expect <noun> to be replaced by the example noun
+ 	  Then I expect <noun> to be replaced by the example noun
     And I expect <place> to be replaced by the example place
     
     Examples:
@@ -36,7 +36,7 @@ Feature: Scenario Outline
       | name   | price   | quantity |
       | <name> | <price> | 100000   |
     When I click on an example row
- 	Then I expect <name> to be replaced by the example name
+ 	  Then I expect <name> to be replaced by the example name
     And I expect <price> to be replaced by the example price
 
     Examples:
@@ -49,8 +49,8 @@ Feature: Scenario Outline
     Given the following table:
       | name   | <denomination> | quantity |
       | <name> | <price>        | 100000   |
-	When I click on an example row
- 	Then I expect <name> to be replaced by the example name
+	  When I click on an example row
+    Then I expect <name> to be replaced by the example name
     And I expect <price> to be replaced by the example price
     And I expect <denomination> to be replaced by the example denomination
 
@@ -58,3 +58,23 @@ Feature: Scenario Outline
      | name | price | denomination    |
      | toy  | 99    | cost in euros   |
      | game | 49    | cost in dollars |
+     
+  # This is an example of a scenario outline in development.
+  # The example table has not been defined yet
+  Scenario Outline: Example Table Missing
+    When I click on an example row
+    Then I expect <name> to be replaced by the example name
+    And I expect <price> to be replaced by the example price
+    And I expect <denomination> to be replaced by the example denomination
+      
+    
+  # This is an example of a scenario outline in development.  
+  # The examples table has been defined, but is missing data.
+  Scenario Outline: Empty Example Table
+    When I click on an example row
+    Then I expect <name> to be replaced by the example name
+    And I expect <price> to be replaced by the example price
+    And I expect <denomination> to be replaced by the example denomination
+    
+    Examples:
+      | name | price | denomination |

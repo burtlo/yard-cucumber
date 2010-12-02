@@ -1,5 +1,5 @@
-@scenarios @bvt
-Feature: Scenario
+@scenarios
+Feature: Displaying Scenarios
   As a reader of the documentation I expect that scenario are documented correctly
 
   Background:
@@ -11,9 +11,9 @@ Feature: Scenario
   @second
   Scenario: Scenario With Steps
     Given this first step
-    When this second step
-    Then this third step
-
+	When this second step
+	Then this third step
+	
   @third @optional_parameters
   Scenario: Optional Parameter Step Definition
     # This step definition has some optional parameters
@@ -35,17 +35,23 @@ Feature: Scenario
   @sixth @text
   Scenario: Scenario With Text
     Given the following text:
-      """
-        Oh what a bother!
-      """
+    """
+      Oh what a bother!
+    """
 
+  # Comments before the scenario
   @seventh @comments
-  Scenario: Scenario with comments and
-    with multiple lines for the name
-
+  Scenario: Scenario with comments and a description
+    There once was a need for information to be displayed alongside all the
+    entities that I hoped to test
     # First Comment
     Given this first step
     # Second Comment
     And this second step
     # Third Comment
     And this third step
+    # Comments after the last step, where do they go?
+
+  Scenario: Step ending with a match with double-quotes
+    When searching the log for the exact match of the message "Entering application."
+    When the step definition has HTML escaped characters like: "<>&"
