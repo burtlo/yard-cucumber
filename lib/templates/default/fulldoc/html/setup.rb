@@ -8,7 +8,7 @@ def init
 
   if @features
     @features.each {|feature| serialize(feature) } 
-    generate_full_list(@features)
+    generate_full_list @features.sort {|x,y| x.value <=> y.value }
   end
   
   @tags = Registry.all(:tag)
