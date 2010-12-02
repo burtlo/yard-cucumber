@@ -7,7 +7,9 @@
 <% end %>
 
 <div class="outline">
-  <div class="keyword"> <%= h @scenario.example_keyword %> </div>
+  
+  <% if @scenario.examples? %>
+  <div class="keyword"> <%= h @scenario.example_keyword %></div>
   <table>
     <thead>
       <tr>
@@ -16,12 +18,25 @@
         <% end %>
       </tr>
     </thead>
-    <% @scenario.example_data.each_with_index do |row,row_index| %>
-    <tr class="<%= (row_index + 1) % 2 == 0 ? "even example#{row_index +1}" : "odd example#{row_index +1}" %>">
-      <% row.each_with_index do |column,column_index| %>
-        <td><%= h(column.to_s.strip) %></td>
+    <% unless @scenario.example_data.empty? %>
+      <% @scenario.example_data.each_with_index do |row,row_index| %>
+      <tr class="<%= (row_index + 1) % 2 == 0 ? "even example#{row_index +1}" : "odd example#{row_index +1}" %>">
+        <% row.each_with_index do |column,column_index| %>
+          <td><%= h(column.to_s.strip) %></td>
+        <% end %>
+      </tr>
       <% end %>
-    </tr>
+    <% else %>
+      <!-- Scenario Outline example table is empty -->
+      <tr class="odd">
+        <td colspan="<%= @scenario.example_headers.length %>" style="text-align: center;">
+          No Examples Defined
+        </td>
+      </tr>
     <% end %>
   </table>
+  <% else %>
+  <div class="keyword">No Example Table Defined</div>
+  <div class="keyword suggestion developer">[!] Did you mean to create a Scenario?</div>
+  <% end %>
 </div>

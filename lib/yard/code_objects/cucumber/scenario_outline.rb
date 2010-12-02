@@ -23,13 +23,16 @@ module YARD::CodeObjects::Cucumber
     def outline?
       true
     end
+    
+    def examples?
+      !@examples[:rows].nil?
+    end
 
     def example_keyword
       @examples[:keyword]
     end
     
     def example_headers
-      return "Error - no example in a Scenario Outline - should it be a Scenario instead?" unless @examples[:rows]
       @examples[:rows].first
     end
     

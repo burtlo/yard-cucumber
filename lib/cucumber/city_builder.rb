@@ -101,7 +101,7 @@ module Cucumber
       end
 
       def examples(examples)
-        #log.debug "EXAMPLES #{examples.name}"
+        #log.debug "EXAMPLES"
 
         @step_container.examples = { :keyword => examples.keyword,
           :name => examples.name,

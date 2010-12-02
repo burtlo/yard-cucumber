@@ -16,6 +16,8 @@
 .scenario .meta .tags { margin-left: 0px; }
 .feature .meta .tags { float: right; margin-right: 20px; }
 
+.suggestion { color: #ff686e; }
+
 
 .feature .description, .requirements .summary {
     margin: 10px 20px 0px 30px;
@@ -89,7 +91,6 @@
 
 
 .step .predicate { color: #5D5C5B; }
-
 .step .defined {}
 .step .definition { float: right; color: #343332; }
 .step .details .pre {}
@@ -104,6 +105,7 @@
     border: 1px solid #DEDEDE;
 }
 
+/* Scenario Outline Table */
 .outline {
     margin-top: 20px;
     margin-left: 40px;
@@ -113,7 +115,6 @@
     font-weight: bold;
     font-size: 16px;
 }
-
 
 .multiline table tr, .outline table tr {
     padding: 4px;
@@ -128,7 +129,8 @@
     padding: 4px 10px 4px 10px;
 }
 
-/* tag page */
+
+/* Tag page */
 #tags #features, #tags #scenarios { margin-right: 20px;}
 #tags * .tag { font-family: monospace;	font-size: 14px; cursor: pointer; }
 
@@ -137,20 +139,16 @@
 .tag .scenario { margin-top: 0px;  margin-left: 20px; padding-left: 30px;	}
 .tag .scenario .title { border-bottom: none; }
 .tag .scenario .meta { margin-top: 0px; }
-/* Overrides for scenarios in the tag view */
 
 
-
+/* Step Transformer Page */
 .transformer * .docstring { margin-left: 20px; margin-top: 10px; padding: 5px 5px 5px 10px; }
-.transformer .steps, .method_details_list, .steps, .method_details_list {
-    margin: 10px 20px 0px 30px;
-}
+.transformer .steps, .method_details_list, .steps, .method_details_list { margin: 10px 20px 0px 30px; }
 .transformer .steps .step { padding: 4px; }
 
 
-
+/* Tag Search Page */
 #tags * li { padding: 5px; padding-left: 12px; margin: 0 0 0 10px; font-size: 1.1em; list-style: none; }
-
 #tag_search {  margin: 10px 0px 10px 0px; width: 100%; min-width: 200px; height: 20px; }
 #tag_filtering {
     margin: 10px 20px 0px 40px;
@@ -160,15 +158,19 @@
     color: #444444;
     border: 1px solid #DEDEDE;
 }
+
 #command_example { margin-top: 10px; margin-left: 10px; font-weight: normal; }
 
 
 
-#cukes_links { margin: 10px auto 10px auto; 
-               border-bottom: 1px solid #E3E3E3;
-               width: 762px; text-align: center;
-               padding: 10px;
+#cukes_links { 
+    margin: 10px auto 10px auto; 
+    border-bottom: 1px solid #E3E3E3;
+    width: 762px; text-align: center;
+    padding: 10px;
 }
+
+/* Logo Image and Step Status Images */
 
 #cukes_logo {
     margin: 0px auto 10px auto;
@@ -189,5 +191,3 @@
     height: 15px;
     background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA8AAAAPCAIAAAC0tAIdAAAACXBIWXMAAA86AAAPOgGXOdvCAAABWUlEQVQoFS2SvVEEMQyFJdkspFcCVAAVUREZXVAHHRAwZOQwQ3YM67X4nnwe3+3afn+S18/P9366s5yZ042R6c3c3bRKDw+WwZxf791Pt/3hMcev5QBpFtauPLoBYrYr6zcem/Xr8frUbc4c59zPPoekQeSesTm47IaD74kfTjnDbNqxC5pTzrJfQcCFBQClIh7bIdDc9S+6E8WIQXTl9somfA1S4iJVbUnJmyOhJT+51AMRkXVArMtBdUNLGcpmaReDdSIGHw4m2iyNIiMslTWqBvMuZSVZB4QhMRRp6IUjzYuPctvq3TpWumq2sIfNw/KQ3DwomfIv6aVBT+ZQMFKxhB8uLfhlzkO3Sstlwh1ja3+oEKVuqipGHhMztEGvvlZEQHwyMKPD1NDtrrpBR3jbalv90hWzo05FBr1vlKGXtvGF9fz5HG8vFRpK1a5yV0/KVuZSzO+Pf3G6tVs/+L00AAAAAElFTkSuQmCC) no-repeat center;
 }
-
-.conflicted {}
