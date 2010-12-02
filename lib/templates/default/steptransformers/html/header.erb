@@ -1,9 +1,9 @@
 <div class="title">
-  <div class="name"><%= @item_title %></div>
-  
   <% if @item_type %>
-    <div class="control" id="<%= @item_type.gsub(/\s/,'') %>">[Collapse All]</div>
-    <div style="clear: right;"></div>
-  <% end %>
+     <a class="control" href="#" id="<%= @item_type.gsub(/\s/,'') %>">[Collapse All]</a>
+     <div style="clear: right;"></div>
+   <% end %>
+ 
+  <div class="name"><%= @item_title %></div>
 </div>
 

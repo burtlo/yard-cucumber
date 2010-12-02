@@ -6,11 +6,21 @@ $(function() {
 
 <div class="feature">
   <div class="title">
+    <a id="view" class="control" href="#">[More Detail]</a>
+    <a id="expand" class="control" href="#">[Collapse All]</a>
+    <div style="clear: right;"></div>
     <span class="pre"><%= @feature.keyword %>:</span>
     <span class="name"><%= @feature.value %></span>
+  </div>
 
-    <div id="view" class="control">[More Detail]</div>
-    <div id="expand" class="control">[Collapse All]</div>
+  <% if @feature.comments.length > 0 %>
+  <div class="comments developer">
+    <%= htmlify_with_newlines @feature.comments %>  
+  </div>
+  <% end %>
+
+  <div class="description">
+    <%= htmlify_with_newlines @feature.description %>
   </div>
 
   <div class="meta">
@@ -21,14 +31,6 @@ $(function() {
       <a href="<%= url_for tag %>"><%= tag.value %></a>
       <% end %>
     </div>
-  </div>
-
-  <div class="comments developer">
-    <% htmlify_with_newlines @feature.comments %>  
-  </div>
-
-  <div class="description">
-    <%= htmlify_with_newlines @feature.description %>
   </div>
 
   <%= yieldall %>

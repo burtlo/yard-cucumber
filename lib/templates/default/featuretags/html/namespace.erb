@@ -30,16 +30,19 @@
     </div>
 
     <div id="tag_filtering" >
-        <span>Tag Filtering <a href="https://github.com/aslakhellesoy/cucumber/wiki/Tags" target="_blank">?</a></span>
+        <span style="font-size: 18px;">Tag Filtering <a href="https://github.com/aslakhellesoy/cucumber/wiki/Tags" target="_blank">?</a></span>
         
         <div style="clear: both"></div>
         
-        <div style="float: left; margin-top: 10px; font-size: 10px; font-style: italic;">
+        <div style="float: left; margin-top: 10px; padding-left: 5px; line-height: 1.5; font-size: 10px; font-style: italic;">
+          Type in tags with spaces between to 'AND' and commas between to 'OR'<br/> 
           Left-click tags to 'AND'; ALT left-click tags to 'OR'
         </div>
         
+        <div style="clear: both;"></div>
+          
         <div style="float: right;">
-          <a href="" onclick=" updateTagFiltering(""); return true;">clear</a>
+          <a href="#" onclick="clearTagFiltering(); $('#tag_search')[0].value = ''; return true;">clear</a>
         </div>
         
         <div style="clear: both"></div>

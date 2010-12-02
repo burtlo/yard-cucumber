@@ -4,8 +4,7 @@
 .tags { font-family: monospace;	font-size: 14px; }
 .title { padding: 10px; font-size: 24px; }
 
-#view, #expand { float: right; font-size: 13px; color: gray; vertical-align: bottom; }
-.control { float: right; font-size: 13px; color: gray; vertical-align: bottom;  font-family: monospace;	font-size: 14px; cursor: pointer; }
+.control { float: right; font-size: 13px; color: #05A; vertical-align: bottom;  font-family: monospace;	font-size: 14px; cursor: pointer; }
 
 .title { margin: 20px 20px 10px 20px;	padding-left: 0px; border-bottom: 1px solid #E3E3E3; }
 .meta .file { float: right; margin-top: 5px; margin-right: 20px; }
@@ -23,6 +22,7 @@
     margin: 10px 20px 0px 30px;
     padding: 10px 20px 20px 10px;
     color: #343332;
+    font-size: 16px;
     font-family: 'Trebuchet MS', Arial, Helvetica;
 }
 
@@ -151,16 +151,22 @@
 #tags * li { padding: 5px; padding-left: 12px; margin: 0 0 0 10px; font-size: 1.1em; list-style: none; }
 #tag_search {  margin: 10px 0px 10px 0px; width: 100%; min-width: 200px; height: 20px; }
 #tag_filtering {
-    margin: 10px 20px 0px 40px;
+    margin: 10px 20px 0px 30px;
     font-weight: bold;
     padding: 20px;
     background-color: #F8F8FF;
     color: #444444;
-    border: 1px solid #DEDEDE;
+    border: 1px solid #DEDEDE; -moz-border-radius: 3px; -webkit-border-radius: 3px;
 }
 
-#command_example { margin-top: 10px; margin-left: 10px; font-weight: normal; }
-
+#command_example { 
+    margin-top: 10px; 
+    margin-left: 0px; 
+    font-size: 1.1em; font-weight: normal; font-family: Monaco, Consolas, Courier, monospace;
+    color: #333;
+    padding: 8px 10px; 
+    background: #A8E795; border: 1px solid #d8d8e5; -moz-border-radius: 3px; -webkit-border-radius: 3px;
+}
 
 
 #cukes_links { 

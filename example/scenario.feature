@@ -1,4 +1,4 @@
-# Comments that appear before the feature are currently not comments that gherkin associates with the feature
+# Comments that appear before the feature are associated with the feature
 @scenarios
 Feature: Displaying Scenarios
   As a reader of the documentation I expect that scenario are documented correctly
@@ -39,6 +39,7 @@ Feature: Displaying Scenarios
     Given the following text:
     """
       Oh what a bother!
+      That this text has to take up two lines
     """
 
   # Comments before the scenario
