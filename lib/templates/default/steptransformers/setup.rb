@@ -26,6 +26,12 @@ def undefined_steps
 end
 
 
+def unique_steps(steps)
+  uniq_steps = {}
+  steps.each {|s| (uniq_steps[s.value.to_s] ||= []) << s }
+  uniq_steps
+end
+
 def link_transformed_step(step)
   value = step.value.dup
   

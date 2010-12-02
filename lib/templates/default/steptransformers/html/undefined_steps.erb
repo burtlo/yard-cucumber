@@ -1,13 +1,19 @@
 <div class="transformer">
   <div class="steps">
   <% if @undefined_steps && !@undefined_steps.empty? %>
-    <% @undefined_steps.each_with_index do |step,step_index| %>
+    <% unique_steps(@undefined_steps).each_with_index do |uniq_step,step_index| %>
     <div class="step <%= (step_index + 1) % 2 == 0 ? 'even' : 'odd' %>">
-      <span class="predicate"><%= step.keyword %></span>
-      <span class="undefined">
-        <%= h step.value %>
-      </span>
-      <a class="definition" href="<%= url_for step.scenario.feature %>"><%= h(step.location) %></a>
+      <div>
+        <span class="predicate"><%= uniq_step.last.first.keyword %></span>
+        <span class="undefined">
+          <%= h uniq_step.last.first.value %>
+        </span>
+      </div>
+      <% uniq_step.last.each do |step| %>
+        <a class="definition" style="clear: right;" href="<%= url_for step.scenario.feature %>">
+          <%= h step.location %>
+        </a>
+      <% end%>
       <div style="clear: both;"></div>
     </div>
     <% end %>

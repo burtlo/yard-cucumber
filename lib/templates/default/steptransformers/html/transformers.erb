@@ -1,61 +1,65 @@
 <% @items.each do |item| %>
 
-  <div class="transformer <%= @item_type.gsub(/\s/,'') %>">
-    <a name="<%= anchor_for item %>"></a>
-    <div class="title">
-      <span class="pre"><%= h item.keyword %></span>
-      <span class="name"><%= h item.value %></span>
-      <a style="float: right;" href="http://rubular.com/?regex=<%= urlencode item.value %>" target="_blank">Rubular</a>
-      <div style="clear: both;"></div>
-    </div>
-
-    <div class="details">
-
-      <div class="meta" style="clear: right;">
-        <div class="file"><%= h item.location %></div>
-      </div>
-
-      <!-- Comments -->
-      <div>
-        <%= T('docstring').run(options.dup.merge({:object => item})) %>
-      </div>
-
-      <!-- Source Code -->
-      <div class="method_details_list">
-        <table class="source_code">
-          <tr>
-            <td>
-              <pre class="lines"><%= "" %><%= h format_lines(item) %></pre>
-            </td>
-            <td>
-              <pre class="code"><%= "" %><%= html_syntax_highlight item.source %></pre>
-            </td>
-          </tr>
-        </table>
-      </div>
-
-      <!-- Matching Step Instances -->
-      <div class="steps">
-        <% if item.steps && !item.steps.empty? %>
-          <% item.steps.each_with_index do |step,step_index| %>
-            <div class="step <%= (step_index + 1) % 2 == 0 ? 'even' : 'odd' %>">
-              <span class="predicate">
-                <%= h step.keyword %>
-              </span>
-              <span class="defined">
-                <%= link_transformed_step(step) %>
-              </span>
-              <a class="definition" href="<%= url_for step.scenario.feature %>"><%= h step.location %></a>
-              <div style="clear: both;"></div>
-            </div>
-          <% end %>
-        <% else %>
-          <div class="undefined">No steps were found to match this <%= @item_type %>.</div>
-        <% end%>
-      </div>
-
-    </div>
-
+<div class="transformer <%= @item_type.gsub(/\s/,'') %>">
+  <a name="<%= anchor_for item %>"></a>
+  <div class="title">
+    <span class="pre"><%= h item.keyword %></span>
+    <span class="name"><%= h item.value %></span>
+    <a style="float: right;" href="http://rubular.com/?regex=<%= urlencode item.value %>" target="_blank">Rubular</a>
+    <div style="clear: both;"></div>
   </div>
+
+  <div class="details">
+
+    <div class="meta" style="clear: right;">
+      <div class="file"><%= h item.location %></div>
+    </div>
+
+    <!-- Comments -->
+    <div>
+      <%= T('docstring').run(options.dup.merge({:object => item})) %>
+    </div>
+
+    <!-- Source Code -->
+    <div class="method_details_list">
+      <table class="source_code">
+        <tr>
+          <td>
+            <pre class="lines"><%= "" %><%= h format_lines(item) %></pre>
+          </td>
+          <td>
+            <pre class="code"><%= "" %><%= html_syntax_highlight item.source %></pre>
+          </td>
+        </tr>
+      </table>
+    </div>
+
+    <!-- Matching Step Instances -->
+
+    <div class="steps">
+      <% if item.steps && !item.steps.empty? %>
+      <% unique_steps(item.steps).each_with_index do |uniq_step,step_index| %>
+      <div class="step <%= (step_index + 1) % 2 == 0 ? 'even' : 'odd' %>">
+        <div>
+          <span class="predicate">
+            <%= h uniq_step.last.first.keyword %>
+          </span>
+          <span class="defined">
+            <%= link_transformed_step(uniq_step.last.first) %>
+          </span>
+        </div>
+        <% uniq_step.last.each do |step| %>
+          <a class="definition" style="clear: right;" href="<%= url_for step.scenario.feature %>"><%= h step.location %></a>
+        <% end %>
+        <div style="clear: both;"></div>
+      </div>
+      <% end %>
+      <% else %>
+      <div class="undefined">No steps were found to match this <%= @item_type %>.</div>
+      <% end%>
+    </div>
+  </div>
+
+</div>
 
 <% end %>
