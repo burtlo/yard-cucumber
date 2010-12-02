@@ -49,3 +49,7 @@ def highlight_matches(step)
   
   value
 end
+
+def htmlify_with_newlines(text)
+  text.split("\n").collect {|c| h(c) }.join("<br/>") 
+end

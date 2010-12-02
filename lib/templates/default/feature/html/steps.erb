@@ -2,7 +2,7 @@
   <% @step = step %>
 
   <% if step.comments && step.comments.length > 0 %>
-  <div class="comments developer"><%= h step.comments %></div>
+  <div class="comments developer"><%= htmlify_with_newlines step.comments %></div>
   <% end %>
   <div class="step <%= (index + 1) % 2 == 0 ? 'even' : 'odd' %>">
     <span class="predicate"><%= step.keyword %></span>

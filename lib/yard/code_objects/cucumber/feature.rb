@@ -7,10 +7,10 @@ module YARD::CodeObjects::Cucumber
     attr_accessor :background, :comments, :description, :keyword, :scenarios, :tags, :value
 
     def initialize(namespace,name)
-      super(namespace,name.to_s.strip)
-      @comments = []
+      @comments = ""
       @scenarios = []
       @tags = []
+      super(namespace,name.to_s.strip)
     end
 
   end

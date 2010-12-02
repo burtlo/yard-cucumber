@@ -15,7 +15,6 @@ module Cucumber
       end
 
       def find_or_create_namespace(file)
-        # TODO: The directory that is added should have the full path
         file.split('/')[0..-2].each do |directory|
           @namespace = @namespace.children.find {|child| child.name == directory } ||
             YARD::CodeObjects::Cucumber::FeatureDirectory.new(@namespace,directory) {|dir| dir.add_file(directory)}

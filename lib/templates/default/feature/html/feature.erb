@@ -1,7 +1,7 @@
 <script type="text/javascript" charset="utf-8">
-  $(function() {
-    $(".developer").hide();
-  });
+$(function() {
+  $(".developer").hide();
+});
 </script>
 
 <div class="feature">
@@ -11,22 +11,26 @@
 
     <div id="view" class="control">[More Detail]</div>
     <div id="expand" class="control">[Collapse All]</div>
-</div>
-
-<div class="meta">
-  <div class="file developer"><%= h(@feature.file) %></div>
-  <div style="clear: right;"></div>
-  <div class="tags developer">
-    <% @feature.tags.each do |tag| %>
-      <a href="<%= url_for tag %>"><%= tag.value %></a>
-    <% end %>
   </div>
-</div>
 
-<div class="description">
-  <%= @feature.description %>
-</div>
+  <div class="meta">
+    <div class="file developer"><%= h(@feature.file) %></div>
+    <div style="clear: right;"></div>
+    <div class="tags developer">
+      <% @feature.tags.each do |tag| %>
+      <a href="<%= url_for tag %>"><%= tag.value %></a>
+      <% end %>
+    </div>
+  </div>
 
-<%= yieldall %>
+  <div class="comments developer">
+    <% htmlify_with_newlines @feature.comments %>  
+  </div>
+
+  <div class="description">
+    <%= htmlify_with_newlines @feature.description %>
+  </div>
+
+  <%= yieldall %>
 </div>
 

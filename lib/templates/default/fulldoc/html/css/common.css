@@ -88,7 +88,7 @@
 
 .comments { margin-left: 25px; color: gray; padding: 5px; font-size: 13px; }
 .scenario .steps .comments { margin-left: 0px; }
-
+.feature .comments { margin-left: 30px; padding: 10px 20px 20px 10px; }
 
 .step .predicate { color: #5D5C5B; }
 .step .defined {}

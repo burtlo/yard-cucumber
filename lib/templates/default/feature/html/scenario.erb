@@ -8,13 +8,13 @@
 
   <% if @scenario.description.length > 0 %>
   <div class="description">
-    <%= h @scenario.description %>
+    <%= htmlify_with_newlines @scenario.description %>
   </div>
   <% end %>
 
   <% if @scenario.comments.length > 0 %>
   <div class="comments developer">
-    <%= h @scenario.comments %>
+    <%= htmlify_with_newlines @scenario.comments %>
   </div>
   <% end %>
 

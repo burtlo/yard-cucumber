@@ -1,7 +1,9 @@
+# Comments that appear before the feature are currently not comments that gherkin associates with the feature
 @scenarios
 Feature: Displaying Scenarios
   As a reader of the documentation I expect that scenario are documented correctly
-
+  
+  # Comments after the feature description belong to the background or first scenario
   Background:
     Given this background step
 
@@ -46,7 +48,8 @@ Feature: Displaying Scenarios
     entities that I hoped to test
     # First Comment
     Given this first step
-    # Second Comment
+    # Second Comment that
+    # spans a few lines
     And this second step
     # Third Comment
     And this third step
