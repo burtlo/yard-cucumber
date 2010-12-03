@@ -3,7 +3,7 @@ require 'gherkin/parser/parser'
 require 'gherkin/formatter/tag_count_formatter'
 
 module CucumberInTheYARD
-  VERSION = '1.7.2' unless defined?(CucumberInTheYARD::VERSION)
+  VERSION = '1.7.3' unless defined?(CucumberInTheYARD::VERSION)
 end
 
 require File.dirname(__FILE__) + "/yard/code_objects/cucumber/base.rb"

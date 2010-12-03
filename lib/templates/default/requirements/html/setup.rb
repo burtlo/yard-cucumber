@@ -14,7 +14,7 @@ def all_features_by_letter
   objects = features
   objects = run_verifier(objects)
   objects.each {|o| (hash[o.value.to_s[0,1].upcase] ||= []) << o }
-  hash.values.each {|v| v.sort! {|a,b| b.value <=> a.value } }
+  hash.values.each {|v| v.sort! {|a,b| b.value.to_s <=> a.value.to_s } }
   hash
 end
 
@@ -23,7 +23,7 @@ def all_scenarios_by_letter
   objects = scenarios
   objects = run_verifier(objects)
   objects.each {|o| (hash[o.value.to_s[0,1].upcase] ||= []) << o }
-  hash.values.each {|v| v.sort! {|a,b| b.value <=> a.value } }
+  hash.values.each {|v| v.sort! {|a,b| b.value.to_s <=> a.value.to_s } }
   hash
 end
 
@@ -32,7 +32,7 @@ def all_directories_by_letter
   objects = feature_directories
   objects = run_verifier(objects)
   objects.each {|o| (hash[o.value.to_s[0,1].upcase] ||= []) << o }
-  hash.values.each {|v| v.sort! {|a,b| b.value <=> a.value } }
+  hash.values.each {|v| v.sort! {|a,b| b.value.to_s <=> a.value.to_s } }
   hash
 end
 

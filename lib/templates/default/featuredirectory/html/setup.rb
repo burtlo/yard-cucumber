@@ -15,7 +15,7 @@ def all_types_by_letter(type)
   objects = @directory.children.find_all {|child| child.is_a?(type) }
   objects = run_verifier(objects)
   objects.each {|o| (hash[o.value.to_s[0,1].upcase] ||= []) << o }
-  hash.values.each {|v| v.sort! {|a,b| b.value <=> a.value } }
+  hash.values.each {|v| v.sort! {|a,b| b.value.to_s <=> a.value.to_s } }
   hash
 end
 

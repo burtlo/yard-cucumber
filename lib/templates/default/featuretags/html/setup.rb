@@ -21,11 +21,11 @@ def tags
 end
 
 def features
-  @features ||= Registry.all(:feature).sort {|x,y| x.value <=> y.value }
+  @features ||= Registry.all(:feature).sort {|x,y| x.value.to_s <=> y.value.to_s }
 end
 
 def scenarios
-  @scenarios ||= features.collect {|f| f.scenarios.reject {|s| s.background? } }.flatten.sort {|x,y| x.value <=> y.value }
+  @scenarios ||= features.collect {|f| f.scenarios.reject {|s| s.background? } }.flatten.sort {|x,y| x.value.to_s <=> y.value.to_s }
 end
 
 def tagify(tag)
