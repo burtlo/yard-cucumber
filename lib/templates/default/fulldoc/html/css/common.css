@@ -7,6 +7,7 @@
 .control { float: right; font-size: 13px; color: #05A; vertical-align: bottom;  font-family: monospace;	font-size: 14px; cursor: pointer; }
 
 .title { margin: 20px 20px 10px 20px; padding-left: 0px; border-bottom: 1px solid #E3E3E3; }
+.noborder { border: none; }
 #header * .title { padding: 10px; margin: 0px; border: none; }
 
 .meta .file { float: right; margin-top: 5px; margin-right: 20px; }
