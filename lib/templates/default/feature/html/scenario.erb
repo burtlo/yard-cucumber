@@ -4,6 +4,7 @@
     <a class="toggle"> - </a>
     <span class="pre"><%= @scenario.keyword %>:</span>
     <span class="name"><%= h @scenario.value %></span>
+    <a style="float:right; clear:right;" href="<% url_for(@scenario.feature,"scenario#{@id}") %>">link</a>
   </div>
 
   <% if @scenario.description.length > 0 %>
