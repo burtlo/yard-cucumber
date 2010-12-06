@@ -24,9 +24,10 @@ def features
   @features ||= Registry.all(:feature).sort {|x,y| x.value.to_s <=> y.value.to_s }
 end
 
-def scenarios
-  @scenarios ||= features.collect {|f| f.scenarios.reject {|s| s.background? } }.flatten.sort {|x,y| x.value.to_s <=> y.value.to_s }
+def feature_tags_with_all_scenario_tags(feature)
+  feature.tags.collect {|t| t.value} + feature.scenarios.collect {|s| s.tags.collect {|t| t.value} }.flatten.uniq
 end
+
 
 def tagify(tag)
   %{<span class="tag" href="#{url_for tag}">#{tag.value}</span>} 

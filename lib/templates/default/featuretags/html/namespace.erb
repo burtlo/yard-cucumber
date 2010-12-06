@@ -4,11 +4,29 @@
       var tag_list = [ <%= tags.collect{|t| "'#{t.value}'" }.join(',') %> ];
 
       $(function() {
+
+        // On focus, remove all the shortcut keys
+        $("#tag_search").focus(function() {
+          $(document).unbind('keypress');
+        });
+        
+        // On blur, return all the shortcut keys
+        $("#tag_search").blur(function() {
+          $(document).bind('keypress',keyboardShortcuts);
+          $(document).bind('keypress',cucumberKeyboardShortcuts);
+        });
+
+        $("#tag_search").keyup(function(evt) {
+          updateTagFiltering($("#tag_search")[0].value);
+        });
+
+        
         $("#tag_search").keyup(function(evt) {
           updateTagFiltering($("#tag_search")[0].value);
         });
         
          $(".tag").click(function(evt) {
+            console.log(evt);
             if (typeof evt !== "undefined") {
 
               if (evt.ctrlKey === true)  {
@@ -61,37 +79,37 @@
         <span class="name">Features</span>
       </div>
       <% n = 1 %>
+      <ul style="padding-left: 0px;">
       <% features.each do |feature| %>
-        <li class="feature r<%= n %> <%= feature.tags.collect{|t| t.value }.join(" ") %>">
+        <li class="feature <%= n % 2 == 0 ? 'even' : 'odd' %> <%= feature.tags.collect {|t| t.value}.join(" ") %>">
         <%= linkify feature, feature.value %>
-          <% itags = feature.tags.collect{|t| tagify(t) }.join(", ") %>
-          <% if itags && itags != "" %>
-            - <small><%= itags %></small>
+          <% ftags = feature.tags.collect{|t| tagify(t) }.join(", ") %>
+          <% if ftags && ftags != "" %>
+          - <small><%= ftags %></small>
           <% end %>
         </li>
         <% n = n == 2 ? 1 : 2 %>
+        <% if feature.scenarios %>
+          <ul style="padding-left: 20px;">
+          	<% feature.scenarios.each do |scenario| %>
+          	<li class="scenario <%= n % 2 == 0 ? 'even' : 'odd' %> <%= feature.tags.collect{|t| t.value }.join(" ") %> <%= scenario.tags.collect{|t| t.value }.join(" ") %>">
+          	  <span class='object_link'>
+             		<a href="<%= url_for(scenario.feature,"scenario#{scenario.feature.scenarios.index(scenario) }") %>">
+             		  <%= h scenario.value %>
+             		</a>
+             	</span>
+             	<% stags = scenario.tags.collect{|t| tagify(t) }.join(", ") %>
+              <% if stags && stags != "" %>
+                - <small><%= stags %></small>
+              <% end %>
+          	</li>
+            <% n = n == 2 ? 1 : 2 %>
+          	<% end %>
+          </ul>
         <% end %>
-    </div>
-
-    <div id="scenarios">
-      <div class="title">
-        <span class="name">Scenarios</span>
-      </div>
-      <% n = 1 %>
-      <% scenarios.each_with_index do |scenario,index| %>
-        <li class="scenario r<%= n %> <%= scenario.tags.collect{|t| t.value }.join(" ") %>">
-            <span class='object_link'>
-           		<a href="<%= url_for(scenario.feature,"scenario#{scenario.feature.scenarios.index(scenario) }") %>">
-           		  <%= h scenario.value %>
-           		</a>
-           	</span>
-          <% itags = scenario.tags.collect{|t| tagify(t) }.join(", ") %>
-          <% if itags && itags != "" %>
-            - <small><%= itags %></small>
-          <% end %>
-        </li>
-      <% n = n == 2 ? 1 : 2 %>
       <% end %>
+      </ul>
+      <div class="undefined" style="display:none;">No Features or Scenarios match the Tag Expression</div>
     </div>
 
   </div>
