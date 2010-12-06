@@ -1,13 +1,14 @@
-=== 1.7.3 / 2010-12-02
+=== 1.7.3 / 2010-12-06
 
+* Shortcut Keys (t) for tags and (r) for features (f was taken)
 * Step definitions/transforms consolidate steps for easier viewing
   and when they have no steps they are colored differently
-  
+* Tag filtering supports inverse (~) of tags  
+
 * FIX Scenario Outlines without examples will not crash the parser
 * FIX Features, Scenarios, and Directories should display in alphabetic order
 * FIX Comments and multiline strings will display correctly
 * FIX Feature comments will show
-* FIX Tag filtering will actually clear instead of reloading the page
 
 === 1.7.2 / 2010-11-30
 
