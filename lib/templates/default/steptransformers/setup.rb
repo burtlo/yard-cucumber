@@ -3,7 +3,6 @@ def init
   sections.push :stepdefinitions, :steptransforms, :undefined_steps
 end
 
-
 def stepdefinitions
   @item_title = "Step Definitions"
   @item_type = "step definition"

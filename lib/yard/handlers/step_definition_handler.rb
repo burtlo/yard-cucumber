@@ -1,28 +1,22 @@
 
-
-class StepDefinitionHandler < YARD::Handlers::Ruby::Legacy::Base
-  #TODO: This needs to become language independent.
-  STEP_DEFINITION_MATCH = /^((When|Given|And|Then)\s*(\/.+\/)\s+do(?:\s*\|.+\|)?\s*)$/
-  handles STEP_DEFINITION_MATCH
-
+class YARD::Handlers::Ruby::StepDefinitionHandler < YARD::Handlers::Ruby::Base
+  handles method_call(:When),method_call(:Given),method_call(:And),method_call(:Then)
+  
   @@unique_name = 0
+  
+  process do
+    @@unique_name += 1
 
-  def process
-    keyword = statement.tokens.to_s[STEP_DEFINITION_MATCH,2]
-    step_definition = statement.tokens.to_s[STEP_DEFINITION_MATCH,3]
-
-    @@unique_name = @@unique_name + 1
-
-    stepdef_instance = StepDefinitionObject.new(YARD::CodeObjects::Cucumber::CUCUMBER_STEPTRANSFORM_NAMESPACE, "definition_#{@@unique_name}") do |o| 
-      o.source = "#{keyword} #{step_definition} do #{statement.block.to_s =~ /^\s*\|.+/ ? '' : "\n  "}#{statement.block.to_s}\nend"
-      o.value = step_definition
-      o.keyword = keyword
+    instance = StepDefinitionObject.new(YARD::CodeObjects::Cucumber::CUCUMBER_STEPTRANSFORM_NAMESPACE,"step_definition#{@@unique_name}") do |o| 
+      o.source = statement.source
+      o.comments = statement.comments
+      o.keyword = statement[0].source
+      o.value = statement[1].source
     end
+
+    obj = register instance
+    parse_block(statement[2],:owner => obj)
     
-    obj = register stepdef_instance
-    parse_block :owner => obj
-    
-  rescue YARD::Handlers::NamespaceMissingError
   end
   
   #

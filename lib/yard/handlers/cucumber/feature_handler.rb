@@ -14,7 +14,6 @@ module YARD
           @@step_definitions = cache(:stepdefinition) unless @@step_definitions
           @@step_transforms = cache(:steptransform) unless @@step_transforms
 
-
           if statement
             # For the background and the scenario, find the steps that have definitions
             process_scenario(statement.background) if statement.background
@@ -27,7 +26,6 @@ module YARD
                   process_scenario(example)
                 end
               else
-                #log.info "Processing Scenario: #{scenario.value}"
                 process_scenario(scenario)
               end
             end
@@ -65,8 +63,7 @@ module YARD
         end
 
         def match_step_to_step_definition_and_transforms(step)
-          @@step_definitions.each do |stepdef,stepdef_object|
-
+          @@step_definitions.each_pair do |stepdef,stepdef_object|
             stepdef_matches = step.value.match(stepdef)
 
             if stepdef_matches
@@ -81,6 +78,7 @@ module YARD
               end
               
               # Step has been matched to step definition and step transforms
+              # TODO: If the step were to match again then we would be able to display ambigous step definitions
               break
               
             end
