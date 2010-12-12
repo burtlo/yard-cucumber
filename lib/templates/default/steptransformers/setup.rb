@@ -32,6 +32,18 @@ def unique_steps(steps)
   uniq_steps
 end
 
+def link_constants(definition)
+  value = definition.literal_value.dup
+
+  definition.constants_from_value(value).each do |name|
+    constant = YARD::Registry.all(:constant).find{|c| c.name == name.to_sym }
+    value.gsub!(/\b#{name}\b/,"<a href='#{url_for(constant)}'>#{name}</a>") if constant
+  end
+
+  value
+end
+
+
 def link_transformed_step(step)
   value = step.value.dup
   

@@ -5,14 +5,15 @@ module YARD::CodeObjects
 
     include Cucumber::LocationHelper
 
-    attr_reader :constants, :keyword, :source, :value
+    attr_reader :constants, :keyword, :source, :value, :literal_value
     attr_accessor :steps
 
     ESCAPE_PATTERN = /#\{\s*(\w+)\s*\}/
 
     def value=(value)
+      @literal_value = format_source(value)
       @value = format_source(value)
-
+      
       until (nested = constants_from_value).empty?
         nested.each {|n| @value.gsub!(value_regex(n),find_value_for_constant(n)) }
       end
