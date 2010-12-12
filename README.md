@@ -77,6 +77,10 @@ OPTS environment variable:
 
     $ yardoc -e path/to/cucumber-in-the-yard/lib/city.rb -p path/to/cucumber-in-the-yard/lib/templates 'features/**/*.*'
 
+**3. YARD Server**
+
+    $ yard server -e path/to/cucumber-in-the-yard/lib/server.rb
+
 
 Details
 --------
@@ -108,10 +112,35 @@ scale to test the functionality of small software component.  Though, ultimately
 functionality may provide a valuable tool for many as I feel it helps more solidly bridge the reporting of 
 the documentation by putting a coat of paint on it.
 
-Roadmap
+
+**Current Goals**
+----------------
+
+1. The landing page for 'All features' should be requirements landing page.
+
+2. 'All Features' takes you to all the features.
+  * represent the file structure in a file structure way and change
+    the subtitle 'subdirectories' to 'features by directory' and
+    show the directory headings with the features within them
+
+3. Provide readme.md markdown support within each of the feature subdirectories
+
+4. Tag filering
+  * create and provide a video link of how to filter
+  * allow you to remove tag elements visually with the mouse click
+  * provide a copy to clipboard for the command line execution
+  * Further testing for tag filtering
+
+5. Step Transformers
+  * Better way to illustrate that a step has a transformed applied to a parameter
+
+6. Feature Directory
+  * Layout of the subdirectories should be more directory like and provide more information
+  * Parent directories of directories contain no feature/scenario/tags statistics
+
 -------
 
-**Future Feature Ideas**
+**Future Ideas**
 
 **1. Table Step Transforms**
 
