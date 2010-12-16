@@ -1,3 +1,13 @@
+=== 1.7.5 / 2010-12-14
+
+* FIX Step Transforms were colliding with Step Definitions in Ruby 1.9.2
+  
+=== 1.7.4 / 2010-12-11
+
+* Ruby 1.9.2 Support
+* Change to YARD Server support:
+   yard server -e /path/to/gem/lib/server.b
+
 === 1.7.3 / 2010-12-06
 
 * Shortcut Keys (t) for tags and (r) for features (f was taken)

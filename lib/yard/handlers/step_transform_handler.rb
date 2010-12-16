@@ -7,7 +7,7 @@ class YARD::Handlers::Ruby::StepTransformHandler < YARD::Handlers::Ruby::Base
   process do
     @@unique_name += 1
     
-    instance = StepTransformObject.new(YARD::CodeObjects::Cucumber::CUCUMBER_STEPTRANSFORM_NAMESPACE,"step_definition#{@@unique_name}") do |o| 
+    instance = YARD::CodeObjects::StepTransformObject.new(YARD::CodeObjects::Cucumber::CUCUMBER_STEPTRANSFORM_NAMESPACE,"step_transform#{@@unique_name}") do |o| 
       o.source = statement.source
       o.comments = statement.comments
       o.keyword = statement[0].source
