@@ -38,8 +38,10 @@ Feature: Displaying Scenarios
   Scenario: Scenario With Text
     Given the following text:
     """
-      Oh what a bother!
-      That this text has to take up two lines
+    Oh what a bother!
+    That this text has to take up two lines
+      This line should be indented 2 spaces
+        This line should be idented 4 spaces      
     """
 
   # Comments before the scenario
