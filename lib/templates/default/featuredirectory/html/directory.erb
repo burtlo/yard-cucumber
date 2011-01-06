@@ -15,29 +15,9 @@
       <%= tags.collect {|tag| linkify(tag,tag.value) }.join(",\n") %>
     </div>
 
-
-    <% if @directories_by_letter && !@directories_by_letter.empty? %>
-      <div id="directory">
-        <div class="title"><span class="name">Subdirectories</span></div>
-      </div>
-      <% i = 0 %>
-      <table>
-        <tr>
-          <td valign='top' width="33%">
-            <% @directories_by_letter.each do |directory| %>
-              <% if (i += 1) % 8 == 0 %>
-              </td><td valign='top' width="33%">
-                <% i = 0 %>
-              <% end %>
-              <ul>
-                <%= linkify directory, directory.name %>
-              </ul>
-            <% end %>
-          </td>
-        </tr>
-      </table>
-
-    <% end %>
+    <div class="summary">
+      <%= htmlify_with_newlines @directory.description %>
+    </div>
 
     <% if @objects_by_letter && !@objects_by_letter.empty? %>
       <div id="features">
@@ -70,6 +50,29 @@
         </tr>
       </table>
     <% end %>
+  <% end %>
+
+  <% if @directories_by_letter && !@directories_by_letter.empty? %>
+    <div id="directory">
+      <div class="title"><span class="name">Subdirectories</span></div>
+    </div>
+    <% i = 0 %>
+    <table>
+      <tr>
+        <td valign='top' width="33%">
+          <% @directories_by_letter.each do |directory| %>
+            <% if (i += 1) % 8 == 0 %>
+            </td><td valign='top' width="33%">
+              <% i = 0 %>
+            <% end %>
+            <ul>
+              <%= linkify directory, directory.name %>
+            </ul>
+          <% end %>
+        </td>
+      </tr>
+    </table>
+
   <% end %>
 
 </div>

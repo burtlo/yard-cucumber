@@ -15,15 +15,21 @@ module Cucumber
       end
 
       def find_or_create_namespace(file)
-        file.split('/')[0..-2].each do |directory|
-          @namespace = @namespace.children.find {|child| child.name == directory } ||
-            YARD::CodeObjects::Cucumber::FeatureDirectory.new(@namespace,directory) {|dir| dir.add_file(directory)}
+        @namespace = YARD::CodeObjects::Cucumber::CUCUMBER_NAMESPACE
+        
+        File.dirname(file).split('/').each do |directory|
+          @namespace = @namespace.children.find {|child| child.is_a?(YARD::CodeObjects::Cucumber::FeatureDirectory) && child.name.to_s == directory } ||
+            @namespace = YARD::CodeObjects::Cucumber::FeatureDirectory.new(@namespace,directory) {|dir| dir.add_file(directory)}
+        end
+
+        if @namespace.description == "" && File.exists?("#{File.dirname(file)}/README.md")
+          @namespace.description = File.readlines("#{File.dirname(file)}/README.md").join("\n")
         end
       end
 
       def find_or_create_tag(tag_name,parent)
         #log.debug "Processing tag #{tag_name}"
-        tag_code_object = YARD::Registry.all(:tag).find {|tag| tag.value == tag_name } || 
+        tag_code_object = YARD::Registry.all(:tag).find {|tag| tag.value == tag_name } ||
           YARD::CodeObjects::Cucumber::Tag.new(YARD::CodeObjects::Cucumber::CUCUMBER_TAG_NAMESPACE,tag_name.gsub('@','')) {|t| t.owners = [] ; t.value = tag_name }
 
         tag_code_object.add_file(@file,parent.line)

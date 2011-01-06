@@ -11,7 +11,14 @@ module YARD::CodeObjects::Cucumber
   class StepTransformersObject < NamespaceObject ; end
 
   class FeatureDirectory < YARD::CodeObjects::NamespaceObject
-    
+
+    attr_accessor :description
+
+    def initialize(namespace,name)
+      super(namespace,name)
+      @description = ""
+    end
+
     def location
       files.first.first if files && !files.empty?
     end

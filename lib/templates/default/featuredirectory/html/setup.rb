@@ -35,3 +35,6 @@ def tags
   (features.collect{|feature| feature.tags } + scenarios.collect {|scenario| scenario.tags }).flatten.uniq
 end
 
+def htmlify_with_newlines(text)
+  text.split("\n").collect {|c| h(c).gsub(/\s/,'&nbsp;') }.join("<br/>")
+end
