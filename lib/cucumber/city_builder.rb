@@ -23,7 +23,7 @@ module Cucumber
         end
 
         if @namespace.description == "" && File.exists?("#{File.dirname(file)}/README.md")
-          @namespace.description = File.readlines("#{File.dirname(file)}/README.md").join("\n")
+          @namespace.description = File.read("#{File.dirname(file)}/README.md")
         end
       end
 
