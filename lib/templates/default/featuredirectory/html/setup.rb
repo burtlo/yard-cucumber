@@ -5,7 +5,7 @@ def init
 end
 
 def markdown(text)
-  h(text,:markdown) rescue h(text)
+  htmlify(text,:markdown) rescue h(text)
 end
 
 def directory
