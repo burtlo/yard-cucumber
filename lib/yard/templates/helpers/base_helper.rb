@@ -9,6 +9,8 @@ module YARD::Templates::Helpers
         "Step Definitions and Transforms"
       elsif object.is_a?(YARD::CodeObjects::Cucumber::NamespaceObject)
         "#{format_object_type(object)}#{object.value ? ": #{object.value}" : ''}"
+      elsif object.is_a?(YARD::CodeObjects::Cucumber::FeatureDirectory)
+        "Feature Directory: #{object.name}"
       else
         case object
         when YARD::CodeObjects::RootObject

@@ -1,7 +1,4 @@
 <% if @directory %>
-  <div class="readme">
-    <%= htmlify @directory.description, :markdown %>
-  </div>
   <div class="requirements">
     <div class="title">
       <span class="pre">Directory:</span>
@@ -17,7 +14,13 @@
     <div class="tags"><span class="name">Tags:</span>
       <%= tags.collect {|tag| linkify(tag,tag.value) }.join(",\n") %>
     </div>
+  </div>
 
+  <div class="readme">
+    <%= markdown @directory.description %>
+  </div>
+
+  <div>
     <% if @objects_by_letter && !@objects_by_letter.empty? %>
       <div id="features">
         <div class="title"><span class="name">Features</span></div>
