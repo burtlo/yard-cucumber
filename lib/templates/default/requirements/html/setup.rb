@@ -1,57 +1,34 @@
 def init
   super
-  sections.push :namespace
+  sections.push :requirements
   @namespace = object
 
-end
-
-def namespace
-  erb(:namespace)
-end
-
-def all_features_by_letter
-  hash = {}
-  objects = features
-  objects = run_verifier(objects)
-  objects.each {|o| (hash[o.value.to_s[0,1].upcase] ||= []) << o }
-  hash.values.each {|v| v.sort! {|a,b| b.value.to_s <=> a.value.to_s } }
-  hash
-end
-
-def all_scenarios_by_letter
-  hash = {}
-  objects = scenarios
-  objects = run_verifier(objects)
-  objects.each {|o| (hash[o.value.to_s[0,1].upcase] ||= []) << o }
-  hash.values.each {|v| v.sort! {|a,b| b.value.to_s <=> a.value.to_s } }
-  hash
-end
-
-def all_directories_by_letter
-  hash = {}
-  objects = feature_directories
-  objects = run_verifier(objects)
-  objects.each {|o| (hash[o.value.to_s[0,1].upcase] ||= []) << o }
-  hash.values.each {|v| v.sort! {|a,b| b.value.to_s <=> a.value.to_s } }
-  hash
-end
-
-def feature_directories
-  @feature_directories ||= Registry.all(:featuredirectory)
 end
 
 def features
   @features ||= Registry.all(:feature)
 end
 
-def scenarios
-  @scenarios ||= Registry.all(:scenario).reject {|s| s.background? }
-end
-
-def steps
-  @steps ||= Registry.all(:step)
-end
-
 def tags
-  @tags ||= Registry.all(:tag).sort {|a,b| a.value.to_s <=> b.value.to_s }
+  @tags ||= Registry.all(:tag).sort_by {|l,o| l.value.to_s }
+end
+
+def feature_directories
+  @feature_directories ||= YARD::CodeObjects::Cucumber::CUCUMBER_NAMESPACE.children.find_all {|child| child.is_a?(YARD::CodeObjects::Cucumber::FeatureDirectory)}
+end
+
+def feature_subdirectories
+  @feature_subdirectories ||= Registry.all(:featuredirectory) - feature_directories
+end
+
+def alpha_table(objects)
+  @elements = Hash.new
+
+  objects = run_verifier(objects)
+  objects.each {|o| (@elements[o.value.to_s[0,1].upcase] ||= []) << o }
+  @elements.values.each {|v| v.sort! {|a,b| b.value.to_s <=> a.value.to_s } }
+  @elements = @elements.sort_by {|l,o| l.to_s }
+
+  @elements.each {|letter,objects| objects.sort! {|a,b| b.value.to_s <=> a.value.to_s }}
+  erb(:alpha_table)
 end

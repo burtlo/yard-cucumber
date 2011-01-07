@@ -60,3 +60,13 @@ def serialize_feature_directories(namespaces)
     serialize_feature_directories(namespace.children.find_all {|child| child.is_a?(YARD::CodeObjects::Cucumber::FeatureDirectory)})
   end
 end
+
+def all_features_link
+  root_feature_directories = YARD::CodeObjects::Cucumber::CUCUMBER_NAMESPACE.children.find_all {|child| child.is_a?(YARD::CodeObjects::Cucumber::FeatureDirectory)}
+
+  if root_feature_directories.length > 1
+    linkify YARD::CodeObjects::Cucumber::CUCUMBER_NAMESPACE, "All Features"
+  else
+    linkify root_feature_directories.first, "All Features"
+  end
+end

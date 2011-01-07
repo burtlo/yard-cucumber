@@ -1,6 +1,6 @@
 <% n = 1 %>
 <li class="r<%= n %>">
-  <%= linkify YARD::CodeObjects::Cucumber::CUCUMBER_NAMESPACE, "All Features" %>
+  <%= all_features_link %>
 </li>
 <% n = n == 2 ? 1 : 2 %>
 <% @items.each do |feature| %>

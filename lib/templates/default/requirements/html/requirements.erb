@@ -1,0 +1,38 @@
+<% if @namespace %>
+  <div id="cukes_logo">&nbsp;</div>
+  <div id="cukes_links">
+    <a href="http://cukes.info/">Cucumber</a> |
+    <a href="http://github.com/aslakhellesoy/cucumber/wiki/Gherkin">Gherkin</a> |
+    <a href="http://yardoc.org/">YARD</a> |
+    <a href="http://github.com/burtlo/Cucumber-In-The-Yard">Cucumber-In-The-YARD</a>
+  </div>
+
+  <div class="requirements">
+
+    <% if features && !features.empty? %>
+      <%= alpha_table(features) %>
+    <% else %>
+      <!-- No Features Defined -->
+      <div class="none">No Features Defined</div>
+    <% end %>
+
+    <div id="directory" style="margin-left: 40px;">
+      <div class="title"><span class="name">Tags</span></div>
+    </div>
+    <div class="tags">
+      <%= tags.collect {|tag| linkify(tag,tag.value) }.join(",\n") %>
+    </div>
+
+    <% if feature_subdirectories && !feature_subdirectories.empty? %>
+      <div id="directory" style="margin-left: 40px;">
+        <div class="title"><span class="name">Subdirectories</span></div>
+      </div>
+      <%= alpha_table(feature_subdirectories) %>
+    <% else %>
+      <!-- No Feature Directories -->
+    <% end %>
+
+  </div>
+<% end %>
+
+
