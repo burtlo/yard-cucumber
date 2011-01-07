@@ -1,8 +1,11 @@
+=== 1.7.7 / 2011-01-06
+
+* Feature Directories now support a README.md file that can be used to provide
+  information (with markdown support) about the directory of features.
+
 === 1.7.6 / 2011-01-06
 
 * Feature descriptions, multi-line strings, and comments will preserve spacing.
-* Feature Directories now support a README.md file that can be used to provide
-  information (with markdown support) about the directory of features.
 
 === 1.7.5 / 2010-12-14
 
