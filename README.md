@@ -36,7 +36,7 @@ The implemented example has been deployed at [http://recursivegames.com/cukes/](
 
 **8. [Undefined steps](http://recursivegames.com/cukes/requirements/step_transformers.html#undefined_steps) and even [Rubular](http://rubular.com/) links of your step definitions.**
 
-**9. Feature directories with a README.md will be parsed into the description** [example](http://recursivegames.com/cukes/requirements/example/child_feature.html)
+**9. Feature directories with a README.md will be parsed into the description** [example](http://recursivegames.com/cukes/requirements/features.html)
 
 Installation
 ------------
