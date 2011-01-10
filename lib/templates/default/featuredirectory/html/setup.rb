@@ -25,7 +25,7 @@ def scenarios
 end
 
 def tags
-  @tags ||= (features.collect{|feature| feature.tags } + scenarios.collect {|scenario| scenario.tags }).flatten.uniq
+  @tags ||= (features.collect{|feature| feature.tags } + scenarios.collect {|scenario| scenario.tags }).flatten.uniq.sort_by {|l,o| l.value.to_s }
 end
 
 def alpha_table(objects)
