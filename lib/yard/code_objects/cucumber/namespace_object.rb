@@ -24,6 +24,17 @@ module YARD::CodeObjects::Cucumber
     end
 
     def value ; name ; end
+    
+    def features
+      children.find_all {|d| d.is_a?(Feature) } 
+    end
+    
+    def subdirectories
+      subdirectories = children.find_all {|d| d.is_a?(FeatureDirectory) }
+      subdirectories + subdirectories.collect {|s| s.subdirectories }.flatten
+    end
+      
+    
   end
 
   CUCUMBER_NAMESPACE = Requirements.new(:root, "requirements")

@@ -20,7 +20,9 @@
 
 .suggestion { color: #ff686e; }
 
-.readme { margin: 0px 10px 0px 30px; padding: 0px; }
+.readme { margin: 0px 20px 0px 30px; padding: 0px; }
+.readme h1:first-child { border-top: none; }
+
 
 .feature .description, .requirements .summary {
     margin: 10px 20px 0px 30px;

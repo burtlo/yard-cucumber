@@ -8,37 +8,34 @@ def markdown(text)
   htmlify(text,:markdown) rescue h(text)
 end
 
-def directory
-  @objects_by_letter = all_types_by_letter(YARD::CodeObjects::Cucumber::Feature)
-  @directories_by_letter = @directory.children.find_all {|child| child.is_a?(YARD::CodeObjects::Cucumber::FeatureDirectory) }.sort_by {|dir| dir.name.to_s }
-  erb(:directory)
+def htmlify_with_newlines(text)
+  text.split("\n").collect {|c| h(c).gsub(/\s/,'&nbsp;') }.join("<br/>")
 end
 
-def all_types_by_letter(type)
-  hash = {}
-  objects = @directory.children.find_all {|child| child.is_a?(type) }
-  objects = run_verifier(objects)
-  objects.each {|o| (hash[o.value.to_s[0,1].upcase] ||= []) << o }
-  hash.values.each {|v| v.sort! {|a,b| b.value.to_s <=> a.value.to_s } }
-  hash
+def directories
+  @directories ||= @directory.subdirectories
 end
 
 def features
-  @directory.children.find_all{|child| child.is_a?(YARD::CodeObjects::Cucumber::Feature)}
+  @features ||= @directory.features + directories.collect {|d| d.features }.flatten
 end
 
 def scenarios
-  features.collect {|feature| feature.scenarios }.flatten
-end
-
-def steps
-  scenarios.collect {|scenario| scenario.steps }.flatten
+  @scenarios ||= features.collect {|feature| feature.scenarios }.flatten
 end
 
 def tags
-  (features.collect{|feature| feature.tags } + scenarios.collect {|scenario| scenario.tags }).flatten.uniq
+  @tags ||= (features.collect{|feature| feature.tags } + scenarios.collect {|scenario| scenario.tags }).flatten.uniq
 end
 
-def htmlify_with_newlines(text)
-  text.split("\n").collect {|c| h(c).gsub(/\s/,'&nbsp;') }.join("<br/>")
+def alpha_table(objects)
+  @elements = Hash.new
+
+  objects = run_verifier(objects)
+  objects.each {|o| (@elements[o.value.to_s[0,1].upcase] ||= []) << o }
+  @elements.values.each {|v| v.sort! {|a,b| b.value.to_s <=> a.value.to_s } }
+  @elements = @elements.sort_by {|l,o| l.to_s }
+
+  @elements.each {|letter,objects| objects.sort! {|a,b| b.value.to_s <=> a.value.to_s }}
+  erb(:alpha_table)
 end
