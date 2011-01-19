@@ -1,10 +1,12 @@
 <div class="scenario <%= @id %>">
   <a name="<%= @id %>" />
   <div class="title">
-    <a class="toggle"> - </a>
-    <span class="pre"><%= @scenario.keyword %>:</span>
-    <span class="name"><%= h @scenario.value %></span>
-    <a class="link" style="float:right; clear:right;" href="<% url_for(@scenario.feature,"scenario#{@id}") %>">link</a>
+    <div style="float: left;">
+      <a class="toggle"> - </a>
+      <span class="pre"><%= @scenario.keyword %>:</span>
+      <span class="name"><%= h @scenario.value %></span>
+    </div>
+    <a class="link" style="float:right; clear:right;" href="<%= url_for(@scenario.feature, @id) %>">link</a>
   </div>
 
   <% if @scenario.description.length > 0 %>
