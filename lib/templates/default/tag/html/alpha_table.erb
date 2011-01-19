@@ -1,0 +1,26 @@
+<% if @elements && !@elements.empty? %>
+  <% i = (@elements.length % 2 == 0 ? 1 : 0) %>
+  <table style="margin-left: 10px; width: 100%;">
+    <tr>
+      <td valign='top' width="50%">
+        <% @elements.each do |letter, objects| %>
+          <% if (i += 1) > (@elements.length / 2 + 1) %>
+          </td><td valign='top' width="50%">
+            <% i = 0 %>
+          <% end %>
+          <ul id="alpha_<%= letter %>" class="alpha">
+            <li class="letter"><%= letter %></li>
+            <ul>
+              <% objects.each do |obj| %>
+                <li>
+                  <%= linkify obj, obj.value %>
+                  <small>(<%= obj.file %>)</small>
+                </li>
+              <% end %>
+            </ul>
+          </ul>
+        <% end %>
+      </td>
+    </tr>
+  </table>
+<% end %>

@@ -7,10 +7,10 @@ Feature: Displaying Scenarios
   Background:
     Given this background step
 
-  @first
+  @first @bvt
   Scenario: No Step Scenario
 
-  @second
+  @second @bvt
   Scenario: Scenario With Steps
     Given this first step
 	When this second step
@@ -41,7 +41,7 @@ Feature: Displaying Scenarios
     Oh what a bother!
     That this text has to take up two lines
       This line should be indented 2 spaces
-        This line should be idented 4 spaces      
+        This line should be indented 4 spaces      
     """
 
   # Comments before the scenario

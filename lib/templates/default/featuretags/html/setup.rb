@@ -17,7 +17,7 @@ def all_tags_by_letter
 end
 
 def tags
-  @tags ||= Registry.all(:tag)
+  @tags ||= Registry.all(:tag).sort_by {|l,o| l.value.to_s }
 end
 
 def features

@@ -1,19 +1,35 @@
 <div class="tag">
-	<div class="title">
-		<span class="pre">Tag:</span>
-		<span class="name"><%= @tag.value %></span>
+  <div class="title">
+    <span class="pre">Tag:</span>
+    <span class="name"><%= @tag.value %></span>
 
-	</div>
+  </div>
 
-	<div class="meta">
-		<div class="file">Usage: 
-			<%= @tag.features.size > 0 ? "#{@tag.features.size} feature#{@tag.features.size > 1 ? 's' : ''} (with #{@tag.indirect_scenarios.size} scenario#{@tag.indirect_scenarios.size > 1 ? 's' : ''})" : "" %>
-			<%= " and " if @tag.features.size > 0 && @tag.scenarios.size > 0 %>
-			<%= @tag.scenarios.size > 0 ? "#{@tag.scenarios.size} scenario#{@tag.scenarios.size > 1 ? 's' : ''}" : "" %>
-		</div>		
-	</div>
+  <div class="meta">
+    <div class="file">
+      <%= @tag.features.size > 0 ? "#{@tag.features.size} feature#{@tag.features.size > 1 ? 's' : ''} (with #{@tag.indirect_scenarios.size} scenario#{@tag.indirect_scenarios.size > 1 ? 's' : ''})" : "" %>
+      <%= " and " if @tag.features.size > 0 && @tag.scenarios.size > 0 %>
+      <%= @tag.scenarios.size > 0 ? "#{@tag.scenarios.size} scenario#{@tag.scenarios.size > 1 ? 's' : ''}" : "" %>
+    </div>		
+  </div>
 
-        <div style="margin-top: 20px;">&nbsp;</div>
-	<%= yieldall :object => @tag %>
+  <div style="margin-top: 20px;">&nbsp;</div>
+
+  <% if features && !features.empty? %>
+  <div id="features" style="margin-left: 40px;">
+    <div class="title"><span class="name">Features</span></div>
+  </div>
+  <%= alpha_table(features) %>
+
+  <% end %>
+
+  <% if scenarios && !scenarios.empty? %>
+  <div id="features" style="margin-left: 40px;">
+    <div class="title"><span class="name">Scenarios</span></div>
+  </div>
+  <%= alpha_table(scenarios) %>
+
+  <% end %>
+
 
 </div>
