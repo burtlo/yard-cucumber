@@ -1,3 +1,12 @@
+=== 1.7.8 / 2011-01-06
+
+* 'All Features' lands you on the root features directory; 'Requirements'
+  is still accessible through the breadcrumbs.
+* Feature directory pages will display all the features in all subdirectories 
+* Better sorting for features, tags, and step transformers.
+
+- FIX Feature-Scenario links and Cursors
+
 === 1.7.7 / 2011-01-06
 
 * Feature Directories now support a README.md file that can be used to provide
