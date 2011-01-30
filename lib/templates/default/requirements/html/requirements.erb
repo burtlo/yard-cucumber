@@ -36,8 +36,10 @@
       <div class="title"><span class="name">Step Definitions &amp; Transforms</span></div>
     </div>
     <div class="steptransformers">
-      <%= step_definitions.length %> <%= linkify step_definitions.first, "Step Definitions" %>,
-      <%= transformers.length %> <%= linkify transformers.first, "Transforms" %>,
+      <%= step_definitions.length %> 
+      <a href="<%= url_for step_transformers, "step_definitions" %>">Step Definitions</a>
+      <%= transformers.length %>
+      <a href="<%= url_for step_transformers, "step_transforms" %>">Transforms</a>
       and <%= undefined_steps.length %>
       <a href="<%= url_for step_transformers, "undefined_steps" %>">Undefined Steps</a>
     </div>
