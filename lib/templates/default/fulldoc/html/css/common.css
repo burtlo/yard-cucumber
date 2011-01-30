@@ -66,7 +66,7 @@
 .scenario .title .pre {	color: #00AAD2; }
 .background .title .pre { color: #346F97; }
 
-.requirements .tags { margin-left: 50px; margin-right: 30px; }
+.requirements .tags, .requirements .steptransformers { margin-left: 50px; margin-right: 30px; }
 .scenario .tags { float: right; margin-right: 20px; margin-top: 5px; }
 
 

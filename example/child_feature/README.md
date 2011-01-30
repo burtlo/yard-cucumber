@@ -1,5 +1,5 @@
-Feature Directory README
-========================
+Child Features
+==============
 
 Synopsis
 --------
@@ -17,3 +17,5 @@ can also be represented.
 The implemented example has been deployed at [http://recursivegames.com/cukes/](http://recursivegames.com/cukes/).
 
 **1. An Item** [example](http://recursivegames.com/cukes/requirements/)
+
+

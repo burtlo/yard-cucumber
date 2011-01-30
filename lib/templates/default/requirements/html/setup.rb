@@ -21,6 +21,23 @@ def feature_subdirectories
   @feature_subdirectories ||= Registry.all(:featuredirectory) - feature_directories
 end
 
+def step_transformers
+  YARD::CodeObjects::Cucumber::CUCUMBER_STEPTRANSFORM_NAMESPACE
+end
+
+def step_definitions
+  @step_definitions ||= YARD::Registry.all(:stepdefinition)
+end
+
+def transformers
+  @transformers ||= YARD::Registry.all(:steptransform)
+end
+
+def undefined_steps
+  @undefined_steps ||= Registry.all(:step).reject {|s| s.definition || s.scenario.outline? }
+end
+
+
 def alpha_table(objects)
   @elements = Hash.new
 
