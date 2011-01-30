@@ -4,6 +4,9 @@
      <div style="clear: right;"></div>
    <% end %>
  
+  <% if @item_anchor_name %>
+    <a name="<%= @item_anchor_name %>">
+  <% end %>
   <div class="name"><%= @item_title %></div>
 </div>
 

@@ -1,27 +1,48 @@
 def init
   super
-  sections.push :stepdefinitions, :steptransforms, :undefined_steps
+  sections.push :index, :stepdefinitions, :steptransforms, :undefinedsteps
+end
+
+def step_definitions
+  @step_definitions ||= begin
+    YARD::Registry.all(:stepdefinition).sort_by {|definition| definition.steps.length * -1 }
+  end
+end
+
+def step_transforms
+  @step_transforms ||= begin
+    YARD::Registry.all(:steptransform).sort_by {|definition| definition.steps.length * -1 }
+  end
+end
+
+def undefined_steps
+  @undefined_steps ||= begin
+    unique_steps(Registry.all(:step).reject {|s| s.definition || s.scenario.outline? }).sort_by{|steps| steps.last.length * -1 }
+  end
 end
 
 def stepdefinitions
-  @item_title = "Step Definitions"
+  @item_title = "Step Definitions"  
+  @item_anchor_name = "step_definitions"
   @item_type = "step definition"
-  @items = YARD::Registry.all(:stepdefinition)
+  @items = step_definitions
   erb(:header) + erb(:transformers)
 end
 
 def steptransforms
   @item_title = "Step Transforms"
+  @item_anchor_name = "step_transforms"
   @item_type = "step transform"
-  @items = YARD::Registry.all(:steptransform)
+  @items = step_transforms
   erb(:header) + erb(:transformers)
 end
 
-def undefined_steps
-  @item_title = "Undefined Steps"
+def undefinedsteps
+  @item_title = "Undefined Steps"  
+  @item_anchor_name = "undefined_steps"
   @item_type = nil
-  @undefined_steps ||= Registry.all(:step).reject {|s| s.definition || s.scenario.outline? }
-  erb(:header) + erb(:undefined_steps)
+  @items = undefined_steps
+  erb(:header) + erb(:undefinedsteps)
 end
 
 
@@ -30,6 +51,7 @@ def unique_steps(steps)
   steps.each {|s| (uniq_steps[s.value.to_s] ||= []) << s }
   uniq_steps
 end
+
 
 def link_constants(definition)
   value = definition.literal_value.dup

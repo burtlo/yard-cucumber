@@ -10,15 +10,17 @@
   </div>
 
   <div class="details">
+    
+    <div class="meta" style="clear: right;">
+      <div class="file"><%= h item.location %></div>
+    </div>
 
+    
     <!-- Comments -->
     <div>
       <%= T('docstring').run(options.dup.merge({:object => item})) %>
     </div>
-
-    <div class="meta" style="clear: right;">
-      <div class="file"><%= h item.location %></div>
-    </div>
+    
 
     <!-- Source Code -->
     <div class="method_details_list">
@@ -35,7 +37,11 @@
     </div>
 
     <!-- Matching Step Instances -->
-
+    <% if item.steps.length > 0 %>
+      <div class='showSteps'>
+        [<a href='#' class='toggleSteps' alt="<%= item.steps.length %> steps">Hide <%= item.steps.length %> steps</a>]
+      </div>
+    <% end %>
     <div class="steps">
       <% if item.steps && !item.steps.empty? %>
       <% unique_steps(item.steps).each_with_index do |uniq_step,step_index| %>
@@ -49,7 +55,7 @@
           </span>
         </div>
         <% uniq_step.last.each do |step| %>
-          <a class="definition" style="clear: right;" href="<%= url_for step.scenario.feature %>"><%= h step.location %></a>
+        <a class="definition" style="clear: right;" href="<%= url_for step.scenario.feature %>"><%= h step.location %></a>
         <% end %>
         <div style="clear: both;"></div>
       </div>
@@ -58,8 +64,9 @@
       <div class="undefined">No steps were found to match this <%= @item_type %>.</div>
       <% end%>
     </div>
+    
   </div>
-  
+
   <div style="margin: 30px 20px; border-top: 1px dotted #AAA;"></div>
 
 </div>

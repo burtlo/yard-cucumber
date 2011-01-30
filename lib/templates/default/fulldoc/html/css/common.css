@@ -156,9 +156,11 @@ div.undefined { padding: 6px; }
 /* Step Transformer Page */
 .transformer { margin-top: 20px; }
 .transformer * .docstring { margin-left: 20px; margin-top: 10px; padding: 5px 5px 5px 10px; }
-.transformer .steps, .method_details_list, .steps, .method_details_list { margin: 10px 20px 0px 30px; }
+.transformer .steps, .method_details_list, .steps, .method_details_list, .showSteps { margin: 10px 20px 0px 30px; }
 .transformer .steps .step { padding: 6px; font-size: 14px; }
 
+.showSteps { font-size: 0.9em; }
+.showSteps a:link, .showSteps a:visited { text-decoration: none; color: #666; }
 
 /* Tag Search Page */
 #tags * li { padding: 5px; padding-left: 12px; margin: 0 0 0 10px; font-size: 1.1em; list-style: none; }

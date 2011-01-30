@@ -1,7 +1,7 @@
 <div class="transformer">
   <div class="steps">
   <% if @undefined_steps && !@undefined_steps.empty? %>
-    <% unique_steps(@undefined_steps).each_with_index do |uniq_step,step_index| %>
+    <% @undefined_steps.each_with_index do |uniq_step,step_index| %>
     <div class="step <%= (step_index + 1) % 2 == 0 ? 'even' : 'odd' %>">
       <div>
         <span class="predicate"><%= uniq_step.last.first.keyword %></span>
