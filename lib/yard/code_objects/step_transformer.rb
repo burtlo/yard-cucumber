@@ -33,8 +33,8 @@ module YARD::CodeObjects
 
     def find_value_for_constant(name)
       constant = YARD::Registry.all(:constant).find{|c| c.name == name.to_sym }
-      log.warn "StepTransformer#find_value_for_constant : Could not find the CONSTANT #{name} using an empty string for value." unless constant
-      constant ? strip_regex_from(constant.value) : ""
+      log.warn "StepTransformer#find_value_for_constant : Could not find the CONSTANT [#{name}] using the string value." unless constant
+      constant ? strip_regex_from(constant.value) : name
     end
   
     def value_regex(value)

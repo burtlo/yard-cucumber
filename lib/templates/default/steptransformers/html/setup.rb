@@ -52,6 +52,15 @@ def unique_steps(steps)
   uniq_steps
 end
 
+def display_comments_for(item)
+  begin
+    T('docstring').run(options.dup.merge({:object => item}))
+  rescue
+    log.warn %{An error occurred while attempting to render the comments for: #{item.location} }
+    return ""
+  end
+  
+end
 
 def link_constants(definition)
   value = definition.literal_value.dup
