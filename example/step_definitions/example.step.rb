@@ -19,7 +19,9 @@ Transform /^#{TEDDY_BEAR}$/ do |teddy|
   "the tranformed teddy bear"
 end
 
-
+#
+# This is a complicated Transform with a comment
+#
 Transform /^((?:\d{1,2}[\/-]){2}(?:\d\d){1,2})?\s*(\w{3})?\s*(\d{1,2}:\d{2}\s*(?:AM|PM)?)$/ do |date,day,time|
   "#{date} #{day} #{time}"
 end
@@ -28,6 +30,9 @@ Given /^that (#{CUSTOMER}) is a valid customer$/ do |customer|
   pending "Customer #{customer} validation"  
 end
 
+#
+# This comment will likely blow {things up}!
+#
 When /^a customer logs in as username '([^']+)' with password '([^']+)'$/ do |username,password|
   Given "that the customer is a valid customer"
   pending "Customer logs in with #{username} and #{password}"
