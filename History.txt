@@ -1,4 +1,9 @@
-=== 1.7.8 / 2011-01-06
+=== 1.7.9 / 2011-02-05
+
+- FIX links to Scenarios and Transforms in various places
+- FIX Comments on Step Definitions that may blow up
+
+=== 1.7.8 / 2011-01-30
 
 * 'All Features' lands you on the root features directory; 'Requirements'
   is still accessible through the breadcrumbs.
