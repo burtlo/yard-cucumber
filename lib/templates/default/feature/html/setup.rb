@@ -25,7 +25,7 @@ def scenarios
   
   @feature.scenarios.each_with_index do |scenario,index|
     @scenario = scenario
-    @id = "scenario#{index}"
+    @id = "scenario_#{index}"
     scenarios += erb(:scenario)
   end
   

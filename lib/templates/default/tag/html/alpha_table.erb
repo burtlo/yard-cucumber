@@ -13,7 +13,13 @@
             <ul>
               <% objects.each do |obj| %>
                 <li>
-                  <%= linkify obj, obj.value %>
+                  <% if obj.is_a?(YARD::CodeObjects::Cucumber::Scenario) || obj.is_a?(YARD::CodeObjects::Cucumber::ScenarioOutline) %>
+                    <a href="<%= url_for(obj.feature,"scenario_#{obj.path[(/.+_(\d+)$/),1]}") %>">
+                 		  <%= h obj.value %>
+                 		</a>
+                  <% else %>
+                    <%= linkify obj, obj.value %>
+                  <% end %>
                   <small>(<%= obj.file %>)</small>
                 </li>
               <% end %>
