@@ -1,3 +1,7 @@
+=== 2.0.0 / 2011-02-06
+
+- YARD Plugin Compatibility
+
 === 1.7.9 / 2011-02-05
 
 - FIX links to Scenarios and Transforms in various places
