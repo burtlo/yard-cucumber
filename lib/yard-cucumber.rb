@@ -26,9 +26,10 @@ require File.dirname(__FILE__) + "/yard/parser/cucumber/feature.rb"
 require File.dirname(__FILE__) + "/yard/handlers/cucumber/base.rb"
 require File.dirname(__FILE__) + "/yard/handlers/cucumber/feature_handler.rb"
 
-require File.dirname(__FILE__) + "/yard/handlers/step_definition_handler.rb"
-require File.dirname(__FILE__) + "/yard/handlers/step_transform_handler.rb"
-
+if RUBY19
+  require File.dirname(__FILE__) + "/yard/handlers/step_definition_handler.rb"
+  require File.dirname(__FILE__) + "/yard/handlers/step_transform_handler.rb"
+end
 
 require File.dirname(__FILE__) + "/yard/handlers/legacy/step_definition_handler.rb"
 require File.dirname(__FILE__) + "/yard/handlers/legacy/step_transform_handler.rb"
@@ -39,4 +40,4 @@ require File.dirname(__FILE__) + "/yard/templates/helpers/base_helper.rb"
 require File.dirname(__FILE__) + "/yard/server/commands/list_command.rb"
 require File.dirname(__FILE__) + "/yard/server/router.rb"
 
-require File.dirname(__FILE__) + "/yard/rake/city_task.rb"
+YARD::Templates::Engine.register_template_path File.dirname(__FILE__) + '/templates'
