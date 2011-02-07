@@ -1,34 +1,33 @@
 require 'YARD'
-require File.dirname(__FILE__) + "/lib/city"
+require File.dirname(__FILE__) + "/lib/yard-cucumber"
 
 module CucumberInTheYARD
+  def self.show_version_changes(version)
+    date = ""
+    changes = []  
+    grab_changes = false
 
-def self.show_version_changes(version)
-  date = ""
-  changes = []  
-  grab_changes = false
+    File.open("#{File.dirname(__FILE__)}/History.txt",'r') do |file|
+      while (line = file.gets) do
 
-  File.open("#{File.dirname(__FILE__)}/History.txt",'r') do |file|
-    while (line = file.gets) do
-    
-      if line =~ /^===\s*#{version.gsub('.','\.')}\s*\/\s*(.+)\s*$/
-        grab_changes = true
-        date = $1.strip
-      elsif line =~ /^===\s*.+$/
-        grab_changes = false
-      elsif grab_changes
-        changes = changes << line
+        if line =~ /^===\s*#{version.gsub('.','\.')}\s*\/\s*(.+)\s*$/
+          grab_changes = true
+          date = $1.strip
+        elsif line =~ /^===\s*.+$/
+          grab_changes = false
+        elsif grab_changes
+          changes = changes << line
+        end
+
       end
-      
     end
+
+    { :date => date, :changes => changes }
   end
-  
-  { :date => date, :changes => changes }
-end
 end
 
 Gem::Specification.new do |s|
-  s.name        = 'cucumber-in-the-yard'
+  s.name        = 'yard-cucumber'
   s.version     = ::CucumberInTheYARD::VERSION
   s.authors     = ["Franklin Webber"]
   s.description = %{ 
@@ -38,7 +37,7 @@ Gem::Specification.new do |s|
     to provide your feature descriptions to your Product Owners and Stakeholders.  }
   s.summary     = "Cucumber Features in YARD"
   s.email       = 'franklin.webber@gmail.com'
-  s.homepage    = "http://github.com/burtlo/Cucumber-In-The-Yard"
+  s.homepage    = "http://github.com/burtlo/yard-cucumber"
 
   s.platform    = Gem::Platform::RUBY
   

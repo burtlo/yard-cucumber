@@ -20,7 +20,6 @@ require File.dirname(__FILE__) + "/cucumber/city_builder.rb"
 require File.dirname(__FILE__) + "/yard/code_objects/step_transformer.rb"
 require File.dirname(__FILE__) + "/yard/code_objects/step_definition.rb"
 require File.dirname(__FILE__) + "/yard/code_objects/step_transform.rb"
-require File.dirname(__FILE__) + "/yard/code_objects/namespace_object.rb"
 
 require File.dirname(__FILE__) + "/yard/parser/cucumber/feature.rb"
 

@@ -1,18 +1,18 @@
 require 'rake'
 
-task :default => :gendoc
+task :default => :yardoc
 
 task :clean do
   `rm -rf doc`
   `rm -rf .yardoc`
 end
 
-task :gendoc => :clean do
-  `yardoc -e ./lib/city.rb -p ./lib/templates 'example/**/*' --debug`
+task :yardoc do
+  `yardoc 'example/**/*.rb' 'example/**/*.feature' --debug`
 end
 
-task :old => :clean do
-  `/usr/bin/yardoc -e lib/city.rb -p lib/templates 'example/**/*' --debug`
+task :gendoc => :clean do
+  `yardoc -e ./lib/city.rb -p ./lib/templates 'example/**/*' --debug`
 end
 
 task :server do
