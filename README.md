@@ -4,19 +4,21 @@ Cucumber-In-The-YARD (CITY): A Requirements Documentation Tool
 Synopsis
 --------
 
-Cucumber-In-The-Yard is a YARD extension that processes Cucumber features, scenarios, steps,
-tags, step definitions, and even transforms to provide documentation similar to what you expect
-to how YARD displays classes, methods and constants.  This tools bridges the gap of having 
-feature files found in your source code and true documentation that your team, product owners
-and stakeholders can use.
+Cucumber-In-The-Yard is a YARD extension that processes Cucumber features,
+scenarios, steps, tags, step definitions, and even transforms to provide
+documentation similar to what you expect to how YARD displays classes, methods
+and constants.This tools bridges the gap of having feature files found in
+your source code and true documentation that your team, product owners and
+stakeholders can use.
 
 Examples
 --------
 
-I have created a trivial, example project to help provide a quick visualization of the resulting
-documentation.  I encourage you to look at it as an example and see if it would assist your 
-project from a multitude of perspectives: as the project's core developer; another developer or 
-a new developer; quality assurance engineer; or product owner/stakeholder.
+I have created a trivial, example project to help provide a quick 
+visualization of the resulting documentation. I encourage you to look at it as 
+an example and see if it would assist your project from a multitude of 
+perspectives: as the project's core developer; another developer or a new 
+developer; quality assurance engineer; or product owner/stakeholder.
 
 The implemented example has been deployed at [http://recursivegames.com/cukes/](http://recursivegames.com/cukes/).
 
@@ -49,128 +51,74 @@ Cucumber-In-The-Yard (CITY) requires the following gems installed:
 
 To install CITY use the following command:
 
-    $ gem install cucumber-in-the-yard
+    $ gem install yard-cucumber
     
 (Add `sudo` if you're installing under a POSIX system as root)
 
 Usage
 -----
 
-**1. Rake Task**
+YARD supports for automatically including gems with the prefix `yard-` 
+as a plugin. To enable automatic loading yard-cucumber. 
 
-You can do this by adding the following to your `Rakefile`:
-    
-    require "yard"
-    require "city"
+1. Edit `~/.yard/config` and insert the following line:
 
-    YARD::Rake::CitydocTask.new do |t|
-      t.files   = ['features/**/*', OTHER_PATHS]   # optional
-      t.options = ['--any', '--extra', '--opts'] # optional
-    end
+```yaml
+load_plugins: true
+```
 
-both the `files` and `options` settings are optional. `files` will default to
-`lib/**/*.rb` and `options` will represents any options you might want
-to add. Again, a full list of options is available by typing `yardoc --help`
-in a shell. You can also override the options at the Rake command-line with the
-OPTS environment variable:
+2. Run `yardoc`, use the rake task, or run `yard server`, as would [normally](https://github.com/lsegal/yard).
 
-**2. YARD command-line**
+Be sure to update any file patterns so that they do not exclude `feature` 
+files. yard-cucumber will even process your step definitions and transforms.
+ 
+    $ yardoc 'example/**/*.rb' 'example/**/*.feature'
 
-    $ yardoc -e path/to/cucumber-in-the-yard/lib/city.rb -p path/to/cucumber-in-the-yard/lib/templates 'features/**/*.*'
 
-**3. YARD Server**
+```ruby    
+require 'yard'
 
-    $ yard server -e path/to/cucumber-in-the-yard/lib/server.rb
-
+YARD::Rake::YardocTask.new do |t|
+  t.files   = ['features/**/*.feature', 'features/**/*.rb']
+  t.options = ['--any', '--extra', '--opts'] # optional
+end
+```
 
 Details
 --------
 
-There are two things that I enjoy: a test framework written in my own Domain Specific Language (DSL)
-that is easily understood by all those on a project and the ability for all participants to easily read, 
-search, and view the tests.
+There are two things that I enjoy: a test framework written in my own Domain
+Specific Language (DSL) that is easily understood by all those on a project
+and the ability for all participants to easily read, search, and view the tests.
 
-Cucumber is an amazing tool that allowed me to define exercisable requirements.  My biggest obstacle was
-bringing these requirements to my team, the product owner, and other stakeholders.
+Cucumber is an amazing tool that allowed me to define exercisable requirements. 
+My biggest obstacle was bringing these requirements to my team, the product
+owner, and other stakeholders.
 
-Initially I tried to expose more of the functionality by providing freshly authored requirements through 
-email, attachments to JIRA tickets, or linked in wiki documents.  None of these methods were very sustainable 
-or successful.  First, I was continually pushing out the documents to those interested.  Second, the documents 
-were displayed to the user in text without the syntax highlighting that was exceedingly 
-helpful for quickly understanding the requirements.
+Initially I tried to expose more of the functionality by providing freshly
+authored requirements through email, attachments to JIRA tickets, or linked in
+wiki documents. None of these methods were very sustainable or successful. 
+First, I was continually pushing out the documents to those interested. 
+Second, the documents were displayed to the user in text without the syntax
+highlighting that was exceedingly helpful for quickly understanding the requirements.
 
-I also found it hard to share the test framework that I had put together with another developer that joined 
-the team.  It was difficult to direct them around the features, tags, step definitions, and transforms.  
-It was when I started to convey to them the conventions that I had established that I wished I had a tool 
-that would allow me to provide documentation like one would find generated by a great tool like YARD.
+I also found it hard to share the test framework that I had put together with
+another developer that joined the team. It was difficult to direct them around
+the features, tags, step definitions, and transforms. It was when I started to convey to them the conventions that I had established that I wished I had a
+tool that would allow me to provide documentation like one would find generated 
+by a great tool like YARD.
 
-So I set out to integrate Cucumber objects like features, backgrounds, scenarios, tags, steps, step 
-definitions, and transforms into a YARD template.  From my quick survey of the landscape I can see that the 
-my needs are different than a lot of others that use Cucumber.  The entire project that spawned this effort 
-was solely to exercise the functionality of a different, large project and so there is a huge dependence on
-having the requirements documented.  This is in contrast to other projects that are using this on a small 
-scale to test the functionality of small software component.  Though, ultimately, I realized that the 
-functionality may provide a valuable tool for many as I feel it helps more solidly bridge the reporting of 
-the documentation by putting a coat of paint on it.
-
-
-**Current Goals**
-----------------
-
-1. The landing page for 'All features' should be requirements landing page.
-
-2. 'All Features' takes you to all the features.
-  * represent the file structure in a file structure way and change
-    the subtitle 'subdirectories' to 'features by directory' and
-    show the directory headings with the features within them
-
-3. Provide readme.md markdown support within each of the feature subdirectories
-
-4. Tag filering
-  * create and provide a video link of how to filter
-  * allow you to remove tag elements visually with the mouse click
-  * provide a copy to clipboard for the command line execution
-  * Further testing for tag filtering
-
-5. Step Transformers
-  * Better way to illustrate that a step has a transformed applied to a parameter
-
-6. Feature Directory
-  * Layout of the subdirectories should be more directory like and provide more information
-  * Parent directories of directories contain no feature/scenario/tags statistics
-
--------
-
-**Future Ideas**
-
-**1. Table Step Transforms**
-
-The table step transform matching would be nice to show which tables are affected by table transforms
-
-**2. Before, After, and Around Hooks**
-
-Document the additional before, after, and around hooks that Cucumber uses.  Specifically display the before, after, and around
-hooks that are tied to tags (unions and intersections) on the tag pages.
-
-**3. Layout refinements of the step definition / step transform page**
-
-More work could be done to make this page more searchable, sortable, and usable.
-
-**4. Visualization of Tag unions and intersections**
-
-Continue to expand the tag union/intersection tool.  Visualization of this execution with some graphing library for some extra points.
-
-**5. Requirements Only Documentation**
-
-'fulldoc' is the default documentation generated but I have this thought that a requirements-only document
-may be useful.  Essentially the first draft would be the current documentation minus the class and method
-links/searches and replacing the index.html.
-
-**6. Performance enhancements**
-
-The current rate of documentation is not dreadfully slow anymore but more performance enhancements could
-always be performed to produce the documentation faster.
-
+So I set out to integrate Cucumber objects like features, backgrounds, 
+scenarios, tags, steps, step definitions, and transforms into a YARD template.
+From my quick survey of the landscape I can see that the my needs are
+different than a lot of others that use Cucumber.  The entire project that
+spawned this effort was solely to exercise the functionality of a different,
+large project and so there is a huge dependence on having the requirements
+documented.  This is in contrast to other projects that are using this on a
+small scale to test the functionality of small software component.  Though,
+ultimately, I realized that the functionality may provide a valuable tool for
+many as I feel it helps more solidly bridge the reporting of the documentation
+by putting a coat of paint on it.
 
 
 LICENSE
@@ -178,7 +126,7 @@ LICENSE
 
 (The MIT License)
 
-Copyright (c) 2010 FIX
+Copyright (c) 2011 FIX
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the

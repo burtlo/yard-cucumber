@@ -31,7 +31,7 @@ Gem::Specification.new do |s|
   s.version     = ::CucumberInTheYARD::VERSION
   s.authors     = ["Franklin Webber"]
   s.description = %{ 
-    Cucumber-In-The-Yard is a YARD extension that processes Cucumber Features, Scenarios, Steps,
+    YARD-Cucumber is a YARD extension that processes Cucumber Features, Scenarios, Steps,
     Step Definitions, Transforms, and Tags and provides a documentation interface that allows you
     easily view and investigate the test suite.  This tools hopes to bridge the gap of being able
     to provide your feature descriptions to your Product Owners and Stakeholders.  }
@@ -46,7 +46,7 @@ Gem::Specification.new do |s|
   s.post_install_message = %{
 (::) (::) (::) (::) (::) (::) (::) (::) (::) (::) (::) (::) (::) (::) (::)
 
-  Thank you for installing Cucumber-In-The-YARD #{::CucumberInTheYARD::VERSION} / #{changes[:date]}.
+  Thank you for installing yard-cucumber #{::CucumberInTheYARD::VERSION} / #{changes[:date]}.
   
   Changes:
   #{changes[:changes].collect{|change| "  #{change}"}.join("")}
