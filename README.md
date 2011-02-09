@@ -63,26 +63,23 @@ as a plugin. To enable automatic loading yard-cucumber.
 
 1. Edit `~/.yard/config` and insert the following line:
 
-```yaml
-load_plugins: true
-```
+    load_plugins: true
 
 2. Run `yardoc`, use the rake task, or run `yard server`, as would [normally](https://github.com/lsegal/yard).
 
 Be sure to update any file patterns so that they do not exclude `feature` 
 files. yard-cucumber will even process your step definitions and transforms.
- 
+
     $ yardoc 'example/**/*.rb' 'example/**/*.feature'
 
+An example with the rake task:
 
-```ruby    
-require 'yard'
+    require 'yard'
 
-YARD::Rake::YardocTask.new do |t|
-  t.files   = ['features/**/*.feature', 'features/**/*.rb']
-  t.options = ['--any', '--extra', '--opts'] # optional
-end
-```
+    YARD::Rake::YardocTask.new do |t|
+      t.files   = ['features/**/*.feature', 'features/**/*.rb']
+      t.options = ['--any', '--extra', '--opts'] # optional
+    end
 
 Details
 --------
