@@ -33,14 +33,13 @@ module YARD::CodeObjects::Cucumber
       subdirectories = children.find_all {|d| d.is_a?(FeatureDirectory) }
       subdirectories + subdirectories.collect {|s| s.subdirectories }.flatten
     end
-      
-    
+         
   end
 
-  CUCUMBER_NAMESPACE = Requirements.new(:root, "requirements")
+  CUCUMBER_NAMESPACE = Requirements.new(:root, "requirements") unless defined?(CUCUMBER_NAMESPACE)
   
-  CUCUMBER_TAG_NAMESPACE = FeatureTags.new(CUCUMBER_NAMESPACE, "tags")
+  CUCUMBER_TAG_NAMESPACE = FeatureTags.new(CUCUMBER_NAMESPACE, "tags") unless defined?(CUCUMBER_TAG_NAMESPACE)
   
-  CUCUMBER_STEPTRANSFORM_NAMESPACE = StepTransformersObject.new(CUCUMBER_NAMESPACE, "step_transformers")
+  CUCUMBER_STEPTRANSFORM_NAMESPACE = StepTransformersObject.new(CUCUMBER_NAMESPACE, "step_transformers") unless defined?(CUCUMBER_STEPTRANSFORM_NAMESPACE)
   
 end

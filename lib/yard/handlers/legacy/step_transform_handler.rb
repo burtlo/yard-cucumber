@@ -1,5 +1,5 @@
 class YARD::Handlers::Ruby::Legacy::StepTransformHandler < YARD::Handlers::Ruby::Legacy::Base
-  STEP_TRANSFORM_MATCH = /^(Transform\s*(\/.+\/)\s+do(?:\s*\|.+\|)?\s*)$/
+  STEP_TRANSFORM_MATCH = /^(Transform\s*(\/.+\/)\s+do(?:\s*\|.+\|)?\s*)$/ unless defined?(STEP_TRANSFORM_MATCH)
   handles STEP_TRANSFORM_MATCH
 
   @@unique_name = 0

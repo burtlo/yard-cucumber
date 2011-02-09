@@ -12,3 +12,7 @@ def init
   end
   sections :full_list
 end
+
+def all_features_link
+  linkify YARD::CodeObjects::Cucumber::CUCUMBER_NAMESPACE, "All Features"
+end
