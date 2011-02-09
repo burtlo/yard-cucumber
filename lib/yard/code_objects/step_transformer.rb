@@ -8,7 +8,7 @@ module YARD::CodeObjects
     attr_reader :constants, :keyword, :source, :value, :literal_value
     attr_accessor :steps
 
-    ESCAPE_PATTERN = /#\{\s*(\w+)\s*\}/
+    ESCAPE_PATTERN = /#\{\s*(\w+)\s*\}/ unless defined?(ESCAPE_PATTERN)
 
     def value=(value)
       @literal_value = format_source(value)

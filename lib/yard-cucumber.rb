@@ -40,4 +40,12 @@ require File.dirname(__FILE__) + "/yard/templates/helpers/base_helper.rb"
 require File.dirname(__FILE__) + "/yard/server/commands/list_command.rb"
 require File.dirname(__FILE__) + "/yard/server/router.rb"
 
+
+# This registered template works for yardoc
 YARD::Templates::Engine.register_template_path File.dirname(__FILE__) + '/templates'
+
+# The following templates are for yard server
+#YARD::Templates::Engine.register_template_path File.dirname(__FILE__) + '/templates'
+#YARD::Templates::Engine.register_template_path File.dirname(__FILE__) + '/docserver'
+YARD::Server.register_static_path File.dirname(__FILE__) + "/templates/default/fulldoc/html"
+YARD::Server.register_static_path File.dirname(__FILE__) + "/docserver/default/fulldoc/html"

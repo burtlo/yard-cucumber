@@ -1,6 +1,6 @@
 class YARD::Handlers::Ruby::Legacy::StepDefinitionHandler < YARD::Handlers::Ruby::Legacy::Base
   #TODO: This needs to become language independent.
-  STEP_DEFINITION_MATCH = /^((When|Given|And|Then)\s*(\/.+\/)\s+do(?:\s*\|.+\|)?\s*)$/
+  STEP_DEFINITION_MATCH = /^((When|Given|And|Then)\s*(\/.+\/)\s+do(?:\s*\|.+\|)?\s*)$/ unless defined?(STEP_DEFINITION_MATCH)
   handles STEP_DEFINITION_MATCH
 
   @@unique_name = 0
