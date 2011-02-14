@@ -3,7 +3,8 @@ module YARD
 
     #
     # The YARD::Server::Router needs the following modification,
-    # otherwise it perfectly suited for the requirements documents
+    # so that it will provide routing for the features and tags commands
+    # to their appropriate definitions
     #
     Router.class_eval do
 

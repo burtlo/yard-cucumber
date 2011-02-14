@@ -37,16 +37,13 @@ require File.dirname(__FILE__) + "/yard/handlers/legacy/step_transform_handler.r
 require File.dirname(__FILE__) + "/yard/parser/source_parser.rb"
 require File.dirname(__FILE__) + "/yard/templates/helpers/base_helper.rb"
 
+require File.dirname(__FILE__) + "/yard/server/adapter.rb"
 require File.dirname(__FILE__) + "/yard/server/commands/list_command.rb"
 require File.dirname(__FILE__) + "/yard/server/router.rb"
 
 
 # This registered template works for yardoc
 YARD::Templates::Engine.register_template_path File.dirname(__FILE__) + '/templates'
-
-# This template is for yard server but will raise an error if included here, it
-# is patched in the adapter setup.
-#YARD::Templates::Engine.register_template_path File.dirname(__FILE__) + '/docserver'
 
 # The following static paths and templates are for yard server
 YARD::Server.register_static_path File.dirname(__FILE__) + "/templates/default/fulldoc/html"

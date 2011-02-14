@@ -28,6 +28,10 @@ module YARD::Parser
         environment_files + support_files + other_files + feature_files
       end
 
+      #
+      # Overriding the parse_in_order method was necessary so that step definitions
+      # match to steps utilizing the load ordering that is used by Cucumber.
+      #
       def parse_in_order(*files)
         
         files = order_by_cucumber_standards(*files)

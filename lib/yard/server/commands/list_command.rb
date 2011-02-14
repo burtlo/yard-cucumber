@@ -2,6 +2,9 @@ module YARD
   module Server
     module Commands
       
+      #
+      # List Features powers the features menu option in `yard server`
+      #
       class ListFeaturesCommand < ListCommand
         def type; :features end
         
@@ -11,6 +14,9 @@ module YARD
         end
       end
       
+      #
+      # List Tags powers the tags menu option in `yard server`
+      #
       class ListTagsCommand < ListCommand
         def type; :tags end
         

@@ -8,7 +8,7 @@ task :clean do
 end
 
 task :gendoc => :clean do
-  `yardoc -e ./lib/city.rb -p ./lib/templates 'example/**/*' --debug`
+  `yardoc -e ./lib/yard-cucumber.rb 'example/**/*' --debug`
 end
 
 task :gem do
