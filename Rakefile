@@ -1,6 +1,6 @@
 require 'rake'
 
-task :default => :yardoc
+task :default => :gendoc
 
 task :clean do
   `rm -rf doc`
