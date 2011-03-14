@@ -191,7 +191,7 @@ module Cucumber
 
       private
       def matrix(gherkin_table)
-        gherkin_table.map do {|gherkin_row| gherkin_row.cells }
+        gherkin_table.map {|gherkin_row| gherkin_row.cells }
       end
 
       def clone_table(base)
