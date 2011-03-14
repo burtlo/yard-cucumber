@@ -191,19 +191,13 @@ module Cucumber
 
       private
       def matrix(gherkin_table)
-        gherkin_table.map do |gherkin_row|
-          row = gherkin_row.cells
-          class << row
-            attr_accessor :line
-          end
-          row.line = gherkin_row.line
-          row
-        end
+        gherkin_table.map do {|gherkin_row| gherkin_row.cells }
       end
 
       def clone_table(base)
         base.map {|row| row.map {|cell| cell.dup }}
       end
+      
     end
   end
 end
