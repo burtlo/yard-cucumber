@@ -1,3 +1,7 @@
+=== 2.0.1 / 2011-03-14
+
+- YARD 0.6.5 compatibility
+
 === 2.0.0 / 2011-02-08
 
 * Cucumber In The YARD becomes `yard-cucumber` and with that gains the
