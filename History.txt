@@ -1,3 +1,8 @@
+=== 2.0.2 / 2011-04-06
+
+- No Features/Tags will still generate landing pages instead of no pages
+- Changed link to current gem 'yard-cucumber'
+
 === 2.0.1 / 2011-03-14
 
 - YARD 0.6.5 compatibility

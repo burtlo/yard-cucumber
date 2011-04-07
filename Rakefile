@@ -13,5 +13,5 @@ end
 
 task :gem do
   `gem build city.gemspec`
-  `gem install --local yard-cucumber-2.0.0.gem`
+  `gem install --local yard-cucumber-2.0.2.gem`
 end
