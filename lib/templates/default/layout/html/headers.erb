@@ -1,4 +1,4 @@
-<meta name="Content-Type" content="text/html; charset=<%= charset %>" />
+<meta http-equiv="Content-Type" content="text/html; charset=<%= charset %>" />
 <title><%= @page_title %></title>
 <link rel="stylesheet" href="<%= url_for("css/style.css") %>" type="text/css" media="screen" charset="utf-8" />
 <link rel="stylesheet" href="<%= url_for("css/common.css") %>" type="text/css" media="screen" charset="utf-8" />
@@ -9,6 +9,6 @@
   relpath = '<%= url_for('') %>';
   if (relpath != '') relpath += '/';
 </script>
-<script type="text/javascript" charset="utf-8" src="<%= url_for("js/jquery.js") %>"></script>
-<script type="text/javascript" charset="utf-8" src="<%= url_for("js/app.js") %>"></script>
-<script type="text/javascript" charset="utf-8" src="<%= url_for("js/cucumber.js") %>"></script>
+<% javascript_files.each do |js_file| %>
+  <script type="text/javascript" charset="utf-8" src="<%= url_for(js_file) %>"></script>
+<% end %>
