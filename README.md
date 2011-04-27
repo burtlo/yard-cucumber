@@ -1,13 +1,13 @@
-Cucumber-In-The-YARD (CITY): A Requirements Documentation Tool
+YARD-Cucumber: A Requirements Documentation Tool
 ====================================
 
 Synopsis
 --------
 
-Cucumber-In-The-Yard is a YARD extension that processes Cucumber features,
-scenarios, steps, tags, step definitions, and even transforms to provide
-documentation similar to what you expect to how YARD displays classes, methods
-and constants.This tools bridges the gap of having feature files found in
+YARD-Cucumber (formerly Cucumber-In-The-Yard) is a YARD extension that processes
+Cucumber features, scenarios, steps, tags, step definitions, and even transforms 
+to provide documentation similar to what you expect to how YARD displays classes, 
+methods and constants.This tools bridges the gap of having feature files found in
 your source code and true documentation that your team, product owners and
 stakeholders can use.
 
@@ -22,23 +22,23 @@ developer; quality assurance engineer; or product owner/stakeholder.
 
 The implemented example has been deployed at [http://recursivegames.com/cukes/](http://recursivegames.com/cukes/).
 
-**1. View Features and Scenarios** [example](http://recursivegames.com/cukes/requirements/)
+**1. View Features and Scenarios** [example](http://recursivegames.com/cukes/requirements.html)
 
 **2. Search through [features, scenarios](http://recursivegames.com/cukes/feature_list.html), and [tags](http://recursivegames.com/cukes/tag_list.html)**
 
 **3. Dynamic Tag Unions and Intersections** [example](http://recursivegames.com/cukes/requirements/tags.html)
 
-**4. View all features and scenarios by tag** [example](http://recursivegames.com/cukes/requirements/tags/message.html)
+**4. View all features and scenarios by tag** [example](http://recursivegames.com/cukes/requirements/tags/bvt.html)
 
 **5. View Step Definitions and Transforms** [example](http://recursivegames.com/cukes/requirements/step_transformers.html)
 
 **6. All steps [matched](http://recursivegames.com/cukes/requirements/step_transformers.html#definition_5-stepdefinition) to step definitions**
 
-**7. [Steps](http://recursivegames.com/cukes/requirements/step_transformers.html#transform_3-steptransform) that have transforms applied to them**
+**7. [Steps](http://recursivegames.com/cukes/requirements/step_transformers.html#step_transform7-steptransform) that have transforms applied to them**
 
 **8. [Undefined steps](http://recursivegames.com/cukes/requirements/step_transformers.html#undefined_steps) and even [Rubular](http://rubular.com/) links of your step definitions.**
 
-**9. Feature directories with a README.md will be parsed into the description** [example](http://recursivegames.com/cukes/requirements/features.html)
+**9. Feature directories with a README.md will be parsed into the description** [example](http://recursivegames.com/cukes/requirements/example/child_feature.html)
 
 Installation
 ------------
@@ -101,7 +101,8 @@ highlighting that was exceedingly helpful for quickly understanding the requirem
 
 I also found it hard to share the test framework that I had put together with
 another developer that joined the team. It was difficult to direct them around
-the features, tags, step definitions, and transforms. It was when I started to convey to them the conventions that I had established that I wished I had a
+the features, tags, step definitions, and transforms. It was when I started to 
+convey to them the conventions that I had established that I wished I had a
 tool that would allow me to provide documentation like one would find generated 
 by a great tool like YARD.
 
@@ -123,7 +124,7 @@ LICENSE
 
 (The MIT License)
 
-Copyright (c) 2011 FIX
+Copyright (c) 2011 Franklin Webber
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
