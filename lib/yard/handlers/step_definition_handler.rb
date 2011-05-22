@@ -11,6 +11,11 @@
 #       language: 
 #         step_definitions: [ 'WEN', 'I CAN HAZ', 'AN', 'DEN' ]
 # 
+# @example `~/.yard/config` with French step definitions
+# 
+#     :"yard-cucumber": 
+#       language: 
+#         step_definitions: [ 'Soit', 'Etantdonné', 'Lorsque', 'Lorsqu', 'Alors', 'Et' ]
 # 
 class YARD::Handlers::Ruby::StepDefinitionHandler < YARD::Handlers::Ruby::Base
   
