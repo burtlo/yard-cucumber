@@ -1,3 +1,9 @@
+=== 2.1.0 / 2011-05-22
+
+* YARD 0.7.0 compatibility (removed some monkey-patching)
+* Add more menus (Steps and Step Definitions)
+* Define step definitions in your language Internalization (Ruby 1.9.2)
+
 === 2.0.3 / 2011-05-22
 
 * Updated Cucumber links to the new github organization
