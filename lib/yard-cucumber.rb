@@ -34,7 +34,7 @@ end
 require File.dirname(__FILE__) + "/yard/handlers/legacy/step_definition_handler.rb"
 require File.dirname(__FILE__) + "/yard/handlers/legacy/step_transform_handler.rb"
 
-require File.dirname(__FILE__) + "/yard/parser/source_parser.rb"
+#require File.dirname(__FILE__) + "/yard/parser/source_parser.rb"
 require File.dirname(__FILE__) + "/yard/templates/helpers/base_helper.rb"
 
 require File.dirname(__FILE__) + "/yard/server/adapter.rb"
