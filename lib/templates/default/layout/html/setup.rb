@@ -24,6 +24,8 @@ end
 # 'step definitions' and 'steps' may be enabled by setting up a value in
 # yard configuration file '~/.yard/config'
 # 
+# @example `~/.yard.config`
+# 
 #     yard-cucumber:
 #       menus: [ 'features', 'tags', 'step definitions', 'steps' ]
 # 

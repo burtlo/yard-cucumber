@@ -64,7 +64,7 @@ end
 # Generate a step definition list
 # @note this menu is not automatically added until yard configuration has this menu added
 # See the layout template method that loads the menus
-def generate_step_definition_list
+def generate_stepdefinition_list
   generate_full_list YARD::Registry.all(:stepdefinition), :stepdefinition
 end
 
