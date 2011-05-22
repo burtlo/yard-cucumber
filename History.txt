@@ -1,3 +1,7 @@
+=== 2.0.3 / 2011-05-22
+
+* Updated Cucumber links to the new github organization
+
 === 2.0.2 / 2011-04-06
 
 - No Features/Tags will still generate landing pages instead of no pages
