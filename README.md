@@ -43,16 +43,16 @@ The implemented example has been deployed at [http://recursivegames.com/cukes/](
 Installation
 ------------
 
-Cucumber-In-The-Yard (CITY) requires the following gems installed:
+YARD-Cucumber requires the following gems installed:
 
-    Gherkin - http://cukes.info
-    Cucumber - http://cukes.info
-    YARD - http://yardoc.org
+Gherkin - http://cukes.info
+Cucumber - http://cukes.info
+YARD - http://yardoc.org
 
-To install CITY use the following command:
+To install `yard-cucumber` use the following command:
 
-    $ gem install yard-cucumber
-    
+$ gem install yard-cucumber
+
 (Add `sudo` if you're installing under a POSIX system as root)
 
 Usage
@@ -61,25 +61,20 @@ Usage
 YARD supports for automatically including gems with the prefix `yard-` 
 as a plugin. To enable automatic loading yard-cucumber. 
 
-1. Edit `~/.yard/config` and insert the following line:
+$ yard config load_plugins true
+$ yardoc 'example/**/*.rb' 'example/**/*.feature'
 
-    load_plugins: true
-
-2. Run `yardoc`, use the rake task, or run `yard server`, as would [normally](https://github.com/lsegal/yard).
-
-Be sure to update any file patterns so that they do not exclude `feature` 
-files. yard-cucumber will even process your step definitions and transforms.
-
-    $ yardoc 'example/**/*.rb' 'example/**/*.feature'
+Now you can run YARD as you [normally](https://github.com/lsegal/yard) would and 
+have your features, step definitions and transforms captured.
 
 An example with the rake task:
 
-    require 'yard'
+require 'yard'
 
-    YARD::Rake::YardocTask.new do |t|
-      t.files   = ['features/**/*.feature', 'features/**/*.rb']
-      t.options = ['--any', '--extra', '--opts'] # optional
-    end
+YARD::Rake::YardocTask.new do |t|
+t.files   = ['features/**/*.feature', 'features/**/*.rb']
+t.options = ['--any', '--extra', '--opts'] # optional
+end
 
 Details
 --------
