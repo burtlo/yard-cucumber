@@ -40,14 +40,18 @@ The implemented example has been deployed at [http://recursivegames.com/cukes/](
 
 **9. Feature directories with a README.md will be parsed into the description** [example](http://recursivegames.com/cukes/requirements/example/child_feature.html)
 
+**10. Configurable Menus - want a searchable steps menu and remove the tags menu**
+
+**11. Step definitions in your language (Ruby 1.9.2 - Internationalization)**
+
 Installation
 ------------
 
 YARD-Cucumber requires the following gems installed:
 
-Gherkin - http://cukes.info
-Cucumber - http://cukes.info
-YARD - http://yardoc.org
+Gherkin 2.3.5 - http://cukes.info
+Cucumber 0.7.5 - http://cukes.info
+YARD 0.7.0 - http://yardoc.org
 
 To install `yard-cucumber` use the following command:
 
@@ -75,6 +79,47 @@ YARD::Rake::YardocTask.new do |t|
 t.files   = ['features/**/*.feature', 'features/**/*.rb']
 t.options = ['--any', '--extra', '--opts'] # optional
 end
+
+
+Configuration
+-------------
+
+* Adding or Removing search fields (yardoc)
+
+Be default the yardoc output will generate a search field for features and tags.
+This can be configured through the yard configuration file `~./yard/config` to
+add or remove these search fields.
+  
+    --- !map:SymbolHash 
+    :load_plugins: true
+    :ignored_plugins: []
+
+    :autoload_plugins: []
+
+    :safe_mode: false
+    
+    :"yard-cucumber": 
+      menus: [ 'features', 'tags', 'steps', 'stepdefinitions' ]
+
+
+By default the configuration, yaml format, that is generate by the `yard config` 
+command will save a `SymbolHash`. You can still edit this file add the entry for 
+`:"yard-cucumber":` and the sub-entry `menus:` which can contain all of the above
+mentioned menus or simply an empty array `[]` if you want no additional menus.
+
+* Step definitions in your language (Ruby 1.9.2)
+
+Again the yard configuration file you can define additional step definitions that
+can be matched.
+
+    :"yard-cucumber": 
+      language: 
+        step_definitions: [ 'Given', 'When', 'Then', 'And', 'Soit', 'Etantdonné', 'Lorsque', 'Lorsqu', 'Alors', 'Et' ]
+
+In this example, I have included the French step definition words alongside the
+English step definitions. Even without specifying this feature files in other
+languages are found, this provides the ability for the step definitions to match
+correctly to step definitions.
 
 Details
 --------
