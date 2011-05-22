@@ -46,22 +46,37 @@ def init
 
 end
 
-#
+
 # Generate feature list
-# 
+# @note this method is called automically by YARD based on the menus defined in the layout
 def generate_feature_list
   @features = Registry.all(:feature)
   generate_full_list @features.sort {|x,y| x.value.to_s <=> y.value.to_s }, :feature
 end
 
+# Generate tag list
+# @note this method is called automically by YARD based on the menus defined in the layout
 def generate_tag_list
   @tags = Registry.all(:tag)
   generate_full_list @tags.sort {|x,y| y.all_scenarios.size <=> x.all_scenarios.size }, :tag
 end
 
-#
-# Generate a full_list page of the specified objects with the specified type.
-#
+# Generate a step definition list
+# @note this menu is not automatically added until yard configuration has this menu added
+# See the layout template method that loads the menus
+def generate_step_definition_list
+  generate_full_list YARD::Registry.all(:stepdefinition), :stepdefinition
+end
+
+# Generate a step list
+# @note this menu is not automatically added until yard configuration has this menu added
+# See the layout template method that loads the menus
+def generate_step_list
+  generate_full_list YARD::Registry.all(:step), :step
+end
+
+# Helpler method to generate a full_list page of the specified objects with the 
+# specified type.
 def generate_full_list(objects,list_type,friendly_name=nil)
   @items = objects
   @list_type = "#{list_type}s"
