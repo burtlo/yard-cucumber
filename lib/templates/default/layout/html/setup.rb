@@ -2,12 +2,24 @@ def init
   super
 end
 
-def javascript_files
-  existing_js = super rescue [ 'js/jquery.js','js/app.js' ]
-  existing_js + [ 'js/cucumber.js' ]
+#
+# Append yard-cucumber stylesheet to yard core stylesheets
+# 
+def stylesheets
+  super + %w(css/cucumber.css)
 end
 
-def search_fields
-  existing_fields = super rescue [ [ 'class_list_link', 'Class List' ],[ 'method_list_link', 'Method List' ],[ 'file_list_link', 'File List' ] ] 
-  existing_fields + [ [ 'features_list_link', 'Features' ],[ 'tags_list_link', 'Tags' ] ]
+#
+# Append yard-cucumber javascript to yard core javascripts
+# 
+def javascripts
+  super + %w(js/cucumber.js)
+end
+
+#
+# Append yard-cucumber specific menus 'features' and 'tags'
+# 
+def menu_lists
+  [ { :type => 'feature', :title => 'Features', :search_title => 'Features' },
+    { :type => 'tag', :title => 'Tags', :search_title => 'Tags' } ] + super
 end

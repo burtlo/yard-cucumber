@@ -15,7 +15,7 @@ def init
 
   if @features
     @features.each {|feature| serialize(feature) } 
-    generate_full_list @features.sort {|x,y| x.value.to_s <=> y.value.to_s }, :feature
+    #generate_full_list @features.sort {|x,y| x.value.to_s <=> y.value.to_s }, :feature
   end
   
   #
@@ -28,7 +28,7 @@ def init
 
   if @tags
     @tags.each {|tag| serialize(tag) }
-    generate_full_list @tags.sort {|x,y| y.all_scenarios.size <=> x.all_scenarios.size }, :tag
+    #generate_full_list @tags.sort {|x,y| y.all_scenarios.size <=> x.all_scenarios.size }, :tag
   end
 
   # Generates the requirements splash page with the 'requirements' template
@@ -47,14 +47,27 @@ def init
 end
 
 #
+# Generate feature list
+# 
+def generate_feature_list
+  @features = Registry.all(:feature)
+  generate_full_list @features.sort {|x,y| x.value.to_s <=> y.value.to_s }, :feature
+end
+
+def generate_tag_list
+  @tags = Registry.all(:tag)
+  generate_full_list @tags.sort {|x,y| y.all_scenarios.size <=> x.all_scenarios.size }, :tag
+end
+
+#
 # Generate a full_list page of the specified objects with the specified type.
 #
 def generate_full_list(objects,list_type,friendly_name=nil)
-    @items = objects
-    @list_type = "#{list_type}s"
-    @list_title = "#{friendly_name || list_type.to_s.capitalize} List"
-    @list_class = "class"
-    asset("#{list_type}_list.html",erb(:full_list))
+  @items = objects
+  @list_type = "#{list_type}s"
+  @list_title = "#{friendly_name || list_type.to_s.capitalize} List"
+  @list_class = "class"
+  asset("#{list_type}_list.html",erb(:full_list))
 end
 
 #
