@@ -1,6 +1,37 @@
-
+#
+# Finds and processes all the step definitions defined in the ruby source
+# code. By default the english gherkin language will be parsed.
+# 
+# To override the language you can define the step definitions in the YARD 
+# configuration file `~./yard/config`:
+# 
+# @example `~/.yard/config` with LOLCatz step definitions
+# 
+#     :"yard-cucumber": 
+#       language: 
+#         step_definitions: [ 'WEN', 'I CAN HAZ', 'AN', 'DEN' ]
+# 
+# 
 class YARD::Handlers::Ruby::StepDefinitionHandler < YARD::Handlers::Ruby::Base
-  handles method_call(:When),method_call(:Given),method_call(:And),method_call(:Then)
+  
+  #
+  # By default the english gherkin language will be parsed, however, if the
+  # YARD configuration file `~./yard/config` defines different step definition
+  # handlers those are used.
+  # 
+  # 
+  if YARD::Config.options["yard-cucumber"] and 
+    YARD::Config.options["yard-cucumber"]["language"] and
+    YARD::Config.options["yard-cucumber"]["language"]["step_definitions"]
+    
+    YARD::Config.options["yard-cucumber"]["language"]["step_definitions"].each do |step_word|
+      handles method_call(step_word.to_sym)
+    end
+    
+  else
+    handles method_call(:When),method_call(:Given),method_call(:And),method_call(:Then)
+  end
+  
   
   @@unique_name = 0
   
