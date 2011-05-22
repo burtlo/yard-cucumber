@@ -40,7 +40,6 @@ module YARD::Parser::Cucumber
 
   end
 
-
   YARD::Parser::SourceParser.register_parser_type :feature, FeatureParser, 'feature'
 
 end

@@ -13,9 +13,8 @@ module YARD
           end
           include Parser::Cucumber
         end
-
       end
-
+      
       Processor.register_handler_namespace :feature, Cucumber
     end 
   end
