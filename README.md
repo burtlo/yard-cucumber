@@ -49,7 +49,7 @@ Installation
 
 YARD-Cucumber requires the following gems installed:
 
-Gherkin 2.3.5 - http://cukes.info
+Gherkin 2.2.9 - http://cukes.info
 Cucumber 0.7.5 - http://cukes.info
 YARD 0.7.0 - http://yardoc.org
 
