@@ -259,7 +259,7 @@ module Cucumber
         multiline_arg = rubify(step.multiline_arg)
         
         case(multiline_arg)
-        when Gherkin::Formatter::Model::PyString
+        when gherkin_multiline_string_class
           @table_owner.text = multiline_arg.value
         when Array
           #log.info "Matrix: #{matrix(multiline_arg).collect{|row| row.collect{|cell| cell.class } }.flatten.join("\n")}"
@@ -282,6 +282,23 @@ module Cucumber
       private
       def matrix(gherkin_table)
         gherkin_table.map {|gherkin_row| gherkin_row.cells }
+      end
+      
+      #
+      # This helper method is used to deteremine what class is the current
+      # Gherkin class.
+      # 
+      # @return [Class] the class that is the current supported Gherkin Model
+      #     for multiline strings. Prior to Gherkin 2.4.0 this was the PyString
+      #     class. As of Gherkin 2.4.0 it is the DocString class.
+      def gherkin_multiline_string_class
+        if defined?(Gherkin::Formatter::Model::PyString)
+          Gherkin::Formatter::Model::PyString
+        elsif defined?(Gherkin::Formatter::Model::DocString)
+          Gherkin::Formatter::Model::DocString
+        else
+          raise "Unable to find a suitable class in the Gherkin Library to parse the multiline step data."
+        end
       end
 
       def clone_table(base)
