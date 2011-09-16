@@ -55,7 +55,7 @@ YARD 0.7.0 - http://yardoc.org
 
 To install `yard-cucumber` use the following command:
 
-$ gem install yard-cucumber
+    $ gem install yard-cucumber
 
 (Add `sudo` if you're installing under a POSIX system as root)
 
@@ -65,20 +65,21 @@ Usage
 YARD supports for automatically including gems with the prefix `yard-` 
 as a plugin. To enable automatic loading yard-cucumber. 
 
-$ yard config load_plugins true
-$ yardoc 'example/**/*.rb' 'example/**/*.feature'
+    $ mkdir ~/.yard
+    $ yard config load_plugins true
+    $ yardoc 'example/**/*.rb' 'example/**/*.feature'
 
 Now you can run YARD as you [normally](https://github.com/lsegal/yard) would and 
 have your features, step definitions and transforms captured.
 
 An example with the rake task:
 
-require 'yard'
+    require 'yard'
 
-YARD::Rake::YardocTask.new do |t|
-t.files   = ['features/**/*.feature', 'features/**/*.rb']
-t.options = ['--any', '--extra', '--opts'] # optional
-end
+    YARD::Rake::YardocTask.new do |t|
+    t.files   = ['features/**/*.feature', 'features/**/*.rb']
+    t.options = ['--any', '--extra', '--opts'] # optional
+    end
 
 
 Configuration
