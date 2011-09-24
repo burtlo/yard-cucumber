@@ -1,4 +1,3 @@
-
 module Cucumber
   module Parser
     class CityBuilder
@@ -256,7 +255,11 @@ module Cucumber
 
         @table_owner.comments = step.comments.map{|comment| comment.value}.join("\n")
 
-        multiline_arg = rubify(step.multiline_arg)
+        multiline_arg = if step.respond_to? :multiline_arg
+          rubify(step.multiline_arg)
+        elsif step.respond_to? :rows
+          rubify(step.rows)
+        end 
         
         case(multiline_arg)
         when gherkin_multiline_string_class
