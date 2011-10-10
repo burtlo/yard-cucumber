@@ -185,62 +185,69 @@ module Cucumber
       # outline defined to be displayed. 
       # 
       def examples(examples)
-        log.debug "EXAMPLES"
-
-        # It is possible for scenario outlines to have multiple example groups
+        #log.debug "EXAMPLES"
         
-        @step_container.examples << YARD::CodeObjects::Cucumber::ScenarioOutline::Examples.new(:keyword => examples.keyword,
+        example = YARD::CodeObjects::Cucumber::ScenarioOutline::Examples.new(:keyword => examples.keyword,
           :name => examples.name,
           :line => examples.line,
           :comments => examples.comments.map{|comment| comment.value}.join("\n"),
           :rows => matrix(examples.rows))
-
-        @step_container.examples.each do |example|
-        
-          # For each example data row we want to generate a new scenario using our
-          # current scenario as the template.
-
-          example.data.length.times do |row_index|
-
-            scenario = YARD::CodeObjects::Cucumber::Scenario.new(@step_container,"example_#{@step_container.scenarios.length + 1}") do |s|
-              s.comments = @step_container.comments
-              s.description = @step_container.description
-              s.add_file(@file,@step_container.line_number)
-              s.keyword = @step_container.keyword
-              s.value = "#{@step_container.value} (#{@step_container.scenarios.length + 1})"
-            end
-
-            @step_container.steps.each do |step|
-              step_instance = YARD::CodeObjects::Cucumber::Step.new(scenario,step.line_number) do |s|
-                s.keyword = step.keyword.dup
-                s.value = step.value.dup
-                s.add_file(@file,step.line_number)
-
-                s.text = step.text.dup if step.has_text?
-                s.table = clone_table(step.table) if step.has_table?
-              end
-
-              @step_container.examples.each do |example|
-                example.values_for_row(row_index).each do |key,text|
-                  text ||= "" #handle empty cells in the example table
-                  step_instance.value.gsub!("<#{key}>",text)
-                  step_instance.text.gsub!("<#{key}>",text) if step_instance.has_text?
-                  step_instance.table.each{|row| row.each{|col| col.gsub!("<#{key}>",text)}} if step_instance.has_table?
-                end
-              end
-
-              step_instance.scenario = scenario
-              scenario.steps << step_instance
-            end
-
-            # Scenario instances of an outline link to the feature but are not linked from the feature
-            # @feature.scenarios << scenario
-
-            scenario.feature = @feature
-            @step_container.scenarios << scenario
           
+          
+        # add the example to the step containers list of examples
+
+        @step_container.examples << example
+
+        # For each example data row we want to generate a new scenario using our
+        # current scenario as the template.
+
+        example.data.length.times do |row_index|
+          
+          # Generate a copy of the scenario.
+
+          scenario = YARD::CodeObjects::Cucumber::Scenario.new(@step_container,"example_#{@step_container.scenarios.length + 1}") do |s|
+            s.comments = @step_container.comments
+            s.description = @step_container.description
+            s.add_file(@file,@step_container.line_number)
+            s.keyword = @step_container.keyword
+            s.value = "#{@step_container.value} (#{@step_container.scenarios.length + 1})"
           end
+
+          # Generate a copy of the scenario steps.
+
+          @step_container.steps.each do |step|
+            step_instance = YARD::CodeObjects::Cucumber::Step.new(scenario,step.line_number) do |s|
+              s.keyword = step.keyword.dup
+              s.value = step.value.dup
+              s.add_file(@file,step.line_number)
+
+              s.text = step.text.dup if step.has_text?
+              s.table = clone_table(step.table) if step.has_table?
+            end
+
+            # Look at the particular data for the example row and do a simple
+            # find and replace of the <key> with the associated values.
+
+            example.values_for_row(row_index).each do |key,text|
+              text ||= "" #handle empty cells in the example table
+              step_instance.value.gsub!("<#{key}>",text)
+              step_instance.text.gsub!("<#{key}>",text) if step_instance.has_text?
+              step_instance.table.each{|row| row.each{|col| col.gsub!("<#{key}>",text)}} if step_instance.has_table?
+            end
+            
+            # Connect these steps that we created to the scenario we created
+            # and then add the steps to the scenario created.
+            
+            step_instance.scenario = scenario
+            scenario.steps << step_instance
+          end
+
+          # Add the scenario to the list of scenarios maintained by the  feature 
+          # and add the feature to the scenario
           
+          scenario.feature = @feature
+          @step_container.scenarios << scenario
+        
         end
         
       end

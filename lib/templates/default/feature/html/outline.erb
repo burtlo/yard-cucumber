@@ -9,9 +9,9 @@
 <div class="outline">
   
   <% if @scenario.examples? %>
-  
-    <% @scenario.examples.each do |example| %>
-      <div class="keyword"> <%= h example.keyword %></div>
+    
+    <% @scenario.examples.each_with_index do |example,example_index| %>
+      <div class="keyword"><%= h example.keyword %></div>
       <table>
         <thead>
           <tr>
@@ -22,7 +22,7 @@
         </thead>
         <% unless example.data.empty? %>
           <% example.data.each_with_index do |row,row_index| %>
-          <tr class="<%= (row_index + 1) % 2 == 0 ? "even example#{row_index +1}" : "odd example#{row_index +1}" %>">
+          <tr class="<%= (row_index + 1) % 2 == 0 ? "even example#{example_index+1}-#{row_index +1}" : "odd example#{example_index+1}-#{row_index +1}" %>">
             <% row.each_with_index do |column,column_index| %>
               <td><%= h(column.to_s.strip) %></td>
             <% end %>
