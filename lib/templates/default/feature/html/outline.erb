@@ -11,7 +11,9 @@
   <% if @scenario.examples? %>
     
     <% @scenario.examples.each_with_index do |example,example_index| %>
-      <div class="keyword"><%= h example.keyword %></div>
+      <div class="keyword"><%= h example.keyword %>:</div>
+      <div class="example-group-name"><%= h example.name %></div>
+      <br style="clear: both;"/>
       <table>
         <thead>
           <tr>

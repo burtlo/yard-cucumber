@@ -123,12 +123,19 @@ div.undefined { padding: 6px; }
     margin-left: 40px;
 }
 .outline .keyword {
+    float: left;
     margin-top: 20px;
     padding: 4px;
     font-weight: bold;
     font-size: 16px;
 }
-
+.outline .example-group-name {
+    float: left;
+    margin-top: 20px;
+    padding: 4px 4px 4px 20px;
+    font-size: 14px;
+    color: #343332;
+}
 .multiline table tr, .outline table tr {
     padding: 4px;
 }
