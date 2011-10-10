@@ -185,52 +185,61 @@ module Cucumber
       # outline defined to be displayed. 
       # 
       def examples(examples)
-        #log.debug "EXAMPLES"
+        log.debug "EXAMPLES"
 
-        @step_container.examples = { :keyword => examples.keyword,
+        # It is possible for scenario outlines to have multiple example groups
+        
+        @step_container.examples << YARD::CodeObjects::Cucumber::ScenarioOutline::Examples.new(:keyword => examples.keyword,
           :name => examples.name,
           :line => examples.line,
           :comments => examples.comments.map{|comment| comment.value}.join("\n"),
-          :rows => matrix(examples.rows) }
+          :rows => matrix(examples.rows))
 
-        # For each example generate a scenario and steps
+        @step_container.examples.each do |example|
         
-        @step_container.example_data.length.times do |row_index|
+          # For each example data row we want to generate a new scenario using our
+          # current scenario as the template.
 
-          scenario = YARD::CodeObjects::Cucumber::Scenario.new(@step_container,"example_#{@step_container.scenarios.length + 1}") do |s|
-            s.comments = @step_container.comments
-            s.description = @step_container.description
-            s.add_file(@file,@step_container.line_number)
-            s.keyword = @step_container.keyword
-            s.value = "#{@step_container.value} (#{@step_container.scenarios.length + 1})"
-          end
+          example.data.length.times do |row_index|
 
-          @step_container.steps.each do |step|
-            step_instance = YARD::CodeObjects::Cucumber::Step.new(scenario,step.line_number) do |s|
-              s.keyword = step.keyword.dup
-              s.value = step.value.dup
-              s.add_file(@file,step.line_number)
-
-              s.text = step.text.dup if step.has_text?
-              s.table = clone_table(step.table) if step.has_table?
+            scenario = YARD::CodeObjects::Cucumber::Scenario.new(@step_container,"example_#{@step_container.scenarios.length + 1}") do |s|
+              s.comments = @step_container.comments
+              s.description = @step_container.description
+              s.add_file(@file,@step_container.line_number)
+              s.keyword = @step_container.keyword
+              s.value = "#{@step_container.value} (#{@step_container.scenarios.length + 1})"
             end
 
-            @step_container.example_values_for_row(row_index).each do |key,text|
-              text ||= "" #handle empty cells in the example table
-              step_instance.value.gsub!("<#{key}>",text)
-              step_instance.text.gsub!("<#{key}>",text) if step_instance.has_text?
-              step_instance.table.each{|row| row.each{|col| col.gsub!("<#{key}>",text)}} if step_instance.has_table?
+            @step_container.steps.each do |step|
+              step_instance = YARD::CodeObjects::Cucumber::Step.new(scenario,step.line_number) do |s|
+                s.keyword = step.keyword.dup
+                s.value = step.value.dup
+                s.add_file(@file,step.line_number)
+
+                s.text = step.text.dup if step.has_text?
+                s.table = clone_table(step.table) if step.has_table?
+              end
+
+              @step_container.examples.each do |example|
+                example.values_for_row(row_index).each do |key,text|
+                  text ||= "" #handle empty cells in the example table
+                  step_instance.value.gsub!("<#{key}>",text)
+                  step_instance.text.gsub!("<#{key}>",text) if step_instance.has_text?
+                  step_instance.table.each{|row| row.each{|col| col.gsub!("<#{key}>",text)}} if step_instance.has_table?
+                end
+              end
+
+              step_instance.scenario = scenario
+              scenario.steps << step_instance
             end
 
-            step_instance.scenario = scenario
-            scenario.steps << step_instance
+            # Scenario instances of an outline link to the feature but are not linked from the feature
+            # @feature.scenarios << scenario
+
+            scenario.feature = @feature
+            @step_container.scenarios << scenario
+          
           end
-
-          # Scenario instances of an outline link to the feature but are not linked from the feature
-          # @feature.scenarios << scenario
-
-          scenario.feature = @feature
-          @step_container.scenarios << scenario
           
         end
         
@@ -260,6 +269,8 @@ module Cucumber
         elsif step.respond_to? :rows
           rubify(step.rows)
         end 
+        
+        log.debug "Step: #{multiline_arg}"
         
         case(multiline_arg)
         when gherkin_multiline_string_class

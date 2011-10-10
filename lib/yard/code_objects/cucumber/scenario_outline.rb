@@ -13,7 +13,7 @@ module YARD::CodeObjects::Cucumber
       @steps = []
       @tags = []
       @scenarios = []
-      @examples = {}
+      @examples = []
     end
 
     def background?
@@ -25,40 +25,49 @@ module YARD::CodeObjects::Cucumber
     end
     
     def examples?
-      !@examples[:rows].nil?
-    end
-
-    def example_keyword
-      @examples[:keyword]
+      @examples.find {|example| example.rows }
     end
     
-    def example_headers
-      @examples[:rows].first
-    end
     
-    def example_data
-      return "" unless @examples[:rows]
-      @examples[:rows][1..-1]
-    end
-
-    def example_values_for_row(row)
-      hash = {}
-
-      example_headers.each_with_index do |header,index|
-        hash[header] = example_data[row][index]
-      end
-
-      hash
-    end
-    
-    def example_hash
-      hash = {}
+    class Examples
       
-      @examples[:rows].each_with_index do |header,index|
-        hash[header] = @examples[:rows].collect {|row| row[index] }
+      attr_accessor :name, :line, :keyword, :comments, :rows
+      
+      # The first row of the rows contains the headers for the table
+      def headers
+        rows.first
       end
       
-      hash
+      # The data of the table starts at the second row. When there is no data then
+      # return a empty string.
+      def data
+        rows ? rows[1..-1] : ""
+      end
+      
+      def values_for_row(row)
+        hash = {}
+
+        headers.each_with_index do |header,index|
+          hash[header] = data[row][index]
+        end
+
+        hash
+      end
+      
+      def to_hash
+        hash = {}
+
+        rows.each_with_index do |header,index|
+          hash[header] = rows.collect {|row| row[index] }
+        end
+
+        hash
+      end
+      
+      def initialize(parameters = {})
+        parameters.each {|key,value| send("#{key.to_sym}=",value) if respond_to? "#{key.to_sym}=" }
+      end
+      
     end
     
   end
