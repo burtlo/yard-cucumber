@@ -1,10 +1,16 @@
-<% @scenario.scenarios.each_with_index do |scenario,example_index| %>
-  <div style="display: none;" class="steps <%= "example#{example_index + 1}" %>">
-    <% @scenario_outline = @scenario ; @scenario = scenario ; @steps = scenario.steps %>
-    <%= erb(:steps) %>
-    <% @scenario = @scenario_outline %>
-  </div>
+<% sc = 0 %>
+<% @scenario.examples.each_with_index do |example, example_index| %>
+  <% example.data.each_with_index do |row, row_index| %>
+    <div style="display: none;" class="steps <%= "example#{example_index + 1}-#{row_index +1}" %>">
+      <% scenario = @scenario.scenarios[sc] %>
+      <% @scenario_outline = @scenario ; @scenario = scenario ; @steps = scenario.steps %>
+      <%= erb(:steps) %>
+      <% @scenario = @scenario_outline %>
+      <% sc += 1 %>
+    </div>
+  <% end %>
 <% end %>
+
 
 <div class="outline">
   
