@@ -1,0 +1,6 @@
+# Ignore any built gems that are laying around
+*.gem
+
+# Documents folder
+doc
+.yardoc
