@@ -273,6 +273,8 @@ module Cucumber
 
         multiline_arg = if step.respond_to? :multiline_arg
           rubify(step.multiline_arg)
+        elsif step.respond_to? :doc_string
+          rubify(step.doc_string)
         elsif step.respond_to? :rows
           rubify(step.rows)
         end 
