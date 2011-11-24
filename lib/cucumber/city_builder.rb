@@ -271,14 +271,14 @@ module Cucumber
 
         @table_owner.comments = step.comments.map{|comment| comment.value}.join("\n")
 
-        multiline_arg = if step.respond_to? :multiline_arg
+        multiline_arg = if step.respond_to?(:multiline_arg) && !step.multiline_arg.nil?
           rubify(step.multiline_arg)
-        elsif step.respond_to? :doc_string
-          rubify(step.doc_string)
-        elsif step.respond_to? :rows
+        elsif step.respond_to?(:rows) && !step.rows.nil?
           rubify(step.rows)
-        end 
-        
+        elsif step.respond_to?(:doc_string) && !step.doc_string.nil?
+          rubify(step.doc_string)
+        end
+
         log.debug "Step: #{multiline_arg}"
         
         case(multiline_arg)
