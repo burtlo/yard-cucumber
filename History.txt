@@ -1,3 +1,7 @@
+=== 2.1.6 / 2011-11-24
+
+* FIX for yard-server (Thanks @msolovyov, @maxigit, @nikosd)
+
 === 2.1.5 / 2011-10-19
 
 * FIX for multiple scenario outlines (Thanks @ardavis)
