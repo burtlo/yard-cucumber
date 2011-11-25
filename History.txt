@@ -1,3 +1,7 @@
+=== 2.1.7/ 2011-11-24
+
+* Better parsing support for doc_strings (thanks @nikosd)
+
 === 2.1.6 / 2011-11-24
 
 * FIX for yard-server (Thanks @msolovyov, @maxigit, @nikosd)
