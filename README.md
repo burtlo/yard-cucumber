@@ -88,7 +88,7 @@ Configuration
 * Adding or Removing search fields (yardoc)
 
 Be default the yardoc output will generate a search field for features and tags.
-This can be configured through the yard configuration file `~./yard/config` to
+This can be configured through the yard configuration file `~/.yard/config` to
 add or remove these search fields.
   
     --- !map:SymbolHash 
@@ -100,7 +100,7 @@ add or remove these search fields.
     :safe_mode: false
     
     :"yard-cucumber": 
-      menus: [ 'features', 'tags', 'steps', 'stepdefinitions' ]
+      menus: [ 'features', 'tags', 'steps', 'step definitions' ]
 
 
 By default the configuration, yaml format, that is generate by the `yard config` 
