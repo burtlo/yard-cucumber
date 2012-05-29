@@ -5,24 +5,25 @@
 <% n = n == 2 ? 1 : 2 %>
 <% @items.each do |feature| %>
 <li class="r<%= n %>">
-	<%= "<a class='toggle'></a>" unless feature.scenarios.empty? %>
-	<%= linkify feature, feature.value %>
-	<small><%= feature.location %></small>
+  <%= "<a class='toggle'></a>" unless feature.scenarios.empty? %>
+  <%= linkify feature, feature.value %>
+  <small><%= feature.location %></small>
 </li>
 <% n = n == 2 ? 1 : 2 %>
 <% if feature.scenarios %>
 <ul>
-	<% feature.scenarios.each_with_index do |scenario,index| %>
-	<li class="r<%= n %>">
-	  <span class='object_link'>
-   		<a href="<%= url_for(scenario.feature,"scenario_#{index}") %>">
-   		  <%= h scenario.value %>
-   		</a>
-   	</span>
-   	<small><%= scenario.location %></small>
-	</li>
+  <% feature.scenarios.each_with_index do |scenario,index| %>
+  <li class="r<%= n %>">
+    <span class='object_link'>
+       <a href="<%= url_for(scenario.feature,"scenario_#{index}") %>"
+           title="<%= h scenario.value %>">
+         <%= h scenario.value %>
+       </a>
+     </span>
+     <small><%= scenario.location %></small>
+  </li>
         <% n = n == 2 ? 1 : 2 %>
-	<% end %>
+  <% end %>
 </ul>
 <% end %>
 <% end %>
