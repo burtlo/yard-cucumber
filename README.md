@@ -1,23 +1,20 @@
-YARD-Cucumber: A Requirements Documentation Tool
-====================================
+# YARD-Cucumber: A Requirements Documentation Tool
 
-Synopsis
---------
+## Synopsis
 
 YARD-Cucumber (formerly Cucumber-In-The-Yard) is a YARD extension that processes
-Cucumber features, scenarios, steps, tags, step definitions, and even transforms 
-to provide documentation similar to what you expect to how YARD displays classes, 
-methods and constants.This tools bridges the gap of having feature files found in
-your source code and true documentation that your team, product owners and
-stakeholders can use.
+Cucumber features, scenarios, steps, tags, step definitions, and even transforms
+to provide documentation similar to what you expect to how YARD displays
+classes, methods and constants.This tools bridges the gap of having feature
+files found in your source code and true documentation that your team, product
+owners and stakeholders can use.
 
-Examples
---------
+## Examples
 
-I have created a trivial, example project to help provide a quick 
-visualization of the resulting documentation. I encourage you to look at it as 
-an example and see if it would assist your project from a multitude of 
-perspectives: as the project's core developer; another developer or a new 
+I have created a trivial, example project to help provide a quick
+visualization of the resulting documentation. I encourage you to look at it as
+an example and see if it would assist your project from a multitude of
+perspectives: as the project's core developer; another developer or a new
 developer; quality assurance engineer; or product owner/stakeholder.
 
 The implemented example has been deployed at [http://recursivegames.com/cukes/](http://recursivegames.com/cukes/).
@@ -44,110 +41,115 @@ The implemented example has been deployed at [http://recursivegames.com/cukes/](
 
 **11. Step definitions in your language (Ruby 1.9.2 - Internationalization)**
 
-Installation
-------------
+## Installation
 
 YARD-Cucumber requires the following gems installed:
 
 Gherkin 2.2.9 - http://cukes.info
 Cucumber 0.7.5 - http://cukes.info
-YARD 0.7.0 - http://yardoc.org
+YARD 0.8.1 - http://yardoc.org
 
 To install `yard-cucumber` use the following command:
 
-    $ gem install yard-cucumber
+```bash
+$ gem install yard-cucumber
+```
 
 (Add `sudo` if you're installing under a POSIX system as root)
 
-Usage
------
+## Usage
 
-YARD supports for automatically including gems with the prefix `yard-` 
-as a plugin. To enable automatic loading yard-cucumber. 
+YARD supports for automatically including gems with the prefix `yard-`
+as a plugin. To enable automatic loading yard-cucumber.
 
-    $ mkdir ~/.yard
-    $ yard config load_plugins true
-    $ yardoc 'example/**/*.rb' 'example/**/*.feature'
+```bash
+$ mkdir ~/.yard
+$ yard config load_plugins true
+$ yardoc 'example/**/*.rb' 'example/**/*.feature'
+```
 
-Now you can run YARD as you [normally](https://github.com/lsegal/yard) would and 
+Now you can run YARD as you [normally](https://github.com/lsegal/yard) would and
 have your features, step definitions and transforms captured.
 
 An example with the rake task:
 
-    require 'yard'
+```ruby
+require 'yard'
 
-    YARD::Rake::YardocTask.new do |t|
-    t.files   = ['features/**/*.feature', 'features/**/*.rb']
-    t.options = ['--any', '--extra', '--opts'] # optional
-    end
+YARD::Rake::YardocTask.new do |t|
+t.files   = ['features/**/*.feature', 'features/**/*.rb']
+t.options = ['--any', '--extra', '--opts'] # optional
+end
+```
 
 
-Configuration
--------------
+## Configuration
 
 * Adding or Removing search fields (yardoc)
 
 Be default the yardoc output will generate a search field for features and tags.
 This can be configured through the yard configuration file `~/.yard/config` to
 add or remove these search fields.
-  
-    --- !map:SymbolHash 
-    :load_plugins: true
-    :ignored_plugins: []
 
-    :autoload_plugins: []
+```yaml
+--- !map:SymbolHash 
+:load_plugins: true
+:ignored_plugins: []
 
-    :safe_mode: false
-    
-    :"yard-cucumber": 
-      menus: [ 'features', 'tags', 'steps', 'step definitions' ]
+:autoload_plugins: []
 
+:safe_mode: false
 
-By default the configuration, yaml format, that is generate by the `yard config` 
-command will save a `SymbolHash`. You can still edit this file add the entry for 
+:"yard-cucumber": 
+  menus: [ 'features', 'tags', 'steps', 'step definitions' ]
+```
+
+By default the configuration, yaml format, that is generate by the `yard config`
+command will save a `SymbolHash`. You can still edit this file add the entry for
 `:"yard-cucumber":` and the sub-entry `menus:` which can contain all of the above
 mentioned menus or simply an empty array `[]` if you want no additional menus.
 
 * Step definitions in your language (Ruby 1.9.2)
 
-Again the yard configuration file you can define additional step definitions that
-can be matched.
+Again the yard configuration file you can define additional step definitions
+that can be matched.
 
-    :"yard-cucumber": 
-      language: 
-        step_definitions: [ 'Given', 'When', 'Then', 'And', 'Soit', 'Etantdonné', 'Lorsque', 'Lorsqu', 'Alors', 'Et' ]
+```yaml
+:"yard-cucumber":
+  language:
+    step_definitions: [ 'Given', 'When', 'Then', 'And', 'Soit', 'Etantdonné', 'Lorsque', 'Lorsqu', 'Alors', 'Et' ]
+```
 
 In this example, I have included the French step definition words alongside the
 English step definitions. Even without specifying this feature files in other
 languages are found, this provides the ability for the step definitions to match
 correctly to step definitions.
 
-Details
---------
+## Details
 
 There are two things that I enjoy: a test framework written in my own Domain
 Specific Language (DSL) that is easily understood by all those on a project
 and the ability for all participants to easily read, search, and view the tests.
 
-Cucumber is an amazing tool that allowed me to define exercisable requirements. 
+Cucumber is an amazing tool that allowed me to define exercisable requirements.
 My biggest obstacle was bringing these requirements to my team, the product
 owner, and other stakeholders.
 
 Initially I tried to expose more of the functionality by providing freshly
 authored requirements through email, attachments to JIRA tickets, or linked in
-wiki documents. None of these methods were very sustainable or successful. 
-First, I was continually pushing out the documents to those interested. 
+wiki documents. None of these methods were very sustainable or successful.
+First, I was continually pushing out the documents to those interested.
 Second, the documents were displayed to the user in text without the syntax
 highlighting that was exceedingly helpful for quickly understanding the requirements.
 
 I also found it hard to share the test framework that I had put together with
 another developer that joined the team. It was difficult to direct them around
-the features, tags, step definitions, and transforms. It was when I started to 
+the features, tags, step definitions, and transforms. It was when I started to
 convey to them the conventions that I had established that I wished I had a
-tool that would allow me to provide documentation like one would find generated 
+tool that would allow me to provide documentation like one would find generated
 by a great tool like YARD.
 
-So I set out to integrate Cucumber objects like features, backgrounds, 
+So I set out to integrate Cucumber objects like features, backgrounds,
 scenarios, tags, steps, step definitions, and transforms into a YARD template.
 From my quick survey of the landscape I can see that the my needs are
 different than a lot of others that use Cucumber.  The entire project that
@@ -160,8 +162,7 @@ many as I feel it helps more solidly bridge the reporting of the documentation
 by putting a coat of paint on it.
 
 
-LICENSE
--------
+## LICENSE
 
 (The MIT License)
 
