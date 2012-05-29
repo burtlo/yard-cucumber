@@ -4,7 +4,7 @@ require 'gherkin/formatter/tag_count_formatter'
 
 
 module CucumberInTheYARD
-  VERSION = '2.1.7'
+  VERSION = '2.2.0'
 end
 
 require File.dirname(__FILE__) + "/yard/code_objects/cucumber/base.rb"
