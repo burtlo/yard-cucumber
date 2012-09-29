@@ -10,7 +10,7 @@ def features
 end
 
 def tags
-  @tags ||= Registry.all(:tag).sort_by {|l,o| l.value.to_s }
+  @tags ||= Registry.all(:tag).sort_by {|l| l.value.to_s }
 end
 
 def feature_directories
