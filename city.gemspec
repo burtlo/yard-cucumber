@@ -1,10 +1,10 @@
-require 'YARD'
+require 'yard'
 require File.dirname(__FILE__) + "/lib/yard-cucumber"
 
 module CucumberInTheYARD
   def self.show_version_changes(version)
     date = ""
-    changes = []  
+    changes = []
     grab_changes = false
 
     File.open("#{File.dirname(__FILE__)}/History.txt",'r') do |file|
@@ -30,7 +30,7 @@ Gem::Specification.new do |s|
   s.name        = 'yard-cucumber'
   s.version     = ::CucumberInTheYARD::VERSION
   s.authors     = ["Franklin Webber"]
-  s.description = %{ 
+  s.description = %{
     YARD-Cucumber is a YARD extension that processes Cucumber Features, Scenarios, Steps,
     Step Definitions, Transforms, and Tags and provides a documentation interface that allows you
     easily view and investigate the test suite.  This tools hopes to bridge the gap of being able
@@ -40,14 +40,14 @@ Gem::Specification.new do |s|
   s.homepage    = "http://github.com/burtlo/yard-cucumber"
 
   s.platform    = Gem::Platform::RUBY
-  
+
   changes = CucumberInTheYARD.show_version_changes(::CucumberInTheYARD::VERSION)
-  
+
   s.post_install_message = %{
 (::) (::) (::) (::) (::) (::) (::) (::) (::) (::) (::) (::) (::) (::) (::)
 
   Thank you for installing yard-cucumber #{::CucumberInTheYARD::VERSION} / #{changes[:date]}.
-  
+
   Changes:
   #{changes[:changes].collect{|change| "  #{change}"}.join("")}
 (::) (::) (::) (::) (::) (::) (::) (::) (::) (::) (::) (::) (::) (::) (::)
@@ -57,7 +57,7 @@ Gem::Specification.new do |s|
   s.add_dependency 'gherkin', '>= 2.2.9'
   s.add_dependency 'cucumber', '>= 0.7.5'
   s.add_dependency 'yard', '>= 0.8.1'
-  
+
   s.rubygems_version   = "1.3.7"
   s.files            = `git ls-files`.split("\n")
   s.extra_rdoc_files = ["README.md", "History.txt"]
