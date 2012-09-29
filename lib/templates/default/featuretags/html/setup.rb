@@ -17,7 +17,7 @@ def all_tags_by_letter
 end
 
 def tags
-  @tags ||= Registry.all(:tag).sort_by {|l,o| l.value.to_s }
+  @tags ||= Registry.all(:tag).sort_by {|l| l.value.to_s }
 end
 
 def features
@@ -30,5 +30,5 @@ end
 
 
 def tagify(tag)
-  %{<span class="tag" href="#{url_for tag}">#{tag.value}</span>} 
+  %{<span class="tag" href="#{url_for tag}">#{tag.value}</span>}
 end
