@@ -1,3 +1,7 @@
+=== 2.2.1/ 2012-09-29
+
+* Fixes and compatibility with JRuby (Thanks @singram)
+
 === 2.2.0/ 2012-05-29
 
 * Fixes and changes to become compatible with YARD 0.8.1
