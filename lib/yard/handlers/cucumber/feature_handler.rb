@@ -8,7 +8,7 @@ module YARD
         def process
           #
           # Features have already been created when they were parsed. So there
-          # is no need to process the feature furhter. Previously this is where
+          # is no need to process the feature further. Previously this is where
           # feature steps were matched to step definitions and step definitions
           # were matched to step transforms. This only worked if the feature
           # files were were assured to be processed last which was accomplished
