@@ -4,7 +4,7 @@
   <span class='object_link'>
     <span class="pre"><%= stepdef.keyword %></span>
       <a href="<%= url_for stepdef %>" title="<%= h stepdef.value %>">
-        <span class="name"><%= h(stepdef.value) %></span>
+        <span class="name"><%= h stepdef.literal_value %></span>
       </a>&nbsp;&nbsp;
   </span>
   <small><%= h(stepdef.location) %></small>

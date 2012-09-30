@@ -4,7 +4,7 @@
   <a name="<%= anchor_for item %>"></a>
   <div class="title">
     <span class="pre"><%= h item.keyword %></span>
-    <span class="name"><%= link_constants item %></span>
+    <span class="name"><%= item.value %></span>
     <a style="float: right;" href="http://rubular.com/?regex=<%= urlencode item.value %>" target="_blank">Rubular</a>
     <div style="clear: both;"></div>
   </div>
