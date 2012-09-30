@@ -2,10 +2,7 @@ require 'cucumber/parser/gherkin_builder'
 require 'gherkin/parser/parser'
 require 'gherkin/formatter/tag_count_formatter'
 
-
-module CucumberInTheYARD
-  VERSION = '2.2.1'
-end
+require File.dirname(__FILE__) + "/yard-cucumber/version.rb"
 
 require File.dirname(__FILE__) + "/yard/code_objects/cucumber/base.rb"
 require File.dirname(__FILE__) + "/yard/code_objects/cucumber/namespace_object.rb"

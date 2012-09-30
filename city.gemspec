@@ -1,5 +1,4 @@
-require 'yard'
-require File.dirname(__FILE__) + "/lib/yard-cucumber"
+require File.dirname(__FILE__) + "/lib/yard-cucumber/version"
 
 module CucumberInTheYARD
   def self.show_version_changes(version)
