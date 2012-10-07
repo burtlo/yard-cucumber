@@ -20,7 +20,7 @@ module YARD::CodeObjects
     ESCAPE_PATTERN = /#\{\s*(\w+)\s*\}/ unless defined?(ESCAPE_PATTERN)
 
     #
-    # When requesting a step tranformer object value, process it, it it hasn't
+    # When requesting a step tranformer object value, process it, if it hasn't
     # alredy been processed, replacing any constants that may be lurking within
     # the value.
     # 
