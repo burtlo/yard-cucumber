@@ -1,3 +1,8 @@
+=== 2.2.2/ 2012-10-07
+
+* Steps and Definitions have links to step transformer page
+* Step definitions in the search menu no longer expand constants
+
 === 2.2.1/ 2012-09-29
 
 * Fixes and compatibility with JRuby (Thanks @singram)
