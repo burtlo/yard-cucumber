@@ -1,0 +1,11 @@
+<% n = 1 %>
+<% n = n == 2 ? 1 : 2 %>
+<% @items.each do |directory| %>
+<li class="r<%= n %>">
+  <%= "<a class='toggle'></a>" unless directory.features.empty? && directory.subdirectories.empty? %>
+  <%= linkify directory, directory.value %>
+  <small><%= directory.location %></small>
+</li>
+<% n = n == 2 ? 1 : 2 %>
+<%= directory_node directory %>
+<% end %>

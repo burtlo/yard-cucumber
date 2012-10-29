@@ -31,7 +31,7 @@ end
 # 
 def menu_lists
   
-  menus = [ "features", "tags" ]
+  menus = [ "features", "tags", "featuredirectory" ]
 
   # load the yard-cucumber menus defined in the configuration file
   if YARD::Config.options["yard-cucumber"] and YARD::Config.options["yard-cucumber"]["menus"]
@@ -49,6 +49,7 @@ end
 # 
 def yard_cucumber_menus
   { "features" => { :type => 'feature', :title => 'Features', :search_title => 'Features' },
+    "featuredirectory" => { :type => 'featuredirectory', :title => 'Feature Directory', :search_title => 'Feature Directory' },
     "tags" => { :type => 'tag', :title => 'Tags', :search_title => 'Tags' },
     "step definitions" => { :type => 'stepdefinition', :title => 'Step Definitions', :search_title => 'Step Defs' },
     "steps" => { :type => 'step', :title => 'Steps', :search_title => 'Steps' } }
