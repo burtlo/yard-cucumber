@@ -31,7 +31,7 @@ end
 # 
 def menu_lists
   
-  menus = [ "features", "tags", "featuredirectory" ]
+  menus = [ "features", "tags" ]
 
   # load the yard-cucumber menus defined in the configuration file
   if YARD::Config.options["yard-cucumber"] and YARD::Config.options["yard-cucumber"]["menus"]
