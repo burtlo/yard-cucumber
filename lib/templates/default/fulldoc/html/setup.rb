@@ -44,6 +44,10 @@ def init
   feature_directories = YARD::CodeObjects::Cucumber::CUCUMBER_NAMESPACE.children.find_all {|child| child.is_a?(YARD::CodeObjects::Cucumber::FeatureDirectory) }
   serialize_feature_directories(feature_directories)
 
+  if feature_directories
+    feature_directories.each {|featuredirectory| serialize(featuredirectory)}
+  end
+
 end
 
 
@@ -52,6 +56,11 @@ end
 def generate_feature_list
   @features = Registry.all(:feature)
   generate_full_list @features.sort {|x,y| x.value.to_s <=> y.value.to_s }, :feature
+end
+
+def generate_featuredirectory_list
+  @feature_directories = YARD::CodeObjects::Cucumber::CUCUMBER_NAMESPACE.children.find_all {|child| child.is_a?(YARD::CodeObjects::Cucumber::FeatureDirectory) }
+  generate_full_list @feature_directories.sort {|x,y| x.value.to_s <=> y.value.to_s }, :featuredirectory
 end
 
 # Generate tag list
@@ -129,4 +138,9 @@ def all_features_link
   else
     linkify root_feature_directories.first, "All Features"
   end
+end
+
+def directory_node(directory)
+  @directory = directory
+  erb(:directories)  
 end

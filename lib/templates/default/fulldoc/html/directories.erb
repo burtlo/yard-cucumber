@@ -1,0 +1,53 @@
+<% n = 1 %>
+
+
+<% if @directory.children %>
+<ul>
+  <% @directory.children.sort {|x,y| x.value.to_s <=> y.value.to_s }.each_with_index do |child,index| %>
+  <% if child.is_a?(YARD::CodeObjects::Cucumber::Feature) %>
+    <li class="r<%= n %>">
+      <%= linkify child, child.value %>
+  <!--
+      <span class='object_link'>
+         <a href="<%= url_for(child,"scenario_#{index}") %>"
+             title="<%= h child.value %>">
+           <%= h child.value %>
+         </a>
+       </span>
+   -->
+       <small><%= child.location %></small>
+    </li>
+  <% end %>
+  <% if child.is_a?(YARD::CodeObjects::Cucumber::FeatureDirectory) %>
+    <li class="r<%= n %>">
+      <%= "<a class='toggle'></a>" unless child.features.empty? && child.subdirectories.empty? %>
+      <%= linkify child, child.value.to_s.capitalize  %>
+      <small><%= child.location %></small>
+    </li>
+    <%= directory_node child %>
+  <% end %>
+        <% n = n == 2 ? 1 : 2 %>
+  <% end %>
+</ul>
+<% end %>
+
+<!--  YARD::CodeObjects::Cucumber::FeatureDirectory -->
+  
+<!-- 
+<% if @directory.subdirectories %>
+<ul>
+  <% @directory.subdirectories.each_with_index do |subdir,index| %>
+  <li class="r<%= n %>">
+    <span class='object_link'>
+       <a href="<%= url_for(subdir,"scenario_#{index}") %>"
+           title="<%= h subdir.value %>">
+         <%= h subdir.value %>
+       </a>
+     </span>
+     <small><%= subdir.location %></small>
+  </li>
+        <% n = n == 2 ? 1 : 2 %>
+  <% end %>
+</ul>
+<% end %>
+ -->
