@@ -95,7 +95,8 @@ end
 # @note this menu is not automatically added until yard configuration has this menu added
 # See the layout template method that loads the menus
 def generate_stepdefinition_list
-  generate_full_list YARD::Registry.all(:stepdefinition), :stepdefinitions
+  generate_full_list YARD::Registry.all(:stepdefinition), :stepdefinitions,
+    :list_title => "Step Definitions List"
 end
 
 # Generate a step list
@@ -110,7 +111,9 @@ end
 # See the layout template method that loads the menus
 def generate_featuredirectories_list
   directories_ordered_by_name = root_feature_directories.sort {|x,y| x.value.to_s <=> y.value.to_s }
-  generate_full_list directories_ordered_by_name, :featuredirectories, :list_filename => "featuredirectories_list.html"
+  generate_full_list directories_ordered_by_name, :featuredirectories, 
+    :list_title => "Features by Directory",
+    :list_filename => "featuredirectories_list.html"
 end
 
 
