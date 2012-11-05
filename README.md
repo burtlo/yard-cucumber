@@ -101,7 +101,7 @@ add or remove these search fields.
 :safe_mode: false
 
 :"yard-cucumber": 
-  menus: [ 'features', 'tags', 'steps', 'step definitions' ]
+  menus: [ 'features', 'directories', 'tags', 'steps', 'step definitions' ]
 ```
 
 By default the configuration, yaml format, that is generate by the `yard config`
