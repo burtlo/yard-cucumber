@@ -6,30 +6,9 @@ def init
   # Additional javascript that power the additional menus, collapsing, etc.
   asset("js/cucumber.js",file("js/cucumber.js",true))
 
-  #
-  # Generate pages for each feature, with the 'feature' template and then 
-  # generate the page which is the full list of features
-  #
-
-  @features = Registry.all(:feature)
-
-  if @features
-    @features.each {|feature| serialize(feature) } 
-    #generate_full_list @features.sort {|x,y| x.value.to_s <=> y.value.to_s }, :feature
-  end
+  serialize_object_type :feature
   
-  #
-  # Generate pages for each tag, with the 'tag' template and then generate the
-  # page which is the full list of tags. Tags are ordered in descending order
-  # by the size of how many scenarios that the affect
-  #
-  
-  @tags = Registry.all(:tag)
-
-  if @tags
-    @tags.each {|tag| serialize(tag) }
-    #generate_full_list @tags.sort {|x,y| y.all_scenarios.size <=> x.all_scenarios.size }, :tag
-  end
+  serialize_object_type :tag
 
   # Generates the requirements splash page with the 'requirements' template
   serialize(YARD::CodeObjects::Cucumber::CUCUMBER_NAMESPACE)
@@ -40,32 +19,54 @@ def init
   # Generates the tags page with the 'featuretags' template
   serialize(YARD::CodeObjects::Cucumber::CUCUMBER_TAG_NAMESPACE)
   
-  # Generate pages for each of the directories with features with the 'featuredirectory' template
-  feature_directories = YARD::CodeObjects::Cucumber::CUCUMBER_NAMESPACE.children.find_all {|child| child.is_a?(YARD::CodeObjects::Cucumber::FeatureDirectory) }
-  serialize_feature_directories(feature_directories)
-
-  if feature_directories
-    feature_directories.each {|featuredirectory| serialize(featuredirectory)}
-  end
+  serialize_feature_directories
 
 end
 
+#
+# Generate pages for the objects if there are objects of this type contained
+# within the Registry.
+#
+def serialize_object_type(type)
+  objects = Registry.all(type.to_sym)
+  Array(objects).each {|object| serialize(object) }
+end
+
+#
+# Generates pages for the feature directories found. Starting with all root-level feature
+# directories and then recursively finding all child feature directories.
+# 
+def serialize_feature_directories
+  directories = YARD::CodeObjects::Cucumber::CUCUMBER_NAMESPACE.children.find_all {|child| child.is_a?(YARD::CodeObjects::Cucumber::FeatureDirectory) }
+  serialize_feature_directories_recursively(directories)
+
+  Array(directories).each {|directory| serialize(directory) }
+end
+
+#
+# Generate a page for each Feature Directory. This is called recursively to 
+# ensure that all feature directories contained as children are rendered to
+# pages.
+#
+def serialize_feature_directories_recursively(namespaces)
+  namespaces.each do |namespace|
+    Templates::Engine.with_serializer(namespace, options[:serializer]) do
+      options[:object] = namespace
+      T('layout').run(options)
+    end
+    serialize_feature_directories_recursively(namespace.children.find_all {|child| child.is_a?(YARD::CodeObjects::Cucumber::FeatureDirectory)})
+  end
+end
 
 # Generate feature list
-# @note this method is called automically by YARD based on the menus defined in the layout
+# @note this method is called automatically by YARD based on the menus defined in the layout
 def generate_feature_list
   @features = Registry.all(:feature)
   generate_full_list @features.sort {|x,y| x.value.to_s <=> y.value.to_s }, :features
 end
 
-def generate_featuredirectories_list
-  @feature_directories = YARD::CodeObjects::Cucumber::CUCUMBER_NAMESPACE.children.find_all {|child| child.is_a?(YARD::CodeObjects::Cucumber::FeatureDirectory) }
-  feature_directories = @feature_directories.sort {|x,y| x.value.to_s <=> y.value.to_s }
-  generate_full_list feature_directories, :featuredirectories, nil, :featuredirectories
-end
-
 # Generate tag list
-# @note this method is called automically by YARD based on the menus defined in the layout
+# @note this method is called automatically by YARD based on the menus defined in the layout
 def generate_tag_list
   @tags = Registry.all(:tag)
   generate_full_list @tags.sort {|x,y| y.all_scenarios.size <=> x.all_scenarios.size }, :tags
@@ -84,6 +85,16 @@ end
 def generate_step_list
   generate_full_list YARD::Registry.all(:step), :steps
 end
+
+# Generate feature list
+# @note this menu is not automatically added until yard configuration has this menu added
+# See the layout template method that loads the menus
+def generate_featuredirectories_list
+  @feature_directories = YARD::CodeObjects::Cucumber::CUCUMBER_NAMESPACE.children.find_all {|child| child.is_a?(YARD::CodeObjects::Cucumber::FeatureDirectory) }
+  feature_directories = @feature_directories.sort {|x,y| x.value.to_s <=> y.value.to_s }
+  generate_full_list feature_directories, :featuredirectories, nil, :featuredirectories
+end
+
 
 # Helpler method to generate a full_list page of the specified objects with the 
 # specified type.
@@ -107,21 +118,6 @@ def class_list(root = Registry.root)
   out = super(root)
   root.instance_eval { children << YARD::CodeObjects::Cucumber::CUCUMBER_NAMESPACE } if root == Registry.root
   out
-end
-
-#
-# Generate a page for each Feature Directory. This is called recursively to 
-# ensure that all feature directories contained as children are rendered to
-# pages.
-#
-def serialize_feature_directories(namespaces)
-  namespaces.each do |namespace|
-    Templates::Engine.with_serializer(namespace, options[:serializer]) do
-      options[:object] = namespace
-      T('layout').run(options)
-    end
-    serialize_feature_directories(namespace.children.find_all {|child| child.is_a?(YARD::CodeObjects::Cucumber::FeatureDirectory)})
-  end
 end
 
 #
