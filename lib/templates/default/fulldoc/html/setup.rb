@@ -62,15 +62,18 @@ end
 # Generate feature list
 # @note this method is called automatically by YARD based on the menus defined in the layout
 def generate_feature_list
-  @features = Registry.all(:feature)
-  generate_full_list @features.sort {|x,y| x.value.to_s <=> y.value.to_s }, :features
+  features = Registry.all(:feature)
+  features_ordered_by_name = features.sort {|x,y| x.value.to_s <=> y.value.to_s }
+  generate_full_list features_ordered_by_name, :features
 end
 
 # Generate tag list
 # @note this method is called automatically by YARD based on the menus defined in the layout
 def generate_tag_list
-  @tags = Registry.all(:tag)
-  generate_full_list @tags.sort {|x,y| y.all_scenarios.size <=> x.all_scenarios.size }, :tags
+  tags = Registry.all(:tag)
+  tags_ordered_by_use = Array(tags).sort {|x,y| y.all_scenarios.size <=> x.all_scenarios.size }
+
+  generate_full_list tags_ordered_by_use, :tags
 end
 
 # Generate a step definition list
@@ -91,21 +94,26 @@ end
 # @note this menu is not automatically added until yard configuration has this menu added
 # See the layout template method that loads the menus
 def generate_featuredirectories_list
-  @feature_directories = YARD::CodeObjects::Cucumber::CUCUMBER_NAMESPACE.children.find_all {|child| child.is_a?(YARD::CodeObjects::Cucumber::FeatureDirectory) }
-  feature_directories = @feature_directories.sort {|x,y| x.value.to_s <=> y.value.to_s }
-  generate_full_list feature_directories, :featuredirectories, nil, :featuredirectories
+  directories = YARD::CodeObjects::Cucumber::CUCUMBER_NAMESPACE.children.find_all {|child| child.is_a?(YARD::CodeObjects::Cucumber::FeatureDirectory) }
+  directories_ordered_by_name = directories.sort {|x,y| x.value.to_s <=> y.value.to_s }
+  generate_full_list directories_ordered_by_name, :featuredirectories, :list_filename => "featuredirectories_list.html"
 end
 
 
 # Helpler method to generate a full_list page of the specified objects with the
 # specified type.
-def generate_full_list(objects,list_type,friendly_name=nil,asset_name=nil)
+def generate_full_list(objects,type,options = {})
+  defaults = { :list_title => "#{type.to_s.capitalize} List", 
+    :css_class => "class",
+    :list_filename => "#{type.to_s.gsub(/s$/,'')}_list.html" }
+
+  options = defaults.merge(options)
+
   @items = objects
-  @list_type = list_type
-  @list_title = "#{friendly_name || list_type.to_s.capitalize} List"
-  @list_class = "class"
-  asset_name ||= list_type.to_s.gsub(/s$/,'')
-  asset("#{asset_name}_list.html",erb(:full_list))
+  @list_type = type
+  @list_title = options[:list_title]
+  @list_class = options[:css_class]
+  asset options[:list_filename], erb(:full_list)
 end
 
 #
