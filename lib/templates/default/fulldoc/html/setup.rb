@@ -2,12 +2,12 @@ include YARD::Templates::Helpers::HtmlHelper
 
 def init
   super
-  
+
   # Additional javascript that power the additional menus, collapsing, etc.
   asset("js/cucumber.js",file("js/cucumber.js",true))
 
   serialize_object_type :feature
-  
+
   serialize_object_type :tag
 
   # Generates the requirements splash page with the 'requirements' template
@@ -15,10 +15,10 @@ def init
 
   # Generates a page for step definitions and step transforms with the 'steptransformers' template
   serialize(YARD::CodeObjects::Cucumber::CUCUMBER_STEPTRANSFORM_NAMESPACE)
-  
+
   # Generates the tags page with the 'featuretags' template
   serialize(YARD::CodeObjects::Cucumber::CUCUMBER_TAG_NAMESPACE)
-  
+
   serialize_feature_directories
 
 end
@@ -35,7 +35,7 @@ end
 #
 # Generates pages for the feature directories found. Starting with all root-level feature
 # directories and then recursively finding all child feature directories.
-# 
+#
 def serialize_feature_directories
   directories = YARD::CodeObjects::Cucumber::CUCUMBER_NAMESPACE.children.find_all {|child| child.is_a?(YARD::CodeObjects::Cucumber::FeatureDirectory) }
   serialize_feature_directories_recursively(directories)
@@ -44,7 +44,7 @@ def serialize_feature_directories
 end
 
 #
-# Generate a page for each Feature Directory. This is called recursively to 
+# Generate a page for each Feature Directory. This is called recursively to
 # ensure that all feature directories contained as children are rendered to
 # pages.
 #
@@ -57,6 +57,7 @@ def serialize_feature_directories_recursively(namespaces)
     serialize_feature_directories_recursively(namespace.children.find_all {|child| child.is_a?(YARD::CodeObjects::Cucumber::FeatureDirectory)})
   end
 end
+
 
 # Generate feature list
 # @note this method is called automatically by YARD based on the menus defined in the layout
@@ -96,7 +97,7 @@ def generate_featuredirectories_list
 end
 
 
-# Helpler method to generate a full_list page of the specified objects with the 
+# Helpler method to generate a full_list page of the specified objects with the
 # specified type.
 def generate_full_list(objects,list_type,friendly_name=nil,asset_name=nil)
   @items = objects
@@ -109,9 +110,9 @@ end
 
 #
 # The existing 'Class List' search field would normally contain the Cucumber
-# Namespace object that has been added. Here we call the class_list method 
+# Namespace object that has been added. Here we call the class_list method
 # that is contained in the YARD template and we remove the namespace. Returning
-# it when we are done. 
+# it when we are done.
 #
 def class_list(root = Registry.root)
   root.instance_eval { children.delete YARD::CodeObjects::Cucumber::CUCUMBER_NAMESPACE } if root == Registry.root
@@ -123,7 +124,7 @@ end
 #
 # Generate a link to the 'All Features' in the features_list.html
 #
-# When there are no feature directories or multiple top-level feature directories 
+# When there are no feature directories or multiple top-level feature directories
 # then we want to link to the 'Requirements' page
 #
 # When there are is just one feature directory then we want to link to that directory
@@ -140,5 +141,5 @@ end
 
 def directory_node(directory)
   @directory = directory
-  erb(:directories)  
+  erb(:directories)
 end
