@@ -4,7 +4,7 @@ def init
   super
 
   # Additional javascript that power the additional menus, collapsing, etc.
-  asset("js/cucumber.js",file("js/cucumber.js",true))
+  asset "js/cucumber.js", file("js/cucumber.js",true)
 
   serialize_object_type :feature
 
@@ -20,7 +20,24 @@ def init
   serialize(YARD::CodeObjects::Cucumber::CUCUMBER_TAG_NAMESPACE)
 
   serialize_feature_directories
+end
 
+#
+# The top-level feature directories. This is affected by the directories that YARD is told to parse.
+# All other features in sub-directories are contained under each of these top-level directories.
+#
+# @example Generating one feature directory
+#
+#     `yardoc 'example/**/*'`
+#
+# @example Generating two feature directories
+#
+#     `yardoc 'example/**/*' 'example2/**/*'`
+#
+# @return the feature directories at the root of the Cucumber Namespace.
+#
+def root_feature_directories
+  @root_feature_directories ||= YARD::CodeObjects::Cucumber::CUCUMBER_NAMESPACE.children.find_all {|child| child.is_a?(YARD::CodeObjects::Cucumber::FeatureDirectory)}
 end
 
 #
@@ -37,10 +54,8 @@ end
 # directories and then recursively finding all child feature directories.
 #
 def serialize_feature_directories
-  directories = YARD::CodeObjects::Cucumber::CUCUMBER_NAMESPACE.children.find_all {|child| child.is_a?(YARD::CodeObjects::Cucumber::FeatureDirectory) }
-  serialize_feature_directories_recursively(directories)
-
-  Array(directories).each {|directory| serialize(directory) }
+  serialize_feature_directories_recursively(root_feature_directories)
+  root_feature_directories.each {|directory| serialize(directory) }
 end
 
 #
@@ -94,8 +109,7 @@ end
 # @note this menu is not automatically added until yard configuration has this menu added
 # See the layout template method that loads the menus
 def generate_featuredirectories_list
-  directories = YARD::CodeObjects::Cucumber::CUCUMBER_NAMESPACE.children.find_all {|child| child.is_a?(YARD::CodeObjects::Cucumber::FeatureDirectory) }
-  directories_ordered_by_name = directories.sort {|x,y| x.value.to_s <=> y.value.to_s }
+  directories_ordered_by_name = root_feature_directories.sort {|x,y| x.value.to_s <=> y.value.to_s }
   generate_full_list directories_ordered_by_name, :featuredirectories, :list_filename => "featuredirectories_list.html"
 end
 
@@ -103,7 +117,7 @@ end
 # Helpler method to generate a full_list page of the specified objects with the
 # specified type.
 def generate_full_list(objects,type,options = {})
-  defaults = { :list_title => "#{type.to_s.capitalize} List", 
+  defaults = { :list_title => "#{type.to_s.capitalize} List",
     :css_class => "class",
     :list_filename => "#{type.to_s.gsub(/s$/,'')}_list.html" }
 
@@ -117,15 +131,22 @@ def generate_full_list(objects,type,options = {})
 end
 
 #
-# The existing 'Class List' search field would normally contain the Cucumber
-# Namespace object that has been added. Here we call the class_list method
-# that is contained in the YARD template and we remove the namespace. Returning
-# it when we are done.
+# @note This method overrides YARD's default template class_list method.
+#
+# The existing YARD 'Class List' search field contains all the YARD namespace objects.
+# We, however, do not want the Cucumber Namespace YARD Object (which holds the features,
+# tags, etc.) as it is a meta-object.
+#
+# This method removes the namespace from the root node, generates the class list,
+# and then adds it back into the root node.
 #
 def class_list(root = Registry.root)
-  root.instance_eval { children.delete YARD::CodeObjects::Cucumber::CUCUMBER_NAMESPACE } if root == Registry.root
+  return super unless root == Registry.root
+
+  cucumber_namespace = YARD::CodeObjects::Cucumber::CUCUMBER_NAMESPACE
+  root.instance_eval { children.delete cucumber_namespace }
   out = super(root)
-  root.instance_eval { children << YARD::CodeObjects::Cucumber::CUCUMBER_NAMESPACE } if root == Registry.root
+  root.instance_eval { children.push cucumber_namespace }
   out
 end
 
@@ -138,8 +159,6 @@ end
 # When there are is just one feature directory then we want to link to that directory
 #
 def all_features_link
-  root_feature_directories = YARD::CodeObjects::Cucumber::CUCUMBER_NAMESPACE.children.find_all {|child| child.is_a?(YARD::CodeObjects::Cucumber::FeatureDirectory)}
-
   if root_feature_directories.length == 0 || root_feature_directories.length > 1
     linkify YARD::CodeObjects::Cucumber::CUCUMBER_NAMESPACE, "All Features"
   else
