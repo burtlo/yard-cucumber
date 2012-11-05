@@ -49,7 +49,7 @@ end
 # 
 def yard_cucumber_menus
   { "features" => { :type => 'feature', :title => 'Features', :search_title => 'Features' },
-    "directories" => { :type => 'featuredirectories', :title => 'Feature Directories', :search_title => 'Feature Directories' },
+    "directories" => { :type => 'featuredirectories', :title => 'Features by Directory', :search_title => 'Features by Directory' },
     "tags" => { :type => 'tag', :title => 'Tags', :search_title => 'Tags' },
     "step definitions" => { :type => 'stepdefinition', :title => 'Step Definitions', :search_title => 'Step Defs' },
     "steps" => { :type => 'step', :title => 'Steps', :search_title => 'Steps' } }
