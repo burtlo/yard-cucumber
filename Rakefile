@@ -2,15 +2,24 @@ require 'rake'
 
 task :default => :gendoc
 
+desc "Clean out any existing documentation"
 task :clean do
   `rm -rf doc`
   `rm -rf .yardoc`
 end
 
+desc "Generate documentation from the example data"
 task :gendoc => :clean do
-  `yardoc -e ./lib/yard-cucumber.rb 'example/**/*' --debug`
+  puts `yardoc -e ./lib/yard-cucumber.rb 'example/**/*' --debug`
 end
 
-task :gem do
-  `gem build city.gemspec`
+desc "Run the YARD Server"
+task :server => :gendoc do
+  puts `yard server -e ./lib/yard-cucumber.rb`
 end
+
+desc "Create the yard-cucumber gem"
+task :gem do
+  puts `gem build city.gemspec`
+end
+
