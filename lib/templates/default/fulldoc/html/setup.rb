@@ -55,43 +55,45 @@ end
 # @note this method is called automically by YARD based on the menus defined in the layout
 def generate_feature_list
   @features = Registry.all(:feature)
-  generate_full_list @features.sort {|x,y| x.value.to_s <=> y.value.to_s }, :feature
+  generate_full_list @features.sort {|x,y| x.value.to_s <=> y.value.to_s }, :features
 end
 
-def generate_featuredirectory_list
+def generate_featuredirectories_list
   @feature_directories = YARD::CodeObjects::Cucumber::CUCUMBER_NAMESPACE.children.find_all {|child| child.is_a?(YARD::CodeObjects::Cucumber::FeatureDirectory) }
-  generate_full_list @feature_directories.sort {|x,y| x.value.to_s <=> y.value.to_s }, :featuredirectory
+  feature_directories = @feature_directories.sort {|x,y| x.value.to_s <=> y.value.to_s }
+  generate_full_list feature_directories, :featuredirectories, nil, :featuredirectories
 end
 
 # Generate tag list
 # @note this method is called automically by YARD based on the menus defined in the layout
 def generate_tag_list
   @tags = Registry.all(:tag)
-  generate_full_list @tags.sort {|x,y| y.all_scenarios.size <=> x.all_scenarios.size }, :tag
+  generate_full_list @tags.sort {|x,y| y.all_scenarios.size <=> x.all_scenarios.size }, :tags
 end
 
 # Generate a step definition list
 # @note this menu is not automatically added until yard configuration has this menu added
 # See the layout template method that loads the menus
 def generate_stepdefinition_list
-  generate_full_list YARD::Registry.all(:stepdefinition), :stepdefinition
+  generate_full_list YARD::Registry.all(:stepdefinition), :stepdefinitions
 end
 
 # Generate a step list
 # @note this menu is not automatically added until yard configuration has this menu added
 # See the layout template method that loads the menus
 def generate_step_list
-  generate_full_list YARD::Registry.all(:step), :step
+  generate_full_list YARD::Registry.all(:step), :steps
 end
 
 # Helpler method to generate a full_list page of the specified objects with the 
 # specified type.
-def generate_full_list(objects,list_type,friendly_name=nil)
+def generate_full_list(objects,list_type,friendly_name=nil,asset_name=nil)
   @items = objects
-  @list_type = "#{list_type}s"
+  @list_type = list_type
   @list_title = "#{friendly_name || list_type.to_s.capitalize} List"
   @list_class = "class"
-  asset("#{list_type}_list.html",erb(:full_list))
+  asset_name ||= list_type.to_s.gsub(/s$/,'')
+  asset("#{asset_name}_list.html",erb(:full_list))
 end
 
 #

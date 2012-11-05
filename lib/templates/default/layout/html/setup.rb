@@ -27,7 +27,7 @@ end
 # @example `~/.yard.config`
 # 
 #     yard-cucumber:
-#       menus: [ 'features', 'tags', 'step definitions', 'steps' ]
+#       menus: [ 'features', 'directories', 'tags', 'step definitions', 'steps' ]
 # 
 def menu_lists
   
@@ -49,7 +49,7 @@ end
 # 
 def yard_cucumber_menus
   { "features" => { :type => 'feature', :title => 'Features', :search_title => 'Features' },
-    "featuredirectory" => { :type => 'featuredirectory', :title => 'Feature Directory', :search_title => 'Feature Directory' },
+    "directories" => { :type => 'featuredirectories', :title => 'Feature Directories', :search_title => 'Feature Directories' },
     "tags" => { :type => 'tag', :title => 'Tags', :search_title => 'Tags' },
     "step definitions" => { :type => 'stepdefinition', :title => 'Step Definitions', :search_title => 'Step Defs' },
     "steps" => { :type => 'step', :title => 'Steps', :search_title => 'Steps' } }
