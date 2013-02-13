@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    yard-cucumber (2.1.7)
+    yard-cucumber (2.2.2)
       cucumber (>= 0.7.5)
       gherkin (>= 2.2.9)
       yard (>= 0.8.1)
@@ -19,10 +19,12 @@ GEM
     gherkin (2.10.0)
       json (>= 1.4.6)
     json (1.7.3)
-    yard (0.8.1)
+    redcarpet (2.2.2)
+    yard (0.8.3)
 
 PLATFORMS
   ruby
 
 DEPENDENCIES
+  redcarpet
   yard-cucumber!
