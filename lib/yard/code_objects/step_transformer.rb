@@ -5,8 +5,8 @@ module YARD::CodeObjects
 
     include Cucumber::LocationHelper
 
-    attr_reader :constants, :keyword, :source, :value, :literal_value
-    attr_accessor :steps, :pending, :substeps
+    attr_reader :constants, :keyword, :source, :value, :literal_value, :substeps
+    attr_accessor :steps, :pending
 
     # This defines an escape pattern within a string or regex:
     #     /^the first #{CONSTANT} step$/
@@ -69,6 +69,11 @@ module YARD::CodeObjects
     # needed somewhere.
     def constants_from_value(data=@value)
       data.scan(escape_pattern).flatten.collect { |value| value.strip }
+    end
+
+    # The sub-steps that are defined within the step.
+    def substeps
+      @substeps ||= []
     end
 
     protected

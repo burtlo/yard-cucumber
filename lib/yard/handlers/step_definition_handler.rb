@@ -50,7 +50,8 @@ class YARD::Handlers::Ruby::StepDefinitionHandler < YARD::Handlers::Ruby::Base
       o.comments = statement.comments
       o.keyword = statement.method_name.source
       o.value = statement.parameters.source
-      o.pending = pending_keyword_used?(statement.block)
+      o.pending = keyword_used_in_block?(statement.block,pending_keyword)
+      o.substeps = all_keywords_uses_in_block?(statement.block,step_keyword)
     end
 
     obj = register instance
@@ -62,13 +63,22 @@ class YARD::Handlers::Ruby::StepDefinitionHandler < YARD::Handlers::Ruby::Base
     "pending"
   end
 
-  def pending_command_statement?(line)
-    (line.type == :command || line.type == :vcall) && line.first.source == pending_keyword
+  def step_keyword
+    "step"
   end
 
-  def pending_keyword_used?(block)
+  def keyword_used_in_block?(block,keyword)
     code_in_block = block.last
-    code_in_block.find { |line| pending_command_statement?(line) }
+    code_in_block.find { |line| command_statement_used?(line,keyword) }
+  end
+
+  def all_keywords_uses_in_block?(block,keyword)
+    code_in_block = block.last
+    code_in_block.find_all { |line| command_statement_used?(line,keyword) }
+  end
+
+  def command_statement_used?(line,keyword)
+    (line.type == :command || line.type == :vcall) && line.first.source == keyword
   end
 
   def step_transform_namespace
