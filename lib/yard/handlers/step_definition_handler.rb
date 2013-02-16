@@ -65,7 +65,8 @@ class YARD::Handlers::Ruby::StepDefinitionHandler < YARD::Handlers::Ruby::Base
   end
 
   def pending_command_statement?(line)
-    line.type == :command and line.first.source == pending_keyword
+    puts "#{line.type} #{line.source}"
+    (line.type == :command || line.type == :vcall) && line.first.source == pending_keyword
   end
 
   def pending_keyword_used(block)
