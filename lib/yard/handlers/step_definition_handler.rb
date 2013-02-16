@@ -50,7 +50,7 @@ class YARD::Handlers::Ruby::StepDefinitionHandler < YARD::Handlers::Ruby::Base
       o.comments = statement.comments
       o.keyword = statement.method_name.source
       o.value = statement.parameters.source
-      o.pending = pending_keyword_used(statement.block)
+      o.pending = pending_keyword_used?(statement.block)
     end
 
     obj = register instance
@@ -66,7 +66,7 @@ class YARD::Handlers::Ruby::StepDefinitionHandler < YARD::Handlers::Ruby::Base
     (line.type == :command || line.type == :vcall) && line.first.source == pending_keyword
   end
 
-  def pending_keyword_used(block)
+  def pending_keyword_used?(block)
     code_in_block = block.last
     code_in_block.find { |line| pending_command_statement?(line) }
   end

@@ -6,7 +6,7 @@ module YARD::CodeObjects
     include Cucumber::LocationHelper
 
     attr_reader :constants, :keyword, :source, :value, :literal_value
-    attr_accessor :steps, :pending
+    attr_accessor :steps, :pending, :substeps
 
     # This defines an escape pattern within a string or regex:
     #     /^the first #{CONSTANT} step$/
