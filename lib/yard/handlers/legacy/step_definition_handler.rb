@@ -9,19 +9,19 @@ class YARD::Handlers::Ruby::Legacy::StepDefinitionHandler < YARD::Handlers::Ruby
     step_definition = statement.tokens.to_s[STEP_DEFINITION_MATCH,3]
 
     @@unique_name = @@unique_name + 1
-      
-    stepdef_instance = StepDefinitionObject.new(YARD::CodeObjects::Cucumber::CUCUMBER_STEPTRANSFORM_NAMESPACE, "definition_#{@@unique_name}") do |o| 
+
+    stepdef_instance = StepDefinitionObject.new(YARD::CodeObjects::Cucumber::CUCUMBER_STEPTRANSFORM_NAMESPACE, "definition_#{@@unique_name}") do |o|
       o.source = "#{keyword} #{step_definition} do #{statement.block.to_s =~ /^\s*\|.+/ ? '' : "\n  "}#{statement.block.to_s}\nend"
       o.value = step_definition
       o.keyword = keyword
     end
-    
+
     obj = register stepdef_instance
     parse_block :owner => obj
-    
+
   rescue YARD::Handlers::NamespaceMissingError
   end
-  
+
   #
   # Step Definitions can contain defined steps within them.  While it is likely that they could not
   # very easily be parsed because of variables that are only calculated at runtime, it would be nice
@@ -32,14 +32,14 @@ class YARD::Handlers::Ruby::Legacy::StepDefinitionHandler < YARD::Handlers::Ruby
     #log.debug "#{block} #{block.class}"
     block.each_with_index do |token,index|
       #log.debug "Token #{token.class} #{token.text}"
-        if token.is_a?(YARD::Parser::Ruby::Legacy::RubyToken::TkCONSTANT)  && 
+        if token.is_a?(YARD::Parser::Ruby::Legacy::RubyToken::TkCONSTANT)  &&
           token.text =~ /^(given|when|then|and)$/i &&
           block[index + 2].is_a?(YARD::Parser::Ruby::Legacy::RubyToken::TkSTRING)
           log.debug "Step found in Step Definition: #{block[index + 2].text} "
         end
-          
+
     end
-    
+
   end
-  
+
 end
