@@ -17,5 +17,5 @@ end
 # This step definition is all about steps
 # 
 Given /^this (scenario|background|#{ORDER}) step$/ do |step|
-  pending "step #{order}"
+  puts "step #{order}"
 end
