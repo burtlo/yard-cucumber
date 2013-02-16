@@ -19,31 +19,33 @@
 #
 class YARD::Handlers::Ruby::StepDefinitionHandler < YARD::Handlers::Ruby::Base
 
-  #
-  # By default the english gherkin language will be parsed, however, if the
-  # YARD configuration file `~./yard/config` defines different step definition
-  # handlers those are used.
-  #
-  #
-  if YARD::Config.options["yard-cucumber"] and
-    YARD::Config.options["yard-cucumber"]["language"] and
-    YARD::Config.options["yard-cucumber"]["language"]["step_definitions"]
-
-    YARD::Config.options["yard-cucumber"]["language"]["step_definitions"].each do |step_word|
-      handles method_call(step_word.to_sym)
-    end
-
-  else
-    handles method_call(:When),method_call(:Given),method_call(:And),method_call(:Then)
+  def self.default_step_definitions
+    [ "When", "Given", "And", "Then" ]
   end
 
+  def self.custom_step_definitions
+    YARD::Config.options["yard-cucumber"]["language"]["step_definitions"]
+  end
 
-  @@unique_name = 0
+  def self.custom_step_definitions_defined?
+    YARD::Config.options["yard-cucumber"] and
+    YARD::Config.options["yard-cucumber"]["language"] and
+    YARD::Config.options["yard-cucumber"]["language"]["step_definitions"]
+  end
+
+  def self.step_definitions
+    if custom_step_definitions_defined?
+      custom_step_definitions
+    else
+      default_step_definitions
+    end
+  end
+
+  step_definitions.each { |step_def| handles method_call(step_def) }
 
   process do
-    @@unique_name += 1
 
-    instance = YARD::CodeObjects::StepDefinitionObject.new(YARD::CodeObjects::Cucumber::CUCUMBER_STEPTRANSFORM_NAMESPACE,"step_definition#{@@unique_name}") do |o|
+    instance = YARD::CodeObjects::StepDefinitionObject.new(YARD::CodeObjects::Cucumber::CUCUMBER_STEPTRANSFORM_NAMESPACE,step_definition_name) do |o|
       o.source = statement.source
       o.comments = statement.comments
       o.keyword = statement[0].source
@@ -53,6 +55,14 @@ class YARD::Handlers::Ruby::StepDefinitionHandler < YARD::Handlers::Ruby::Base
     obj = register instance
     parse_block(statement[2],:owner => obj)
 
+  end
+
+  def step_definition_name
+    "step_definition#{self.class.generate_unique_id}"
+  end
+
+  def self.generate_unique_id
+    @step_definition_count = @step_definition_count.to_i + 1
   end
 
 end
