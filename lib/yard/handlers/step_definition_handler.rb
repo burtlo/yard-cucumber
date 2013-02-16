@@ -45,7 +45,7 @@ class YARD::Handlers::Ruby::StepDefinitionHandler < YARD::Handlers::Ruby::Base
 
   process do
 
-    instance = YARD::CodeObjects::StepDefinitionObject.new(YARD::CodeObjects::Cucumber::CUCUMBER_STEPTRANSFORM_NAMESPACE,step_definition_name) do |o|
+    instance = YARD::CodeObjects::StepDefinitionObject.new(step_transform_namespace,step_definition_name) do |o|
       o.source = statement.source
       o.comments = statement.comments
       o.keyword = statement[0].source
@@ -55,6 +55,10 @@ class YARD::Handlers::Ruby::StepDefinitionHandler < YARD::Handlers::Ruby::Base
     obj = register instance
     parse_block(statement[2],:owner => obj)
 
+  end
+
+  def step_transform_namespace
+    YARD::CodeObjects::Cucumber::CUCUMBER_STEPTRANSFORM_NAMESPACE
   end
 
   def step_definition_name
