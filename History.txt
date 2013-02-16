@@ -1,3 +1,8 @@
+=== 2.2.3/ 2013-02-15
+
+* Step Definitions that are marked as 'pending' will now appear as pending
+  on the step definition and transforms page.
+
 === 2.2.2/ 2012-10-07
 
 * Steps and Definitions have links to step transformer page
@@ -72,7 +77,7 @@
 
 * 'All Features' lands you on the root features directory; 'Requirements'
   is still accessible through the breadcrumbs.
-* Feature directory pages will display all the features in all subdirectories 
+* Feature directory pages will display all the features in all subdirectories
 * Better sorting for features, tags, and step transformers.
 
 - FIX Feature-Scenario links and Cursors
@@ -89,7 +94,7 @@
 === 1.7.5 / 2010-12-14
 
 * FIX Step Transforms were colliding with Step Definitions in Ruby 1.9.2
-  
+
 === 1.7.4 / 2010-12-11
 
 * Ruby 1.9.2 Support
@@ -101,7 +106,7 @@
 * Shortcut Keys (t) for tags and (r) for features (f was taken)
 * Step definitions/transforms consolidate steps for easier viewing
   and when they have no steps they are colored differently
-* Tag filtering supports inverse (~) of tags  
+* Tag filtering supports inverse (~) of tags
 
 * FIX Scenario Outlines without examples will not crash the parser
 * FIX Features, Scenarios, and Directories should display in alphabetic order
@@ -207,7 +212,7 @@
 * Cleaned up all references in the fulldoc, full list to references tags
 
 * Moved Cucumber CodeObjects, Handlers, and Parsers to a Cucumber sub-directory
-* Moved StepDefinition and StepTransforms form extensions.rb to individual StepObject and Handlers files 
+* Moved StepDefinition and StepTransforms form extensions.rb to individual StepObject and Handlers files
 
 * (lsegal advice) Created Cucumber Namespace and sub namespaces for features, tags, and step transformers.
 * (lsegal advice) Started to break apart the feature.erb into smaller digestable erb sections
@@ -220,7 +225,7 @@
 * Changed document parsing to mirror the order imposed by Cucumber, this is to stop features being loaded before step definitions.
   This should hopefully address the issue where steps were not being mapped correctly to step definitions.  This fixed the issue
   in the small and large test suite I ran it against.
-  
+
 
 === 1.3 / 2010-10-13
 
