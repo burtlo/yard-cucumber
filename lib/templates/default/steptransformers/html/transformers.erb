@@ -15,7 +15,7 @@
       <div class="file"><%= h item.location %></div>
     </div>
 
-    
+    <%= item.pending ? "PENDING" : "" %>
     <!-- Comments -->
     <div>
       <%= display_comments_for item %>

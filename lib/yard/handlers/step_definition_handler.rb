@@ -48,13 +48,29 @@ class YARD::Handlers::Ruby::StepDefinitionHandler < YARD::Handlers::Ruby::Base
     instance = YARD::CodeObjects::StepDefinitionObject.new(step_transform_namespace,step_definition_name) do |o|
       o.source = statement.source
       o.comments = statement.comments
+      # o.keyword = statement.method_name.source
       o.keyword = statement[0].source
+      # o.value = statement.parameters.source
       o.value = statement[1].source
+      o.pending = pending_keyword_used(statement.block)
     end
 
     obj = register instance
     parse_block(statement[2],:owner => obj)
 
+  end
+
+  def pending_keyword
+    "pending"
+  end
+
+  def pending_command_statement?(line)
+    line.type == :command and line.first.source == pending_keyword
+  end
+
+  def pending_keyword_used(block)
+    code_in_block = block.last
+    code_in_block.find { |line| pending_command_statement?(line) }
   end
 
   def step_transform_namespace
