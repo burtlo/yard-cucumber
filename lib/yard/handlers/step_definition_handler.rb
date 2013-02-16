@@ -48,10 +48,8 @@ class YARD::Handlers::Ruby::StepDefinitionHandler < YARD::Handlers::Ruby::Base
     instance = YARD::CodeObjects::StepDefinitionObject.new(step_transform_namespace,step_definition_name) do |o|
       o.source = statement.source
       o.comments = statement.comments
-      # o.keyword = statement.method_name.source
-      o.keyword = statement[0].source
-      # o.value = statement.parameters.source
-      o.value = statement[1].source
+      o.keyword = statement.method_name.source
+      o.value = statement.parameters.source
       o.pending = pending_keyword_used(statement.block)
     end
 
