@@ -1,11 +1,17 @@
 <% @items.each do |item| %>
 
-<div class="transformer <%= @item_type.gsub(/\s/,'') %> <%= "nodefinitions" if item.steps.nil? || item.steps.empty? %>">
+<div class="transformer <%= @item_type.gsub(/\s/,'') %>
+                        <%= "nodefinitions" if item.steps.nil? || item.steps.empty? %>
+                        <%= "pending" if item.pending %>">
   <a name="<%= anchor_for item %>"></a>
   <div class="title">
     <span class="pre"><%= h item.keyword %></span>
     <span class="name"><%= item.value %></span>
-    <a style="float: right;" href="http://rubular.com/?regex=<%= urlencode item.value %>" target="_blank">Rubular</a>
+    <div style="float: right;">
+      <a href="http://rubular.com/?regex=<%= urlencode item.value %>" target="_blank">Rubular</a>
+      <%= "| PENDING" if item.pending %>
+      <%= "| UNUSED" if item.steps.nil? || item.steps.empty? %>
+    </div>
     <div style="clear: both;"></div>
   </div>
 
@@ -14,7 +20,6 @@
     <div class="meta" style="clear: right;">
       <div class="file"><%= h item.location %></div>
     </div>
-
     
     <!-- Comments -->
     <div>

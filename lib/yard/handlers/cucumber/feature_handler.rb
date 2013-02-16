@@ -14,19 +14,19 @@ module YARD
           # files were were assured to be processed last which was accomplished
           # by overriding YARD::SourceParser to make it load file in a similar
           # order as Cucumber.
-          # 
+          #
           # As of YARD 0.7.0 this is no longer necessary as there are callbacks
           # that can be registered after all the files have been loaded. That
           # callback _after_parse_list_ is defined below and performs the
           # functionality described above.
-          # 
+          #
         end
-        
+
         #
         # Register, once, when that when all files are finished to perform
         # the final matching of feature steps to step definitions and step
         # definitions to step transforms.
-        # 
+        #
         YARD::Parser::SourceParser.after_parse_list do |files,globals|
           # For every feature found in the Registry, find their steps and step
           # definitions...
@@ -34,7 +34,7 @@ module YARD
             log.debug "Finding #{feature.file} - steps, step definitions, and step transforms"
             FeatureHandler.match_steps_to_step_definitions(feature)
           end
-          
+
         end
 
         class << self
@@ -77,9 +77,9 @@ module YARD
           #
           # Store all comparable items with their compare_value as the key and the item as the value
           # - Reject any compare values that contain escapes #{} as that means they have unpacked constants
-          # 
+          #
           def cache(type)
-            YARD::Registry.all(type).inject({}) do |hash,item| 
+            YARD::Registry.all(type).inject({}) do |hash,item|
               hash[item.regex] = item if item.regex
               hash
             end
@@ -96,9 +96,9 @@ module YARD
           end
 
           #
-          # Given a step object, attempt to match that step to a step 
+          # Given a step object, attempt to match that step to a step
           # transformation
-          # 
+          #
           def match_step_to_step_definition_and_transforms(step)
             @@step_definitions.each_pair do |stepdef,stepdef_object|
               stepdef_matches = step.value.match(stepdef)
