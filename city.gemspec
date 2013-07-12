@@ -53,8 +53,8 @@ Gem::Specification.new do |s|
 
 }
 
-  s.add_dependency 'gherkin', '>= 2.2.9'
-  s.add_dependency 'cucumber', '>= 0.7.5'
+  s.add_dependency 'gherkin', '~> 2.12'
+  s.add_dependency 'cucumber', '~> 1.3'
   s.add_dependency 'yard', '>= 0.8.1'
 
   s.rubygems_version   = "1.3.7"
