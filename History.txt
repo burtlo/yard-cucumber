@@ -1,3 +1,9 @@
+=== 2.3.1/ 2013-07-12
+
+* Fixes for Cucumber ~> 1.3 and gherkin ~> 2.12 by loading
+  a required platform file.
+* Added appropriate MIT license
+
 === 2.3.0/ 2013-07-12
 
 * Fixes for Cucumber ~> 1.3 and gherkin ~> 2.12 by loading
