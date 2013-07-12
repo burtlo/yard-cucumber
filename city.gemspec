@@ -37,6 +37,7 @@ Gem::Specification.new do |s|
   s.summary     = "Cucumber Features in YARD"
   s.email       = 'franklin.webber@gmail.com'
   s.homepage    = "http://github.com/burtlo/yard-cucumber"
+  s.license     = 'MIT'
 
   s.platform    = Gem::Platform::RUBY
 
