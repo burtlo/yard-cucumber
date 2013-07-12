@@ -1,3 +1,4 @@
+require 'cucumber/platform'
 require 'cucumber/parser/gherkin_builder'
 require 'gherkin/parser/parser'
 require 'gherkin/formatter/tag_count_formatter'
