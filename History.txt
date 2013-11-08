@@ -1,3 +1,7 @@
+=== 2.3.2/ 2013-11-08
+
+* De-duping uses of step definitions when the line number is the same (ipwnstuff)
+
 === 2.3.1/ 2013-07-12
 
 * Fixes for Cucumber ~> 1.3 and gherkin ~> 2.12 by loading
