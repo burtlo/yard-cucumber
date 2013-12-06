@@ -14,7 +14,11 @@
               <% objects.each do |obj| %>
                 <li>
                   <%= linkify obj, obj.value %>
-                  <small>(<%= obj.file %>)</small>
+                  <% if obj.is_a? YARD::CodeObjects::Cucumber::FeatureDirectory %>
+                    <small>(<%= obj.expanded_path %>)</small>
+                  <% else %>
+                    <small>(<%= obj.file %>)</small>
+                  <% end %>
                 </li>
               <% end %>
             </ul>
