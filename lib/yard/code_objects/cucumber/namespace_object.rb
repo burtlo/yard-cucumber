@@ -23,6 +23,10 @@ module YARD::CodeObjects::Cucumber
       files.first.first if files && !files.empty?
     end
 
+    def expanded_path
+      to_s.split('::')[1..-1].join('/')
+    end
+
     def value ; name ; end
     
     def features
