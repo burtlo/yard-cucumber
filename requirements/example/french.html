@@ -1,0 +1,659 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>
+  Feature: Addition
+  
+    &mdash; Documentation by YARD 0.8.7.3
+  
+</title>
+
+  <link rel="stylesheet" href="../../css/style.css" type="text/css" charset="utf-8" />
+
+  <link rel="stylesheet" href="../../css/common.css" type="text/css" charset="utf-8" />
+
+  <link rel="stylesheet" href="../../css/cucumber.css" type="text/css" charset="utf-8" />
+
+<script type="text/javascript" charset="utf-8">
+  hasFrames = window.top.frames.main ? true : false;
+  relpath = '../../';
+  framesUrl = "../../frames.html#!" + escape(window.location.href);
+</script>
+
+
+  <script type="text/javascript" charset="utf-8" src="../../js/jquery.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="../../js/app.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="../../js/cucumber.js"></script>
+
+
+  </head>
+  <body>
+    <div id="header">
+      <div id="menu">
+  
+    <a href="../../_index.html">Index (f)</a> &raquo;
+    <span class='title'><span class='object_link'><a href="../../requirements.html" title="requirements (requirements)">requirements</a></span></span> &raquo; <span class='title'><span class='object_link'><a href="../example.html" title="requirements::example (featuredirectory)">example</a></span></span>
+     &raquo; 
+    <span class="title">french</span>
+  
+
+  <div class="noframes"><span class="title">(</span><a href="." target="_top">no frames</a><span class="title">)</span></div>
+</div>
+
+      <div id="search">
+  
+    <a class="full_list_link" id="feature_list_link"
+        href="../../feature_list.html">
+      Features
+    </a>
+  
+    <a class="full_list_link" id="tag_list_link"
+        href="../../tag_list.html">
+      Tags
+    </a>
+  
+    <a class="full_list_link" id="class_list_link"
+        href="../../class_list.html">
+      Class List
+    </a>
+  
+    <a class="full_list_link" id="method_list_link"
+        href="../../method_list.html">
+      Method List
+    </a>
+  
+    <a class="full_list_link" id="file_list_link"
+        href="../../file_list.html">
+      File List
+    </a>
+  
+</div>
+      <div class="clear"></div>
+    </div>
+
+    <iframe id="search_frame"></iframe>
+
+    <div id="content"><script type="text/javascript" charset="utf-8">
+$(function() {
+  $(".developer").hide();
+  $(".scenario .title").css('cursor','pointer');
+});
+</script>
+
+<div class="feature">
+  <div class="title">
+    <a id="view" class="control" href="#">[More Detail]</a>
+    <a id="expand" class="control" href="#">[Collapse All]</a>
+    <div style="clear: right;"></div>
+    <span class="pre">Fonctionnalité:</span>
+    <span class="name">Addition</span>
+  </div>
+
+  
+  <div class="comments developer">
+    #&nbsp;language:&nbsp;fr  
+  </div>
+  
+
+  <div class="description">
+    Afin&nbsp;de&nbsp;gagner&nbsp;du&nbsp;temps&nbsp;lors&nbsp;du&nbsp;calcul&nbsp;de&nbsp;la&nbsp;facture<br/>En&nbsp;tant&nbsp;que&nbsp;commerçant<br/>Je&nbsp;souhaite&nbsp;pouvoir&nbsp;faire&nbsp;une&nbsp;addition
+  </div>
+
+  <div class="meta">
+    <div class="file developer">example/french.feature</div>
+    <div style="clear: right;"></div>
+    <div class="tags developer">
+      
+    </div>
+  </div>
+
+  
+</div>
+
+<div class="scenario scenario_0">
+  <a name="scenario_0" />
+  <div class="title">
+    <div style="float: left;">
+      <a class="toggle"> - </a>
+      <span class="pre">Plan du Scénario:</span>
+      <span class="name">Addition de deux nombres</span>
+    </div>
+    <a class="link" style="float:right; clear:right;" href="#scenario_0">link</a>
+  </div>
+
+  
+
+  
+
+  <div class="details">
+    <div class="meta developer">
+      <div class="file">example/french.feature:7</div>
+      
+      <div style="clear: both;"></div>
+    </div>
+
+    <div class="steps">
+      
+        
+  
+
+  
+  <div class="step odd">
+    <span class="predicate">Soit </span>
+
+    
+      une calculatrice
+    
+  </div>
+
+  
+  
+
+
+
+  
+
+  
+  <div class="step even">
+    <span class="predicate">Et </span>
+
+    
+      que j&#39;entre &lt;a&gt; pour le premier nombre
+    
+  </div>
+
+  
+  
+
+
+
+  
+
+  
+  <div class="step odd">
+    <span class="predicate">Et </span>
+
+    
+      que je tape sur la touche &quot;+&quot;
+    
+  </div>
+
+  
+  
+
+
+
+  
+
+  
+  <div class="step even">
+    <span class="predicate">Et </span>
+
+    
+      que j&#39;entre &lt;b&gt; pour le second nombre
+    
+  </div>
+
+  
+  
+
+
+
+  
+
+  
+  <div class="step odd">
+    <span class="predicate">Lorsque </span>
+
+    
+      je tape sur la touche &quot;=&quot;
+    
+  </div>
+
+  
+  
+
+
+
+  
+
+  
+  <div class="step even">
+    <span class="predicate">Alors </span>
+
+    
+      le résultat affiché doit être &lt;somme&gt;
+    
+  </div>
+
+  
+  
+
+
+
+
+      
+    </div>
+
+
+    
+
+  
+    <div style="display: none;" class="steps example1-1">
+      
+      
+      
+  
+
+  
+  <div class="step odd">
+    <span class="predicate">Soit </span>
+
+    
+
+      
+        <span class="undefined">
+          une calculatrice
+          <div class="definition developer">
+            <a href="../step_transformers.html#undefined_steps">
+              <div class="invalid">&nbsp;</div>
+            </a>
+          </div>
+        </span>
+      
+
+    
+  </div>
+
+  
+  
+
+
+
+  
+
+  
+  <div class="step even">
+    <span class="predicate">Et </span>
+
+    
+
+      
+        <span class="undefined">
+          que j&#39;entre 2 pour le premier nombre
+          <div class="definition developer">
+            <a href="../step_transformers.html#undefined_steps">
+              <div class="invalid">&nbsp;</div>
+            </a>
+          </div>
+        </span>
+      
+
+    
+  </div>
+
+  
+  
+
+
+
+  
+
+  
+  <div class="step odd">
+    <span class="predicate">Et </span>
+
+    
+
+      
+        <span class="undefined">
+          que je tape sur la touche &quot;+&quot;
+          <div class="definition developer">
+            <a href="../step_transformers.html#undefined_steps">
+              <div class="invalid">&nbsp;</div>
+            </a>
+          </div>
+        </span>
+      
+
+    
+  </div>
+
+  
+  
+
+
+
+  
+
+  
+  <div class="step even">
+    <span class="predicate">Et </span>
+
+    
+
+      
+        <span class="undefined">
+          que j&#39;entre 2 pour le second nombre
+          <div class="definition developer">
+            <a href="../step_transformers.html#undefined_steps">
+              <div class="invalid">&nbsp;</div>
+            </a>
+          </div>
+        </span>
+      
+
+    
+  </div>
+
+  
+  
+
+
+
+  
+
+  
+  <div class="step odd">
+    <span class="predicate">Lorsque </span>
+
+    
+
+      
+        <span class="undefined">
+          je tape sur la touche &quot;=&quot;
+          <div class="definition developer">
+            <a href="../step_transformers.html#undefined_steps">
+              <div class="invalid">&nbsp;</div>
+            </a>
+          </div>
+        </span>
+      
+
+    
+  </div>
+
+  
+  
+
+
+
+  
+
+  
+  <div class="step even">
+    <span class="predicate">Alors </span>
+
+    
+
+      
+        <span class="undefined">
+          le résultat affiché doit être 4
+          <div class="definition developer">
+            <a href="../step_transformers.html#undefined_steps">
+              <div class="invalid">&nbsp;</div>
+            </a>
+          </div>
+        </span>
+      
+
+    
+  </div>
+
+  
+  
+
+
+
+
+      
+      
+    </div>
+  
+    <div style="display: none;" class="steps example1-2">
+      
+      
+      
+  
+
+  
+  <div class="step odd">
+    <span class="predicate">Soit </span>
+
+    
+
+      
+        <span class="undefined">
+          une calculatrice
+          <div class="definition developer">
+            <a href="../step_transformers.html#undefined_steps">
+              <div class="invalid">&nbsp;</div>
+            </a>
+          </div>
+        </span>
+      
+
+    
+  </div>
+
+  
+  
+
+
+
+  
+
+  
+  <div class="step even">
+    <span class="predicate">Et </span>
+
+    
+
+      
+        <span class="undefined">
+          que j&#39;entre 2 pour le premier nombre
+          <div class="definition developer">
+            <a href="../step_transformers.html#undefined_steps">
+              <div class="invalid">&nbsp;</div>
+            </a>
+          </div>
+        </span>
+      
+
+    
+  </div>
+
+  
+  
+
+
+
+  
+
+  
+  <div class="step odd">
+    <span class="predicate">Et </span>
+
+    
+
+      
+        <span class="undefined">
+          que je tape sur la touche &quot;+&quot;
+          <div class="definition developer">
+            <a href="../step_transformers.html#undefined_steps">
+              <div class="invalid">&nbsp;</div>
+            </a>
+          </div>
+        </span>
+      
+
+    
+  </div>
+
+  
+  
+
+
+
+  
+
+  
+  <div class="step even">
+    <span class="predicate">Et </span>
+
+    
+
+      
+        <span class="undefined">
+          que j&#39;entre 3 pour le second nombre
+          <div class="definition developer">
+            <a href="../step_transformers.html#undefined_steps">
+              <div class="invalid">&nbsp;</div>
+            </a>
+          </div>
+        </span>
+      
+
+    
+  </div>
+
+  
+  
+
+
+
+  
+
+  
+  <div class="step odd">
+    <span class="predicate">Lorsque </span>
+
+    
+
+      
+        <span class="undefined">
+          je tape sur la touche &quot;=&quot;
+          <div class="definition developer">
+            <a href="../step_transformers.html#undefined_steps">
+              <div class="invalid">&nbsp;</div>
+            </a>
+          </div>
+        </span>
+      
+
+    
+  </div>
+
+  
+  
+
+
+
+  
+
+  
+  <div class="step even">
+    <span class="predicate">Alors </span>
+
+    
+
+      
+        <span class="undefined">
+          le résultat affiché doit être 5
+          <div class="definition developer">
+            <a href="../step_transformers.html#undefined_steps">
+              <div class="invalid">&nbsp;</div>
+            </a>
+          </div>
+        </span>
+      
+
+    
+  </div>
+
+  
+  
+
+
+
+
+      
+      
+    </div>
+  
+
+
+
+<div class="outline">
+  
+  
+    
+    
+      <div class="keyword">
+        Exemples
+      </div>
+      <div class="example-group-name"></div>
+      <br style="clear: both;"/>
+      <table>
+        <thead>
+          <tr>
+            
+              <th>a</th>
+            
+              <th>b</th>
+            
+              <th>somme</th>
+            
+          </tr>
+        </thead>
+        
+          
+          <tr class="odd example1-1">
+            
+              <td>2</td>
+            
+              <td>2</td>
+            
+              <td>4</td>
+            
+          </tr>
+          
+          <tr class="even example1-2">
+            
+              <td>2</td>
+            
+              <td>3</td>
+            
+              <td>5</td>
+            
+          </tr>
+          
+        
+      </table>
+    
+    
+  
+</div>
+
+
+  </div>
+  
+  <div class="attributes" style="display:none;">
+    <input type="hidden" name="collapsed" value="false">
+  </div>
+
+</div>
+</div>
+
+    <div id="footer">
+  Generated on Fri Nov  8 15:41:47 2013 by
+  <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
+  0.8.7.3 (ruby-2.0.0).
+</div>
+
+  </body>
+</html>

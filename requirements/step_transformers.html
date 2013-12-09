@@ -1,0 +1,2615 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>
+  Step Definitions and Transforms
+  
+    &mdash; Documentation by YARD 0.8.7.3
+  
+</title>
+
+  <link rel="stylesheet" href="../css/style.css" type="text/css" charset="utf-8" />
+
+  <link rel="stylesheet" href="../css/common.css" type="text/css" charset="utf-8" />
+
+  <link rel="stylesheet" href="../css/cucumber.css" type="text/css" charset="utf-8" />
+
+<script type="text/javascript" charset="utf-8">
+  hasFrames = window.top.frames.main ? true : false;
+  relpath = '../';
+  framesUrl = "../frames.html#!" + escape(window.location.href);
+</script>
+
+
+  <script type="text/javascript" charset="utf-8" src="../js/jquery.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="../js/app.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="../js/cucumber.js"></script>
+
+
+  </head>
+  <body>
+    <div id="header">
+      <div id="menu">
+  
+    <a href="../_index.html">Index (s)</a> &raquo;
+    <span class='title'><span class='object_link'><a href="../requirements.html" title="requirements (requirements)">requirements</a></span></span>
+     &raquo; 
+    <span class="title">step_transformers</span>
+  
+
+  <div class="noframes"><span class="title">(</span><a href="." target="_top">no frames</a><span class="title">)</span></div>
+</div>
+
+      <div id="search">
+  
+    <a class="full_list_link" id="feature_list_link"
+        href="../feature_list.html">
+      Features
+    </a>
+  
+    <a class="full_list_link" id="tag_list_link"
+        href="../tag_list.html">
+      Tags
+    </a>
+  
+    <a class="full_list_link" id="class_list_link"
+        href="../class_list.html">
+      Class List
+    </a>
+  
+    <a class="full_list_link" id="method_list_link"
+        href="../method_list.html">
+      Method List
+    </a>
+  
+    <a class="full_list_link" id="file_list_link"
+        href="../file_list.html">
+      File List
+    </a>
+  
+</div>
+      <div class="clear"></div>
+    </div>
+
+    <iframe id="search_frame"></iframe>
+
+    <div id="content"><div class="requirements">
+  <div class="title">Step Definitions &amp; Transforms</div>
+
+  <div class="summary">
+    <div>15<a href="#step_definitions">Step Definitions</a></div>
+    <div>9<a href="#step_transforms">Step Transforms</a></div>
+    <div>30<a href="#undefined_steps">Undefined Steps</a></div>
+  </div>
+
+</div><div class="title">
+  
+     <a class="control" id="stepdefinition">[Collapse All]</a>
+     <div style="clear: right;"></div>
+   
+ 
+  
+    <a name="step_definitions">
+  
+  <div class="name">Step Definitions</div>
+</div>
+
+
+
+<div class="transformer stepdefinition
+                        
+                        ">
+  <a name="step_definition1-stepdefinition"></a>
+  <div class="title">
+    <span class="pre">Given</span>
+    <span class="name">/^this (scenario|background|(?:first|second|third)) step$/</span>
+    <div style="float: right;">
+      <a href="http://rubular.com/?regex=%2F%5Ethis+%28scenario%7Cbackground%7C%28%3F%3Afirst%7Csecond%7Cthird%29%29+step%24%2F" target="_blank">Rubular</a>
+      
+      
+    </div>
+    <div style="clear: both;"></div>
+  </div>
+
+  <div class="details">
+    
+    <div class="meta" style="clear: right;">
+      <div class="file">example/step_definitions/first.step.rb:19</div>
+    </div>
+    
+    <!-- Comments -->
+    <div>
+      <div class="docstring">
+  <div class="discussion">
+    
+<p>This step definition is all about steps</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div>
+    </div>
+    
+
+    <!-- Source Code -->
+    <div class="method_details_list">
+      <table class="source_code">
+        <tr>
+          <td>
+            <pre class="lines">19
+20
+21</pre>
+          </td>
+          <td>
+            <pre class="code"><span class='const'>Given</span> <span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>^this (scenario|background|</span><span class='embexpr_beg'>#{</span><span class='const'>ORDER</span><span class='embexpr_end'>}</span><span class='tstring_content'>) step$</span><span class='regexp_end'>/</span></span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_step'>step</span><span class='op'>|</span>
+  <span class='id identifier rubyid_puts'>puts</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>step </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_order'>order</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
+<span class='kw'>end</span></pre>
+          </td>
+        </tr>
+      </table>
+    </div>
+
+    <!-- Matching Step Instances -->
+    
+      <div class='showSteps'>
+        [<a href='#' class='toggleSteps' alt="17 steps">Hide 17 steps</a>]
+      </div>
+    
+    <div class="steps">
+      
+      
+      <div class="step odd">
+        <div>
+          <span class="predicate">
+            Given 
+          </span>
+          <span class="defined">
+            this <a href='#step_transform2-steptransform'>background</a> step
+          </span>
+        </div>
+        
+        <a class="definition" style="clear: right;" href="example/scenario.html">example/scenario.feature:8</a>
+        
+        <a class="definition" style="clear: right;" href="example/child_feature/child.html">example/child_feature/child.feature:6</a>
+        
+        <a class="definition" style="clear: right;" href="example/child_feature/grandchild_feature/grandchild.html">example/child_feature/grandchild_feature/grandchild.feature:6</a>
+        
+        <div style="clear: both;"></div>
+      </div>
+      
+      <div class="step even">
+        <div>
+          <span class="predicate">
+            Given 
+          </span>
+          <span class="defined">
+            this <a href='#step_transform1-steptransform'>first</a> step
+          </span>
+        </div>
+        
+        <a class="definition" style="clear: right;" href="example/scenario.html">example/scenario.feature:15</a>
+        
+        <a class="definition" style="clear: right;" href="example/scenario.html">example/scenario.feature:53</a>
+        
+        <a class="definition" style="clear: right;" href="example/transform.html">example/transform.feature:12</a>
+        
+        <a class="definition" style="clear: right;" href="example/child_feature/child.html">example/child_feature/child.feature:9</a>
+        
+        <a class="definition" style="clear: right;" href="example/child_feature/grandchild_feature/grandchild.html">example/child_feature/grandchild_feature/grandchild.feature:10</a>
+        
+        <div style="clear: both;"></div>
+      </div>
+      
+      <div class="step odd">
+        <div>
+          <span class="predicate">
+            When 
+          </span>
+          <span class="defined">
+            this <a href='#step_transform1-steptransform'>second</a> step
+          </span>
+        </div>
+        
+        <a class="definition" style="clear: right;" href="example/scenario.html">example/scenario.feature:16</a>
+        
+        <a class="definition" style="clear: right;" href="example/scenario.html">example/scenario.feature:56</a>
+        
+        <a class="definition" style="clear: right;" href="example/child_feature/child.html">example/child_feature/child.feature:10</a>
+        
+        <a class="definition" style="clear: right;" href="example/child_feature/grandchild_feature/grandchild.html">example/child_feature/grandchild_feature/grandchild.feature:11</a>
+        
+        <div style="clear: both;"></div>
+      </div>
+      
+      <div class="step even">
+        <div>
+          <span class="predicate">
+            Then 
+          </span>
+          <span class="defined">
+            this <a href='#step_transform1-steptransform'>third</a> step
+          </span>
+        </div>
+        
+        <a class="definition" style="clear: right;" href="example/scenario.html">example/scenario.feature:17</a>
+        
+        <a class="definition" style="clear: right;" href="example/scenario.html">example/scenario.feature:58</a>
+        
+        <a class="definition" style="clear: right;" href="example/child_feature/child.html">example/child_feature/child.feature:11</a>
+        
+        <a class="definition" style="clear: right;" href="example/child_feature/grandchild_feature/grandchild.html">example/child_feature/grandchild_feature/grandchild.feature:12</a>
+        
+        <div style="clear: both;"></div>
+      </div>
+      
+      <div class="step odd">
+        <div>
+          <span class="predicate">
+            Given 
+          </span>
+          <span class="defined">
+            this <a href='#step_transform3-steptransform'>scenario</a> step
+          </span>
+        </div>
+        
+        <a class="definition" style="clear: right;" href="example/transform.html">example/transform.feature:7</a>
+        
+        <div style="clear: both;"></div>
+      </div>
+      
+      
+    </div>
+    
+  </div>
+
+  <div style="margin: 30px 20px; border-top: 1px dotted #AAA;"></div>
+
+</div>
+
+
+
+<div class="transformer stepdefinition
+                        
+                        pending">
+  <a name="step_definition11-stepdefinition"></a>
+  <div class="title">
+    <span class="pre">Given</span>
+    <span class="name">/^(?:I create )?an? (?:(active|deactive|inactive|simulated)d?)? ?project(?:[\s,]*(?:with)? ?(?:an?|the)? (?:(?:the size? (?:at|of)? ?(\d+)|named? (?:of )?'([^']+)'|start date (?:of )?((?:(?:\d{1,2}[\/-]){2}(?:\d\d){1,2}))|end date (?:of )?((?:(?:\d{1,2}[\/-]){2}(?:\d\d){1,2}))|user range (?:of )?(\d+-\d+)|description (?:of )?'([^']+)'|nicknamed? (?:of )?'([^']+)')[,\s]*)* ?)?$/</span>
+    <div style="float: right;">
+      <a href="http://rubular.com/?regex=%2F%5E%28%3F%3AI+create+%29%3Fan%3F+%28%3F%3A%28active%7Cdeactive%7Cinactive%7Csimulated%29d%3F%29%3F+%3Fproject%28%3F%3A%5B%5Cs%2C%5D%2A%28%3F%3Awith%29%3F+%3F%28%3F%3Aan%3F%7Cthe%29%3F+%28%3F%3A%28%3F%3Athe+size%3F+%28%3F%3Aat%7Cof%29%3F+%3F%28%5Cd%2B%29%7Cnamed%3F+%28%3F%3Aof+%29%3F%27%28%5B%5E%27%5D%2B%29%27%7Cstart+date+%28%3F%3Aof+%29%3F%28%28%3F%3A%28%3F%3A%5Cd%7B1%2C2%7D%5B%5C%2F-%5D%29%7B2%7D%28%3F%3A%5Cd%5Cd%29%7B1%2C2%7D%29%29%7Cend+date+%28%3F%3Aof+%29%3F%28%28%3F%3A%28%3F%3A%5Cd%7B1%2C2%7D%5B%5C%2F-%5D%29%7B2%7D%28%3F%3A%5Cd%5Cd%29%7B1%2C2%7D%29%29%7Cuser+range+%28%3F%3Aof+%29%3F%28%5Cd%2B-%5Cd%2B%29%7Cdescription+%28%3F%3Aof+%29%3F%27%28%5B%5E%27%5D%2B%29%27%7Cnicknamed%3F+%28%3F%3Aof+%29%3F%27%28%5B%5E%27%5D%2B%29%27%29%5B%2C%5Cs%5D%2A%29%2A+%3F%29%3F%24%2F" target="_blank">Rubular</a>
+      | PENDING
+      
+    </div>
+    <div style="clear: both;"></div>
+  </div>
+
+  <div class="details">
+    
+    <div class="meta" style="clear: right;">
+      <div class="file">example/step_definitions/example.step.rb:72</div>
+    </div>
+    
+    <!-- Comments -->
+    <div>
+      <div class="docstring">
+  <div class="discussion">
+    
+<p>Complicated step definition with optional parameters</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div>
+    </div>
+    
+
+    <!-- Source Code -->
+    <div class="method_details_list">
+      <table class="source_code">
+        <tr>
+          <td>
+            <pre class="lines">72
+73
+74</pre>
+          </td>
+          <td>
+            <pre class="code"><span class='const'>Given</span> <span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>^(?:I create )?an? (?:(active|deactive|inactive|simulated)d?)? ?project(?:[\s,]*(?:with)? ?(?:an?|the)? (?:(?:the size? (?:at|of)? ?(\d+)|named? (?:of )?&#39;([^&#39;]+)&#39;|start date (?:of )?((?:(?:\d{1,2}[\/-]){2}(?:\d\d){1,2}))|end date (?:of )?((?:(?:\d{1,2}[\/-]){2}(?:\d\d){1,2}))|user range (?:of )?(\d+-\d+)|description (?:of )?&#39;([^&#39;]+)&#39;|nicknamed? (?:of )?&#39;([^&#39;]+)&#39;)[,\s]*)* ?)?$</span><span class='regexp_end'>/</span></span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_state'>state</span><span class='comma'>,</span><span class='id identifier rubyid_size'>size</span><span class='comma'>,</span><span class='id identifier rubyid_name'>name</span><span class='comma'>,</span><span class='id identifier rubyid_start_date'>start_date</span><span class='comma'>,</span><span class='id identifier rubyid_end_date'>end_date</span><span class='comma'>,</span><span class='id identifier rubyid_user_range'>user_range</span><span class='comma'>,</span><span class='id identifier rubyid_description'>description</span><span class='comma'>,</span><span class='id identifier rubyid_nickname'>nickname</span><span class='op'>|</span>
+  <span class='id identifier rubyid_pending'>pending</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_state'>state</span><span class='embexpr_end'>}</span><span class='tstring_content'> </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_size'>size</span><span class='embexpr_end'>}</span><span class='tstring_content'> </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_name'>name</span><span class='embexpr_end'>}</span><span class='tstring_content'> </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_start_date'>start_date</span><span class='embexpr_end'>}</span><span class='tstring_content'> </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_end_date'>end_date</span><span class='embexpr_end'>}</span><span class='tstring_content'> </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_user_range'>user_range</span><span class='embexpr_end'>}</span><span class='tstring_content'> </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_description'>description</span><span class='embexpr_end'>}</span><span class='tstring_content'> </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_nickname'>nickname</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
+<span class='kw'>end</span></pre>
+          </td>
+        </tr>
+      </table>
+    </div>
+
+    <!-- Matching Step Instances -->
+    
+      <div class='showSteps'>
+        [<a href='#' class='toggleSteps' alt="3 steps">Hide 3 steps</a>]
+      </div>
+    
+    <div class="steps">
+      
+      
+      <div class="step odd">
+        <div>
+          <span class="predicate">
+            Given 
+          </span>
+          <span class="defined">
+            a project
+          </span>
+        </div>
+        
+        <a class="definition" style="clear: right;" href="example/scenario.html">example/scenario.feature:22</a>
+        
+        <div style="clear: both;"></div>
+      </div>
+      
+      <div class="step even">
+        <div>
+          <span class="predicate">
+            And 
+          </span>
+          <span class="defined">
+            an <span class='match'>inactive</span> project
+          </span>
+        </div>
+        
+        <a class="definition" style="clear: right;" href="example/scenario.html">example/scenario.feature:23</a>
+        
+        <div style="clear: both;"></div>
+      </div>
+      
+      <div class="step odd">
+        <div>
+          <span class="predicate">
+            And 
+          </span>
+          <span class="defined">
+            a project with the name '<span class='match'>optional</span>', start date <span class='match'>10/26/2010</span>, nicknamed '<span class='match'>norman</span>'
+          </span>
+        </div>
+        
+        <a class="definition" style="clear: right;" href="example/scenario.html">example/scenario.feature:24</a>
+        
+        <div style="clear: both;"></div>
+      </div>
+      
+      
+    </div>
+    
+  </div>
+
+  <div style="margin: 30px 20px; border-top: 1px dotted #AAA;"></div>
+
+</div>
+
+
+
+<div class="transformer stepdefinition
+                        
+                        pending">
+  <a name="step_definition10-stepdefinition"></a>
+  <div class="title">
+    <span class="pre">Then</span>
+    <span class="name">/I expect ((?:(?:an?|the|(?:first|second|third)) customer|teddy bear)) to be a member of the '([^']+)' group/</span>
+    <div style="float: right;">
+      <a href="http://rubular.com/?regex=%2FI+expect+%28%28%3F%3A%28%3F%3Aan%3F%7Cthe%7C%28%3F%3Afirst%7Csecond%7Cthird%29%29+customer%7Cteddy+bear%29%29+to+be+a+member+of+the+%27%28%5B%5E%27%5D%2B%29%27+group%2F" target="_blank">Rubular</a>
+      | PENDING
+      
+    </div>
+    <div style="clear: both;"></div>
+  </div>
+
+  <div class="details">
+    
+    <div class="meta" style="clear: right;">
+      <div class="file">example/step_definitions/example.step.rb:65</div>
+    </div>
+    
+    <!-- Comments -->
+    <div>
+      
+    </div>
+    
+
+    <!-- Source Code -->
+    <div class="method_details_list">
+      <table class="source_code">
+        <tr>
+          <td>
+            <pre class="lines">65
+66
+67</pre>
+          </td>
+          <td>
+            <pre class="code"><span class='const'>Then</span> <span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>I expect (</span><span class='embexpr_beg'>#{</span><span class='const'>CUSTOMER</span><span class='embexpr_end'>}</span><span class='tstring_content'>) to be a member of the &#39;([^&#39;]+)&#39; group</span><span class='regexp_end'>/</span></span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_customer'>customer</span><span class='comma'>,</span><span class='id identifier rubyid_product'>product</span><span class='op'>|</span>
+  <span class='id identifier rubyid_pending'>pending</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Customer </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_customer'>customer</span><span class='embexpr_end'>}</span><span class='tstring_content'> with product </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_product'>product</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
+<span class='kw'>end</span></pre>
+          </td>
+        </tr>
+      </table>
+    </div>
+
+    <!-- Matching Step Instances -->
+    
+      <div class='showSteps'>
+        [<a href='#' class='toggleSteps' alt="3 steps">Hide 3 steps</a>]
+      </div>
+    
+    <div class="steps">
+      
+      
+      <div class="step odd">
+        <div>
+          <span class="predicate">
+            Then 
+          </span>
+          <span class="defined">
+            I expect <span class='match'>the customer</span> to be a member of the '<span class='match'>Product A</span>' group
+          </span>
+        </div>
+        
+        <a class="definition" style="clear: right;" href="example/scenario_outline.html">example/scenario_outline.feature:10</a>
+        
+        <a class="definition" style="clear: right;" href="example/scenario_outline.html">example/scenario_outline.feature:86</a>
+        
+        <a class="definition" style="clear: right;" href="example/scenario_outline_multi.html">example/scenario_outline_multi.feature:7</a>
+        
+        <div style="clear: both;"></div>
+      </div>
+      
+      
+    </div>
+    
+  </div>
+
+  <div style="margin: 30px 20px; border-top: 1px dotted #AAA;"></div>
+
+</div>
+
+
+
+<div class="transformer stepdefinition
+                        
+                        pending">
+  <a name="step_definition13-stepdefinition"></a>
+  <div class="title">
+    <span class="pre">Then</span>
+    <span class="name">/I expect the (duck|bird) to (\w+)/</span>
+    <div style="float: right;">
+      <a href="http://rubular.com/?regex=%2FI+expect+the+%28duck%7Cbird%29+to+%28%5Cw%2B%29%2F" target="_blank">Rubular</a>
+      | PENDING
+      
+    </div>
+    <div style="clear: both;"></div>
+  </div>
+
+  <div class="details">
+    
+    <div class="meta" style="clear: right;">
+      <div class="file">example/step_definitions/example.step.rb:85</div>
+    </div>
+    
+    <!-- Comments -->
+    <div>
+      
+    </div>
+    
+
+    <!-- Source Code -->
+    <div class="method_details_list">
+      <table class="source_code">
+        <tr>
+          <td>
+            <pre class="lines">85
+86
+87</pre>
+          </td>
+          <td>
+            <pre class="code"><span class='const'>Then</span> <span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>I expect the (duck|bird) to (\w+)</span><span class='regexp_end'>/</span></span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_animal'>animal</span><span class='comma'>,</span><span class='id identifier rubyid_verb'>verb</span><span class='op'>|</span>
+  <span class='id identifier rubyid_pending'>pending</span>
+<span class='kw'>end</span></pre>
+          </td>
+        </tr>
+      </table>
+    </div>
+
+    <!-- Matching Step Instances -->
+    
+      <div class='showSteps'>
+        [<a href='#' class='toggleSteps' alt="1 steps">Hide 1 steps</a>]
+      </div>
+    
+    <div class="steps">
+      
+      
+      <div class="step odd">
+        <div>
+          <span class="predicate">
+            Then 
+          </span>
+          <span class="defined">
+            I expect the <span class='match'>duck</span> to <span class='match'>quack</span>
+          </span>
+        </div>
+        
+        <a class="definition" style="clear: right;" href="example/scenario.html">example/scenario.feature:29</a>
+        
+        <div style="clear: both;"></div>
+      </div>
+      
+      
+    </div>
+    
+  </div>
+
+  <div style="margin: 30px 20px; border-top: 1px dotted #AAA;"></div>
+
+</div>
+
+
+
+<div class="transformer stepdefinition
+                        
+                        pending">
+  <a name="step_definition14-stepdefinition"></a>
+  <div class="title">
+    <span class="pre">When</span>
+    <span class="name">/^searching the log for the exact match of the message "([^"]+)"$/</span>
+    <div style="float: right;">
+      <a href="http://rubular.com/?regex=%2F%5Esearching+the+log+for+the+exact+match+of+the+message+%22%28%5B%5E%22%5D%2B%29%22%24%2F" target="_blank">Rubular</a>
+      | PENDING
+      
+    </div>
+    <div style="clear: both;"></div>
+  </div>
+
+  <div class="details">
+    
+    <div class="meta" style="clear: right;">
+      <div class="file">example/step_definitions/example.step.rb:92</div>
+    </div>
+    
+    <!-- Comments -->
+    <div>
+      <div class="docstring">
+  <div class="discussion">
+    
+<p>This double-quoted step definition caused some problems when being rendered</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div>
+    </div>
+    
+
+    <!-- Source Code -->
+    <div class="method_details_list">
+      <table class="source_code">
+        <tr>
+          <td>
+            <pre class="lines">92
+93
+94</pre>
+          </td>
+          <td>
+            <pre class="code"><span class='const'>When</span> <span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>^searching the log for the exact match of the message &quot;([^&quot;]+)&quot;$</span><span class='regexp_end'>/</span></span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_message'>message</span><span class='op'>|</span>
+  <span class='id identifier rubyid_pending'>pending</span> <span class='id identifier rubyid_message'>message</span>
+<span class='kw'>end</span></pre>
+          </td>
+        </tr>
+      </table>
+    </div>
+
+    <!-- Matching Step Instances -->
+    
+      <div class='showSteps'>
+        [<a href='#' class='toggleSteps' alt="1 steps">Hide 1 steps</a>]
+      </div>
+    
+    <div class="steps">
+      
+      
+      <div class="step odd">
+        <div>
+          <span class="predicate">
+            When 
+          </span>
+          <span class="defined">
+            searching the log for the exact match of the message "<span class='match'>Entering application.</span>"
+          </span>
+        </div>
+        
+        <a class="definition" style="clear: right;" href="example/scenario.html">example/scenario.feature:62</a>
+        
+        <div style="clear: both;"></div>
+      </div>
+      
+      
+    </div>
+    
+  </div>
+
+  <div style="margin: 30px 20px; border-top: 1px dotted #AAA;"></div>
+
+</div>
+
+
+
+<div class="transformer stepdefinition
+                        
+                        pending">
+  <a name="step_definition12-stepdefinition"></a>
+  <div class="title">
+    <span class="pre">Given</span>
+    <span class="name">/(a|\d+) ducks? that ha(?:s|ve) (a|\d+) bills?/</span>
+    <div style="float: right;">
+      <a href="http://rubular.com/?regex=%2F%28a%7C%5Cd%2B%29+ducks%3F+that+ha%28%3F%3As%7Cve%29+%28a%7C%5Cd%2B%29+bills%3F%2F" target="_blank">Rubular</a>
+      | PENDING
+      
+    </div>
+    <div style="clear: both;"></div>
+  </div>
+
+  <div class="details">
+    
+    <div class="meta" style="clear: right;">
+      <div class="file">example/step_definitions/example.step.rb:81</div>
+    </div>
+    
+    <!-- Comments -->
+    <div>
+      <div class="docstring">
+  <div class="discussion">
+    
+<p>The highlighting replacement uses a span which had trouble when blindly
+using a gsub replacement.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div>
+    </div>
+    
+
+    <!-- Source Code -->
+    <div class="method_details_list">
+      <table class="source_code">
+        <tr>
+          <td>
+            <pre class="lines">81
+82
+83</pre>
+          </td>
+          <td>
+            <pre class="code"><span class='const'>Given</span> <span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>(a|\d+) ducks? that ha(?:s|ve) (a|\d+) bills?</span><span class='regexp_end'>/</span></span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_duck_count'>duck_count</span><span class='comma'>,</span><span class='id identifier rubyid_bills_count'>bills_count</span><span class='op'>|</span>
+  <span class='id identifier rubyid_pending'>pending</span>
+<span class='kw'>end</span></pre>
+          </td>
+        </tr>
+      </table>
+    </div>
+
+    <!-- Matching Step Instances -->
+    
+      <div class='showSteps'>
+        [<a href='#' class='toggleSteps' alt="1 steps">Hide 1 steps</a>]
+      </div>
+    
+    <div class="steps">
+      
+      
+      <div class="step odd">
+        <div>
+          <span class="predicate">
+            Given 
+          </span>
+          <span class="defined">
+            <span class='match'>a</span> duck that has <span class='match'>a</span> bill
+          </span>
+        </div>
+        
+        <a class="definition" style="clear: right;" href="example/scenario.html">example/scenario.feature:28</a>
+        
+        <div style="clear: both;"></div>
+      </div>
+      
+      
+    </div>
+    
+  </div>
+
+  <div style="margin: 30px 20px; border-top: 1px dotted #AAA;"></div>
+
+</div>
+
+
+
+<div class="transformer stepdefinition
+                        
+                        pending">
+  <a name="step_definition15-stepdefinition"></a>
+  <div class="title">
+    <span class="pre">When</span>
+    <span class="name">/^the step definition has HTML escaped characters like: "([^"]+)"$/</span>
+    <div style="float: right;">
+      <a href="http://rubular.com/?regex=%2F%5Ethe+step+definition+has+HTML+escaped+characters+like%3A+%22%28%5B%5E%22%5D%2B%29%22%24%2F" target="_blank">Rubular</a>
+      | PENDING
+      
+    </div>
+    <div style="clear: both;"></div>
+  </div>
+
+  <div class="details">
+    
+    <div class="meta" style="clear: right;">
+      <div class="file">example/step_definitions/example.step.rb:99</div>
+    </div>
+    
+    <!-- Comments -->
+    <div>
+      
+    </div>
+    
+
+    <!-- Source Code -->
+    <div class="method_details_list">
+      <table class="source_code">
+        <tr>
+          <td>
+            <pre class="lines">99
+100
+101</pre>
+          </td>
+          <td>
+            <pre class="code"><span class='const'>When</span> <span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>^the step definition has HTML escaped characters like: &quot;([^&quot;]+)&quot;$</span><span class='regexp_end'>/</span></span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_characters'>characters</span><span class='op'>|</span>
+  <span class='id identifier rubyid_pending'>pending</span> <span class='id identifier rubyid_characters'>characters</span>
+<span class='kw'>end</span></pre>
+          </td>
+        </tr>
+      </table>
+    </div>
+
+    <!-- Matching Step Instances -->
+    
+      <div class='showSteps'>
+        [<a href='#' class='toggleSteps' alt="1 steps">Hide 1 steps</a>]
+      </div>
+    
+    <div class="steps">
+      
+      
+      <div class="step odd">
+        <div>
+          <span class="predicate">
+            When 
+          </span>
+          <span class="defined">
+            the step definition has HTML escaped characters like: "<span class='match'><>&</span>"
+          </span>
+        </div>
+        
+        <a class="definition" style="clear: right;" href="example/scenario.html">example/scenario.feature:63</a>
+        
+        <div style="clear: both;"></div>
+      </div>
+      
+      
+    </div>
+    
+  </div>
+
+  <div style="margin: 30px 20px; border-top: 1px dotted #AAA;"></div>
+
+</div>
+
+
+
+<div class="transformer stepdefinition
+                        nodefinitions
+                        pending">
+  <a name="step_definition7-stepdefinition"></a>
+  <div class="title">
+    <span class="pre">And</span>
+    <span class="name">/^this (third) defined step definition$/</span>
+    <div style="float: right;">
+      <a href="http://rubular.com/?regex=%2F%5Ethis+%28third%29+defined+step+definition%24%2F" target="_blank">Rubular</a>
+      | PENDING
+      | UNUSED
+    </div>
+    <div style="clear: both;"></div>
+  </div>
+
+  <div class="details">
+    
+    <div class="meta" style="clear: right;">
+      <div class="file">example/step_definitions/example.step.rb:53</div>
+    </div>
+    
+    <!-- Comments -->
+    <div>
+      
+    </div>
+    
+
+    <!-- Source Code -->
+    <div class="method_details_list">
+      <table class="source_code">
+        <tr>
+          <td>
+            <pre class="lines">53
+54
+55</pre>
+          </td>
+          <td>
+            <pre class="code"><span class='const'>And</span> <span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>^this (third) defined step definition$</span><span class='regexp_end'>/</span></span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_number'>number</span><span class='op'>|</span>
+  <span class='id identifier rubyid_pending'>pending</span>
+<span class='kw'>end</span></pre>
+          </td>
+        </tr>
+      </table>
+    </div>
+
+    <!-- Matching Step Instances -->
+    
+    <div class="steps">
+      
+      <div class="undefined">No steps were found to match this step definition.</div>
+      
+    </div>
+    
+  </div>
+
+  <div style="margin: 30px 20px; border-top: 1px dotted #AAA;"></div>
+
+</div>
+
+
+
+<div class="transformer stepdefinition
+                        nodefinitions
+                        pending">
+  <a name="step_definition9-stepdefinition"></a>
+  <div class="title">
+    <span class="pre">And</span>
+    <span class="name">/^edits their the (biography) to state:$/</span>
+    <div style="float: right;">
+      <a href="http://rubular.com/?regex=%2F%5Eedits+their+the+%28biography%29+to+state%3A%24%2F" target="_blank">Rubular</a>
+      | PENDING
+      | UNUSED
+    </div>
+    <div style="clear: both;"></div>
+  </div>
+
+  <div class="details">
+    
+    <div class="meta" style="clear: right;">
+      <div class="file">example/step_definitions/example.step.rb:61</div>
+    </div>
+    
+    <!-- Comments -->
+    <div>
+      
+    </div>
+    
+
+    <!-- Source Code -->
+    <div class="method_details_list">
+      <table class="source_code">
+        <tr>
+          <td>
+            <pre class="lines">61
+62
+63</pre>
+          </td>
+          <td>
+            <pre class="code"><span class='const'>And</span> <span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>^edits their the (biography) to state:$</span><span class='regexp_end'>/</span></span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_section'>section</span><span class='comma'>,</span><span class='id identifier rubyid_text'>text</span><span class='op'>|</span>
+  <span class='id identifier rubyid_pending'>pending</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>text_field not present for </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_section'>section</span><span class='embexpr_end'>}</span><span class='tstring_content'> </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_bio'>bio</span><span class='embexpr_end'>}</span><span class='tstring_content'> for this release</span><span class='tstring_end'>&quot;</span></span>
+<span class='kw'>end</span></pre>
+          </td>
+        </tr>
+      </table>
+    </div>
+
+    <!-- Matching Step Instances -->
+    
+    <div class="steps">
+      
+      <div class="undefined">No steps were found to match this step definition.</div>
+      
+    </div>
+    
+  </div>
+
+  <div style="margin: 30px 20px; border-top: 1px dotted #AAA;"></div>
+
+</div>
+
+
+
+<div class="transformer stepdefinition
+                        nodefinitions
+                        pending">
+  <a name="step_definition6-stepdefinition"></a>
+  <div class="title">
+    <span class="pre">Then</span>
+    <span class="name">/^I expect the customer to be shown the logout page$/</span>
+    <div style="float: right;">
+      <a href="http://rubular.com/?regex=%2F%5EI+expect+the+customer+to+be+shown+the+logout+page%24%2F" target="_blank">Rubular</a>
+      | PENDING
+      | UNUSED
+    </div>
+    <div style="clear: both;"></div>
+  </div>
+
+  <div class="details">
+    
+    <div class="meta" style="clear: right;">
+      <div class="file">example/step_definitions/example.step.rb:49</div>
+    </div>
+    
+    <!-- Comments -->
+    <div>
+      
+    </div>
+    
+
+    <!-- Source Code -->
+    <div class="method_details_list">
+      <table class="source_code">
+        <tr>
+          <td>
+            <pre class="lines">49
+50
+51</pre>
+          </td>
+          <td>
+            <pre class="code"><span class='const'>Then</span> <span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>^I expect the customer to be shown the logout page$</span><span class='regexp_end'>/</span></span> <span class='kw'>do</span> 
+  <span class='id identifier rubyid_pending'>pending</span>
+<span class='kw'>end</span></pre>
+          </td>
+        </tr>
+      </table>
+    </div>
+
+    <!-- Matching Step Instances -->
+    
+    <div class="steps">
+      
+      <div class="undefined">No steps were found to match this step definition.</div>
+      
+    </div>
+    
+  </div>
+
+  <div style="margin: 30px 20px; border-top: 1px dotted #AAA;"></div>
+
+</div>
+
+
+
+<div class="transformer stepdefinition
+                        nodefinitions
+                        pending">
+  <a name="step_definition5-stepdefinition"></a>
+  <div class="title">
+    <span class="pre">When</span>
+    <span class="name">/^the customer logs out$/</span>
+    <div style="float: right;">
+      <a href="http://rubular.com/?regex=%2F%5Ethe+customer+logs+out%24%2F" target="_blank">Rubular</a>
+      | PENDING
+      | UNUSED
+    </div>
+    <div style="clear: both;"></div>
+  </div>
+
+  <div class="details">
+    
+    <div class="meta" style="clear: right;">
+      <div class="file">example/step_definitions/example.step.rb:45</div>
+    </div>
+    
+    <!-- Comments -->
+    <div>
+      
+    </div>
+    
+
+    <!-- Source Code -->
+    <div class="method_details_list">
+      <table class="source_code">
+        <tr>
+          <td>
+            <pre class="lines">45
+46
+47</pre>
+          </td>
+          <td>
+            <pre class="code"><span class='const'>When</span> <span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>^the customer logs out$</span><span class='regexp_end'>/</span></span> <span class='kw'>do</span>
+  <span class='id identifier rubyid_pending'>pending</span>
+<span class='kw'>end</span></pre>
+          </td>
+        </tr>
+      </table>
+    </div>
+
+    <!-- Matching Step Instances -->
+    
+    <div class="steps">
+      
+      <div class="undefined">No steps were found to match this step definition.</div>
+      
+    </div>
+    
+  </div>
+
+  <div style="margin: 30px 20px; border-top: 1px dotted #AAA;"></div>
+
+</div>
+
+
+
+<div class="transformer stepdefinition
+                        nodefinitions
+                        pending">
+  <a name="step_definition4-stepdefinition"></a>
+  <div class="title">
+    <span class="pre">Then</span>
+    <span class="name">/^I expect them to have logged in (successfully|miserably)$/</span>
+    <div style="float: right;">
+      <a href="http://rubular.com/?regex=%2F%5EI+expect+them+to+have+logged+in+%28successfully%7Cmiserably%29%24%2F" target="_blank">Rubular</a>
+      | PENDING
+      | UNUSED
+    </div>
+    <div style="clear: both;"></div>
+  </div>
+
+  <div class="details">
+    
+    <div class="meta" style="clear: right;">
+      <div class="file">example/step_definitions/example.step.rb:41</div>
+    </div>
+    
+    <!-- Comments -->
+    <div>
+      
+    </div>
+    
+
+    <!-- Source Code -->
+    <div class="method_details_list">
+      <table class="source_code">
+        <tr>
+          <td>
+            <pre class="lines">41
+42
+43</pre>
+          </td>
+          <td>
+            <pre class="code"><span class='const'>Then</span> <span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>^I expect them to have logged in (successfully|miserably)$</span><span class='regexp_end'>/</span></span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_success'>success</span><span class='op'>|</span>
+  <span class='id identifier rubyid_pending'>pending</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Validation that the customer has logged in </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_success'>success</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
+<span class='kw'>end</span></pre>
+          </td>
+        </tr>
+      </table>
+    </div>
+
+    <!-- Matching Step Instances -->
+    
+    <div class="steps">
+      
+      <div class="undefined">No steps were found to match this step definition.</div>
+      
+    </div>
+    
+  </div>
+
+  <div style="margin: 30px 20px; border-top: 1px dotted #AAA;"></div>
+
+</div>
+
+
+
+<div class="transformer stepdefinition
+                        nodefinitions
+                        pending">
+  <a name="step_definition3-stepdefinition"></a>
+  <div class="title">
+    <span class="pre">When</span>
+    <span class="name">/^a customer logs in as username '([^']+)' with password '([^']+)'$/</span>
+    <div style="float: right;">
+      <a href="http://rubular.com/?regex=%2F%5Ea+customer+logs+in+as+username+%27%28%5B%5E%27%5D%2B%29%27+with+password+%27%28%5B%5E%27%5D%2B%29%27%24%2F" target="_blank">Rubular</a>
+      | PENDING
+      | UNUSED
+    </div>
+    <div style="clear: both;"></div>
+  </div>
+
+  <div class="details">
+    
+    <div class="meta" style="clear: right;">
+      <div class="file">example/step_definitions/example.step.rb:36</div>
+    </div>
+    
+    <!-- Comments -->
+    <div>
+      
+    </div>
+    
+
+    <!-- Source Code -->
+    <div class="method_details_list">
+      <table class="source_code">
+        <tr>
+          <td>
+            <pre class="lines">36
+37
+38
+39</pre>
+          </td>
+          <td>
+            <pre class="code"><span class='const'>When</span> <span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>^a customer logs in as username &#39;([^&#39;]+)&#39; with password &#39;([^&#39;]+)&#39;$</span><span class='regexp_end'>/</span></span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_username'>username</span><span class='comma'>,</span><span class='id identifier rubyid_password'>password</span><span class='op'>|</span>
+  <span class='const'>Given</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>that the customer is a valid customer</span><span class='tstring_end'>&quot;</span></span>
+  <span class='id identifier rubyid_pending'>pending</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Customer logs in with </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_username'>username</span><span class='embexpr_end'>}</span><span class='tstring_content'> and </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_password'>password</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
+<span class='kw'>end</span></pre>
+          </td>
+        </tr>
+      </table>
+    </div>
+
+    <!-- Matching Step Instances -->
+    
+    <div class="steps">
+      
+      <div class="undefined">No steps were found to match this step definition.</div>
+      
+    </div>
+    
+  </div>
+
+  <div style="margin: 30px 20px; border-top: 1px dotted #AAA;"></div>
+
+</div>
+
+
+
+<div class="transformer stepdefinition
+                        nodefinitions
+                        pending">
+  <a name="step_definition2-stepdefinition"></a>
+  <div class="title">
+    <span class="pre">Given</span>
+    <span class="name">/^that ((?:(?:an?|the|(?:first|second|third)) customer|teddy bear)) is a valid customer$/</span>
+    <div style="float: right;">
+      <a href="http://rubular.com/?regex=%2F%5Ethat+%28%28%3F%3A%28%3F%3Aan%3F%7Cthe%7C%28%3F%3Afirst%7Csecond%7Cthird%29%29+customer%7Cteddy+bear%29%29+is+a+valid+customer%24%2F" target="_blank">Rubular</a>
+      | PENDING
+      | UNUSED
+    </div>
+    <div style="clear: both;"></div>
+  </div>
+
+  <div class="details">
+    
+    <div class="meta" style="clear: right;">
+      <div class="file">example/step_definitions/example.step.rb:29</div>
+    </div>
+    
+    <!-- Comments -->
+    <div>
+      
+    </div>
+    
+
+    <!-- Source Code -->
+    <div class="method_details_list">
+      <table class="source_code">
+        <tr>
+          <td>
+            <pre class="lines">29
+30
+31</pre>
+          </td>
+          <td>
+            <pre class="code"><span class='const'>Given</span> <span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>^that (</span><span class='embexpr_beg'>#{</span><span class='const'>CUSTOMER</span><span class='embexpr_end'>}</span><span class='tstring_content'>) is a valid customer$</span><span class='regexp_end'>/</span></span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_customer'>customer</span><span class='op'>|</span>
+  <span class='id identifier rubyid_pending'>pending</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Customer </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_customer'>customer</span><span class='embexpr_end'>}</span><span class='tstring_content'> validation</span><span class='tstring_end'>&quot;</span></span>  
+<span class='kw'>end</span></pre>
+          </td>
+        </tr>
+      </table>
+    </div>
+
+    <!-- Matching Step Instances -->
+    
+    <div class="steps">
+      
+      <div class="undefined">No steps were found to match this step definition.</div>
+      
+    </div>
+    
+  </div>
+
+  <div style="margin: 30px 20px; border-top: 1px dotted #AAA;"></div>
+
+</div>
+
+
+
+<div class="transformer stepdefinition
+                        nodefinitions
+                        pending">
+  <a name="step_definition8-stepdefinition"></a>
+  <div class="title">
+    <span class="pre">And</span>
+    <span class="name">/^the customer has the following details:$/</span>
+    <div style="float: right;">
+      <a href="http://rubular.com/?regex=%2F%5Ethe+customer+has+the+following+details%3A%24%2F" target="_blank">Rubular</a>
+      | PENDING
+      | UNUSED
+    </div>
+    <div style="clear: both;"></div>
+  </div>
+
+  <div class="details">
+    
+    <div class="meta" style="clear: right;">
+      <div class="file">example/step_definitions/example.step.rb:57</div>
+    </div>
+    
+    <!-- Comments -->
+    <div>
+      
+    </div>
+    
+
+    <!-- Source Code -->
+    <div class="method_details_list">
+      <table class="source_code">
+        <tr>
+          <td>
+            <pre class="lines">57
+58
+59</pre>
+          </td>
+          <td>
+            <pre class="code"><span class='const'>And</span> <span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>^the customer has the following details:$</span><span class='regexp_end'>/</span></span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_table'>table</span><span class='op'>|</span>
+  <span class='id identifier rubyid_pending'>pending</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Table of data </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_table'>table</span><span class='period'>.</span><span class='id identifier rubyid_hashes'>hashes</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
+<span class='kw'>end</span></pre>
+          </td>
+        </tr>
+      </table>
+    </div>
+
+    <!-- Matching Step Instances -->
+    
+    <div class="steps">
+      
+      <div class="undefined">No steps were found to match this step definition.</div>
+      
+    </div>
+    
+  </div>
+
+  <div style="margin: 30px 20px; border-top: 1px dotted #AAA;"></div>
+
+</div>
+
+<div class="title">
+  
+     <a class="control" id="steptransform">[Collapse All]</a>
+     <div style="clear: right;"></div>
+   
+ 
+  
+    <a name="step_transforms">
+  
+  <div class="name">Step Transforms</div>
+</div>
+
+
+
+<div class="transformer steptransform
+                        
+                        ">
+  <a name="step_transform1-steptransform"></a>
+  <div class="title">
+    <span class="pre">Transform</span>
+    <span class="name">/^(?:first|second|third)$/</span>
+    <div style="float: right;">
+      <a href="http://rubular.com/?regex=%2F%5E%28%3F%3Afirst%7Csecond%7Cthird%29%24%2F" target="_blank">Rubular</a>
+      
+      
+    </div>
+    <div style="clear: both;"></div>
+  </div>
+
+  <div class="details">
+    
+    <div class="meta" style="clear: right;">
+      <div class="file">example/step_definitions/first.step.rb:1</div>
+    </div>
+    
+    <!-- Comments -->
+    <div>
+      
+    </div>
+    
+
+    <!-- Source Code -->
+    <div class="method_details_list">
+      <table class="source_code">
+        <tr>
+          <td>
+            <pre class="lines">1
+2
+3</pre>
+          </td>
+          <td>
+            <pre class="code"><span class='const'>Transform</span> <span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>^</span><span class='embexpr_beg'>#{</span><span class='const'>ORDER</span><span class='embexpr_end'>}</span><span class='tstring_content'>$</span><span class='regexp_end'>/</span></span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_order'>order</span><span class='op'>|</span>
+  <span class='id identifier rubyid_order'>order</span>
+<span class='kw'>end</span></pre>
+          </td>
+        </tr>
+      </table>
+    </div>
+
+    <!-- Matching Step Instances -->
+    
+      <div class='showSteps'>
+        [<a href='#' class='toggleSteps' alt="13 steps">Hide 13 steps</a>]
+      </div>
+    
+    <div class="steps">
+      
+      
+      <div class="step odd">
+        <div>
+          <span class="predicate">
+            Given 
+          </span>
+          <span class="defined">
+            this <a href='#step_transform1-steptransform'>first</a> step
+          </span>
+        </div>
+        
+        <a class="definition" style="clear: right;" href="example/scenario.html">example/scenario.feature:15</a>
+        
+        <a class="definition" style="clear: right;" href="example/scenario.html">example/scenario.feature:53</a>
+        
+        <a class="definition" style="clear: right;" href="example/transform.html">example/transform.feature:12</a>
+        
+        <a class="definition" style="clear: right;" href="example/child_feature/child.html">example/child_feature/child.feature:9</a>
+        
+        <a class="definition" style="clear: right;" href="example/child_feature/grandchild_feature/grandchild.html">example/child_feature/grandchild_feature/grandchild.feature:10</a>
+        
+        <div style="clear: both;"></div>
+      </div>
+      
+      <div class="step even">
+        <div>
+          <span class="predicate">
+            When 
+          </span>
+          <span class="defined">
+            this <a href='#step_transform1-steptransform'>second</a> step
+          </span>
+        </div>
+        
+        <a class="definition" style="clear: right;" href="example/scenario.html">example/scenario.feature:16</a>
+        
+        <a class="definition" style="clear: right;" href="example/scenario.html">example/scenario.feature:56</a>
+        
+        <a class="definition" style="clear: right;" href="example/child_feature/child.html">example/child_feature/child.feature:10</a>
+        
+        <a class="definition" style="clear: right;" href="example/child_feature/grandchild_feature/grandchild.html">example/child_feature/grandchild_feature/grandchild.feature:11</a>
+        
+        <div style="clear: both;"></div>
+      </div>
+      
+      <div class="step odd">
+        <div>
+          <span class="predicate">
+            Then 
+          </span>
+          <span class="defined">
+            this <a href='#step_transform1-steptransform'>third</a> step
+          </span>
+        </div>
+        
+        <a class="definition" style="clear: right;" href="example/scenario.html">example/scenario.feature:17</a>
+        
+        <a class="definition" style="clear: right;" href="example/scenario.html">example/scenario.feature:58</a>
+        
+        <a class="definition" style="clear: right;" href="example/child_feature/child.html">example/child_feature/child.feature:11</a>
+        
+        <a class="definition" style="clear: right;" href="example/child_feature/grandchild_feature/grandchild.html">example/child_feature/grandchild_feature/grandchild.feature:12</a>
+        
+        <div style="clear: both;"></div>
+      </div>
+      
+      
+    </div>
+    
+  </div>
+
+  <div style="margin: 30px 20px; border-top: 1px dotted #AAA;"></div>
+
+</div>
+
+
+
+<div class="transformer steptransform
+                        
+                        ">
+  <a name="step_transform2-steptransform"></a>
+  <div class="title">
+    <span class="pre">Transform</span>
+    <span class="name">/^background$/</span>
+    <div style="float: right;">
+      <a href="http://rubular.com/?regex=%2F%5Ebackground%24%2F" target="_blank">Rubular</a>
+      
+      
+    </div>
+    <div style="clear: both;"></div>
+  </div>
+
+  <div class="details">
+    
+    <div class="meta" style="clear: right;">
+      <div class="file">example/step_definitions/first.step.rb:5</div>
+    </div>
+    
+    <!-- Comments -->
+    <div>
+      
+    </div>
+    
+
+    <!-- Source Code -->
+    <div class="method_details_list">
+      <table class="source_code">
+        <tr>
+          <td>
+            <pre class="lines">5
+6
+7</pre>
+          </td>
+          <td>
+            <pre class="code"><span class='const'>Transform</span> <span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>^background$</span><span class='regexp_end'>/</span></span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_background'>background</span><span class='op'>|</span>
+  <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>background</span><span class='tstring_end'>&quot;</span></span>
+<span class='kw'>end</span></pre>
+          </td>
+        </tr>
+      </table>
+    </div>
+
+    <!-- Matching Step Instances -->
+    
+      <div class='showSteps'>
+        [<a href='#' class='toggleSteps' alt="3 steps">Hide 3 steps</a>]
+      </div>
+    
+    <div class="steps">
+      
+      
+      <div class="step odd">
+        <div>
+          <span class="predicate">
+            Given 
+          </span>
+          <span class="defined">
+            this <a href='#step_transform2-steptransform'>background</a> step
+          </span>
+        </div>
+        
+        <a class="definition" style="clear: right;" href="example/scenario.html">example/scenario.feature:8</a>
+        
+        <a class="definition" style="clear: right;" href="example/child_feature/child.html">example/child_feature/child.feature:6</a>
+        
+        <a class="definition" style="clear: right;" href="example/child_feature/grandchild_feature/grandchild.html">example/child_feature/grandchild_feature/grandchild.feature:6</a>
+        
+        <div style="clear: both;"></div>
+      </div>
+      
+      
+    </div>
+    
+  </div>
+
+  <div style="margin: 30px 20px; border-top: 1px dotted #AAA;"></div>
+
+</div>
+
+
+
+<div class="transformer steptransform
+                        
+                        ">
+  <a name="step_transform3-steptransform"></a>
+  <div class="title">
+    <span class="pre">Transform</span>
+    <span class="name">/^scenario$/</span>
+    <div style="float: right;">
+      <a href="http://rubular.com/?regex=%2F%5Escenario%24%2F" target="_blank">Rubular</a>
+      
+      
+    </div>
+    <div style="clear: both;"></div>
+  </div>
+
+  <div class="details">
+    
+    <div class="meta" style="clear: right;">
+      <div class="file">example/step_definitions/first.step.rb:12</div>
+    </div>
+    
+    <!-- Comments -->
+    <div>
+      <div class="docstring">
+  <div class="discussion">
+    
+<p>This step transform converts “scenario” to “scenario”</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div>
+    </div>
+    
+
+    <!-- Source Code -->
+    <div class="method_details_list">
+      <table class="source_code">
+        <tr>
+          <td>
+            <pre class="lines">12
+13
+14</pre>
+          </td>
+          <td>
+            <pre class="code"><span class='const'>Transform</span> <span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>^scenario$</span><span class='regexp_end'>/</span></span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_scenario'>scenario</span><span class='op'>|</span>
+  <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>scenario</span><span class='tstring_end'>&quot;</span></span>
+<span class='kw'>end</span></pre>
+          </td>
+        </tr>
+      </table>
+    </div>
+
+    <!-- Matching Step Instances -->
+    
+      <div class='showSteps'>
+        [<a href='#' class='toggleSteps' alt="1 steps">Hide 1 steps</a>]
+      </div>
+    
+    <div class="steps">
+      
+      
+      <div class="step odd">
+        <div>
+          <span class="predicate">
+            Given 
+          </span>
+          <span class="defined">
+            this <a href='#step_transform3-steptransform'>scenario</a> step
+          </span>
+        </div>
+        
+        <a class="definition" style="clear: right;" href="example/transform.html">example/transform.feature:7</a>
+        
+        <div style="clear: both;"></div>
+      </div>
+      
+      
+    </div>
+    
+  </div>
+
+  <div style="margin: 30px 20px; border-top: 1px dotted #AAA;"></div>
+
+</div>
+
+
+
+<div class="transformer steptransform
+                        nodefinitions
+                        ">
+  <a name="step_transform5-steptransform"></a>
+  <div class="title">
+    <span class="pre">Transform</span>
+    <span class="name">/^an? customer$/</span>
+    <div style="float: right;">
+      <a href="http://rubular.com/?regex=%2F%5Ean%3F+customer%24%2F" target="_blank">Rubular</a>
+      
+      | UNUSED
+    </div>
+    <div style="clear: both;"></div>
+  </div>
+
+  <div class="details">
+    
+    <div class="meta" style="clear: right;">
+      <div class="file">example/step_definitions/example.step.rb:6</div>
+    </div>
+    
+    <!-- Comments -->
+    <div>
+      
+    </div>
+    
+
+    <!-- Source Code -->
+    <div class="method_details_list">
+      <table class="source_code">
+        <tr>
+          <td>
+            <pre class="lines">6
+7
+8</pre>
+          </td>
+          <td>
+            <pre class="code"><span class='const'>Transform</span> <span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>^an? customer$</span><span class='regexp_end'>/</span></span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_customer'>customer</span><span class='op'>|</span>
+  <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>a transformed customer</span><span class='tstring_end'>&quot;</span></span>
+<span class='kw'>end</span></pre>
+          </td>
+        </tr>
+      </table>
+    </div>
+
+    <!-- Matching Step Instances -->
+    
+    <div class="steps">
+      
+      <div class="undefined">No steps were found to match this step transform.</div>
+      
+    </div>
+    
+  </div>
+
+  <div style="margin: 30px 20px; border-top: 1px dotted #AAA;"></div>
+
+</div>
+
+
+
+<div class="transformer steptransform
+                        nodefinitions
+                        ">
+  <a name="step_transform4-steptransform"></a>
+  <div class="title">
+    <span class="pre">Transform</span>
+    <span class="name">/^(?:(?:an?|the|(?:first|second|third)) customer|teddy bear)$/</span>
+    <div style="float: right;">
+      <a href="http://rubular.com/?regex=%2F%5E%28%3F%3A%28%3F%3Aan%3F%7Cthe%7C%28%3F%3Afirst%7Csecond%7Cthird%29%29+customer%7Cteddy+bear%29%24%2F" target="_blank">Rubular</a>
+      
+      | UNUSED
+    </div>
+    <div style="clear: both;"></div>
+  </div>
+
+  <div class="details">
+    
+    <div class="meta" style="clear: right;">
+      <div class="file">example/step_definitions/example.step.rb:2</div>
+    </div>
+    
+    <!-- Comments -->
+    <div>
+      
+    </div>
+    
+
+    <!-- Source Code -->
+    <div class="method_details_list">
+      <table class="source_code">
+        <tr>
+          <td>
+            <pre class="lines">2
+3
+4</pre>
+          </td>
+          <td>
+            <pre class="code"><span class='const'>Transform</span> <span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>^</span><span class='embexpr_beg'>#{</span><span class='const'>CUSTOMER</span><span class='embexpr_end'>}</span><span class='tstring_content'>$</span><span class='regexp_end'>/</span></span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_customer'>customer</span><span class='op'>|</span>
+  <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>a transformed customer</span><span class='tstring_end'>&quot;</span></span>
+<span class='kw'>end</span></pre>
+          </td>
+        </tr>
+      </table>
+    </div>
+
+    <!-- Matching Step Instances -->
+    
+    <div class="steps">
+      
+      <div class="undefined">No steps were found to match this step transform.</div>
+      
+    </div>
+    
+  </div>
+
+  <div style="margin: 30px 20px; border-top: 1px dotted #AAA;"></div>
+
+</div>
+
+
+
+<div class="transformer steptransform
+                        nodefinitions
+                        ">
+  <a name="step_transform6-steptransform"></a>
+  <div class="title">
+    <span class="pre">Transform</span>
+    <span class="name">/^the customer$/</span>
+    <div style="float: right;">
+      <a href="http://rubular.com/?regex=%2F%5Ethe+customer%24%2F" target="_blank">Rubular</a>
+      
+      | UNUSED
+    </div>
+    <div style="clear: both;"></div>
+  </div>
+
+  <div class="details">
+    
+    <div class="meta" style="clear: right;">
+      <div class="file">example/step_definitions/example.step.rb:10</div>
+    </div>
+    
+    <!-- Comments -->
+    <div>
+      
+    </div>
+    
+
+    <!-- Source Code -->
+    <div class="method_details_list">
+      <table class="source_code">
+        <tr>
+          <td>
+            <pre class="lines">10
+11
+12</pre>
+          </td>
+          <td>
+            <pre class="code"><span class='const'>Transform</span> <span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>^the customer$</span><span class='regexp_end'>/</span></span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_customer'>customer</span><span class='op'>|</span>
+  <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>the transformed customer</span><span class='tstring_end'>&quot;</span></span>
+<span class='kw'>end</span></pre>
+          </td>
+        </tr>
+      </table>
+    </div>
+
+    <!-- Matching Step Instances -->
+    
+    <div class="steps">
+      
+      <div class="undefined">No steps were found to match this step transform.</div>
+      
+    </div>
+    
+  </div>
+
+  <div style="margin: 30px 20px; border-top: 1px dotted #AAA;"></div>
+
+</div>
+
+
+
+<div class="transformer steptransform
+                        nodefinitions
+                        ">
+  <a name="step_transform7-steptransform"></a>
+  <div class="title">
+    <span class="pre">Transform</span>
+    <span class="name">/^((?:first|second|third)) customer$/</span>
+    <div style="float: right;">
+      <a href="http://rubular.com/?regex=%2F%5E%28%28%3F%3Afirst%7Csecond%7Cthird%29%29+customer%24%2F" target="_blank">Rubular</a>
+      
+      | UNUSED
+    </div>
+    <div style="clear: both;"></div>
+  </div>
+
+  <div class="details">
+    
+    <div class="meta" style="clear: right;">
+      <div class="file">example/step_definitions/example.step.rb:14</div>
+    </div>
+    
+    <!-- Comments -->
+    <div>
+      
+    </div>
+    
+
+    <!-- Source Code -->
+    <div class="method_details_list">
+      <table class="source_code">
+        <tr>
+          <td>
+            <pre class="lines">14
+15
+16</pre>
+          </td>
+          <td>
+            <pre class="code"><span class='const'>Transform</span> <span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>^(</span><span class='embexpr_beg'>#{</span><span class='const'>ORDER</span><span class='embexpr_end'>}</span><span class='tstring_content'>) customer$</span><span class='regexp_end'>/</span></span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_order'>order</span><span class='op'>|</span>
+  <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_order'>order</span><span class='embexpr_end'>}</span><span class='tstring_content'> customer</span><span class='tstring_end'>&quot;</span></span>
+<span class='kw'>end</span></pre>
+          </td>
+        </tr>
+      </table>
+    </div>
+
+    <!-- Matching Step Instances -->
+    
+    <div class="steps">
+      
+      <div class="undefined">No steps were found to match this step transform.</div>
+      
+    </div>
+    
+  </div>
+
+  <div style="margin: 30px 20px; border-top: 1px dotted #AAA;"></div>
+
+</div>
+
+
+
+<div class="transformer steptransform
+                        nodefinitions
+                        ">
+  <a name="step_transform8-steptransform"></a>
+  <div class="title">
+    <span class="pre">Transform</span>
+    <span class="name">/^teddy bear$/</span>
+    <div style="float: right;">
+      <a href="http://rubular.com/?regex=%2F%5Eteddy+bear%24%2F" target="_blank">Rubular</a>
+      
+      | UNUSED
+    </div>
+    <div style="clear: both;"></div>
+  </div>
+
+  <div class="details">
+    
+    <div class="meta" style="clear: right;">
+      <div class="file">example/step_definitions/example.step.rb:18</div>
+    </div>
+    
+    <!-- Comments -->
+    <div>
+      
+    </div>
+    
+
+    <!-- Source Code -->
+    <div class="method_details_list">
+      <table class="source_code">
+        <tr>
+          <td>
+            <pre class="lines">18
+19
+20</pre>
+          </td>
+          <td>
+            <pre class="code"><span class='const'>Transform</span> <span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>^</span><span class='embexpr_beg'>#{</span><span class='const'>TEDDY_BEAR</span><span class='embexpr_end'>}</span><span class='tstring_content'>$</span><span class='regexp_end'>/</span></span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_teddy'>teddy</span><span class='op'>|</span>
+  <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>the tranformed teddy bear</span><span class='tstring_end'>&quot;</span></span>
+<span class='kw'>end</span></pre>
+          </td>
+        </tr>
+      </table>
+    </div>
+
+    <!-- Matching Step Instances -->
+    
+    <div class="steps">
+      
+      <div class="undefined">No steps were found to match this step transform.</div>
+      
+    </div>
+    
+  </div>
+
+  <div style="margin: 30px 20px; border-top: 1px dotted #AAA;"></div>
+
+</div>
+
+
+
+<div class="transformer steptransform
+                        nodefinitions
+                        ">
+  <a name="step_transform9-steptransform"></a>
+  <div class="title">
+    <span class="pre">Transform</span>
+    <span class="name">/^((?:\d{1,2}[\/-]){2}(?:\d\d){1,2})?\s*(\w{3})?\s*(\d{1,2}:\d{2}\s*(?:AM|PM)?)$/</span>
+    <div style="float: right;">
+      <a href="http://rubular.com/?regex=%2F%5E%28%28%3F%3A%5Cd%7B1%2C2%7D%5B%5C%2F-%5D%29%7B2%7D%28%3F%3A%5Cd%5Cd%29%7B1%2C2%7D%29%3F%5Cs%2A%28%5Cw%7B3%7D%29%3F%5Cs%2A%28%5Cd%7B1%2C2%7D%3A%5Cd%7B2%7D%5Cs%2A%28%3F%3AAM%7CPM%29%3F%29%24%2F" target="_blank">Rubular</a>
+      
+      | UNUSED
+    </div>
+    <div style="clear: both;"></div>
+  </div>
+
+  <div class="details">
+    
+    <div class="meta" style="clear: right;">
+      <div class="file">example/step_definitions/example.step.rb:25</div>
+    </div>
+    
+    <!-- Comments -->
+    <div>
+      <div class="docstring">
+  <div class="discussion">
+    
+<p>This is a complicated Transform with a comment</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div>
+    </div>
+    
+
+    <!-- Source Code -->
+    <div class="method_details_list">
+      <table class="source_code">
+        <tr>
+          <td>
+            <pre class="lines">25
+26
+27</pre>
+          </td>
+          <td>
+            <pre class="code"><span class='const'>Transform</span> <span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>^((?:\d{1,2}[\/-]){2}(?:\d\d){1,2})?\s*(\w{3})?\s*(\d{1,2}:\d{2}\s*(?:AM|PM)?)$</span><span class='regexp_end'>/</span></span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_date'>date</span><span class='comma'>,</span><span class='id identifier rubyid_day'>day</span><span class='comma'>,</span><span class='id identifier rubyid_time'>time</span><span class='op'>|</span>
+  <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_date'>date</span><span class='embexpr_end'>}</span><span class='tstring_content'> </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_day'>day</span><span class='embexpr_end'>}</span><span class='tstring_content'> </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_time'>time</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
+<span class='kw'>end</span></pre>
+          </td>
+        </tr>
+      </table>
+    </div>
+
+    <!-- Matching Step Instances -->
+    
+    <div class="steps">
+      
+      <div class="undefined">No steps were found to match this step transform.</div>
+      
+    </div>
+    
+  </div>
+
+  <div style="margin: 30px 20px; border-top: 1px dotted #AAA;"></div>
+
+</div>
+
+<div class="title">
+  
+ 
+  
+    <a name="undefined_steps">
+  
+  <div class="name">Undefined Steps</div>
+</div>
+
+<div class="transformer">
+  <div class="steps">
+  
+    
+    <div class="step odd">
+      <div>
+        <span class="predicate">When </span>
+        <span class="undefined">
+          the customer has purchased the product
+        </span>
+      </div>
+      
+        <a class="definition" style="clear: right;" href="example/scenario_outline.html">
+          example/scenario_outline.feature:9
+        </a>
+      
+        <a class="definition" style="clear: right;" href="example/scenario_outline.html">
+          example/scenario_outline.feature:9
+        </a>
+      
+        <a class="definition" style="clear: right;" href="example/scenario_outline.html">
+          example/scenario_outline.feature:9
+        </a>
+      
+        <a class="definition" style="clear: right;" href="example/scenario_outline.html">
+          example/scenario_outline.feature:85
+        </a>
+      
+        <a class="definition" style="clear: right;" href="example/scenario_outline.html">
+          example/scenario_outline.feature:85
+        </a>
+      
+        <a class="definition" style="clear: right;" href="example/scenario_outline_multi.html">
+          example/scenario_outline_multi.feature:6
+        </a>
+      
+        <a class="definition" style="clear: right;" href="example/scenario_outline_multi.html">
+          example/scenario_outline_multi.feature:6
+        </a>
+      
+      <div style="clear: both;"></div>
+    </div>
+    
+    <div class="step even">
+      <div>
+        <span class="predicate">When </span>
+        <span class="undefined">
+          I click on an example row
+        </span>
+      </div>
+      
+        <a class="definition" style="clear: right;" href="example/scenario_outline.html">
+          example/scenario_outline.feature:24
+        </a>
+      
+        <a class="definition" style="clear: right;" href="example/scenario_outline.html">
+          example/scenario_outline.feature:24
+        </a>
+      
+        <a class="definition" style="clear: right;" href="example/scenario_outline.html">
+          example/scenario_outline.feature:38
+        </a>
+      
+        <a class="definition" style="clear: right;" href="example/scenario_outline.html">
+          example/scenario_outline.feature:38
+        </a>
+      
+        <a class="definition" style="clear: right;" href="example/scenario_outline.html">
+          example/scenario_outline.feature:52
+        </a>
+      
+        <a class="definition" style="clear: right;" href="example/scenario_outline.html">
+          example/scenario_outline.feature:52
+        </a>
+      
+      <div style="clear: both;"></div>
+    </div>
+    
+    <div class="step odd">
+      <div>
+        <span class="predicate">Given </span>
+        <span class="undefined">
+          that Customer A is a valid customer
+        </span>
+      </div>
+      
+        <a class="definition" style="clear: right;" href="example/scenario_outline.html">
+          example/scenario_outline.feature:7
+        </a>
+      
+        <a class="definition" style="clear: right;" href="example/scenario_outline.html">
+          example/scenario_outline.feature:7
+        </a>
+      
+        <a class="definition" style="clear: right;" href="example/scenario_outline.html">
+          example/scenario_outline.feature:7
+        </a>
+      
+        <a class="definition" style="clear: right;" href="example/scenario_outline.html">
+          example/scenario_outline.feature:83
+        </a>
+      
+        <a class="definition" style="clear: right;" href="example/scenario_outline_multi.html">
+          example/scenario_outline_multi.feature:4
+        </a>
+      
+      <div style="clear: both;"></div>
+    </div>
+    
+    <div class="step even">
+      <div>
+        <span class="predicate">Given </span>
+        <span class="undefined">
+          the following table:
+        </span>
+      </div>
+      
+        <a class="definition" style="clear: right;" href="example/scenario.html">
+          example/scenario.feature:33
+        </a>
+      
+        <a class="definition" style="clear: right;" href="example/scenario_outline.html">
+          example/scenario_outline.feature:35
+        </a>
+      
+        <a class="definition" style="clear: right;" href="example/scenario_outline.html">
+          example/scenario_outline.feature:35
+        </a>
+      
+        <a class="definition" style="clear: right;" href="example/scenario_outline.html">
+          example/scenario_outline.feature:49
+        </a>
+      
+        <a class="definition" style="clear: right;" href="example/scenario_outline.html">
+          example/scenario_outline.feature:49
+        </a>
+      
+      <div style="clear: both;"></div>
+    </div>
+    
+    <div class="step odd">
+      <div>
+        <span class="predicate">And </span>
+        <span class="undefined">
+          that the product, named &#39;Product A&#39;, is a valid product
+        </span>
+      </div>
+      
+        <a class="definition" style="clear: right;" href="example/scenario_outline.html">
+          example/scenario_outline.feature:8
+        </a>
+      
+        <a class="definition" style="clear: right;" href="example/scenario_outline.html">
+          example/scenario_outline.feature:84
+        </a>
+      
+        <a class="definition" style="clear: right;" href="example/scenario_outline.html">
+          example/scenario_outline.feature:84
+        </a>
+      
+        <a class="definition" style="clear: right;" href="example/scenario_outline_multi.html">
+          example/scenario_outline_multi.feature:5
+        </a>
+      
+        <a class="definition" style="clear: right;" href="example/scenario_outline_multi.html">
+          example/scenario_outline_multi.feature:5
+        </a>
+      
+      <div style="clear: both;"></div>
+    </div>
+    
+    <div class="step even">
+      <div>
+        <span class="predicate">Given </span>
+        <span class="undefined">
+          the following text:
+        </span>
+      </div>
+      
+        <a class="definition" style="clear: right;" href="example/scenario.html">
+          example/scenario.feature:39
+        </a>
+      
+        <a class="definition" style="clear: right;" href="example/scenario_outline.html">
+          example/scenario_outline.feature:20
+        </a>
+      
+        <a class="definition" style="clear: right;" href="example/scenario_outline.html">
+          example/scenario_outline.feature:20
+        </a>
+      
+      <div style="clear: both;"></div>
+    </div>
+    
+    <div class="step odd">
+      <div>
+        <span class="predicate">Then </span>
+        <span class="undefined">
+          I expect toy to be replaced by the example name
+        </span>
+      </div>
+      
+        <a class="definition" style="clear: right;" href="example/scenario_outline.html">
+          example/scenario_outline.feature:39
+        </a>
+      
+        <a class="definition" style="clear: right;" href="example/scenario_outline.html">
+          example/scenario_outline.feature:53
+        </a>
+      
+      <div style="clear: both;"></div>
+    </div>
+    
+    <div class="step even">
+      <div>
+        <span class="predicate">Then </span>
+        <span class="undefined">
+          I expect game to be replaced by the example name
+        </span>
+      </div>
+      
+        <a class="definition" style="clear: right;" href="example/scenario_outline.html">
+          example/scenario_outline.feature:39
+        </a>
+      
+        <a class="definition" style="clear: right;" href="example/scenario_outline.html">
+          example/scenario_outline.feature:53
+        </a>
+      
+      <div style="clear: both;"></div>
+    </div>
+    
+    <div class="step odd">
+      <div>
+        <span class="predicate">Et </span>
+        <span class="undefined">
+          que je tape sur la touche &quot;+&quot;
+        </span>
+      </div>
+      
+        <a class="definition" style="clear: right;" href="example/french.html">
+          example/french.feature:10
+        </a>
+      
+        <a class="definition" style="clear: right;" href="example/french.html">
+          example/french.feature:10
+        </a>
+      
+      <div style="clear: both;"></div>
+    </div>
+    
+    <div class="step even">
+      <div>
+        <span class="predicate">Lorsque </span>
+        <span class="undefined">
+          je tape sur la touche &quot;=&quot;
+        </span>
+      </div>
+      
+        <a class="definition" style="clear: right;" href="example/french.html">
+          example/french.feature:12
+        </a>
+      
+        <a class="definition" style="clear: right;" href="example/french.html">
+          example/french.feature:12
+        </a>
+      
+      <div style="clear: both;"></div>
+    </div>
+    
+    <div class="step odd">
+      <div>
+        <span class="predicate">Then </span>
+        <span class="undefined">
+          I expect that the step, on the step transformer page, will link to the step transform
+        </span>
+      </div>
+      
+        <a class="definition" style="clear: right;" href="example/transform.html">
+          example/transform.feature:8
+        </a>
+      
+        <a class="definition" style="clear: right;" href="example/transform.html">
+          example/transform.feature:13
+        </a>
+      
+      <div style="clear: both;"></div>
+    </div>
+    
+    <div class="step even">
+      <div>
+        <span class="predicate">Et </span>
+        <span class="undefined">
+          que j&#39;entre 2 pour le premier nombre
+        </span>
+      </div>
+      
+        <a class="definition" style="clear: right;" href="example/french.html">
+          example/french.feature:9
+        </a>
+      
+        <a class="definition" style="clear: right;" href="example/french.html">
+          example/french.feature:9
+        </a>
+      
+      <div style="clear: both;"></div>
+    </div>
+    
+    <div class="step odd">
+      <div>
+        <span class="predicate">Soit </span>
+        <span class="undefined">
+          une calculatrice
+        </span>
+      </div>
+      
+        <a class="definition" style="clear: right;" href="example/french.html">
+          example/french.feature:8
+        </a>
+      
+        <a class="definition" style="clear: right;" href="example/french.html">
+          example/french.feature:8
+        </a>
+      
+      <div style="clear: both;"></div>
+    </div>
+    
+    <div class="step even">
+      <div>
+        <span class="predicate">Given </span>
+        <span class="undefined">
+          that Customer B is a valid customer
+        </span>
+      </div>
+      
+        <a class="definition" style="clear: right;" href="example/scenario_outline.html">
+          example/scenario_outline.feature:83
+        </a>
+      
+        <a class="definition" style="clear: right;" href="example/scenario_outline_multi.html">
+          example/scenario_outline_multi.feature:4
+        </a>
+      
+      <div style="clear: both;"></div>
+    </div>
+    
+    <div class="step odd">
+      <div>
+        <span class="predicate">And </span>
+        <span class="undefined">
+          that the product, named &#39;Product B&#39;, is a valid product
+        </span>
+      </div>
+      
+        <a class="definition" style="clear: right;" href="example/scenario_outline.html">
+          example/scenario_outline.feature:8
+        </a>
+      
+      <div style="clear: both;"></div>
+    </div>
+    
+    <div class="step even">
+      <div>
+        <span class="predicate">Alors </span>
+        <span class="undefined">
+          le résultat affiché doit être 5
+        </span>
+      </div>
+      
+        <a class="definition" style="clear: right;" href="example/french.html">
+          example/french.feature:13
+        </a>
+      
+      <div style="clear: both;"></div>
+    </div>
+    
+    <div class="step odd">
+      <div>
+        <span class="predicate">Et </span>
+        <span class="undefined">
+          que j&#39;entre 3 pour le second nombre
+        </span>
+      </div>
+      
+        <a class="definition" style="clear: right;" href="example/french.html">
+          example/french.feature:11
+        </a>
+      
+      <div style="clear: both;"></div>
+    </div>
+    
+    <div class="step even">
+      <div>
+        <span class="predicate">Then </span>
+        <span class="undefined">
+          I expect cow to be replaced by the example noun
+        </span>
+      </div>
+      
+        <a class="definition" style="clear: right;" href="example/scenario_outline.html">
+          example/scenario_outline.feature:25
+        </a>
+      
+      <div style="clear: both;"></div>
+    </div>
+    
+    <div class="step odd">
+      <div>
+        <span class="predicate">And </span>
+        <span class="undefined">
+          I expect moon to be replaced by the example place
+        </span>
+      </div>
+      
+        <a class="definition" style="clear: right;" href="example/scenario_outline.html">
+          example/scenario_outline.feature:26
+        </a>
+      
+      <div style="clear: both;"></div>
+    </div>
+    
+    <div class="step even">
+      <div>
+        <span class="predicate">Then </span>
+        <span class="undefined">
+          I expect horse to be replaced by the example noun
+        </span>
+      </div>
+      
+        <a class="definition" style="clear: right;" href="example/scenario_outline.html">
+          example/scenario_outline.feature:25
+        </a>
+      
+      <div style="clear: both;"></div>
+    </div>
+    
+    <div class="step odd">
+      <div>
+        <span class="predicate">And </span>
+        <span class="undefined">
+          I expect spoon to be replaced by the example place
+        </span>
+      </div>
+      
+        <a class="definition" style="clear: right;" href="example/scenario_outline.html">
+          example/scenario_outline.feature:26
+        </a>
+      
+      <div style="clear: both;"></div>
+    </div>
+    
+    <div class="step even">
+      <div>
+        <span class="predicate">Alors </span>
+        <span class="undefined">
+          le résultat affiché doit être 4
+        </span>
+      </div>
+      
+        <a class="definition" style="clear: right;" href="example/french.html">
+          example/french.feature:13
+        </a>
+      
+      <div style="clear: both;"></div>
+    </div>
+    
+    <div class="step odd">
+      <div>
+        <span class="predicate">And </span>
+        <span class="undefined">
+          I expect $99 to be replaced by the example price
+        </span>
+      </div>
+      
+        <a class="definition" style="clear: right;" href="example/scenario_outline.html">
+          example/scenario_outline.feature:40
+        </a>
+      
+      <div style="clear: both;"></div>
+    </div>
+    
+    <div class="step even">
+      <div>
+        <span class="predicate">Et </span>
+        <span class="undefined">
+          que j&#39;entre 2 pour le second nombre
+        </span>
+      </div>
+      
+        <a class="definition" style="clear: right;" href="example/french.html">
+          example/french.feature:11
+        </a>
+      
+      <div style="clear: both;"></div>
+    </div>
+    
+    <div class="step odd">
+      <div>
+        <span class="predicate">And </span>
+        <span class="undefined">
+          I expect $49 to be replaced by the example price
+        </span>
+      </div>
+      
+        <a class="definition" style="clear: right;" href="example/scenario_outline.html">
+          example/scenario_outline.feature:40
+        </a>
+      
+      <div style="clear: both;"></div>
+    </div>
+    
+    <div class="step even">
+      <div>
+        <span class="predicate">And </span>
+        <span class="undefined">
+          I expect 99 to be replaced by the example price
+        </span>
+      </div>
+      
+        <a class="definition" style="clear: right;" href="example/scenario_outline.html">
+          example/scenario_outline.feature:54
+        </a>
+      
+      <div style="clear: both;"></div>
+    </div>
+    
+    <div class="step odd">
+      <div>
+        <span class="predicate">And </span>
+        <span class="undefined">
+          I expect cost in euros to be replaced by the example denomination
+        </span>
+      </div>
+      
+        <a class="definition" style="clear: right;" href="example/scenario_outline.html">
+          example/scenario_outline.feature:55
+        </a>
+      
+      <div style="clear: both;"></div>
+    </div>
+    
+    <div class="step even">
+      <div>
+        <span class="predicate">And </span>
+        <span class="undefined">
+          I expect 49 to be replaced by the example price
+        </span>
+      </div>
+      
+        <a class="definition" style="clear: right;" href="example/scenario_outline.html">
+          example/scenario_outline.feature:54
+        </a>
+      
+      <div style="clear: both;"></div>
+    </div>
+    
+    <div class="step odd">
+      <div>
+        <span class="predicate">And </span>
+        <span class="undefined">
+          I expect cost in dollars to be replaced by the example denomination
+        </span>
+      </div>
+      
+        <a class="definition" style="clear: right;" href="example/scenario_outline.html">
+          example/scenario_outline.feature:55
+        </a>
+      
+      <div style="clear: both;"></div>
+    </div>
+    
+    <div class="step even">
+      <div>
+        <span class="predicate">And </span>
+        <span class="undefined">
+          that the product, named &#39;Product C&#39;, is a valid product
+        </span>
+      </div>
+      
+        <a class="definition" style="clear: right;" href="example/scenario_outline.html">
+          example/scenario_outline.feature:8
+        </a>
+      
+      <div style="clear: both;"></div>
+    </div>
+    
+    
+  </div>
+</div>
+</div>
+
+    <div id="footer">
+  Generated on Fri Nov  8 15:41:47 2013 by
+  <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
+  0.8.7.3 (ruby-2.0.0).
+</div>
+
+  </body>
+</html>

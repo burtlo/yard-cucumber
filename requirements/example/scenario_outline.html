@@ -1,0 +1,2745 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>
+  Feature: Displaying Scenario Outlines
+  
+    &mdash; Documentation by YARD 0.8.7.3
+  
+</title>
+
+  <link rel="stylesheet" href="../../css/style.css" type="text/css" charset="utf-8" />
+
+  <link rel="stylesheet" href="../../css/common.css" type="text/css" charset="utf-8" />
+
+  <link rel="stylesheet" href="../../css/cucumber.css" type="text/css" charset="utf-8" />
+
+<script type="text/javascript" charset="utf-8">
+  hasFrames = window.top.frames.main ? true : false;
+  relpath = '../../';
+  framesUrl = "../../frames.html#!" + escape(window.location.href);
+</script>
+
+
+  <script type="text/javascript" charset="utf-8" src="../../js/jquery.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="../../js/app.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="../../js/cucumber.js"></script>
+
+
+  </head>
+  <body>
+    <div id="header">
+      <div id="menu">
+  
+    <a href="../../_index.html">Index (s)</a> &raquo;
+    <span class='title'><span class='object_link'><a href="../../requirements.html" title="requirements (requirements)">requirements</a></span></span> &raquo; <span class='title'><span class='object_link'><a href="../example.html" title="requirements::example (featuredirectory)">example</a></span></span>
+     &raquo; 
+    <span class="title">scenario_outline</span>
+  
+
+  <div class="noframes"><span class="title">(</span><a href="." target="_top">no frames</a><span class="title">)</span></div>
+</div>
+
+      <div id="search">
+  
+    <a class="full_list_link" id="feature_list_link"
+        href="../../feature_list.html">
+      Features
+    </a>
+  
+    <a class="full_list_link" id="tag_list_link"
+        href="../../tag_list.html">
+      Tags
+    </a>
+  
+    <a class="full_list_link" id="class_list_link"
+        href="../../class_list.html">
+      Class List
+    </a>
+  
+    <a class="full_list_link" id="method_list_link"
+        href="../../method_list.html">
+      Method List
+    </a>
+  
+    <a class="full_list_link" id="file_list_link"
+        href="../../file_list.html">
+      File List
+    </a>
+  
+</div>
+      <div class="clear"></div>
+    </div>
+
+    <iframe id="search_frame"></iframe>
+
+    <div id="content"><script type="text/javascript" charset="utf-8">
+$(function() {
+  $(".developer").hide();
+  $(".scenario .title").css('cursor','pointer');
+});
+</script>
+
+<div class="feature">
+  <div class="title">
+    <a id="view" class="control" href="#">[More Detail]</a>
+    <a id="expand" class="control" href="#">[Collapse All]</a>
+    <div style="clear: right;"></div>
+    <span class="pre">Feature:</span>
+    <span class="name">Displaying Scenario Outlines</span>
+  </div>
+
+  
+
+  <div class="description">
+    As&nbsp;a&nbsp;reader&nbsp;of&nbsp;the&nbsp;documentation&nbsp;I&nbsp;expect&nbsp;that&nbsp;scenario&nbsp;outlines&nbsp;are&nbsp;documented&nbsp;correctly
+  </div>
+
+  <div class="meta">
+    <div class="file developer">example/scenario_outline.feature</div>
+    <div style="clear: right;"></div>
+    <div class="tags developer">
+      
+      <a href="../tags/scenario_outlines.html">@scenario_outlines</a>
+      
+      <a href="../tags/bvt.html">@bvt</a>
+      
+    </div>
+  </div>
+
+  
+</div>
+
+<div class="scenario scenario_0">
+  <a name="scenario_0" />
+  <div class="title">
+    <div style="float: left;">
+      <a class="toggle"> - </a>
+      <span class="pre">Scenario Outline:</span>
+      <span class="name">Three Examples</span>
+    </div>
+    <a class="link" style="float:right; clear:right;" href="#scenario_0">link</a>
+  </div>
+
+  
+
+  
+
+  <div class="details">
+    <div class="meta developer">
+      <div class="file">example/scenario_outline.feature:6</div>
+      
+        <div style="clear:right;"></div>
+        <div class="tags">
+          
+            <a href="../tags/first.html">@first</a>
+          
+        </div>
+      
+      <div style="clear: both;"></div>
+    </div>
+
+    <div class="steps">
+      
+        
+  
+
+  
+  <div class="step odd">
+    <span class="predicate">Given </span>
+
+    
+      that &lt;Customer&gt; is a valid customer
+    
+  </div>
+
+  
+  
+
+
+
+  
+
+  
+  <div class="step even">
+    <span class="predicate">And </span>
+
+    
+      that the product, named &#39;&lt;Product&gt;&#39;, is a valid product
+    
+  </div>
+
+  
+  
+
+
+
+  
+
+  
+  <div class="step odd">
+    <span class="predicate">When </span>
+
+    
+      the customer has purchased the product
+    
+  </div>
+
+  
+  
+
+
+
+  
+
+  
+  <div class="step even">
+    <span class="predicate">Then </span>
+
+    
+      I expect the customer to be a member of the &#39;&lt;Product&gt;&#39; group
+    
+  </div>
+
+  
+  
+
+
+
+
+      
+    </div>
+
+
+    
+
+  
+    <div style="display: none;" class="steps example1-1">
+      
+      
+      
+  
+
+  
+  <div class="step odd">
+    <span class="predicate">Given </span>
+
+    
+
+      
+        <span class="undefined">
+          that Customer A is a valid customer
+          <div class="definition developer">
+            <a href="../step_transformers.html#undefined_steps">
+              <div class="invalid">&nbsp;</div>
+            </a>
+          </div>
+        </span>
+      
+
+    
+  </div>
+
+  
+  
+
+
+
+  
+
+  
+  <div class="step even">
+    <span class="predicate">And </span>
+
+    
+
+      
+        <span class="undefined">
+          that the product, named &#39;Product A&#39;, is a valid product
+          <div class="definition developer">
+            <a href="../step_transformers.html#undefined_steps">
+              <div class="invalid">&nbsp;</div>
+            </a>
+          </div>
+        </span>
+      
+
+    
+  </div>
+
+  
+  
+
+
+
+  
+
+  
+  <div class="step odd">
+    <span class="predicate">When </span>
+
+    
+
+      
+        <span class="undefined">
+          the customer has purchased the product
+          <div class="definition developer">
+            <a href="../step_transformers.html#undefined_steps">
+              <div class="invalid">&nbsp;</div>
+            </a>
+          </div>
+        </span>
+      
+
+    
+  </div>
+
+  
+  
+
+
+
+  
+
+  
+  <div class="step even">
+    <span class="predicate">Then </span>
+
+    
+
+      
+        <span class="defined">
+          I expect <span class='match'>the customer</span> to be a member of the '<span class='match'>Product A</span>' group
+          <div class="definition developer">
+            <a href="../step_transformers.html#step_definition10-stepdefinition"><div class="valid">&nbsp;</div></a>
+          </div>
+        </span>
+      
+
+    
+  </div>
+
+  
+  
+
+
+
+
+      
+      
+    </div>
+  
+    <div style="display: none;" class="steps example1-2">
+      
+      
+      
+  
+
+  
+  <div class="step odd">
+    <span class="predicate">Given </span>
+
+    
+
+      
+        <span class="undefined">
+          that Customer A is a valid customer
+          <div class="definition developer">
+            <a href="../step_transformers.html#undefined_steps">
+              <div class="invalid">&nbsp;</div>
+            </a>
+          </div>
+        </span>
+      
+
+    
+  </div>
+
+  
+  
+
+
+
+  
+
+  
+  <div class="step even">
+    <span class="predicate">And </span>
+
+    
+
+      
+        <span class="undefined">
+          that the product, named &#39;Product B&#39;, is a valid product
+          <div class="definition developer">
+            <a href="../step_transformers.html#undefined_steps">
+              <div class="invalid">&nbsp;</div>
+            </a>
+          </div>
+        </span>
+      
+
+    
+  </div>
+
+  
+  
+
+
+
+  
+
+  
+  <div class="step odd">
+    <span class="predicate">When </span>
+
+    
+
+      
+        <span class="undefined">
+          the customer has purchased the product
+          <div class="definition developer">
+            <a href="../step_transformers.html#undefined_steps">
+              <div class="invalid">&nbsp;</div>
+            </a>
+          </div>
+        </span>
+      
+
+    
+  </div>
+
+  
+  
+
+
+
+  
+
+  
+  <div class="step even">
+    <span class="predicate">Then </span>
+
+    
+
+      
+        <span class="defined">
+          I expect <span class='match'>the customer</span> to be a member of the '<span class='match'>Product B</span>' group
+          <div class="definition developer">
+            <a href="../step_transformers.html#step_definition10-stepdefinition"><div class="valid">&nbsp;</div></a>
+          </div>
+        </span>
+      
+
+    
+  </div>
+
+  
+  
+
+
+
+
+      
+      
+    </div>
+  
+    <div style="display: none;" class="steps example1-3">
+      
+      
+      
+  
+
+  
+  <div class="step odd">
+    <span class="predicate">Given </span>
+
+    
+
+      
+        <span class="undefined">
+          that Customer A is a valid customer
+          <div class="definition developer">
+            <a href="../step_transformers.html#undefined_steps">
+              <div class="invalid">&nbsp;</div>
+            </a>
+          </div>
+        </span>
+      
+
+    
+  </div>
+
+  
+  
+
+
+
+  
+
+  
+  <div class="step even">
+    <span class="predicate">And </span>
+
+    
+
+      
+        <span class="undefined">
+          that the product, named &#39;Product C&#39;, is a valid product
+          <div class="definition developer">
+            <a href="../step_transformers.html#undefined_steps">
+              <div class="invalid">&nbsp;</div>
+            </a>
+          </div>
+        </span>
+      
+
+    
+  </div>
+
+  
+  
+
+
+
+  
+
+  
+  <div class="step odd">
+    <span class="predicate">When </span>
+
+    
+
+      
+        <span class="undefined">
+          the customer has purchased the product
+          <div class="definition developer">
+            <a href="../step_transformers.html#undefined_steps">
+              <div class="invalid">&nbsp;</div>
+            </a>
+          </div>
+        </span>
+      
+
+    
+  </div>
+
+  
+  
+
+
+
+  
+
+  
+  <div class="step even">
+    <span class="predicate">Then </span>
+
+    
+
+      
+        <span class="defined">
+          I expect <span class='match'>the customer</span> to be a member of the '<span class='match'>Product C</span>' group
+          <div class="definition developer">
+            <a href="../step_transformers.html#step_definition10-stepdefinition"><div class="valid">&nbsp;</div></a>
+          </div>
+        </span>
+      
+
+    
+  </div>
+
+  
+  
+
+
+
+
+      
+      
+    </div>
+  
+
+
+
+<div class="outline">
+  
+  
+    
+    
+      <div class="keyword">
+        Examples
+      </div>
+      <div class="example-group-name"></div>
+      <br style="clear: both;"/>
+      <table>
+        <thead>
+          <tr>
+            
+              <th>Customer</th>
+            
+              <th>Product</th>
+            
+          </tr>
+        </thead>
+        
+          
+          <tr class="odd example1-1">
+            
+              <td>Customer A</td>
+            
+              <td>Product A</td>
+            
+          </tr>
+          
+          <tr class="even example1-2">
+            
+              <td>Customer A</td>
+            
+              <td>Product B</td>
+            
+          </tr>
+          
+          <tr class="odd example1-3">
+            
+              <td>Customer A</td>
+            
+              <td>Product C</td>
+            
+          </tr>
+          
+        
+      </table>
+    
+    
+  
+</div>
+
+
+  </div>
+  
+  <div class="attributes" style="display:none;">
+    <input type="hidden" name="collapsed" value="false">
+  </div>
+
+</div>
+<div class="scenario scenario_1">
+  <a name="scenario_1" />
+  <div class="title">
+    <div style="float: left;">
+      <a class="toggle"> - </a>
+      <span class="pre">Scenario Outline:</span>
+      <span class="name">Step contains a text block</span>
+    </div>
+    <a class="link" style="float:right; clear:right;" href="#scenario_1">link</a>
+  </div>
+
+  
+
+  
+
+  <div class="details">
+    <div class="meta developer">
+      <div class="file">example/scenario_outline.feature:19</div>
+      
+        <div style="clear:right;"></div>
+        <div class="tags">
+          
+            <a href="../tags/second.html">@second</a>
+          
+        </div>
+      
+      <div style="clear: both;"></div>
+    </div>
+
+    <div class="steps">
+      
+        
+  
+
+  
+  <div class="step odd">
+    <span class="predicate">Given </span>
+
+    
+      the following text:
+    
+  </div>
+
+  
+  <div class="text">
+  The&nbsp;&lt;noun&gt;&nbsp;jumped&nbsp;over&nbsp;the&nbsp;&lt;place&gt;
+</div>
+
+
+
+
+  
+
+  
+  <div class="step even">
+    <span class="predicate">When </span>
+
+    
+      I click on an example row
+    
+  </div>
+
+  
+  
+
+
+
+  
+
+  
+  <div class="step odd">
+    <span class="predicate">Then </span>
+
+    
+      I expect &lt;noun&gt; to be replaced by the example noun
+    
+  </div>
+
+  
+  
+
+
+
+  
+
+  
+  <div class="step even">
+    <span class="predicate">And </span>
+
+    
+      I expect &lt;place&gt; to be replaced by the example place
+    
+  </div>
+
+  
+  
+
+
+
+
+      
+    </div>
+
+
+    
+
+  
+    <div style="display: none;" class="steps example1-1">
+      
+      
+      
+  
+
+  
+  <div class="step odd">
+    <span class="predicate">Given </span>
+
+    
+
+      
+        <span class="undefined">
+          the following text:
+          <div class="definition developer">
+            <a href="../step_transformers.html#undefined_steps">
+              <div class="invalid">&nbsp;</div>
+            </a>
+          </div>
+        </span>
+      
+
+    
+  </div>
+
+  
+  <div class="text">
+  The&nbsp;cow&nbsp;jumped&nbsp;over&nbsp;the&nbsp;moon
+</div>
+
+
+
+
+  
+
+  
+  <div class="step even">
+    <span class="predicate">When </span>
+
+    
+
+      
+        <span class="undefined">
+          I click on an example row
+          <div class="definition developer">
+            <a href="../step_transformers.html#undefined_steps">
+              <div class="invalid">&nbsp;</div>
+            </a>
+          </div>
+        </span>
+      
+
+    
+  </div>
+
+  
+  
+
+
+
+  
+
+  
+  <div class="step odd">
+    <span class="predicate">Then </span>
+
+    
+
+      
+        <span class="undefined">
+          I expect cow to be replaced by the example noun
+          <div class="definition developer">
+            <a href="../step_transformers.html#undefined_steps">
+              <div class="invalid">&nbsp;</div>
+            </a>
+          </div>
+        </span>
+      
+
+    
+  </div>
+
+  
+  
+
+
+
+  
+
+  
+  <div class="step even">
+    <span class="predicate">And </span>
+
+    
+
+      
+        <span class="undefined">
+          I expect moon to be replaced by the example place
+          <div class="definition developer">
+            <a href="../step_transformers.html#undefined_steps">
+              <div class="invalid">&nbsp;</div>
+            </a>
+          </div>
+        </span>
+      
+
+    
+  </div>
+
+  
+  
+
+
+
+
+      
+      
+    </div>
+  
+    <div style="display: none;" class="steps example1-2">
+      
+      
+      
+  
+
+  
+  <div class="step odd">
+    <span class="predicate">Given </span>
+
+    
+
+      
+        <span class="undefined">
+          the following text:
+          <div class="definition developer">
+            <a href="../step_transformers.html#undefined_steps">
+              <div class="invalid">&nbsp;</div>
+            </a>
+          </div>
+        </span>
+      
+
+    
+  </div>
+
+  
+  <div class="text">
+  The&nbsp;horse&nbsp;jumped&nbsp;over&nbsp;the&nbsp;spoon
+</div>
+
+
+
+
+  
+
+  
+  <div class="step even">
+    <span class="predicate">When </span>
+
+    
+
+      
+        <span class="undefined">
+          I click on an example row
+          <div class="definition developer">
+            <a href="../step_transformers.html#undefined_steps">
+              <div class="invalid">&nbsp;</div>
+            </a>
+          </div>
+        </span>
+      
+
+    
+  </div>
+
+  
+  
+
+
+
+  
+
+  
+  <div class="step odd">
+    <span class="predicate">Then </span>
+
+    
+
+      
+        <span class="undefined">
+          I expect horse to be replaced by the example noun
+          <div class="definition developer">
+            <a href="../step_transformers.html#undefined_steps">
+              <div class="invalid">&nbsp;</div>
+            </a>
+          </div>
+        </span>
+      
+
+    
+  </div>
+
+  
+  
+
+
+
+  
+
+  
+  <div class="step even">
+    <span class="predicate">And </span>
+
+    
+
+      
+        <span class="undefined">
+          I expect spoon to be replaced by the example place
+          <div class="definition developer">
+            <a href="../step_transformers.html#undefined_steps">
+              <div class="invalid">&nbsp;</div>
+            </a>
+          </div>
+        </span>
+      
+
+    
+  </div>
+
+  
+  
+
+
+
+
+      
+      
+    </div>
+  
+
+
+
+<div class="outline">
+  
+  
+    
+    
+      <div class="keyword">
+        Examples
+      </div>
+      <div class="example-group-name"></div>
+      <br style="clear: both;"/>
+      <table>
+        <thead>
+          <tr>
+            
+              <th>noun</th>
+            
+              <th>place</th>
+            
+          </tr>
+        </thead>
+        
+          
+          <tr class="odd example1-1">
+            
+              <td>cow</td>
+            
+              <td>moon</td>
+            
+          </tr>
+          
+          <tr class="even example1-2">
+            
+              <td>horse</td>
+            
+              <td>spoon</td>
+            
+          </tr>
+          
+        
+      </table>
+    
+    
+  
+</div>
+
+
+  </div>
+  
+  <div class="attributes" style="display:none;">
+    <input type="hidden" name="collapsed" value="false">
+  </div>
+
+</div>
+<div class="scenario scenario_2">
+  <a name="scenario_2" />
+  <div class="title">
+    <div style="float: left;">
+      <a class="toggle"> - </a>
+      <span class="pre">Scenario Outline:</span>
+      <span class="name">Step contains a table</span>
+    </div>
+    <a class="link" style="float:right; clear:right;" href="#scenario_2">link</a>
+  </div>
+
+  
+
+  
+
+  <div class="details">
+    <div class="meta developer">
+      <div class="file">example/scenario_outline.feature:34</div>
+      
+        <div style="clear:right;"></div>
+        <div class="tags">
+          
+            <a href="../tags/third.html">@third</a>
+          
+        </div>
+      
+      <div style="clear: both;"></div>
+    </div>
+
+    <div class="steps">
+      
+        
+  
+
+  
+  <div class="step odd">
+    <span class="predicate">Given </span>
+
+    
+      the following table:
+    
+  </div>
+
+  <div class="multiline">
+  <table style="">
+
+    <thead>
+      <tr>
+        
+          <th class="odd">name</th>
+        
+          <th class="even">price</th>
+        
+          <th class="odd">quantity</th>
+        
+      </tr>
+    </thead>
+
+    
+      <tr class="odd">
+        
+          <td>&lt;name&gt;</td>
+        
+          <td>&lt;price&gt;</td>
+        
+          <td>100000</td>
+        
+      </tr>
+    
+  </table>
+</div>
+
+  
+
+
+
+  
+
+  
+  <div class="step even">
+    <span class="predicate">When </span>
+
+    
+      I click on an example row
+    
+  </div>
+
+  
+  
+
+
+
+  
+
+  
+  <div class="step odd">
+    <span class="predicate">Then </span>
+
+    
+      I expect &lt;name&gt; to be replaced by the example name
+    
+  </div>
+
+  
+  
+
+
+
+  
+
+  
+  <div class="step even">
+    <span class="predicate">And </span>
+
+    
+      I expect &lt;price&gt; to be replaced by the example price
+    
+  </div>
+
+  
+  
+
+
+
+
+      
+    </div>
+
+
+    
+
+  
+    <div style="display: none;" class="steps example1-1">
+      
+      
+      
+  
+
+  
+  <div class="step odd">
+    <span class="predicate">Given </span>
+
+    
+
+      
+        <span class="undefined">
+          the following table:
+          <div class="definition developer">
+            <a href="../step_transformers.html#undefined_steps">
+              <div class="invalid">&nbsp;</div>
+            </a>
+          </div>
+        </span>
+      
+
+    
+  </div>
+
+  <div class="multiline">
+  <table style="">
+
+    <thead>
+      <tr>
+        
+          <th class="odd">name</th>
+        
+          <th class="even">price</th>
+        
+          <th class="odd">quantity</th>
+        
+      </tr>
+    </thead>
+
+    
+      <tr class="odd">
+        
+          <td>toy</td>
+        
+          <td>$99</td>
+        
+          <td>100000</td>
+        
+      </tr>
+    
+  </table>
+</div>
+
+  
+
+
+
+  
+
+  
+  <div class="step even">
+    <span class="predicate">When </span>
+
+    
+
+      
+        <span class="undefined">
+          I click on an example row
+          <div class="definition developer">
+            <a href="../step_transformers.html#undefined_steps">
+              <div class="invalid">&nbsp;</div>
+            </a>
+          </div>
+        </span>
+      
+
+    
+  </div>
+
+  
+  
+
+
+
+  
+
+  
+  <div class="step odd">
+    <span class="predicate">Then </span>
+
+    
+
+      
+        <span class="undefined">
+          I expect toy to be replaced by the example name
+          <div class="definition developer">
+            <a href="../step_transformers.html#undefined_steps">
+              <div class="invalid">&nbsp;</div>
+            </a>
+          </div>
+        </span>
+      
+
+    
+  </div>
+
+  
+  
+
+
+
+  
+
+  
+  <div class="step even">
+    <span class="predicate">And </span>
+
+    
+
+      
+        <span class="undefined">
+          I expect $99 to be replaced by the example price
+          <div class="definition developer">
+            <a href="../step_transformers.html#undefined_steps">
+              <div class="invalid">&nbsp;</div>
+            </a>
+          </div>
+        </span>
+      
+
+    
+  </div>
+
+  
+  
+
+
+
+
+      
+      
+    </div>
+  
+    <div style="display: none;" class="steps example1-2">
+      
+      
+      
+  
+
+  
+  <div class="step odd">
+    <span class="predicate">Given </span>
+
+    
+
+      
+        <span class="undefined">
+          the following table:
+          <div class="definition developer">
+            <a href="../step_transformers.html#undefined_steps">
+              <div class="invalid">&nbsp;</div>
+            </a>
+          </div>
+        </span>
+      
+
+    
+  </div>
+
+  <div class="multiline">
+  <table style="">
+
+    <thead>
+      <tr>
+        
+          <th class="odd">name</th>
+        
+          <th class="even">price</th>
+        
+          <th class="odd">quantity</th>
+        
+      </tr>
+    </thead>
+
+    
+      <tr class="odd">
+        
+          <td>game</td>
+        
+          <td>$49</td>
+        
+          <td>100000</td>
+        
+      </tr>
+    
+  </table>
+</div>
+
+  
+
+
+
+  
+
+  
+  <div class="step even">
+    <span class="predicate">When </span>
+
+    
+
+      
+        <span class="undefined">
+          I click on an example row
+          <div class="definition developer">
+            <a href="../step_transformers.html#undefined_steps">
+              <div class="invalid">&nbsp;</div>
+            </a>
+          </div>
+        </span>
+      
+
+    
+  </div>
+
+  
+  
+
+
+
+  
+
+  
+  <div class="step odd">
+    <span class="predicate">Then </span>
+
+    
+
+      
+        <span class="undefined">
+          I expect game to be replaced by the example name
+          <div class="definition developer">
+            <a href="../step_transformers.html#undefined_steps">
+              <div class="invalid">&nbsp;</div>
+            </a>
+          </div>
+        </span>
+      
+
+    
+  </div>
+
+  
+  
+
+
+
+  
+
+  
+  <div class="step even">
+    <span class="predicate">And </span>
+
+    
+
+      
+        <span class="undefined">
+          I expect $49 to be replaced by the example price
+          <div class="definition developer">
+            <a href="../step_transformers.html#undefined_steps">
+              <div class="invalid">&nbsp;</div>
+            </a>
+          </div>
+        </span>
+      
+
+    
+  </div>
+
+  
+  
+
+
+
+
+      
+      
+    </div>
+  
+
+
+
+<div class="outline">
+  
+  
+    
+    
+      <div class="keyword">
+        Examples
+      </div>
+      <div class="example-group-name"></div>
+      <br style="clear: both;"/>
+      <table>
+        <thead>
+          <tr>
+            
+              <th>name</th>
+            
+              <th>price</th>
+            
+          </tr>
+        </thead>
+        
+          
+          <tr class="odd example1-1">
+            
+              <td>toy</td>
+            
+              <td>$99</td>
+            
+          </tr>
+          
+          <tr class="even example1-2">
+            
+              <td>game</td>
+            
+              <td>$49</td>
+            
+          </tr>
+          
+        
+      </table>
+    
+    
+  
+</div>
+
+
+  </div>
+  
+  <div class="attributes" style="display:none;">
+    <input type="hidden" name="collapsed" value="false">
+  </div>
+
+</div>
+<div class="scenario scenario_3">
+  <a name="scenario_3" />
+  <div class="title">
+    <div style="float: left;">
+      <a class="toggle"> - </a>
+      <span class="pre">Scenario Outline:</span>
+      <span class="name">Step contains a table; table header uses an example</span>
+    </div>
+    <a class="link" style="float:right; clear:right;" href="#scenario_3">link</a>
+  </div>
+
+  
+
+  
+
+  <div class="details">
+    <div class="meta developer">
+      <div class="file">example/scenario_outline.feature:48</div>
+      
+        <div style="clear:right;"></div>
+        <div class="tags">
+          
+            <a href="../tags/fourth.html">@fourth</a>
+          
+        </div>
+      
+      <div style="clear: both;"></div>
+    </div>
+
+    <div class="steps">
+      
+        
+  
+
+  
+  <div class="step odd">
+    <span class="predicate">Given </span>
+
+    
+      the following table:
+    
+  </div>
+
+  <div class="multiline">
+  <table style="">
+
+    <thead>
+      <tr>
+        
+          <th class="odd">name</th>
+        
+          <th class="even">&lt;denomination&gt;</th>
+        
+          <th class="odd">quantity</th>
+        
+      </tr>
+    </thead>
+
+    
+      <tr class="odd">
+        
+          <td>&lt;name&gt;</td>
+        
+          <td>&lt;price&gt;</td>
+        
+          <td>100000</td>
+        
+      </tr>
+    
+  </table>
+</div>
+
+  
+
+
+
+  
+
+  
+  <div class="step even">
+    <span class="predicate">When </span>
+
+    
+      I click on an example row
+    
+  </div>
+
+  
+  
+
+
+
+  
+
+  
+  <div class="step odd">
+    <span class="predicate">Then </span>
+
+    
+      I expect &lt;name&gt; to be replaced by the example name
+    
+  </div>
+
+  
+  
+
+
+
+  
+
+  
+  <div class="step even">
+    <span class="predicate">And </span>
+
+    
+      I expect &lt;price&gt; to be replaced by the example price
+    
+  </div>
+
+  
+  
+
+
+
+  
+
+  
+  <div class="step odd">
+    <span class="predicate">And </span>
+
+    
+      I expect &lt;denomination&gt; to be replaced by the example denomination
+    
+  </div>
+
+  
+  
+
+
+
+
+      
+    </div>
+
+
+    
+
+  
+    <div style="display: none;" class="steps example1-1">
+      
+      
+      
+  
+
+  
+  <div class="step odd">
+    <span class="predicate">Given </span>
+
+    
+
+      
+        <span class="undefined">
+          the following table:
+          <div class="definition developer">
+            <a href="../step_transformers.html#undefined_steps">
+              <div class="invalid">&nbsp;</div>
+            </a>
+          </div>
+        </span>
+      
+
+    
+  </div>
+
+  <div class="multiline">
+  <table style="">
+
+    <thead>
+      <tr>
+        
+          <th class="odd">name</th>
+        
+          <th class="even">cost in euros</th>
+        
+          <th class="odd">quantity</th>
+        
+      </tr>
+    </thead>
+
+    
+      <tr class="odd">
+        
+          <td>toy</td>
+        
+          <td>99</td>
+        
+          <td>100000</td>
+        
+      </tr>
+    
+  </table>
+</div>
+
+  
+
+
+
+  
+
+  
+  <div class="step even">
+    <span class="predicate">When </span>
+
+    
+
+      
+        <span class="undefined">
+          I click on an example row
+          <div class="definition developer">
+            <a href="../step_transformers.html#undefined_steps">
+              <div class="invalid">&nbsp;</div>
+            </a>
+          </div>
+        </span>
+      
+
+    
+  </div>
+
+  
+  
+
+
+
+  
+
+  
+  <div class="step odd">
+    <span class="predicate">Then </span>
+
+    
+
+      
+        <span class="undefined">
+          I expect toy to be replaced by the example name
+          <div class="definition developer">
+            <a href="../step_transformers.html#undefined_steps">
+              <div class="invalid">&nbsp;</div>
+            </a>
+          </div>
+        </span>
+      
+
+    
+  </div>
+
+  
+  
+
+
+
+  
+
+  
+  <div class="step even">
+    <span class="predicate">And </span>
+
+    
+
+      
+        <span class="undefined">
+          I expect 99 to be replaced by the example price
+          <div class="definition developer">
+            <a href="../step_transformers.html#undefined_steps">
+              <div class="invalid">&nbsp;</div>
+            </a>
+          </div>
+        </span>
+      
+
+    
+  </div>
+
+  
+  
+
+
+
+  
+
+  
+  <div class="step odd">
+    <span class="predicate">And </span>
+
+    
+
+      
+        <span class="undefined">
+          I expect cost in euros to be replaced by the example denomination
+          <div class="definition developer">
+            <a href="../step_transformers.html#undefined_steps">
+              <div class="invalid">&nbsp;</div>
+            </a>
+          </div>
+        </span>
+      
+
+    
+  </div>
+
+  
+  
+
+
+
+
+      
+      
+    </div>
+  
+    <div style="display: none;" class="steps example1-2">
+      
+      
+      
+  
+
+  
+  <div class="step odd">
+    <span class="predicate">Given </span>
+
+    
+
+      
+        <span class="undefined">
+          the following table:
+          <div class="definition developer">
+            <a href="../step_transformers.html#undefined_steps">
+              <div class="invalid">&nbsp;</div>
+            </a>
+          </div>
+        </span>
+      
+
+    
+  </div>
+
+  <div class="multiline">
+  <table style="">
+
+    <thead>
+      <tr>
+        
+          <th class="odd">name</th>
+        
+          <th class="even">cost in dollars</th>
+        
+          <th class="odd">quantity</th>
+        
+      </tr>
+    </thead>
+
+    
+      <tr class="odd">
+        
+          <td>game</td>
+        
+          <td>49</td>
+        
+          <td>100000</td>
+        
+      </tr>
+    
+  </table>
+</div>
+
+  
+
+
+
+  
+
+  
+  <div class="step even">
+    <span class="predicate">When </span>
+
+    
+
+      
+        <span class="undefined">
+          I click on an example row
+          <div class="definition developer">
+            <a href="../step_transformers.html#undefined_steps">
+              <div class="invalid">&nbsp;</div>
+            </a>
+          </div>
+        </span>
+      
+
+    
+  </div>
+
+  
+  
+
+
+
+  
+
+  
+  <div class="step odd">
+    <span class="predicate">Then </span>
+
+    
+
+      
+        <span class="undefined">
+          I expect game to be replaced by the example name
+          <div class="definition developer">
+            <a href="../step_transformers.html#undefined_steps">
+              <div class="invalid">&nbsp;</div>
+            </a>
+          </div>
+        </span>
+      
+
+    
+  </div>
+
+  
+  
+
+
+
+  
+
+  
+  <div class="step even">
+    <span class="predicate">And </span>
+
+    
+
+      
+        <span class="undefined">
+          I expect 49 to be replaced by the example price
+          <div class="definition developer">
+            <a href="../step_transformers.html#undefined_steps">
+              <div class="invalid">&nbsp;</div>
+            </a>
+          </div>
+        </span>
+      
+
+    
+  </div>
+
+  
+  
+
+
+
+  
+
+  
+  <div class="step odd">
+    <span class="predicate">And </span>
+
+    
+
+      
+        <span class="undefined">
+          I expect cost in dollars to be replaced by the example denomination
+          <div class="definition developer">
+            <a href="../step_transformers.html#undefined_steps">
+              <div class="invalid">&nbsp;</div>
+            </a>
+          </div>
+        </span>
+      
+
+    
+  </div>
+
+  
+  
+
+
+
+
+      
+      
+    </div>
+  
+
+
+
+<div class="outline">
+  
+  
+    
+    
+      <div class="keyword">
+        Examples
+      </div>
+      <div class="example-group-name"></div>
+      <br style="clear: both;"/>
+      <table>
+        <thead>
+          <tr>
+            
+              <th>name</th>
+            
+              <th>price</th>
+            
+              <th>denomination</th>
+            
+          </tr>
+        </thead>
+        
+          
+          <tr class="odd example1-1">
+            
+              <td>toy</td>
+            
+              <td>99</td>
+            
+              <td>cost in euros</td>
+            
+          </tr>
+          
+          <tr class="even example1-2">
+            
+              <td>game</td>
+            
+              <td>49</td>
+            
+              <td>cost in dollars</td>
+            
+          </tr>
+          
+        
+      </table>
+    
+    
+  
+</div>
+
+
+  </div>
+  
+  <div class="attributes" style="display:none;">
+    <input type="hidden" name="collapsed" value="false">
+  </div>
+
+</div>
+<div class="scenario scenario_4">
+  <a name="scenario_4" />
+  <div class="title">
+    <div style="float: left;">
+      <a class="toggle"> - </a>
+      <span class="pre">Scenario Outline:</span>
+      <span class="name">Example Table Missing</span>
+    </div>
+    <a class="link" style="float:right; clear:right;" href="#scenario_4">link</a>
+  </div>
+
+  
+
+  
+  <div class="comments developer">
+    #&nbsp;This&nbsp;is&nbsp;an&nbsp;example&nbsp;of&nbsp;a&nbsp;scenario&nbsp;outline&nbsp;in&nbsp;development.<br/>#&nbsp;The&nbsp;example&nbsp;table&nbsp;has&nbsp;not&nbsp;been&nbsp;defined&nbsp;yet
+  </div>
+  
+
+  <div class="details">
+    <div class="meta developer">
+      <div class="file">example/scenario_outline.feature:64</div>
+      
+      <div style="clear: both;"></div>
+    </div>
+
+    <div class="steps">
+      
+        
+  
+
+  
+  <div class="step odd">
+    <span class="predicate">When </span>
+
+    
+      I click on an example row
+    
+  </div>
+
+  
+  
+
+
+
+  
+
+  
+  <div class="step even">
+    <span class="predicate">Then </span>
+
+    
+      I expect &lt;name&gt; to be replaced by the example name
+    
+  </div>
+
+  
+  
+
+
+
+  
+
+  
+  <div class="step odd">
+    <span class="predicate">And </span>
+
+    
+      I expect &lt;price&gt; to be replaced by the example price
+    
+  </div>
+
+  
+  
+
+
+
+  
+
+  
+  <div class="step even">
+    <span class="predicate">And </span>
+
+    
+      I expect &lt;denomination&gt; to be replaced by the example denomination
+    
+  </div>
+
+  
+  
+
+
+
+
+      
+    </div>
+
+
+    
+
+
+
+<div class="outline">
+  
+  
+  <div class="keyword">No Example Table Defined</div>
+  <div class="keyword suggestion developer">[!] Did you mean to create a Scenario?</div>
+  
+</div>
+
+
+  </div>
+  
+  <div class="attributes" style="display:none;">
+    <input type="hidden" name="collapsed" value="false">
+  </div>
+
+</div>
+<div class="scenario scenario_5">
+  <a name="scenario_5" />
+  <div class="title">
+    <div style="float: left;">
+      <a class="toggle"> - </a>
+      <span class="pre">Scenario Outline:</span>
+      <span class="name">Empty Example Table</span>
+    </div>
+    <a class="link" style="float:right; clear:right;" href="#scenario_5">link</a>
+  </div>
+
+  
+
+  
+  <div class="comments developer">
+    #&nbsp;This&nbsp;is&nbsp;an&nbsp;example&nbsp;of&nbsp;a&nbsp;scenario&nbsp;outline&nbsp;in&nbsp;development.&nbsp;&nbsp;<br/>#&nbsp;The&nbsp;examples&nbsp;table&nbsp;has&nbsp;been&nbsp;defined,&nbsp;but&nbsp;is&nbsp;missing&nbsp;data.
+  </div>
+  
+
+  <div class="details">
+    <div class="meta developer">
+      <div class="file">example/scenario_outline.feature:73</div>
+      
+      <div style="clear: both;"></div>
+    </div>
+
+    <div class="steps">
+      
+        
+  
+
+  
+  <div class="step odd">
+    <span class="predicate">When </span>
+
+    
+      I click on an example row
+    
+  </div>
+
+  
+  
+
+
+
+  
+
+  
+  <div class="step even">
+    <span class="predicate">Then </span>
+
+    
+      I expect &lt;name&gt; to be replaced by the example name
+    
+  </div>
+
+  
+  
+
+
+
+  
+
+  
+  <div class="step odd">
+    <span class="predicate">And </span>
+
+    
+      I expect &lt;price&gt; to be replaced by the example price
+    
+  </div>
+
+  
+  
+
+
+
+  
+
+  
+  <div class="step even">
+    <span class="predicate">And </span>
+
+    
+      I expect &lt;denomination&gt; to be replaced by the example denomination
+    
+  </div>
+
+  
+  
+
+
+
+
+      
+    </div>
+
+
+    
+
+  
+
+
+
+<div class="outline">
+  
+  
+    
+    
+      <div class="keyword">
+        Examples
+      </div>
+      <div class="example-group-name"></div>
+      <br style="clear: both;"/>
+      <table>
+        <thead>
+          <tr>
+            
+              <th>name</th>
+            
+              <th>price</th>
+            
+              <th>denomination</th>
+            
+          </tr>
+        </thead>
+        
+          <!-- Scenario Outline example table is empty -->
+          <tr class="odd">
+            <td colspan="3" style="text-align: center;">
+              No Examples Defined
+            </td>
+          </tr>
+        
+      </table>
+    
+    
+  
+</div>
+
+
+  </div>
+  
+  <div class="attributes" style="display:none;">
+    <input type="hidden" name="collapsed" value="false">
+  </div>
+
+</div>
+<div class="scenario scenario_6">
+  <a name="scenario_6" />
+  <div class="title">
+    <div style="float: left;">
+      <a class="toggle"> - </a>
+      <span class="pre">Scenario Outline:</span>
+      <span class="name">Multiple Example Table</span>
+    </div>
+    <a class="link" style="float:right; clear:right;" href="#scenario_6">link</a>
+  </div>
+
+  
+
+  
+
+  <div class="details">
+    <div class="meta developer">
+      <div class="file">example/scenario_outline.feature:82</div>
+      
+      <div style="clear: both;"></div>
+    </div>
+
+    <div class="steps">
+      
+        
+  
+
+  
+  <div class="step odd">
+    <span class="predicate">Given </span>
+
+    
+      that &lt;Customer&gt; is a valid customer
+    
+  </div>
+
+  
+  
+
+
+
+  
+
+  
+  <div class="step even">
+    <span class="predicate">And </span>
+
+    
+      that the product, named &#39;&lt;Product&gt;&#39;, is a valid product
+    
+  </div>
+
+  
+  
+
+
+
+  
+
+  
+  <div class="step odd">
+    <span class="predicate">When </span>
+
+    
+      the customer has purchased the product
+    
+  </div>
+
+  
+  
+
+
+
+  
+
+  
+  <div class="step even">
+    <span class="predicate">Then </span>
+
+    
+      I expect the customer to be a member of the &#39;&lt;Product&gt;&#39; group
+    
+  </div>
+
+  
+  
+
+
+
+
+      
+    </div>
+
+
+    
+
+  
+    <div style="display: none;" class="steps example1-1">
+      
+      
+      
+  
+
+  
+  <div class="step odd">
+    <span class="predicate">Given </span>
+
+    
+
+      
+        <span class="undefined">
+          that Customer A is a valid customer
+          <div class="definition developer">
+            <a href="../step_transformers.html#undefined_steps">
+              <div class="invalid">&nbsp;</div>
+            </a>
+          </div>
+        </span>
+      
+
+    
+  </div>
+
+  
+  
+
+
+
+  
+
+  
+  <div class="step even">
+    <span class="predicate">And </span>
+
+    
+
+      
+        <span class="undefined">
+          that the product, named &#39;Product A&#39;, is a valid product
+          <div class="definition developer">
+            <a href="../step_transformers.html#undefined_steps">
+              <div class="invalid">&nbsp;</div>
+            </a>
+          </div>
+        </span>
+      
+
+    
+  </div>
+
+  
+  
+
+
+
+  
+
+  
+  <div class="step odd">
+    <span class="predicate">When </span>
+
+    
+
+      
+        <span class="undefined">
+          the customer has purchased the product
+          <div class="definition developer">
+            <a href="../step_transformers.html#undefined_steps">
+              <div class="invalid">&nbsp;</div>
+            </a>
+          </div>
+        </span>
+      
+
+    
+  </div>
+
+  
+  
+
+
+
+  
+
+  
+  <div class="step even">
+    <span class="predicate">Then </span>
+
+    
+
+      
+        <span class="defined">
+          I expect <span class='match'>the customer</span> to be a member of the '<span class='match'>Product A</span>' group
+          <div class="definition developer">
+            <a href="../step_transformers.html#step_definition10-stepdefinition"><div class="valid">&nbsp;</div></a>
+          </div>
+        </span>
+      
+
+    
+  </div>
+
+  
+  
+
+
+
+
+      
+      
+    </div>
+  
+
+  
+    <div style="display: none;" class="steps example2-1">
+      
+      
+      
+  
+
+  
+  <div class="step odd">
+    <span class="predicate">Given </span>
+
+    
+
+      
+        <span class="undefined">
+          that Customer B is a valid customer
+          <div class="definition developer">
+            <a href="../step_transformers.html#undefined_steps">
+              <div class="invalid">&nbsp;</div>
+            </a>
+          </div>
+        </span>
+      
+
+    
+  </div>
+
+  
+  
+
+
+
+  
+
+  
+  <div class="step even">
+    <span class="predicate">And </span>
+
+    
+
+      
+        <span class="undefined">
+          that the product, named &#39;Product A&#39;, is a valid product
+          <div class="definition developer">
+            <a href="../step_transformers.html#undefined_steps">
+              <div class="invalid">&nbsp;</div>
+            </a>
+          </div>
+        </span>
+      
+
+    
+  </div>
+
+  
+  
+
+
+
+  
+
+  
+  <div class="step odd">
+    <span class="predicate">When </span>
+
+    
+
+      
+        <span class="undefined">
+          the customer has purchased the product
+          <div class="definition developer">
+            <a href="../step_transformers.html#undefined_steps">
+              <div class="invalid">&nbsp;</div>
+            </a>
+          </div>
+        </span>
+      
+
+    
+  </div>
+
+  
+  
+
+
+
+  
+
+  
+  <div class="step even">
+    <span class="predicate">Then </span>
+
+    
+
+      
+        <span class="defined">
+          I expect <span class='match'>the customer</span> to be a member of the '<span class='match'>Product A</span>' group
+          <div class="definition developer">
+            <a href="../step_transformers.html#step_definition10-stepdefinition"><div class="valid">&nbsp;</div></a>
+          </div>
+        </span>
+      
+
+    
+  </div>
+
+  
+  
+
+
+
+
+      
+      
+    </div>
+  
+
+
+
+<div class="outline">
+  
+  
+    
+    
+      <div class="keyword">
+        Examples:
+      </div>
+      <div class="example-group-name">Example group A</div>
+      <br style="clear: both;"/>
+      <table>
+        <thead>
+          <tr>
+            
+              <th>Customer</th>
+            
+              <th>Product</th>
+            
+          </tr>
+        </thead>
+        
+          
+          <tr class="odd example1-1">
+            
+              <td>Customer A</td>
+            
+              <td>Product A</td>
+            
+          </tr>
+          
+        
+      </table>
+    
+      <div class="keyword">
+        Examples:
+      </div>
+      <div class="example-group-name">Example group B</div>
+      <br style="clear: both;"/>
+      <table>
+        <thead>
+          <tr>
+            
+              <th>Customer</th>
+            
+              <th>Product</th>
+            
+          </tr>
+        </thead>
+        
+          
+          <tr class="odd example2-1">
+            
+              <td>Customer B</td>
+            
+              <td>Product A</td>
+            
+          </tr>
+          
+        
+      </table>
+    
+    
+  
+</div>
+
+
+  </div>
+  
+  <div class="attributes" style="display:none;">
+    <input type="hidden" name="collapsed" value="false">
+  </div>
+
+</div>
+</div>
+
+    <div id="footer">
+  Generated on Fri Nov  8 15:41:47 2013 by
+  <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
+  0.8.7.3 (ruby-2.0.0).
+</div>
+
+  </body>
+</html>

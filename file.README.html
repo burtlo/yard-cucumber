@@ -1,0 +1,272 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>
+  File: README
+  
+    &mdash; Documentation by YARD 0.8.7.3
+  
+</title>
+
+  <link rel="stylesheet" href="css/style.css" type="text/css" charset="utf-8" />
+
+  <link rel="stylesheet" href="css/common.css" type="text/css" charset="utf-8" />
+
+  <link rel="stylesheet" href="css/cucumber.css" type="text/css" charset="utf-8" />
+
+<script type="text/javascript" charset="utf-8">
+  hasFrames = window.top.frames.main ? true : false;
+  relpath = '';
+  framesUrl = "frames.html#!" + escape(window.location.href);
+</script>
+
+
+  <script type="text/javascript" charset="utf-8" src="js/jquery.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="js/app.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="js/cucumber.js"></script>
+
+
+  </head>
+  <body>
+    <div id="header">
+      <div id="menu">
+  
+    <a href="_index.html">Index</a> &raquo; 
+    <span class="title">File: README</span>
+  
+
+  <div class="noframes"><span class="title">(</span><a href="." target="_top">no frames</a><span class="title">)</span></div>
+</div>
+
+      <div id="search">
+  
+    <a class="full_list_link" id="feature_list_link"
+        href="feature_list.html">
+      Features
+    </a>
+  
+    <a class="full_list_link" id="tag_list_link"
+        href="tag_list.html">
+      Tags
+    </a>
+  
+    <a class="full_list_link" id="class_list_link"
+        href="class_list.html">
+      Class List
+    </a>
+  
+    <a class="full_list_link" id="method_list_link"
+        href="method_list.html">
+      Method List
+    </a>
+  
+    <a class="full_list_link" id="file_list_link"
+        href="file_list.html">
+      File List
+    </a>
+  
+</div>
+      <div class="clear"></div>
+    </div>
+
+    <iframe id="search_frame"></iframe>
+
+    <div id="content"><div id='filecontents'><h1>YARD-Cucumber: A Requirements Documentation Tool</h1>
+
+<h2>Synopsis</h2>
+
+<p>YARD-Cucumber (formerly Cucumber-In-The-Yard) is a YARD extension that processes
+Cucumber features, scenarios, steps, tags, step definitions, and even transforms
+to provide documentation similar to what you expect to how YARD displays
+classes, methods and constants.This tools bridges the gap of having feature
+files found in your source code and true documentation that your team, product
+owners and stakeholders can use.</p>
+
+<h2>Examples</h2>
+
+<p>I have created a trivial, example project to help provide a quick
+visualization of the resulting documentation. I encourage you to look at it as
+an example and see if it would assist your project from a multitude of
+perspectives: as the project&#39;s core developer; another developer or a new
+developer; quality assurance engineer; or product owner/stakeholder.</p>
+
+<p>The implemented example has been deployed at <a href="http://franklinwebber.com/cukes/">http://franklinwebber.com/cukes/</a>.</p>
+
+<p><strong>1. View Features and Scenarios</strong> <a href="http://franklinwebber.com/cukes/requirements.html">example</a></p>
+
+<p><strong>2. Search through <a href="http://franklinwebber.com/cukes/feature_list.html">features, scenarios</a>, and <a href="http://franklinwebber.com/cukes/tag_list.html">tags</a></strong></p>
+
+<p><strong>3. Dynamic Tag Unions and Intersections</strong> <a href="http://franklinwebber.com/cukes/requirements/tags.html">example</a></p>
+
+<p><strong>4. View all features and scenarios by tag</strong> <a href="http://franklinwebber.com/cukes/requirements/tags/bvt.html">example</a></p>
+
+<p><strong>5. View Step Definitions and Transforms</strong> <a href="http://franklinwebber.com/cukes/requirements/step_transformers.html">example</a></p>
+
+<p><strong>6. All steps <a href="http://franklinwebber.com/cukes/requirements/step_transformers.html#definition_5-stepdefinition">matched</a> to step definitions</strong></p>
+
+<p><strong>7. <a href="http://franklinwebber.com/cukes/requirements/step_transformers.html#step_transform7-steptransform">Steps</a> that have transforms applied to them</strong></p>
+
+<p><strong>8. <a href="http://franklinwebber.com/cukes/requirements/step_transformers.html#undefined_steps">Undefined steps</a> and even <a href="http://rubular.com/">Rubular</a> links of your step definitions.</strong></p>
+
+<p><strong>9. Feature directories with a README.md will be parsed into the description</strong> <a href="http://franklinwebber.com/cukes/requirements/example/child_feature.html">example</a></p>
+
+<p><strong>10. Configurable Menus - want a searchable steps menu and remove the tags menu</strong></p>
+
+<p><strong>11. Step definitions in your language (Ruby 1.9.2 - Internationalization)</strong></p>
+
+<h2>Installation</h2>
+
+<p>YARD-Cucumber requires the following gems installed:</p>
+
+<p>Gherkin 2.2.9 - <a href="http://cukes.info">http://cukes.info</a>
+Cucumber 0.7.5 - <a href="http://cukes.info">http://cukes.info</a>
+YARD 0.8.1 - <a href="http://yardoc.org">http://yardoc.org</a></p>
+
+<p>To install <code>yard-cucumber</code> use the following command:</p>
+
+<pre class="code bash"><code class="bash">$ gem install yard-cucumber
+</code></pre>
+
+<p>(Add <code>sudo</code> if you&#39;re installing under a POSIX system as root)</p>
+
+<h2>Usage</h2>
+
+<p>YARD supports for automatically including gems with the prefix <code>yard-</code>
+as a plugin. To enable automatic loading yard-cucumber.</p>
+
+<pre class="code bash"><code class="bash">$ mkdir ~/.yard
+$ yard config load_plugins true
+$ yardoc &#39;example/**/*.rb&#39; &#39;example/**/*.feature&#39;
+</code></pre>
+
+<p>Now you can run YARD as you <a href="https://github.com/lsegal/yard">normally</a> would and
+have your features, step definitions and transforms captured.</p>
+
+<p>An example with the rake task:</p>
+
+<pre class="code ruby"><code class="ruby"><span class='id identifier rubyid_require'>require</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>yard</span><span class='tstring_end'>&#39;</span></span>
+
+<span class='const'>YARD</span><span class='op'>::</span><span class='const'>Rake</span><span class='op'>::</span><span class='const'>YardocTask</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_t'>t</span><span class='op'>|</span>
+<span class='id identifier rubyid_t'>t</span><span class='period'>.</span><span class='id identifier rubyid_files'>files</span>   <span class='op'>=</span> <span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>features/**/*.feature</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>features/**/*.rb</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span>
+<span class='id identifier rubyid_t'>t</span><span class='period'>.</span><span class='id identifier rubyid_options'>options</span> <span class='op'>=</span> <span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>--any</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>--extra</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>--opts</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span> <span class='comment'># optional
+</span><span class='kw'>end</span>
+</code></pre>
+
+<h2>Configuration</h2>
+
+<ul>
+<li>Adding or Removing search fields (yardoc)</li>
+</ul>
+
+<p>Be default the yardoc output will generate a search field for features and tags.
+This can be configured through the yard configuration file <code>~/.yard/config</code> to
+add or remove these search fields.</p>
+
+<pre class="code yaml"><code class="yaml">--- !map:SymbolHash
+:load_plugins: true
+:ignored_plugins: []
+
+:autoload_plugins: []
+
+:safe_mode: false
+
+:&quot;yard-cucumber&quot;:
+  menus: [ &#39;features&#39;, &#39;directories&#39;, &#39;tags&#39;, &#39;steps&#39;, &#39;step definitions&#39; ]
+</code></pre>
+
+<p>By default the configuration, yaml format, that is generate by the <code>yard config</code>
+command will save a <code>SymbolHash</code>. You can still edit this file add the entry for
+<code>:&quot;yard-cucumber&quot;:</code> and the sub-entry <code>menus:</code> which can contain all of the above
+mentioned menus or simply an empty array <code>[]</code> if you want no additional menus.</p>
+
+<ul>
+<li>Step definitions in your language (Ruby 1.9.2)</li>
+</ul>
+
+<p>Again the yard configuration file you can define additional step definitions
+that can be matched.</p>
+
+<pre class="code yaml"><code class="yaml">:&quot;yard-cucumber&quot;:
+  language:
+    step_definitions: [ &#39;Given&#39;, &#39;When&#39;, &#39;Then&#39;, &#39;And&#39;, &#39;Soit&#39;, &#39;Etantdonné&#39;, &#39;Lorsque&#39;, &#39;Lorsqu&#39;, &#39;Alors&#39;, &#39;Et&#39; ]
+</code></pre>
+
+<p>In this example, I have included the French step definition words alongside the
+English step definitions. Even without specifying this feature files in other
+languages are found, this provides the ability for the step definitions to match
+correctly to step definitions.</p>
+
+<h2>Details</h2>
+
+<p>There are two things that I enjoy: a test framework written in my own Domain
+Specific Language (DSL) that is easily understood by all those on a project
+and the ability for all participants to easily read, search, and view the tests.</p>
+
+<p>Cucumber is an amazing tool that allowed me to define exercisable requirements.
+My biggest obstacle was bringing these requirements to my team, the product
+owner, and other stakeholders.</p>
+
+<p>Initially I tried to expose more of the functionality by providing freshly
+authored requirements through email, attachments to JIRA tickets, or linked in
+wiki documents. None of these methods were very sustainable or successful.
+First, I was continually pushing out the documents to those interested.
+Second, the documents were displayed to the user in text without the syntax
+highlighting that was exceedingly helpful for quickly understanding the requirements.</p>
+
+<p>I also found it hard to share the test framework that I had put together with
+another developer that joined the team. It was difficult to direct them around
+the features, tags, step definitions, and transforms. It was when I started to
+convey to them the conventions that I had established that I wished I had a
+tool that would allow me to provide documentation like one would find generated
+by a great tool like YARD.</p>
+
+<p>So I set out to integrate Cucumber objects like features, backgrounds,
+scenarios, tags, steps, step definitions, and transforms into a YARD template.
+From my quick survey of the landscape I can see that the my needs are
+different than a lot of others that use Cucumber.  The entire project that
+spawned this effort was solely to exercise the functionality of a different,
+large project and so there is a huge dependence on having the requirements
+documented.  This is in contrast to other projects that are using this on a
+small scale to test the functionality of small software component.  Though,
+ultimately, I realized that the functionality may provide a valuable tool for
+many as I feel it helps more solidly bridge the reporting of the documentation
+by putting a coat of paint on it.</p>
+
+<h2>LICENSE</h2>
+
+<p>(The MIT License)</p>
+
+<p>Copyright (c) 2011 Franklin Webber</p>
+
+<p>Permission is hereby granted, free of charge, to any person obtaining
+a copy of this software and associated documentation files (the
+&#39;Software&#39;), to deal in the Software without restriction, including
+without limitation the rights to use, copy, modify, merge, publish,
+distribute, sublicense, and/or sell copies of the Software, and to
+permit persons to whom the Software is furnished to do so, subject to
+the following conditions:</p>
+
+<p>The above copyright notice and this permission notice shall be
+included in all copies or substantial portions of the Software.</p>
+
+<p>THE SOFTWARE IS PROVIDED &#39;AS IS&#39;, WITHOUT WARRANTY OF ANY KIND,
+EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
+IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY
+CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
+TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
+SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.</p>
+</div></div>
+
+    <div id="footer">
+  Generated on Fri Nov  8 15:41:47 2013 by
+  <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
+  0.8.7.3 (ruby-2.0.0).
+</div>
+
+  </body>
+</html>

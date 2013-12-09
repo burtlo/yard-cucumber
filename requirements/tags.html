@@ -1,0 +1,645 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>
+  Tags
+  
+    &mdash; Documentation by YARD 0.8.7.3
+  
+</title>
+
+  <link rel="stylesheet" href="../css/style.css" type="text/css" charset="utf-8" />
+
+  <link rel="stylesheet" href="../css/common.css" type="text/css" charset="utf-8" />
+
+  <link rel="stylesheet" href="../css/cucumber.css" type="text/css" charset="utf-8" />
+
+<script type="text/javascript" charset="utf-8">
+  hasFrames = window.top.frames.main ? true : false;
+  relpath = '../';
+  framesUrl = "../frames.html#!" + escape(window.location.href);
+</script>
+
+
+  <script type="text/javascript" charset="utf-8" src="../js/jquery.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="../js/app.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="../js/cucumber.js"></script>
+
+
+  </head>
+  <body>
+    <div id="header">
+      <div id="menu">
+  
+    <a href="../_index.html">Index (t)</a> &raquo;
+    <span class='title'><span class='object_link'><a href="../requirements.html" title="requirements (requirements)">requirements</a></span></span>
+     &raquo; 
+    <span class="title">tags</span>
+  
+
+  <div class="noframes"><span class="title">(</span><a href="." target="_top">no frames</a><span class="title">)</span></div>
+</div>
+
+      <div id="search">
+  
+    <a class="full_list_link" id="feature_list_link"
+        href="../feature_list.html">
+      Features
+    </a>
+  
+    <a class="full_list_link" id="tag_list_link"
+        href="../tag_list.html">
+      Tags
+    </a>
+  
+    <a class="full_list_link" id="class_list_link"
+        href="../class_list.html">
+      Class List
+    </a>
+  
+    <a class="full_list_link" id="method_list_link"
+        href="../method_list.html">
+      Method List
+    </a>
+  
+    <a class="full_list_link" id="file_list_link"
+        href="../file_list.html">
+      File List
+    </a>
+  
+</div>
+      <div class="clear"></div>
+    </div>
+
+    <iframe id="search_frame"></iframe>
+
+    <div id="content">
+  <div id="tags" class="requirements">
+    <script type="text/javascript" charset="utf-8">
+      var tag_list = [ '@bvt','@comments','@fifth','@first','@fourth','@highlight','@optional_parameters','@scenario_outlines','@scenarios','@second','@seventh','@sixth','@table','@tag','@tag+with+plus','@tag-with-dash','@tag123456','@tag_with_underscore','@tags','@text','@third' ];
+
+      $(function() {
+
+        // On focus, remove all the shortcut keys
+        $("#tag_search").focus(function() {
+          $(document).unbind('keypress');
+        });
+        
+        // On blur, return all the shortcut keys
+        $("#tag_search").blur(function() {
+          $(document).bind('keypress',keyboardShortcuts);
+          $(document).bind('keypress',cucumberKeyboardShortcuts);
+        });
+
+        $("#tag_search").keyup(function(evt) {
+          updateTagFiltering($("#tag_search")[0].value);
+        });
+
+        
+        $("#tag_search").keyup(function(evt) {
+          updateTagFiltering($("#tag_search")[0].value);
+        });
+        
+         $(".tag").click(function(evt) {
+            if (typeof evt !== "undefined") {
+
+              if (evt.shiftKey === true)  {
+                window.location = $(this).attr("href");
+                return true;
+              }
+              
+              var tagSearchElement = $("#tag_search")[0];
+              
+              var tagToAdd = this.innerHTML;
+              var tagModifer = "";
+              
+              if (evt.altKey === true ) {
+                tagToAdd = "~" + tagToAdd;
+              }
+              
+              if (evt.ctrlKey === true ) {
+                tagModifier = ",";
+              } else {
+                tagModifier = " ";
+              }
+              
+              tagSearchElement.value = (tagSearchElement.value != "" ? tagSearchElement.value + tagModifier : "") + tagToAdd;
+              updateTagFiltering(tagSearchElement.value);
+              
+            }
+        });
+      });
+    </script>
+
+    <div class="title">
+      <span class="name">Tags</span>
+    </div>
+
+    <div id="tag_filtering" >
+        <span style="font-size: 18px;">Tag Filtering <a href="https://github.com/cucumber/cucumber/wiki/Tags" target="_blank">?</a></span>
+        
+        <div style="clear: both"></div>
+        
+        <div style="float: left; margin-top: 10px; padding-left: 5px; line-height: 1.5; font-size: 10px; font-style: italic;">
+          Type in tags with spaces between to 'AND' and commas between to 'OR'<br/> 
+          LEFT CLICK to AND tags; CTRL+LEFT CLICK to OR tags; hold ALT for inverse (~) tags
+        </div>
+        
+        <div style="clear: both;"></div>
+          
+        <div style="float: right;">
+          <a href="#" onclick="clearTagFiltering(); $('#tag_search')[0].value = ''; return true;">clear</a>
+        </div>
+        
+        <div style="clear: both"></div>
+        
+        <input id="tag_search" type="text" />
+        <span>Example command line execution:</span>
+        <div id="command_example">cucumber</div>
+    </div>
+
+    <div class="tags" style="margin-top: 20px;"><span class="name">Tags:</span>
+      <span class="tag" href="tags/bvt.html">@bvt</span>,
+<span class="tag" href="tags/comments.html">@comments</span>,
+<span class="tag" href="tags/fifth.html">@fifth</span>,
+<span class="tag" href="tags/first.html">@first</span>,
+<span class="tag" href="tags/fourth.html">@fourth</span>,
+<span class="tag" href="tags/highlight.html">@highlight</span>,
+<span class="tag" href="tags/optional_parameters.html">@optional_parameters</span>,
+<span class="tag" href="tags/scenario_outlines.html">@scenario_outlines</span>,
+<span class="tag" href="tags/scenarios.html">@scenarios</span>,
+<span class="tag" href="tags/second.html">@second</span>,
+<span class="tag" href="tags/seventh.html">@seventh</span>,
+<span class="tag" href="tags/sixth.html">@sixth</span>,
+<span class="tag" href="tags/table.html">@table</span>,
+<span class="tag" href="tags/tag.html">@tag</span>,
+<span class="tag" href="tags/tag_2Bwith_2Bplus.html">@tag+with+plus</span>,
+<span class="tag" href="tags/tag-with-dash.html">@tag-with-dash</span>,
+<span class="tag" href="tags/tag123456.html">@tag123456</span>,
+<span class="tag" href="tags/tag_with_underscore.html">@tag_with_underscore</span>,
+<span class="tag" href="tags/tags.html">@tags</span>,
+<span class="tag" href="tags/text.html">@text</span>,
+<span class="tag" href="tags/third.html">@third</span>
+    </div>
+
+    <div id="features">
+      <div class="title">
+        <span class="name">Features</span>
+      </div>
+      
+      <ul style="padding-left: 0px;">
+      
+        <li class="feature odd ">
+        <span class='object_link'><a href="example/french.html" title="requirements::example::french (feature)">Addition</a></span>
+          
+          
+        </li>
+        
+        
+          <ul style="padding-left: 20px;">
+          	
+          	<li class="scenario even  ">
+          	  <span class='object_link'>
+             		<a href="example/french.html#scenario0">
+             		  Addition de deux nombres
+             		</a>
+             	</span>
+             	
+              
+          	</li>
+            
+          	
+          </ul>
+        
+      
+        <li class="feature odd @scenarios">
+        <span class='object_link'><a href="example/child_feature/child.html" title="requirements::example::child_feature::child (feature)">Child Feature</a></span>
+          
+          
+          - <small><span class="tag" href="tags/scenarios.html">@scenarios</span></small>
+          
+        </li>
+        
+        
+          <ul style="padding-left: 20px;">
+          	
+          	<li class="scenario even @scenarios ">
+          	  <span class='object_link'>
+             		<a href="example/child_feature/child.html#scenario0">
+             		  Child Scenario
+             		</a>
+             	</span>
+             	
+              
+          	</li>
+            
+          	
+          </ul>
+        
+      
+        <li class="feature odd @scenario_outlines @bvt">
+        <span class='object_link'><a href="example/scenario_outline.html" title="requirements::example::scenario_outline (feature)">Displaying Scenario Outlines</a></span>
+          
+          
+          - <small><span class="tag" href="tags/scenario_outlines.html">@scenario_outlines</span>, <span class="tag" href="tags/bvt.html">@bvt</span></small>
+          
+        </li>
+        
+        
+          <ul style="padding-left: 20px;">
+          	
+          	<li class="scenario even @scenario_outlines @bvt @first">
+          	  <span class='object_link'>
+             		<a href="example/scenario_outline.html#scenario0">
+             		  Three Examples
+             		</a>
+             	</span>
+             	
+              
+                - <small><span class="tag" href="tags/first.html">@first</span></small>
+              
+          	</li>
+            
+          	
+          	<li class="scenario odd @scenario_outlines @bvt @second">
+          	  <span class='object_link'>
+             		<a href="example/scenario_outline.html#scenario1">
+             		  Step contains a text block
+             		</a>
+             	</span>
+             	
+              
+                - <small><span class="tag" href="tags/second.html">@second</span></small>
+              
+          	</li>
+            
+          	
+          	<li class="scenario even @scenario_outlines @bvt @third">
+          	  <span class='object_link'>
+             		<a href="example/scenario_outline.html#scenario2">
+             		  Step contains a table
+             		</a>
+             	</span>
+             	
+              
+                - <small><span class="tag" href="tags/third.html">@third</span></small>
+              
+          	</li>
+            
+          	
+          	<li class="scenario odd @scenario_outlines @bvt @fourth">
+          	  <span class='object_link'>
+             		<a href="example/scenario_outline.html#scenario3">
+             		  Step contains a table; table header uses an example
+             		</a>
+             	</span>
+             	
+              
+                - <small><span class="tag" href="tags/fourth.html">@fourth</span></small>
+              
+          	</li>
+            
+          	
+          	<li class="scenario even @scenario_outlines @bvt ">
+          	  <span class='object_link'>
+             		<a href="example/scenario_outline.html#scenario4">
+             		  Example Table Missing
+             		</a>
+             	</span>
+             	
+              
+          	</li>
+            
+          	
+          	<li class="scenario odd @scenario_outlines @bvt ">
+          	  <span class='object_link'>
+             		<a href="example/scenario_outline.html#scenario5">
+             		  Empty Example Table
+             		</a>
+             	</span>
+             	
+              
+          	</li>
+            
+          	
+          	<li class="scenario even @scenario_outlines @bvt ">
+          	  <span class='object_link'>
+             		<a href="example/scenario_outline.html#scenario6">
+             		  Multiple Example Table
+             		</a>
+             	</span>
+             	
+              
+          	</li>
+            
+          	
+          </ul>
+        
+      
+        <li class="feature odd @scenarios">
+        <span class='object_link'><a href="example/scenario.html" title="requirements::example::scenario (feature)">Displaying Scenarios</a></span>
+          
+          
+          - <small><span class="tag" href="tags/scenarios.html">@scenarios</span></small>
+          
+        </li>
+        
+        
+          <ul style="padding-left: 20px;">
+          	
+          	<li class="scenario even @scenarios @first @bvt">
+          	  <span class='object_link'>
+             		<a href="example/scenario.html#scenario0">
+             		  No Step Scenario
+             		</a>
+             	</span>
+             	
+              
+                - <small><span class="tag" href="tags/first.html">@first</span>, <span class="tag" href="tags/bvt.html">@bvt</span></small>
+              
+          	</li>
+            
+          	
+          	<li class="scenario odd @scenarios @second @bvt">
+          	  <span class='object_link'>
+             		<a href="example/scenario.html#scenario1">
+             		  Scenario With Steps
+             		</a>
+             	</span>
+             	
+              
+                - <small><span class="tag" href="tags/second.html">@second</span>, <span class="tag" href="tags/bvt.html">@bvt</span></small>
+              
+          	</li>
+            
+          	
+          	<li class="scenario even @scenarios @third @optional_parameters">
+          	  <span class='object_link'>
+             		<a href="example/scenario.html#scenario2">
+             		  Optional Parameter Step Definition
+             		</a>
+             	</span>
+             	
+              
+                - <small><span class="tag" href="tags/third.html">@third</span>, <span class="tag" href="tags/optional_parameters.html">@optional_parameters</span></small>
+              
+          	</li>
+            
+          	
+          	<li class="scenario odd @scenarios @fourth @highlight">
+          	  <span class='object_link'>
+             		<a href="example/scenario.html#scenario3">
+             		  Matched Term Highlighting
+             		</a>
+             	</span>
+             	
+              
+                - <small><span class="tag" href="tags/fourth.html">@fourth</span>, <span class="tag" href="tags/highlight.html">@highlight</span></small>
+              
+          	</li>
+            
+          	
+          	<li class="scenario even @scenarios @fifth @table">
+          	  <span class='object_link'>
+             		<a href="example/scenario.html#scenario4">
+             		  Scenario With Table
+             		</a>
+             	</span>
+             	
+              
+                - <small><span class="tag" href="tags/fifth.html">@fifth</span>, <span class="tag" href="tags/table.html">@table</span></small>
+              
+          	</li>
+            
+          	
+          	<li class="scenario odd @scenarios @sixth @text">
+          	  <span class='object_link'>
+             		<a href="example/scenario.html#scenario5">
+             		  Scenario With Text
+             		</a>
+             	</span>
+             	
+              
+                - <small><span class="tag" href="tags/sixth.html">@sixth</span>, <span class="tag" href="tags/text.html">@text</span></small>
+              
+          	</li>
+            
+          	
+          	<li class="scenario even @scenarios @seventh @comments">
+          	  <span class='object_link'>
+             		<a href="example/scenario.html#scenario6">
+             		  Scenario with comments and a description
+             		</a>
+             	</span>
+             	
+              
+                - <small><span class="tag" href="tags/seventh.html">@seventh</span>, <span class="tag" href="tags/comments.html">@comments</span></small>
+              
+          	</li>
+            
+          	
+          	<li class="scenario odd @scenarios ">
+          	  <span class='object_link'>
+             		<a href="example/scenario.html#scenario7">
+             		  Step ending with a match with double-quotes
+             		</a>
+             	</span>
+             	
+              
+          	</li>
+            
+          	
+          </ul>
+        
+      
+        <li class="feature even @scenarios">
+        <span class='object_link'><a href="example/child_feature/grandchild_feature/grandchild.html" title="requirements::example::child_feature::grandchild_feature::grandchild (feature)">Grandchild Feature</a></span>
+          
+          
+          - <small><span class="tag" href="tags/scenarios.html">@scenarios</span></small>
+          
+        </li>
+        
+        
+          <ul style="padding-left: 20px;">
+          	
+          	<li class="scenario odd @scenarios @first">
+          	  <span class='object_link'>
+             		<a href="example/child_feature/grandchild_feature/grandchild.html#scenario0">
+             		  Grandchild Scenario
+             		</a>
+             	</span>
+             	
+              
+                - <small><span class="tag" href="tags/first.html">@first</span></small>
+              
+          	</li>
+            
+          	
+          </ul>
+        
+      
+        <li class="feature even ">
+        <span class='object_link'><a href="example/scenario_outline_multi.html" title="requirements::example::scenario_outline_multi (feature)">My Feature</a></span>
+          
+          
+        </li>
+        
+        
+          <ul style="padding-left: 20px;">
+          	
+          	<li class="scenario odd  ">
+          	  <span class='object_link'>
+             		<a href="example/scenario_outline_multi.html#scenario0">
+             		  Multiple Example Table
+             		</a>
+             	</span>
+             	
+              
+          	</li>
+            
+          	
+          </ul>
+        
+      
+        <li class="feature even @scenarios @bvt">
+        <span class='object_link'><a href="example/transform.html" title="requirements::example::transform (feature)">Step Transforms</a></span>
+          
+          
+          - <small><span class="tag" href="tags/scenarios.html">@scenarios</span>, <span class="tag" href="tags/bvt.html">@bvt</span></small>
+          
+        </li>
+        
+        
+          <ul style="padding-left: 20px;">
+          	
+          	<li class="scenario odd @scenarios @bvt @first">
+          	  <span class='object_link'>
+             		<a href="example/transform.html#scenario0">
+             		  Step with step transformation
+             		</a>
+             	</span>
+             	
+              
+                - <small><span class="tag" href="tags/first.html">@first</span></small>
+              
+          	</li>
+            
+          	
+          	<li class="scenario even @scenarios @bvt @second">
+          	  <span class='object_link'>
+             		<a href="example/transform.html#scenario1">
+             		  Step Transform uses a constant
+             		</a>
+             	</span>
+             	
+              
+                - <small><span class="tag" href="tags/second.html">@second</span></small>
+              
+          	</li>
+            
+          	
+          </ul>
+        
+      
+        <li class="feature odd @tags">
+        <span class='object_link'><a href="example/tags.html" title="requirements::example::tags (feature)">Tags</a></span>
+          
+          
+          - <small><span class="tag" href="tags/tags.html">@tags</span></small>
+          
+        </li>
+        
+        
+          <ul style="padding-left: 20px;">
+          	
+          	<li class="scenario even @tags @tag">
+          	  <span class='object_link'>
+             		<a href="example/tags.html#scenario0">
+             		  Basic Tag
+             		</a>
+             	</span>
+             	
+              
+                - <small><span class="tag" href="tags/tag.html">@tag</span></small>
+              
+          	</li>
+            
+          	
+          	<li class="scenario odd @tags @tag123456">
+          	  <span class='object_link'>
+             		<a href="example/tags.html#scenario1">
+             		  Tag With Numbers
+             		</a>
+             	</span>
+             	
+              
+                - <small><span class="tag" href="tags/tag123456.html">@tag123456</span></small>
+              
+          	</li>
+            
+          	
+          	<li class="scenario even @tags @tag_with_underscore">
+          	  <span class='object_link'>
+             		<a href="example/tags.html#scenario2">
+             		  Tag With Underscore
+             		</a>
+             	</span>
+             	
+              
+                - <small><span class="tag" href="tags/tag_with_underscore.html">@tag_with_underscore</span></small>
+              
+          	</li>
+            
+          	
+          	<li class="scenario odd @tags @tag-with-dash">
+          	  <span class='object_link'>
+             		<a href="example/tags.html#scenario3">
+             		  Tag With Dash
+             		</a>
+             	</span>
+             	
+              
+                - <small><span class="tag" href="tags/tag-with-dash.html">@tag-with-dash</span></small>
+              
+          	</li>
+            
+          	
+          	<li class="scenario even @tags @tag+with+plus">
+          	  <span class='object_link'>
+             		<a href="example/tags.html#scenario4">
+             		  Tag With Plus
+             		</a>
+             	</span>
+             	
+              
+                - <small><span class="tag" href="tags/tag_2Bwith_2Bplus.html">@tag+with+plus</span></small>
+              
+          	</li>
+            
+          	
+          </ul>
+        
+      
+      </ul>
+      <div class="undefined" style="display:none;">No Features or Scenarios match the Tag Expression</div>
+    </div>
+
+  </div>
+
+
+
+</div>
+
+    <div id="footer">
+  Generated on Fri Nov  8 15:41:47 2013 by
+  <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
+  0.8.7.3 (ruby-2.0.0).
+</div>
+
+  </body>
+</html>
