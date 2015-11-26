@@ -58,7 +58,7 @@ module Cucumber
       end
 
       #
-      # Find the tag if it exists within the YARD Registry, if it doesn' t then
+      # Find the tag if it exists within the YARD Registry, if it doesn't then
       # create it.
       #
       # We note that the tag was used in this file at the current line.

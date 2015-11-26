@@ -11,6 +11,7 @@
       <a href="http://rubular.com/?regex=<%= urlencode item.value %>" target="_blank">Rubular</a>
       <%= "| PENDING" if item.pending %>
       <%= "| UNUSED" if item.steps.nil? || item.steps.empty? %>
+      <a class="stepdef" href="#">[Collapse]</a>
     </div>
     <div style="clear: both;"></div>
   </div>
