@@ -17,8 +17,7 @@ module YARD::Parser::Cucumber
 
       @builder = Cucumber::Parser::CityBuilder.new(file)
       @tag_counts = {}
-      @tag_formatter = Gherkin::Formatter::TagCountFormatter.new(@builder, @tag_counts)
-      @parser = Gherkin::Parser::Parser.new(@tag_formatter, true, "root", false)
+      @parser = Gherkin::Parser.new(@builder)
 
       @source = source
       @file = file
@@ -35,16 +34,16 @@ module YARD::Parser::Cucumber
     # @see Cucumber::Parser::CityBuilder
     def parse
       begin
-        @parser.parse(@source, @file, 0)
+        @parser.parse(@source)
         @feature = @builder.ast
         return nil if @feature.nil? # Nothing matched
         
         # The parser used the following keywords when parsing the feature
         # @feature.language = @parser.i18n_language.get_code_keywords.map {|word| word }
         
-      rescue Gherkin::Lexer::LexingError, Gherkin::Parser::ParseError => e
+      rescue Gherkin::ParserError => e
         e.message.insert(0, "#{@file}: ")
-        raise e
+        warn e
       end
       
       self

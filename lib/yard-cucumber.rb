@@ -1,6 +1,5 @@
 require 'cucumber/platform'
-require 'gherkin/parser/parser'
-require 'gherkin/formatter/tag_count_formatter'
+require 'gherkin/parser'
 
 require File.dirname(__FILE__) + "/yard-cucumber/version.rb"
 
