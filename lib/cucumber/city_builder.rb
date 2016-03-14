@@ -1,7 +1,6 @@
 module Cucumber
   module Parser
-    class CityBuilder
-      include Gherkin::Rubify
+    class CityBuilder < Gherkin::AstBuilder
 
       #
       # The Gherkin Parser is going to call the various methods within this
@@ -16,6 +15,7 @@ module Cucumber
       # @param [String] file the name of the file which the content belongs
       #
       def initialize(file)
+        super()
         @namespace = YARD::CodeObjects::Cucumber::CUCUMBER_NAMESPACE
         find_or_create_namespace(file)
         @file = file
@@ -29,6 +29,7 @@ module Cucumber
       #
       # @see YARD::Parser::Cucumber::FeatureParser
       def ast
+        feature(get_result) unless @feature
         @feature
       end
 
@@ -90,15 +91,23 @@ module Cucumber
         #log.debug "FEATURE"
 
         @feature = YARD::CodeObjects::Cucumber::Feature.new(@namespace,File.basename(@file.gsub('.feature','').gsub('.','_'))) do |f|
-          f.comments = feature.comments.map{|comment| comment.value}.join("\n")
-          f.description = feature.description
-          f.add_file(@file,feature.line)
-          f.keyword = feature.keyword
-          f.value = feature.name
+          f.comments = feature[:comments] ? feature[:comments].map{|comment| comment[:text]}.join("\n") : ''
+          f.description = ''#feature.description
+          f.add_file(@file,feature[:location][:line])
+          f.keyword = feature[:keyword]
+          f.value = feature[:name]
           f.tags = []
 
-          feature.tags.each {|feature_tag| find_or_create_tag(feature_tag.name,f) }
+          feature[:tags].each {|feature_tag| find_or_create_tag(feature_tag[:name],f) }
         end
+        feature[:scenarioDefinitions].each { |s|
+          case s[:type]
+            when :ScenarioOutline
+              scenario_outline(s)
+            when :Scenario
+              scenario(s)
+          end
+      }
       end
 
       #
@@ -138,18 +147,21 @@ module Cucumber
         #log.debug "SCENARIO"
 
         scenario = YARD::CodeObjects::Cucumber::Scenario.new(@feature,"scenario_#{@feature.scenarios.length + 1}") do |s|
-          s.comments = statement.comments.map{|comment| comment.value}.join("\n")
-          s.description = statement.description
-          s.add_file(@file,statement.line)
-          s.keyword = statement.keyword
-          s.value = statement.name
+          s.comments = statement[:comments] ? statement[:comments].map{|comment| comment.value}.join("\n") : ''
+          s.description = ''#statement.description
+          s.add_file(@file,statement[:location][:line])
+          s.keyword = statement[:keyword]
+          s.value = statement[:name]
 
-          statement.tags.each {|scenario_tag| find_or_create_tag(scenario_tag.name,s) }
+          statement[:tags].each {|scenario_tag| find_or_create_tag(scenario_tag[:name],s) }
         end
 
         scenario.feature = @feature
         @feature.scenarios << scenario
         @step_container = scenario
+        statement[:steps].each { |s|
+          step(s)
+        }
       end
 
       #
@@ -163,18 +175,24 @@ module Cucumber
         #log.debug "SCENARIO OUTLINE"
 
         outline = YARD::CodeObjects::Cucumber::ScenarioOutline.new(@feature,"scenario_#{@feature.scenarios.length + 1}") do |s|
-          s.comments = statement.comments.map{|comment| comment.value}.join("\n")
-          s.description = statement.description
-          s.add_file(@file,statement.line)
-          s.keyword = statement.keyword
-          s.value = statement.name
+          s.comments = statement[:comments] ? statement[:comments].map{|comment| comment.value}.join("\n") : ''
+          s.description = ''#statement.description
+          s.add_file(@file,statement[:location][:line])
+          s.keyword = statement[:keyword]
+          s.value = statement[:name]
 
-          statement.tags.each {|scenario_tag| find_or_create_tag(scenario_tag.name,s) }
+          statement[:tags].each {|scenario_tag| find_or_create_tag(scenario_tag[:name],s) }
         end
 
         outline.feature = @feature
         @feature.scenarios << outline
         @step_container = outline
+        statement[:steps].each { |s|
+          step(s)
+        }
+        statement[:examples].each { |e|
+          examples(e)
+        }
       end
 
       #
@@ -187,12 +205,14 @@ module Cucumber
       def examples(examples)
         #log.debug "EXAMPLES"
 
-        example = YARD::CodeObjects::Cucumber::ScenarioOutline::Examples.new(:keyword => examples.keyword,
-          :name => examples.name,
-          :line => examples.line,
-          :comments => examples.comments.map{|comment| comment.value}.join("\n"),
-          :rows => matrix(examples.rows))
-
+        example = YARD::CodeObjects::Cucumber::ScenarioOutline::Examples.new(:keyword => examples[:keyword],
+                                                                             :name => examples[:name],
+                                                                             :line => examples[:location][:line],
+                                                                             :comments => examples[:comments] ? examples.comments.map{|comment| comment.value}.join("\n") : '',
+                                                                             :rows => []
+          )
+        example.rows = [examples[:tableHeader][:cells].map{ |c| c[:value] }] if examples[:tableHeader]
+        example.rows += matrix(examples[:tableBody]) if examples[:tableBody]
 
         # add the example to the step containers list of examples
 
@@ -263,29 +283,23 @@ module Cucumber
       def step(step)
         #log.debug "STEP"
 
-        @table_owner = YARD::CodeObjects::Cucumber::Step.new(@step_container,"#{step.line}") do |s|
-          s.keyword = step.keyword
-          s.value = step.name
-          s.add_file(@file,step.line)
+        @table_owner = YARD::CodeObjects::Cucumber::Step.new(@step_container,"#{step[:location][:line]}") do |s|
+          s.keyword = step[:keyword]
+          s.value = step[:text]
+          s.add_file(@file,step[:location][:line])
         end
 
-        @table_owner.comments = step.comments.map{|comment| comment.value}.join("\n")
+        @table_owner.comments = step[:comments] ? step[:comments].map{|comment| comment.value}.join("\n") : ''
 
-        multiline_arg = if step.respond_to?(:multiline_arg) && !step.multiline_arg.nil?
-          rubify(step.multiline_arg)
-        elsif step.respond_to?(:rows) && !step.rows.nil?
-          rubify(step.rows)
-        elsif step.respond_to?(:doc_string) && !step.doc_string.nil?
-          rubify(step.doc_string)
-        end
+        multiline_arg = step[:argument]
 
-        case(multiline_arg)
-        when gherkin_multiline_string_class
-          @table_owner.text = multiline_arg.value
-        when Array
+        case(multiline_arg[:type])
+        when :DocString
+          @table_owner.text = multiline_arg[:content]
+        when :DataTable
           #log.info "Matrix: #{matrix(multiline_arg).collect{|row| row.collect{|cell| cell.class } }.flatten.join("\n")}"
-          @table_owner.table = matrix(multiline_arg)
-        end
+          @table_owner.table = matrix(multiline_arg[:rows])
+        end if multiline_arg
 
         @table_owner.scenario = @step_container
         @step_container.steps << @table_owner
@@ -302,7 +316,7 @@ module Cucumber
 
       private
       def matrix(gherkin_table)
-        gherkin_table.map {|gherkin_row| gherkin_row.cells }
+        gherkin_table.map {|gherkin_row| gherkin_row[:cells].map{ |cell| cell[:value] } }
       end
 
       #
