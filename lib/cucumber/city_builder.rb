@@ -92,7 +92,7 @@ module Cucumber
 
         @feature = YARD::CodeObjects::Cucumber::Feature.new(@namespace,File.basename(@file.gsub('.feature','').gsub('.','_'))) do |f|
           f.comments = feature[:comments] ? feature[:comments].map{|comment| comment[:text]}.join("\n") : ''
-          f.description = ''#feature.description
+          f.description = feature[:description] || ''
           f.add_file(@file,feature[:location][:line])
           f.keyword = feature[:keyword]
           f.value = feature[:name]
@@ -119,7 +119,7 @@ module Cucumber
 
         @background = YARD::CodeObjects::Cucumber::Scenario.new(@feature,"background") do |b|
           b.comments = background.comments.map{|comment| comment.value}.join("\n")
-          b.description = background.description
+          b.description = background[:description] || ''
           b.keyword = background.keyword
           b.value = background.name
           b.add_file(@file,background.line)
@@ -148,7 +148,7 @@ module Cucumber
 
         scenario = YARD::CodeObjects::Cucumber::Scenario.new(@feature,"scenario_#{@feature.scenarios.length + 1}") do |s|
           s.comments = statement[:comments] ? statement[:comments].map{|comment| comment.value}.join("\n") : ''
-          s.description = ''#statement.description
+          s.description = statement[:description] || ''
           s.add_file(@file,statement[:location][:line])
           s.keyword = statement[:keyword]
           s.value = statement[:name]
@@ -176,7 +176,7 @@ module Cucumber
 
         outline = YARD::CodeObjects::Cucumber::ScenarioOutline.new(@feature,"scenario_#{@feature.scenarios.length + 1}") do |s|
           s.comments = statement[:comments] ? statement[:comments].map{|comment| comment.value}.join("\n") : ''
-          s.description = ''#statement.description
+          s.description = statement[:description] || ''
           s.add_file(@file,statement[:location][:line])
           s.keyword = statement[:keyword]
           s.value = statement[:name]
