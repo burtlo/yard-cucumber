@@ -100,6 +100,7 @@ module Cucumber
 
           feature[:tags].each {|feature_tag| find_or_create_tag(feature_tag[:name],f) }
         end
+        background(feature[:background]) if feature[:background]
         feature[:scenarioDefinitions].each { |s|
           case s[:type]
             when :ScenarioOutline
@@ -113,21 +114,24 @@ module Cucumber
       #
       # Called when a background has been found
       #
-      # @see #scenario
+      # @see #feature
       def background(background)
         #log.debug "BACKGROUND"
 
         @background = YARD::CodeObjects::Cucumber::Scenario.new(@feature,"background") do |b|
-          b.comments = background.comments.map{|comment| comment.value}.join("\n")
+          b.comments = background[:comments] ? background[:comments].map{|comment| comment.value}.join("\n") : ''
           b.description = background[:description] || ''
-          b.keyword = background.keyword
-          b.value = background.name
-          b.add_file(@file,background.line)
+          b.keyword = background[:keyword]
+          b.value = background[:name]
+          b.add_file(@file,background[:location][:line])
         end
 
         @feature.background = @background
         @background.feature = @feature
         @step_container = @background
+        background[:steps].each { |s|
+          step(s)
+        }
       end
 
       #
