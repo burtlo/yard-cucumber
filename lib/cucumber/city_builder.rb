@@ -90,6 +90,8 @@ module Cucumber
       def feature(feature)
         #log.debug "FEATURE"
 
+        return if has_exclude_tags?(feature[:tags].map { |t| t[:name].gsub(/^@/, '') })
+
         @feature = YARD::CodeObjects::Cucumber::Feature.new(@namespace,File.basename(@file.gsub('.feature','').gsub('.','_'))) do |f|
           f.comments = feature[:comments] ? feature[:comments].map{|comment| comment[:text]}.join("\n") : ''
           f.description = feature[:description] || ''
@@ -150,6 +152,8 @@ module Cucumber
       def scenario(statement)
         #log.debug "SCENARIO"
 
+        return if has_exclude_tags?(statement[:tags].map { |t| t[:name].gsub(/^@/, '') })
+
         scenario = YARD::CodeObjects::Cucumber::Scenario.new(@feature,"scenario_#{@feature.scenarios.length + 1}") do |s|
           s.comments = statement[:comments] ? statement[:comments].map{|comment| comment.value}.join("\n") : ''
           s.description = statement[:description] || ''
@@ -177,6 +181,8 @@ module Cucumber
       #
       def scenario_outline(statement)
         #log.debug "SCENARIO OUTLINE"
+
+        return if has_exclude_tags?(statement[:tags].map { |t| t[:name].gsub(/^@/, '') })
 
         outline = YARD::CodeObjects::Cucumber::ScenarioOutline.new(@feature,"scenario_#{@feature.scenarios.length + 1}") do |s|
           s.comments = statement[:comments] ? statement[:comments].map{|comment| comment.value}.join("\n") : ''
@@ -342,6 +348,12 @@ module Cucumber
 
       def clone_table(base)
         base.map {|row| row.map {|cell| cell.dup }}
+      end
+
+      def has_exclude_tags?(tags)
+        if YARD::Config.options["yard-cucumber"] and YARD::Config.options["yard-cucumber"]["exclude_tags"]
+          return true unless (YARD::Config.options["yard-cucumber"]["exclude_tags"] & tags).empty?
+        end
       end
 
     end

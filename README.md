@@ -125,6 +125,16 @@ English step definitions. Even without specifying this feature files in other
 languages are found, this provides the ability for the step definitions to match
 correctly to step definitions.
 
+* Exclude features or scenarios from yardoc
+
+You can exclude any feature or scenario from the yardoc by adding a predefined tags to them.
+To define tags that will be excluded, again in yard configuration file:
+
+```yaml
+:"yard-cucumber":
+  exclude_tags: [ 'exclude-yardoc', 'also-exclude-yardoc' ]
+```
+
 ## Details
 
 There are two things that I enjoy: a test framework written in my own Domain
