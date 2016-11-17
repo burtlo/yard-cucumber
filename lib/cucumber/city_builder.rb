@@ -87,9 +87,9 @@ module Cucumber
       # This is once, as the gherking parser does not like multiple feature per
       # file.
       #
-      def feature(feature)
+      def feature(document)
         #log.debug "FEATURE"
-
+        feature = document[:feature]
         return if has_exclude_tags?(feature[:tags].map { |t| t[:name].gsub(/^@/, '') })
 
         @feature = YARD::CodeObjects::Cucumber::Feature.new(@namespace,File.basename(@file.gsub('.feature','').gsub('.','_'))) do |f|
@@ -102,9 +102,10 @@ module Cucumber
 
           feature[:tags].each {|feature_tag| find_or_create_tag(feature_tag[:name],f) }
         end
-        background(feature[:background]) if feature[:background]
-        feature[:scenarioDefinitions].each { |s|
+        feature[:children].each { |s|
           case s[:type]
+            when :Background
+              background(s)
             when :ScenarioOutline
               scenario_outline(s)
             when :Scenario
