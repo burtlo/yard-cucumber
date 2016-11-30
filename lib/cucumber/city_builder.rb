@@ -87,12 +87,14 @@ module Cucumber
       # This is once, as the gherking parser does not like multiple feature per
       # file.
       #
-      def feature(feature)
+      def feature(document)
         #log.debug "FEATURE"
+        feature = document[:feature]
+        return if has_exclude_tags?(feature[:tags].map { |t| t[:name].gsub(/^@/, '') })
 
         @feature = YARD::CodeObjects::Cucumber::Feature.new(@namespace,File.basename(@file.gsub('.feature','').gsub('.','_'))) do |f|
           f.comments = feature[:comments] ? feature[:comments].map{|comment| comment[:text]}.join("\n") : ''
-          f.description = ''#feature.description
+          f.description = feature[:description] || ''
           f.add_file(@file,feature[:location][:line])
           f.keyword = feature[:keyword]
           f.value = feature[:name]
@@ -100,8 +102,10 @@ module Cucumber
 
           feature[:tags].each {|feature_tag| find_or_create_tag(feature_tag[:name],f) }
         end
-        feature[:scenarioDefinitions].each { |s|
+        feature[:children].each { |s|
           case s[:type]
+            when :Background
+              background(s)
             when :ScenarioOutline
               scenario_outline(s)
             when :Scenario
@@ -113,21 +117,24 @@ module Cucumber
       #
       # Called when a background has been found
       #
-      # @see #scenario
+      # @see #feature
       def background(background)
         #log.debug "BACKGROUND"
 
         @background = YARD::CodeObjects::Cucumber::Scenario.new(@feature,"background") do |b|
-          b.comments = background.comments.map{|comment| comment.value}.join("\n")
-          b.description = background.description
-          b.keyword = background.keyword
-          b.value = background.name
-          b.add_file(@file,background.line)
+          b.comments = background[:comments] ? background[:comments].map{|comment| comment.value}.join("\n") : ''
+          b.description = background[:description] || ''
+          b.keyword = background[:keyword]
+          b.value = background[:name]
+          b.add_file(@file,background[:location][:line])
         end
 
         @feature.background = @background
         @background.feature = @feature
         @step_container = @background
+        background[:steps].each { |s|
+          step(s)
+        }
       end
 
       #
@@ -146,9 +153,11 @@ module Cucumber
       def scenario(statement)
         #log.debug "SCENARIO"
 
+        return if has_exclude_tags?(statement[:tags].map { |t| t[:name].gsub(/^@/, '') })
+
         scenario = YARD::CodeObjects::Cucumber::Scenario.new(@feature,"scenario_#{@feature.scenarios.length + 1}") do |s|
           s.comments = statement[:comments] ? statement[:comments].map{|comment| comment.value}.join("\n") : ''
-          s.description = ''#statement.description
+          s.description = statement[:description] || ''
           s.add_file(@file,statement[:location][:line])
           s.keyword = statement[:keyword]
           s.value = statement[:name]
@@ -174,9 +183,11 @@ module Cucumber
       def scenario_outline(statement)
         #log.debug "SCENARIO OUTLINE"
 
+        return if has_exclude_tags?(statement[:tags].map { |t| t[:name].gsub(/^@/, '') })
+
         outline = YARD::CodeObjects::Cucumber::ScenarioOutline.new(@feature,"scenario_#{@feature.scenarios.length + 1}") do |s|
           s.comments = statement[:comments] ? statement[:comments].map{|comment| comment.value}.join("\n") : ''
-          s.description = ''#statement.description
+          s.description = statement[:description] || ''
           s.add_file(@file,statement[:location][:line])
           s.keyword = statement[:keyword]
           s.value = statement[:name]
@@ -338,6 +349,12 @@ module Cucumber
 
       def clone_table(base)
         base.map {|row| row.map {|cell| cell.dup }}
+      end
+
+      def has_exclude_tags?(tags)
+        if YARD::Config.options["yard-cucumber"] and YARD::Config.options["yard-cucumber"]["exclude_tags"]
+          return true unless (YARD::Config.options["yard-cucumber"]["exclude_tags"] & tags).empty?
+        end
       end
 
     end
