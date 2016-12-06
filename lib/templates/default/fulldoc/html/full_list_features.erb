@@ -1,29 +1,37 @@
-<% n = 1 %>
-<li class="r<%= n %>">
-  <%= all_features_link %>
+<% n = 'odd' %>
+<li class="<%= n %>">
+  <div class="item" style="padding-left: 30px">
+    <%= all_features_link %>
+  </div>
 </li>
-<% n = n == 2 ? 1 : 2 %>
+<% n = n == 'odd' ? 'even' : 'odd' %>
 <% @items.each do |feature| %>
-<li class="r<%= n %>">
-  <%= "<a class='toggle'></a>" unless feature.scenarios.empty? %>
-  <%= linkify feature, feature.value %>
-  <small><%= feature.location %></small>
-</li>
-<% n = n == 2 ? 1 : 2 %>
-<% if feature.scenarios %>
-<ul>
-  <% feature.scenarios.each_with_index do |scenario,index| %>
-  <li class="r<%= n %>">
-    <span class='object_link'>
-       <a href="<%= url_for(scenario.feature,"scenario_#{index}") %>"
-           title="<%= h scenario.value %>">
-         <%= h scenario.value %>
-       </a>
-     </span>
-     <small><%= scenario.location %></small>
-  </li>
-        <% n = n == 2 ? 1 : 2 %>
+<li class="<%= n %>">
+  <div class="item" style="padding-left: 30px">
+    <%= "<a class='toggle'></a>" unless feature.scenarios.empty? %>
+    <%= linkify feature, feature.value %>
+    <small><%= feature.location %></small>
+  </div>
+
+  <% n = n == 'odd' ? 'even' : 'odd' %>
+  <% if feature.scenarios %>
+  <ul>
+    <% feature.scenarios.each_with_index do |scenario,index| %>
+    <li class="<%= n %>">
+      <div class="item" style="padding-left: 30px">
+        <span class='object_link'>
+           <a href="<%= url_for(scenario.feature,"scenario_#{index}") %>"
+               title="<%= h scenario.value %>">
+             <%= h scenario.value %>
+           </a>
+         </span>
+         <small><%= scenario.location %></small>
+       </div>
+    </li>
+    <% n = n == 'odd' ? 'even' : 'odd' %>
+    <% end %>
+  </ul>
   <% end %>
-</ul>
-<% end %>
+
+</li>
 <% end %>

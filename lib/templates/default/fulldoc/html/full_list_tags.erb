@@ -1,12 +1,16 @@
 <li>
-  <%= linkify YARD::CodeObjects::Cucumber::CUCUMBER_TAG_NAMESPACE, "All Tags" %>
+  <div class="item" style="padding-left: 30px;">
+    <%= linkify YARD::CodeObjects::Cucumber::CUCUMBER_TAG_NAMESPACE, "All Tags" %>
+  </div
 </li>
-<% n = 1 %>
 
+<% n = 'odd' %>
 <% @items.each do |tag| %>
-  <li class="r<%= n %>">
-	<%= linkify tag, tag.value %>
-	<small><%= tag.all_scenarios.size %></small>
+  <li class="<%= n %>">
+    <div class="item" style="padding-left: 30px;">
+      <%= linkify tag, tag.value %>
+      <small style="display: inline;"><%= tag.all_scenarios.size %></small>
+    </div>
   </li>
-  <% n = n == 2 ? 1 : 2 %>
+  <% n = n == 'odd' ? 'even' : 'odd' %>
 <% end %>

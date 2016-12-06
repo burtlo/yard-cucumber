@@ -81,7 +81,6 @@
 * ul.alpha ul { padding-left: 15px; }
 * ul small { color: #666; font-size: 0.7em; }
 
-
 .scenario .steps {
     margin: 0px 20px 0px 30px;
     font-size: 12px;
@@ -115,7 +114,7 @@ div.undefined { padding: 6px; }
 .step .defined .match { color: #346F97; }
 
 .multiline, .text { margin-top: 10px; margin-left: 20px; }
-.text { 
+.text {
     padding: 20px;
     background-color: #F8F8FF;
     color: #444444;
@@ -187,18 +186,18 @@ div.undefined { padding: 6px; }
     border: 1px solid #DEDEDE; -moz-border-radius: 3px; -webkit-border-radius: 3px;
 }
 
-#command_example { 
-    margin-top: 10px; 
-    margin-left: 0px; 
+#command_example {
+    margin-top: 10px;
+    margin-left: 0px;
     font-size: 1.1em; font-weight: normal; font-family: Monaco, Consolas, Courier, monospace;
     color: #333;
-    padding: 8px 10px; 
+    padding: 8px 10px;
     background: #A8E795; border: 1px solid #d8d8e5; -moz-border-radius: 3px; -webkit-border-radius: 3px;
 }
 
 
-#cukes_links { 
-    margin: 10px auto 10px auto; 
+#cukes_links {
+    margin: 10px auto 10px auto;
     border-bottom: 1px solid #E3E3E3;
     width: 762px; text-align: center;
     padding: 10px;
