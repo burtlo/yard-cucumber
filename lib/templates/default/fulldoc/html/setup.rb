@@ -169,6 +169,15 @@ def all_features_link
   end
 end
 
+#
+# This method is used to generate a feature directory. This template may call
+# this method as well to generate any child feature directories as well.
+#
+# @param directory [FeatureDirectory] this is the FeatureDirectory to display
+# @param padding [Fixnum] this is the pixel value to ident as we want to keep
+#    pushing in the padding to show the parent relationship
+# @param row [String] 'odd' or 'even' to correctly color the row
+#
 def directory_node(directory,padding,row)
   @directory = directory
   @padding = padding
