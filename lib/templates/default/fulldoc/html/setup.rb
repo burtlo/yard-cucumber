@@ -111,7 +111,7 @@ end
 # See the layout template method that loads the menus
 def generate_featuredirectories_list
   directories_ordered_by_name = root_feature_directories.sort {|x,y| x.value.to_s <=> y.value.to_s }
-  generate_full_list directories_ordered_by_name, :featuredirectories, 
+  generate_full_list directories_ordered_by_name, :featuredirectories,
     :list_title => "Features by Directory",
     :list_filename => "featuredirectories_list.html"
 end
@@ -143,7 +143,7 @@ end
 # This method removes the namespace from the root node, generates the class list,
 # and then adds it back into the root node.
 #
-def class_list(root = Registry.root)
+def class_list(root = Registry.root, tree = TreeContext.new)
   return super unless root == Registry.root
 
   cucumber_namespace = YARD::CodeObjects::Cucumber::CUCUMBER_NAMESPACE
