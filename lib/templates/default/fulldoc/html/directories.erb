@@ -19,8 +19,8 @@
           <%= linkify child, child.value.to_s.capitalize  %>
           <small><%= child.location %></small>
         </div>
+        <%= directory_node child, @padding + 15, @row %>
       </li>
-      <%= directory_node child, @padding + 15, @row %>
     <% end %>
   <% end %>
 </ul>
