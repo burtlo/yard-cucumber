@@ -1,17 +1,20 @@
-<li>
-  <%= linkify YARD::CodeObjects::Cucumber::CUCUMBER_STEPTRANSFORM_NAMESPACE, "All Defined Steps" %>
+<li class='odd'>
+  <div class="item" style="padding-left: 30px">
+    <%= linkify YARD::CodeObjects::Cucumber::CUCUMBER_STEPTRANSFORM_NAMESPACE, "All Defined Steps" %>
+  </div>
 </li>
-<% n = 1 %>
-
+<% n = 'even' %>
 <% @items.each do |step| %>
-  <li class="r<%= n %>">
-	<span class='object_link'>
-		<a href="<%= url_for step.scenario.feature %>" title="<%= h step.value %>">
-			<span class="pre"><%= step.keyword %></span>
-			<span class="name"><%= h(step.value) %></span>
-		</a>
-	</span>
-	<span class="">(<%= h(step.file) %>)<span>
+  <li class="<%= n %>">
+    <div class="item" style="padding-left: 30px">
+      <span class='object_link'>
+        <a href="<%= url_for step.scenario.feature %>" title="<%= h step.value %>">
+          <span class="pre"><%= step.keyword %></span>
+          <span class="name"><%= h(step.value) %></span>
+        </a>
+      </span>
+      <span class="">(<%= h(step.file) %>)<span>
+    </div>
   </li>
-  <% n = n == 2 ? 1 : 2 %>
+  <% n = n == 'even' ? 'odd' : 'even' %>
 <% end %>
