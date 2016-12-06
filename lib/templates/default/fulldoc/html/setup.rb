@@ -169,7 +169,9 @@ def all_features_link
   end
 end
 
-def directory_node(directory)
+def directory_node(directory,padding,row)
   @directory = directory
+  @padding = padding
+  @row = row
   erb(:directories)
 end

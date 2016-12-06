@@ -7,6 +7,5 @@
     <small><%= directory.location %></small>
   </div>
 </li>
-<% n = n == 'even' ? 'odd' : 'even' %>
-<%= directory_node directory %>
+<%= directory_node directory, 30, n %>
 <% end %>

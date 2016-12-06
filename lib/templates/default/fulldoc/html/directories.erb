@@ -1,27 +1,26 @@
-<% n = n == 'even' ? 'odd' : 'even' %>
+<% @row = @row == 'even' ? 'odd' : 'even' %>
 <% if @directory.children %>
 <ul>
   <% @directory.children.sort {|x,y| x.value.to_s <=> y.value.to_s }.each_with_index do |child,index| %>
     <% if child.is_a?(YARD::CodeObjects::Cucumber::Feature) %>
-      <li class="<%= n %>">
-        <div class="item" style="padding-left: 30px">
+      <li class="<%= @row %>">
+        <div class="item" style="padding-left: <%= @padding %>px">
           <%= linkify child, child.value %>
           <small><%= child.location %></small>
         </div>
       </li>
-      <% n = n == 'even' ? 'odd' : 'even' %>
+      <% @row = @row == 'even' ? 'odd' : 'even' %>
     <% end %>
 
     <% if child.is_a?(YARD::CodeObjects::Cucumber::FeatureDirectory) %>
-      <li class="<%= n %>">
-        <div class="item" style="padding-left: 30px">
+      <li class="<%= @row %>">
+        <div class="item" style="padding-left: <%= @padding %>px">
           <%= "<a class='toggle'></a>" unless child.features.empty? && child.subdirectories.empty? %>
           <%= linkify child, child.value.to_s.capitalize  %>
           <small><%= child.location %></small>
         </div>
       </li>
-      <%= directory_node child %>
-      <% n = n == 'even' ? 'odd' : 'even' %>
+      <%= directory_node child, @padding + 15, @row %>
     <% end %>
   <% end %>
 </ul>

@@ -18,7 +18,7 @@
   <ul>
     <% feature.scenarios.each_with_index do |scenario,index| %>
     <li class="<%= n %>">
-      <div class="item" style="padding-left: 30px">
+      <div class="item" style="padding-left: 45px">
         <span class='object_link'>
            <a href="<%= url_for(scenario.feature,"scenario_#{index}") %>"
                title="<%= h scenario.value %>">
