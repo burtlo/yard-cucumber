@@ -90,6 +90,7 @@ module Cucumber
       def feature(document)
         #log.debug "FEATURE"
         feature = document[:feature]
+        return unless document[:feature]
         return if has_exclude_tags?(feature[:tags].map { |t| t[:name].gsub(/^@/, '') })
 
         @feature = YARD::CodeObjects::Cucumber::Feature.new(@namespace,File.basename(@file.gsub('.feature','').gsub('.','_'))) do |f|
