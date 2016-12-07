@@ -1,3 +1,8 @@
+=== 3.1.0/ 2016-12-06
+
+* Updates to Gherkin 4.0 and Cucumber 2.4.0
+* Fixes issues with the formatting that comes from these changes
+
 === 2.3.2/ 2013-11-08
 
 * De-duping uses of step definitions when the line number is the same (ipwnstuff)
