@@ -20,6 +20,5 @@ end
 
 desc "Create the yard-cucumber gem"
 task :gem do
-  puts `gem build city.gemspec`
+  puts `gem build yard-cucumber.gemspec`
 end
-
