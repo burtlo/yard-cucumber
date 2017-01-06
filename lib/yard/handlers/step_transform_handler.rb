@@ -21,7 +21,12 @@ class YARD::Handlers::Ruby::StepTransformHandler < YARD::Handlers::Ruby::Base
   end
 
   def step_transformer_name
-    "step_transform#{self.class.generate_unique_id}"
+    # If the owner is a constant then we get the name of the constant so that the reference from the constant will work
+    if (owner.is_a?(YARD::CodeObjects::ConstantObject))
+      owner.name
+    else
+      "step_transform#{self.class.generate_unique_id}"
+    end
   end
 
   def self.generate_unique_id
