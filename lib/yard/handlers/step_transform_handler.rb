@@ -8,7 +8,7 @@ class YARD::Handlers::Ruby::StepTransformHandler < YARD::Handlers::Ruby::Base
       o.source = statement.source
       o.comments = statement.comments
       o.keyword = statement[0].source
-      o.value = statement[1].source
+      o.value = statement[1].source.gsub(/(^\(?\/|\/\)?$)/, '').gsub(/(^\^|\$$)/, '')
     end
 
     obj = register instance
