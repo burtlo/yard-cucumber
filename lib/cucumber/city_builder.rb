@@ -1,6 +1,6 @@
 module Cucumber
   module Parser
-    class CityBuilder < Gherkin::AstBuilder
+    class CityBuilder < ::Gherkin::AstBuilder
 
       #
       # The Gherkin Parser is going to call the various methods within this
