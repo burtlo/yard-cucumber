@@ -1,4 +1,7 @@
 <% if @namespace %>
+  <% count = 0 %>
+  <% features.each {|f| count += f.total_scenarios } %>
+
   <div id="tags" class="requirements">
     <script type="text/javascript" charset="utf-8">
       var tag_list = [ <%= tags.collect{|t| "'#{t.value}'" }.join(',') %> ];
@@ -18,11 +21,13 @@
 
         $("#tag_search").keyup(function(evt) {
           updateTagFiltering($("#tag_search")[0].value);
+          updateScenarioCount();
         });
 
         
         $("#tag_search").keyup(function(evt) {
           updateTagFiltering($("#tag_search")[0].value);
+          updateScenarioCount();
         });
         
          $(".tag").click(function(evt) {
@@ -50,6 +55,7 @@
               
               tagSearchElement.value = (tagSearchElement.value != "" ? tagSearchElement.value + tagModifier : "") + tagToAdd;
               updateTagFiltering(tagSearchElement.value);
+              updateScenarioCount();
               
             }
         });
@@ -89,7 +95,7 @@
 
     <div id="features">
       <div class="title">
-        <span class="name">Features</span>
+        <span class="name">Features<span id="scenario_count"> (<%= count %>)</span></span>
       </div>
       <% n = 1 %>
       <ul style="padding-left: 0px;">
@@ -105,9 +111,9 @@
         <% if feature.scenarios %>
           <ul style="padding-left: 20px;">
           	<% feature.scenarios.each do |scenario| %>
-          	<li class="scenario <%= n % 2 == 0 ? 'even' : 'odd' %> <%= feature.tags.collect{|t| t.value }.join(" ") %> <%= scenario.tags.collect{|t| t.value }.join(" ") %>">
+          	<li class="scenario <%= n % 2 == 0 ? 'even' : 'odd' %> <%= feature.tags.collect{|t| t.value }.join(" ") %> <%= scenario.tags.collect{|t| t.value }.join(" ") %>" count="<%= scenario.outline? ? 0 : 1 %>">
           	  <span class='object_link'>
-             		<a href="<%= url_for(scenario.feature,"scenario#{scenario.feature.scenarios.index(scenario) }") %>">
+             		<a href="<%= url_for(scenario.feature,"scenario_#{scenario.feature.scenarios.index(scenario) }") %>">
              		  <%= h scenario.value %>
              		</a>
              	</span>
@@ -116,8 +122,30 @@
                 - <small><%= stags %></small>
               <% end %>
           	</li>
+
             <% n = n == 2 ? 1 : 2 %>
-          	<% end %>
+            
+                <% if scenario.outline? %>
+                  <ul style="padding-left: 40px;">
+                  <% scenario.examples.each do |example| %>
+                    <li class="scenario <%= n % 2 == 0 ? 'even' : 'odd' %> <%= feature.tags.collect{|t| t.value }.join(" ") %> <%= scenario.tags.collect{|t| t.value }.join(" ") %> <%= example.tags.collect{|t| t.value }.join(" ") %>" count="<%= example.data.size %>">
+
+                     <span class='object_link'>
+                       <a href="<%= url_for(scenario.feature,"scenario_#{scenario.feature.scenarios.index(scenario) }") %>">
+                          <%= example.name.nil? || example.name.empty? ? "Examples" : example.name %>
+                       </a>
+                     </span>
+
+                    <% etags = example.tags.collect{|t| tagify(t) }.join(", ") %>
+                    <% if etags && etags != "" %>
+                    - <small><%= etags %></small>
+                    <% end %>
+                    </li>
+                    <% n = n == 2 ? 1 : 2 %>
+                  <% end %>
+                  </ul>
+                <% end %>
+          <% end %>
           </ul>
         <% end %>
       <% end %>

@@ -1,4 +1,4 @@
-@scenario_outlines @bvt
+@scenario_outlines @bvt @duplicate
 Feature: Displaying Scenario Outlines
   As a reader of the documentation I expect that scenario outlines are documented correctly
 
@@ -9,6 +9,7 @@ Feature: Displaying Scenario Outlines
     When the customer has purchased the product
     Then I expect the customer to be a member of the '<Product>' group
 
+    @tagged_examples
     Examples:
      | Customer   | Product   |
      | Customer A | Product A |
@@ -61,6 +62,7 @@ Feature: Displaying Scenario Outlines
      
   # This is an example of a scenario outline in development.
   # The example table has not been defined yet
+  @fifth
   Scenario Outline: Example Table Missing
     When I click on an example row
     Then I expect <name> to be replaced by the example name
@@ -70,6 +72,7 @@ Feature: Displaying Scenario Outlines
     
   # This is an example of a scenario outline in development.  
   # The examples table has been defined, but is missing data.
+  @sixth
   Scenario Outline: Empty Example Table
     When I click on an example row
     Then I expect <name> to be replaced by the example name
@@ -79,16 +82,19 @@ Feature: Displaying Scenario Outlines
     Examples:
       | name | price | denomination |
 
+  @seventh @duplicate
   Scenario Outline: Multiple Example Table
     Given that <Customer> is a valid customer
     And that the product, named '<Product>', is a valid product
     When the customer has purchased the product
     Then I expect the customer to be a member of the '<Product>' group
 
+    @groupA @duplicate
     Examples: Example group A
      | Customer   | Product   |
      | Customer A | Product A |
 
+    @groupB
     Examples: Example group B
      | Customer   | Product   |
      | Customer B | Product A |

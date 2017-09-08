@@ -74,7 +74,7 @@ module Cucumber
       def find_or_create_tag(tag_name,parent)
         #log.debug "Processing tag #{tag_name}"
         tag_code_object = YARD::Registry.all(:tag).find {|tag| tag.value == tag_name } ||
-          YARD::CodeObjects::Cucumber::Tag.new(YARD::CodeObjects::Cucumber::CUCUMBER_TAG_NAMESPACE,tag_name.gsub('@','')) {|t| t.owners = [] ; t.value = tag_name }
+          YARD::CodeObjects::Cucumber::Tag.new(YARD::CodeObjects::Cucumber::CUCUMBER_TAG_NAMESPACE,tag_name.gsub('@','')) {|t| t.owners = [] ; t.value = tag_name ; t.total_scenarios = 0}
 
         tag_code_object.add_file(@file,parent.line)
 
@@ -108,11 +108,19 @@ module Cucumber
             when :Background
               background(s)
             when :ScenarioOutline
-              scenario_outline(s)
+              outline = scenario_outline(s)
+              @feature.total_scenarios += outline.scenarios.size
             when :Scenario
               scenario(s)
+              @feature.total_scenarios += 1
           end
-      }
+        }
+
+        @feature.tags.each { |feature_tag|
+          tag_code_object = YARD::Registry.all(:tag).find {|tag| tag.name.to_s == feature_tag[:name].to_s }
+          tag_code_object.total_scenarios += @feature.total_scenarios
+        }
+
       end
 
       #
@@ -172,6 +180,14 @@ module Cucumber
         statement[:steps].each { |s|
           step(s)
         }
+
+        # count scenarios for scenario level tags
+        scenario.tags.uniq.each { |scenario_tag|
+          if !scenario.feature.tags.include?(scenario_tag) 
+            tag_code_object = YARD::Registry.all(:tag).find {|tag| tag.name.to_s == scenario_tag[:name].to_s }
+            tag_code_object.total_scenarios += 1
+          end
+        }
       end
 
       #
@@ -197,15 +213,40 @@ module Cucumber
         end
 
         outline.feature = @feature
-        @feature.scenarios << outline
         @step_container = outline
         statement[:steps].each { |s|
           step(s)
         }
+
         statement[:examples].each { |e|
-          examples(e)
+          example = examples(e, outline)
         }
+
+        @feature.scenarios << outline
+
+        # count scenarios for scenario outline level tags
+        outline.tags.uniq.each { |outline_tag|
+          if !outline.feature.tags.include?(outline_tag) 
+            tag_code_object = YARD::Registry.all(:tag).find {|tag| tag.name.to_s == outline_tag[:name].to_s }
+            tag_code_object.total_scenarios += outline.scenarios.size
+          end
+        }
+ 
+        # count scenarios for example table level tags
+        outline.examples.each { |example|
+          unless !example.tags.any?
+            example.tags.uniq.each { |example_tag|
+              if !outline.feature.tags.include?(example_tag) && !outline.tags.include?(example_tag)
+                tag_code_object = YARD::Registry.all(:tag).find {|tag| tag.name.to_s == example_tag[:name].to_s }
+                tag_code_object.total_scenarios += example.data.size
+              end
+            }
+          end
+        }
+
+        return outline
       end
+
 
       #
       # Examples for a scenario outline are called here. This section differs
@@ -214,15 +255,21 @@ module Cucumber
       # later we can ensure that we have all the variations of the scenario
       # outline defined to be displayed.
       #
-      def examples(examples)
+      def examples(examples, outline)
         #log.debug "EXAMPLES"
-
+        return if has_exclude_tags?(examples[:tags].map { |t| t[:name].gsub(/^@/, '') })
         example = YARD::CodeObjects::Cucumber::ScenarioOutline::Examples.new(:keyword => examples[:keyword],
                                                                              :name => examples[:name],
                                                                              :line => examples[:location][:line],
                                                                              :comments => examples[:comments] ? examples.comments.map{|comment| comment.value}.join("\n") : '',
-                                                                             :rows => []
-          )
+                                                                             :rows => [],
+                                                                             :tags => [],
+                                                                             :scenario => outline )
+
+        unless !examples[:tags].any?
+          examples[:tags].each {|example_tag| find_or_create_tag(example_tag[:name], example)}
+        end
+
         example.rows = [examples[:tableHeader][:cells].map{ |c| c[:value] }] if examples[:tableHeader]
         example.rows += matrix(examples[:tableBody]) if examples[:tableBody]
 
@@ -282,6 +329,7 @@ module Cucumber
 
         end
 
+        return example
       end
 
       #

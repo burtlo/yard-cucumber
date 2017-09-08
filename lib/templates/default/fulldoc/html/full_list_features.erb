@@ -10,7 +10,7 @@
   <div class="item" style="padding-left: 30px">
     <%= "<a class='toggle'></a>" unless feature.scenarios.empty? %>
     <%= linkify feature, feature.value %>
-    <small><%= feature.location %></small>
+    <small style="display: inline;"><%= feature.total_scenarios %></small>
   </div>
 
   <% n = n == 'odd' ? 'even' : 'odd' %>
