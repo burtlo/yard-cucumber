@@ -1,4 +1,3 @@
-
 module YARD::CodeObjects::Cucumber
 
   module LocationHelper
@@ -14,19 +13,14 @@ module YARD::CodeObjects::Cucumber
     def location
       "#{file}:#{line_number}"
     end
-
   end
 
   class Base < YARD::CodeObjects::Base
     include LocationHelper
-    
+
     def path
       @value || super
     end
-
   end
-
-  
-  
 end
 

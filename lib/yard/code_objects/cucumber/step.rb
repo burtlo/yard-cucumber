@@ -1,13 +1,19 @@
-
-
 module YARD::CodeObjects::Cucumber
 
   class Step < Base
 
-    attr_accessor :comments, :definition, :examples, :keyword, :scenario, :table, :text, :transforms, :value
+    attr_accessor :comments,
+                  :definition,
+                  :examples,
+                  :keyword,
+                  :scenario,
+                  :table,
+                  :text,
+                  :transforms,
+                  :value
 
-    def initialize(namespace,name)
-      super(namespace,name.to_s.strip)
+    def initialize(namespace, name)
+      super(namespace, name.to_s.strip)
       @comments = @definition = @description = @keyword = @table = @text = @value = nil
       @examples = {}
       @transforms = []
@@ -32,7 +38,5 @@ module YARD::CodeObjects::Cucumber
     def transformed?
       !@transforms.empty?
     end
-
   end
-
 end
