@@ -22,7 +22,20 @@ class YARD::Handlers::Ruby::ConstantTransformHandler < YARD::Handlers::Ruby::Con
         instance = register ConstantObject.new(namespace, name) {|o| o.source = statement; o.value = value }
         # specify the owner so that the transform can use the registered constant's name
         parse_block(statement[1], {:owner => instance})
+      elsif statement[1][0][0] == "ParameterType"
+        name = statement[0][0][0]
+        # Move the docstring to the transform statement
+        statement[1].docstring = statement.docstring
+        # Set the docstring on the constant to reference the transform that will be processed
+        statement.docstring = "Reference to {#{YARD::CodeObjects::Cucumber::CUCUMBER_STEPTRANSFORM_NAMESPACE}::#{name} transform}"
 
+        value = find(statement, :label, 'regexp:').parent.children[1].source
+
+        value = substitute(value)
+        value = convert_captures(strip_anchors(value))
+        instance = register ConstantObject.new(namespace, name) {|o| o.source = statement; o.value = value }
+        # specify the owner so that the transform can use the registered constant's name
+        parse_block(statement[1], {:owner => instance})
       end
     rescue
       # This supresses any errors where any of the statement elements are out of bounds. 
@@ -32,7 +45,12 @@ class YARD::Handlers::Ruby::ConstantTransformHandler < YARD::Handlers::Ruby::Con
   end
 
   private
-  
+
+  def find(node, node_type, value)
+    node.traverse { |child| return(child) if node_type == child.type && child.source == value }
+    self
+  end
+
   # Cucumber's Transform object overrides the to_s function and strips
   # the anchor tags ^$ and any captures so that id it is interpolated in a step definition
   # the it can appear anywhere in the step without being effected by position or captures

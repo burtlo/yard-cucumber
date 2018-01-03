@@ -1,18 +1,26 @@
 
 class YARD::Handlers::Ruby::StepTransformHandler < YARD::Handlers::Ruby::Base
   handles method_call(:Transform)
+  handles method_call(:ParameterType)
 
   process do
 
+    nextStatement = nil
     instance = YARD::CodeObjects::StepTransformObject.new(step_transform_namespace,step_transformer_name) do |o|
       o.source = statement.source
       o.comments = statement.comments
       o.keyword = statement[0].source
-      o.value = statement[1].source.gsub(/(^\(?\/|\/\)?$)/, '').gsub(/(^\^|\$$)/, '')
+      if (o.keyword == 'Transform')
+        o.value = statement[1].source.gsub(/(^\(?\/|\/\)?$)/, '').gsub(/(^\^|\$$)/, '')
+        nextStatement = statement[2]
+      elsif (o.keyword == 'ParameterType')
+        o.value = find(statement, :label, 'regexp:').parent.children[1].source.gsub(/(^\(?\/|\/\)?$)/, '').gsub(/(^\^|\$$)/, '')
+        nextStatement = find(statement, :label, 'transformer:').parent.children[1]
+      end
     end
 
     obj = register instance
-    parse_block(statement[2],:owner => obj)
+    parse_block(nextStatement,:owner => obj)
 
   end
 
@@ -33,4 +41,10 @@ class YARD::Handlers::Ruby::StepTransformHandler < YARD::Handlers::Ruby::Base
     @step_transformer_count = @step_transformer_count.to_i + 1
   end
 
+  private
+
+  def find(node, node_type, value)
+    node.traverse { |child| return(child) if node_type == child.type && child.source == value }
+    self
+  end
 end
