@@ -103,6 +103,7 @@ module Cucumber
 
           feature[:tags].each {|feature_tag| find_or_create_tag(feature_tag[:name],f) }
         end
+        background(feature[:background]) if feature[:background]
         feature[:children].each { |s|
           case s[:type]
             when :Background
