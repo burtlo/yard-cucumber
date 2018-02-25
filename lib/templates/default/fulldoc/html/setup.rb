@@ -73,7 +73,6 @@ def serialize_feature_directories_recursively(namespaces)
   end
 end
 
-
 # Generate feature list
 # @note this method is called automatically by YARD based on the menus defined in the layout
 def generate_feature_list
@@ -82,11 +81,32 @@ def generate_feature_list
   generate_full_list features_ordered_by_name, :features
 end
 
+# Count scenarios for features
+def record_feature_scenarios(features)
+  count_with_examples = 0
+  features.each do |f|
+    count_with_examples += f.total_scenarios
+  end
+  return count_with_examples
+end
+
+# Count scenarios for tags
+def record_tagged_scenarios(tags)
+  scenario_count = 0
+  count_with_examples = 0
+  tags.each do |t|
+    scenario_count += t.all_scenarios.size
+    count_with_examples += t.total_scenarios
+  end
+end
+
 # Generate tag list
 # @note this method is called automatically by YARD based on the menus defined in the layout
 def generate_tag_list
   tags = Registry.all(:tag)
-  tags_ordered_by_use = Array(tags).sort {|x,y| y.all_scenarios.size <=> x.all_scenarios.size }
+  tags_ordered_by_use = Array(tags).sort {|x,y| y.total_scenarios <=> x.total_scenarios }
+
+  record_tagged_scenarios(tags)
 
   generate_full_list tags_ordered_by_use, :tags
 end
@@ -162,10 +182,12 @@ end
 # When there are is just one feature directory then we want to link to that directory
 #
 def all_features_link
+  features = Registry.all(:feature)
+  count_with_examples = record_feature_scenarios(features)
   if root_feature_directories.length == 0 || root_feature_directories.length > 1
-    linkify YARD::CodeObjects::Cucumber::CUCUMBER_NAMESPACE, "All Features"
+    linkify YARD::CodeObjects::Cucumber::CUCUMBER_NAMESPACE, "All Features (#{count_with_examples})"
   else
-    linkify root_feature_directories.first, "All Features"
+    linkify root_feature_directories.first, "All Features (#{count_with_examples})"
   end
 end
 

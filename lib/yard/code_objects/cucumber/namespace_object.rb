@@ -1,5 +1,4 @@
 module YARD::CodeObjects::Cucumber
-
   class NamespaceObject < YARD::CodeObjects::NamespaceObject
     include LocationHelper
 

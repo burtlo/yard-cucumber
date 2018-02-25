@@ -1,5 +1,4 @@
 module YARD::CodeObjects::Cucumber
-
   module LocationHelper
 
     def line_number
@@ -23,4 +22,3 @@ module YARD::CodeObjects::Cucumber
     end
   end
 end
-

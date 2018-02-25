@@ -14,7 +14,8 @@
               <% objects.each do |obj| %>
                 <li>
                   <% if obj.is_a?(YARD::CodeObjects::Cucumber::Scenario) || obj.is_a?(YARD::CodeObjects::Cucumber::ScenarioOutline) %>
-                    <a href="<%= url_for(obj.feature,"scenario_#{obj.path[(/.+_(\d+)$/),1]}") %>">
+                    <% index = obj.path[(/.+_(\d+)$/),1].to_i - 1 %>
+                    <a href="<%= url_for(obj.feature,"scenario_#{index}") %>">
                  		  <%= h obj.value %>
                  		</a>
                   <% else %>

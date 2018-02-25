@@ -1,5 +1,4 @@
 module YARD::CodeObjects::Cucumber
-
   class Step < Base
 
     attr_accessor :comments,

@@ -1,6 +1,4 @@
-
 module YARD::CodeObjects
-
   class StepTransformerObject < Base
 
     include Cucumber::LocationHelper
@@ -93,5 +91,4 @@ module YARD::CodeObjects
       value.gsub(/^\/|\/$/,'')
     end
   end
-
 end

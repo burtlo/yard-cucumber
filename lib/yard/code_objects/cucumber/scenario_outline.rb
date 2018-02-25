@@ -1,5 +1,4 @@
 module YARD::CodeObjects::Cucumber
-
   class ScenarioOutline < NamespaceObject
 
     attr_accessor :value, :comments, :keyword, :description, :steps, :tags, :feature
@@ -26,10 +25,9 @@ module YARD::CodeObjects::Cucumber
       @examples.find { |example| example.rows }
     end
 
-
     class Examples
 
-      attr_accessor :name, :line, :keyword, :comments, :rows
+      attr_accessor :name, :line, :keyword, :comments, :rows, :tags, :scenario
 
       # The first row of the rows contains the headers for the table
       def headers

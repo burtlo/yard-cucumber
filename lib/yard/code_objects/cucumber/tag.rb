@@ -1,15 +1,23 @@
 module YARD::CodeObjects::Cucumber
-
   class Tag < NamespaceObject
 
-    attr_accessor :value, :owners
+    attr_accessor :value, :owners, :total_scenarios
 
     def features
       @owners.find_all { |owner| owner.is_a?(Feature) }
     end
 
     def scenarios
-      @owners.find_all { |owner| owner.is_a?(Scenario) || owner.is_a?(ScenarioOutline) }
+      all = @owners.find_all do |owner|
+        owner.is_a?(Scenario) || owner.is_a?(ScenarioOutline) || ()
+      end
+
+      @owners.each do |owner|
+        if owner.is_a?(ScenarioOutline::Examples) && !all.include?(owner.scenario)
+          all << owner.scenario
+        end
+      end
+      all
     end
 
     def indirect_scenarios
