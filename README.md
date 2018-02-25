@@ -92,16 +92,16 @@ This can be configured through the yard configuration file `~/.yard/config` to
 add or remove these search fields.
 
 ```yaml
---- !map:SymbolHash
-:load_plugins: true
-:ignored_plugins: []
-
-:autoload_plugins: []
-
-:safe_mode: false
-
-:"yard-cucumber":
-  menus: [ 'features', 'directories', 'tags', 'steps', 'step definitions' ]
+--- !ruby/hash-with-ivars:SymbolHash
+elements:
+  :load_plugins: true
+  :ignored_plugins: []
+  :autoload_plugins: []
+  :safe_mode: false
+  :"yard-cucumber":
+    menus: [ 'features', 'directories', 'tags', 'steps', 'step definitions' ]
+ivars:
+  :@symbolize_value: false
 ```
 
 By default the configuration, yaml format, that is generate by the `yard config`
