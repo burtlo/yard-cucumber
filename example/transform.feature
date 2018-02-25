@@ -11,3 +11,8 @@ Feature: Step Transforms
   Scenario: Step Transform uses a constant
     Given this first step
     Then I expect that the step, on the step transformer page, will link to the step transform
+
+  @third
+  Scenario: Step Transform uses an interpolated transform
+    Given this first step
+    Then the file './somelocation/somefile.input' will be replaced with the file contents

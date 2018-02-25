@@ -26,6 +26,13 @@ Transform /^((?:\d{1,2}[\/-]){2}(?:\d\d){1,2})?\s*(\w{3})?\s*(\d{1,2}:\d{2}\s*(?
   "#{date} #{day} #{time}"
 end
 
+#
+# Assign a trnasform to a variable to be interpolated later in a step definition
+#
+SUBSTITUTED_FILE = Transform(/^file '([^']*)'$/) do |filepath|
+  "Contents loaded from file"
+end 
+
 Given /^that (#{CUSTOMER}) is a valid customer$/ do |customer|
   pending "Customer #{customer} validation"  
 end
@@ -100,6 +107,12 @@ When /^the step definition has HTML escaped characters like: "([^"]+)"$/ do |cha
   pending characters
 end
 
+#
+# Step using interpolated transform to replace file reference with contents of file
+#
+Then /^the (#{SUBSTITUTED_FILE}) will be replaced with the file contents$/ do |content|
+  pending "File contained #{content}"
+end
 
 #
 # Some details about the helper method that might be picked up in the documentation.

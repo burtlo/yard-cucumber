@@ -105,7 +105,7 @@ module YARD
 
               if stepdef_matches
                 step.definition = stepdef_object
-                stepdef_matches[-1..1].each do |match|
+                stepdef_matches[1..-1].each do |match|
                   @@step_transforms.each do |steptrans,steptransform_object|
                     if steptrans.match(match)
                       step.transforms << steptransform_object
