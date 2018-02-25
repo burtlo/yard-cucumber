@@ -1,3 +1,4 @@
+require 'yard'
 require 'cucumber/platform'
 require 'gherkin/parser'
 
