@@ -1,3 +1,16 @@
+=== 4.0.0 / 2018-02-25
+
+* @wellavelino: Adjusts the indentation of several project classes
+  (https://github.com/burtlo/yard-cucumber/pull/89)
+* @elhuang: Adding example tags and scenarios counts
+  (https://github.com/burtlo/yard-cucumber/pull/87)
+* @weh: Update README.md
+  (https://github.com/burtlo/yard-cucumber/pull/84)
+* @weh: Fix Gem Load Error
+  (https://github.com/burtlo/yard-cucumber/pull/83)
+* @Stephen-Kaye: Transforms with CONSTANTS
+  (https://github.com/burtlo/yard-cucumber/pull/79)
+
 === 3.1.0/ 2016-12-06
 
 * Updates to Gherkin 4.0 and Cucumber 2.4.0
